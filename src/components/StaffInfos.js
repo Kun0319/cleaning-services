@@ -1,6 +1,5 @@
 import React from "react";
 import StaffInfo from "./StaffInfo";
-import "./StaffInfos.css";
 
 const StaffInfos = () => {
   return (
