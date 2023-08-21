@@ -3,14 +3,16 @@
   padding: 0;
   box-sizing: border-box;
 }
+.process-top {
+  text-align: center;
+}
 .service-process {
   padding: 1rem;
   min-height: 70vh;
 }
 .title {
-  color: #ffd154;
-  text-align: center;
-  margin: 3rem 0;
+  color: #ffc107;
+  margin: 3rem 0 0 0;
 }
 .process {
   display: flex;
@@ -25,6 +27,7 @@
   flex: 1 1;
   flex-direction: column;
   justify-content: center;
+  margin: 1.5rem 0;
 }
 .steps {
   margin-top: 1rem;
@@ -34,7 +37,7 @@
 
 .icons {
   font-size: 2.5rem;
-  color: #ffd154;
+  color: #ffc107;
   margin: 0 1.8rem;
 }
 .step {
@@ -45,10 +48,10 @@
   align-items: center;
 }
 .step h5 {
-  color: #3f4668;
+  color: #000b41;
 }
 .step p {
-  color: #7d7d7d;
+  color: #333333;
   margin: 0;
 }
 .process-img {
