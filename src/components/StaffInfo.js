@@ -1,30 +1,34 @@
 import React from "react";
-
+import "./StaffInfos.css";
 const StaffInfo = () => {
   return (
-    <div
-      style={{ backgroundColor: "#FFF7DE", border: "2px solid #997404" }}
-      className={cardClasses()}
-    >
-      <span className="border border-danger border-2 position-absolute top-0 end-0 text-danger fs-6">
+    // 卡片本體
+    <div id="staffCard" className={addCardStyle()}>
+      {/* 疫苗接踵確認 */}
+      <span id="Vaccination" className={getVaccination()}>
         已接種疫苗
       </span>
-      <div
-        style={{ backgroundColor: "#FFD55B" }}
-        className="container d-flex flex-column align-items-center rounded rounded-3 p-2"
-      >
-        <div style={{ width: "150px", height: "150px" }} className={staffImg()}>
-          <img className="h-100 w-100" src="images/staffimg.jpg" alt="" />
+      {/* 卡片上半部 */}
+      <div id="cardInfo" className={addCardInfoStyle()}>
+        {/* 員工照片 */}
+        <div id="cardImg" className={addCardImg()}>
+          <img className="leoImg" src="images/staffimg.jpg" alt="staffImg" />
         </div>
+        {/* 員工資訊 */}
         <div>
           編號:<span>24865</span>
         </div>
         <div>員工姓名</div>
-        <div>
-          ★★★★★<span>5.0</span>
+        {/* 評價 */}
+        <div className="position-relative">
+          <img src="images/star2.png" alt="star" />
+          {/* clip-path: inset(0 50% 0 0)改變星星數 */}
+          <img className="staffScore" src="images/star2Fill.png" alt="Fill" />
+          <span>5.0</span>
         </div>
       </div>
-      <div className={staff()}>
+      {/* 卡片下半部 */}
+      <div className={addAbilityStyle()}>
         <div className="row ">
           <div className="col">
             <svg
@@ -119,13 +123,20 @@ const StaffInfo = () => {
   );
 };
 
-const cardClasses = () => {
-  return "rounded rounded-3 fw-bold p-4 position-relative me-5";
+const addCardStyle = () => {
+  return "rounded rounded-3 fw-bold p-4 position-relative me-5 staffCard";
 };
-const staffImg = () => {
-  return "border border-2 rounded-circle overflow-hidden object-fit-contain";
+function addCardInfoStyle() {
+  return "container d-flex flex-column align-items-center rounded rounded-3 p-2 staffCardbackgroundColor";
+}
+
+function getVaccination() {
+  return "border border-danger border-2 position-absolute top-0 end-0 text-danger fs-6";
+}
+const addCardImg = () => {
+  return "border border-2 rounded-circle overflow-hidden object-fit-contain cardImg";
 };
-const staff = () => {
+const addAbilityStyle = () => {
   return "container text-center p-2";
 };
 export default StaffInfo;

@@ -1,3 +1,28 @@
 ul::-webkit-scrollbar {
   display: none;
 }
+.staffCard {
+  background-color: #fff7de;
+  border: 2px solid #997404;
+}
+.staffCardbackgroundColor {
+  background-color: #ffd55b;
+}
+.cardImg {
+  width: 150px;
+  height: 150px;
+}
+.leoImg {
+  width: 100%;
+  height: auto;
+}
+.cardFontStyle {
+  color: #664d03;
+}
+
+.staffScore {
+  position: absolute;
+  clip-path: inset(0 50% 0 0);
+  top: 0;
+  left: 0;
+}
