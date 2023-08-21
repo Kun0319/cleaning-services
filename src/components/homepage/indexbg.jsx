@@ -10,8 +10,8 @@ class indexbg extends Component {
   };
 
   roundpic = {
-    top: "20rem",
-    right: "10em",
+    top: "25%",
+    left: "55%",
   };
 
   render() {
@@ -33,7 +33,7 @@ class indexbg extends Component {
 
           {/* 圓形圖片 */}
           <div
-            className='position-absolute'
+            className='position-relative'
             style={this.roundpic}>
             <div
               className='position-absolute translate-middle'>
