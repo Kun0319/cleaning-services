@@ -19,8 +19,12 @@ class narbar extends Component {
 
     btn = {
         backgroundColor: "#ffc107",
-        height: "2em"
+        height: "2em",
+        color: "#664D03"
 
+    };
+    atagstyle = {
+        color: "#664D03"
     };
 
 
@@ -34,13 +38,13 @@ class narbar extends Component {
                     <nav style={this.styles} className='d-flex'>
                         {/* logo */}
                         <img src='images/logo.png' style={{ width: "10em", height: "6em" }} alt="" className='img-fluid' />
-                        <div className='  ms-auto d-flex align-items-center'>
-                            <a href="" className=' m-2 text-dark text-decoration-none '>線上預約</a>
-                            <a href="" className=' m-2 text-dark text-decoration-none '>關於我們</a>
-                            <a href="" className=' m-2 text-dark text-decoration-none'>服務項目</a>
-                            <a href="" className='m-2  text-dark text-decoration-none'>案例分享</a>
-                            <a href="" className='m-2  text-dark text-decoration-none'>常見問題</a>
-                            <button className=' mx-2 btn ' style={this.btn}>登入</button>
+                        <div className='ms-auto d-flex align-items-center' >
+                            <a href="" style={this.atagstyle} className=' m-2  text-decoration-none '>線上預約</a>
+                            <a href="" style={this.atagstyle} className=' m-2  text-decoration-none '>關於我們</a>
+                            <a href="" style={this.atagstyle} className=' m-2 text-decoration-none'>服務項目</a>
+                            <a href="" style={this.atagstyle} className='m-2   text-decoration-none'>案例分享</a>
+                            <a href="" style={this.atagstyle} className='m-2   text-decoration-none'>常見問題</a>
+                            <button className=' mx-2 btn  ' style={this.btn}>登入</button>
                         </div>
                     </nav >
                 </div>
