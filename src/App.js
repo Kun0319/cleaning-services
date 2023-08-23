@@ -1,4 +1,4 @@
-import Narbar from './components/narbar';
+import Narbar from './components/narbarIcon';
 import Indexbg from './components/indexbg';
 
 
@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <Narbar />
-      <Indexbg />
+
     </div>
   );
 }
