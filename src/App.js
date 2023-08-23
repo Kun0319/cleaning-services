@@ -4,6 +4,8 @@ import StaffInfos from "./components/homepage/StaffInfos";
 import Narbar from "./components/narbar";
 import Indexbg from "./components/homepage/indexbg";
 import Service from "./components/homepage/Service.js";
+import Topic from "./components/homepage/Topic";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <Title />
       <Process />
       <StaffInfos />
+      <Topic />
+      <Footer />
     </div>
   );
 }
