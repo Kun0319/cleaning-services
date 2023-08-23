@@ -19,9 +19,8 @@ class narbar extends Component {
 
     btn = {
         backgroundColor: "#ffc107",
-        color: "#664D03",
-
-
+        height: "2em",
+        color: "#664D03"
 
     };
     atagstyle = {
@@ -39,21 +38,30 @@ class narbar extends Component {
                     <nav style={this.styles} className='d-flex'>
                         {/* logo */}
                         <img src='images/logo.png' style={{ width: "10em", height: "6em" }} alt="" className='img-fluid' />
+
                         <div className='ms-auto d-flex align-items-center' >
                             <a href="" style={this.atagstyle} className=' mx-3  text-decoration-none '>關於我們</a>
                             <a href="" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</a>
                             <a href="" style={this.atagstyle} className='mx-3   text-decoration-none'>案例分享</a>
                             <a href="" style={this.atagstyle} className='mx-3   text-decoration-none'>常見問題</a>
-                            <a href=""> <img src="images/info.png" alt=""
-                                className='m-3'
-                                style={{ width: "2rem" }} /></a>
-                            <button className='px-3 mx-2 btn  ' style={this.btn}>登入</button>
+                            {/* icon */}
+                            <a href="">
+                                <img src="images/info.png" alt=""
+                                    className='m-3'
+                                    style={{ width: "2rem" }} />
+                            </a>
+
+                            <a href="">
+                                <img src="images/login.png" alt=""
+                                    style={{ width: "2rem" }} />
+                            </a>
+
                         </div>
                     </nav >
-                </div>
+                </div >
 
 
-
+                {/* 封面 */}
 
             </div >
         );
