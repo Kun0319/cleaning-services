@@ -1,9 +1,14 @@
 import React from "react";
 import Button from "./Button";
+import Calender from "./Calendar.jsx";
 
 const Step2Area = () => {
   return (
-    <form className="container d-flex  justify-content-center align-items-center flex-column">
+    <form
+      action=""
+      method="post"
+      className="container d-flex  justify-content-center align-items-center flex-column"
+    >
       <div className="d-flex  justify-content-center align-items-center book-step1">
         <div className="left">
           <div className="step2Top">
@@ -26,7 +31,9 @@ const Step2Area = () => {
             </div>
           </div>
         </div>
-        <div className="right"></div>
+        <div className="right">
+          <Calender />
+        </div>
       </div>
       <Button />
     </form>

@@ -4,7 +4,11 @@ import Button from "./Button";
 
 const Step1Area = () => {
   return (
-    <form className="container d-flex  justify-content-center align-items-center flex-column">
+    <form
+      action=""
+      method="post"
+      className="container d-flex  justify-content-center align-items-center flex-column"
+    >
       <div className="d-flex  justify-content-center align-items-center book-step1">
         <div className="left">
           <h5>定期清掃目前僅提供一週一次的清潔頻率</h5>
