@@ -1,6 +1,6 @@
 import React from "react";
 import "./dashboard.css";
-const Sidebar = () => {
+const SidebarAdmin = () => {
   const arrowRight = () => {
     return <img src="./images/chevron-right.png" alt="right" />;
   };
@@ -30,4 +30,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarAdmin;

@@ -12,7 +12,7 @@
   display: flex;
   width: 124px;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 4px;
 }
 .aside-main div {
@@ -51,6 +51,21 @@
 .aside span {
   font-size: 16px;
   cursor: pointer;
+}
+/* #################################member-style */
+.aside-main > h3 {
+  color: #eaac00;
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: normal;
+}
+.aside-main .member {
+  align-items: center;
+}
+.aside-title-member {
+  border-left: 2px solid #ffc107;
+  padding-left: 15px;
 }
 /* #################################Order-style*/
 .dashOrder {

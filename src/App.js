@@ -1,5 +1,6 @@
 import Narbar from "./components/narbar";
-import Sidebar from "./components/Sidebar";
+// import SidebarAdmin from "./components/SidebarAdmin";
+import SidebarMember from "./components/SidebarMember";
 import OrderList from "./components/OrderList";
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
         className="container"
         style={{ display: "flex", gap: "15px", justifyContent: "center" }}
       >
-        <Sidebar />
+        <SidebarMember />
         <OrderList />
       </div>
     </div>
