@@ -1,12 +1,11 @@
-import Narbar from './components/narbarIcon';
-import Indexbg from './components/indexbg';
-
+import Narbar from "./components/narbar";
+import Member from "./components/member";
 
 function App() {
   return (
-    <div className="App">
+    <div className="service-process">
       <Narbar />
-
+      <Member />
     </div>
   );
 }

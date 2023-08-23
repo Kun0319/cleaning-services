@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.process-top {
+  text-align: center;
+}
+.service-process {
+  padding: 1rem;
+  min-height: 70vh;
+}
+.title {
+  font-size: 28px;
+  color: #ffc107;
+  margin: 3rem 0 0 0;
+}
+.process {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10rem 0;
+}
+.process-list {
+  text-align: center;
+  display: flex;
+  flex: 1 1;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1.5rem 0;
+}
+.steps {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.icons {
+  font-size: 48px;
+  color: #ffc107;
+  margin: 0 1.8rem;
+}
+.step {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+  text-align: center;
+  align-items: center;
+}
+.step h5 {
+  font-size: 24px;
+  color: #000b41;
+}
+.step p {
+  font-size: 16px;
+  color: #333333;
+  margin: 0;
+}
+.process-img {
+  text-align: center;
+  justify-content: center;
+  flex: 1 1;
+}
+.process-img img {
+  width: 48%;
+  min-width: 300px;
+  border-radius: 15px;
+}
+ul::-webkit-scrollbar {
+  display: none;
+}
+.dr {
+  background-color: rgba(255, 222, 138, 1);
+  height: 120px;
+  width: 90%;
+  margin: 0px auto;
+  border-radius: 25px;
+  color: rgb(0, 0, 0);
+  overflow: hidden;
+
+}
+
+.dr ul {
+  list-style: none;
+  display: block;
+  float: left;
+  font-weight: bold;
+  color: white;
+  padding: 56px;
+  position: relative;
+  bottom: 40px;
+ left: 50px;
+}
+
+.reserve {
+  color: rgba(147, 126, 93, 1);
+  text-align: center;
+  width: 90%;
+  height: 320px;
+  margin: 0px auto;
+  padding: 65px;
+}
+
+.inp {
+  background-color: rgba(253, 193, 3, 1);
+  color: rgba(147, 126, 93, 1);
+  border: 0px;
+  cursor: pointer;
+  width: 190px;
+  height: 47px;
+  border-radius: 8px;
+  font-weight: bold;
+
+}
+
+footer {
+  background-color: rgba(254, 230, 156, 1);
+  width: 90%;
+  height: 210px;
+  margin: 0px auto;
+  border-radius: 25px;
+}
+
+.footer-icon {
+  list-style-type: none;
+
+}
+
+.footer-icon li {
+  display: inline-block;
+  position: relative;
+  right: 30px;
+  bottom: -10px;
+}
+
+.footer-img {
+  position: relative;
+  left: 25px;
+  top: 25px;
+}
+
+
+.footer-a {
+  color: black;
+  text-decoration: none;
+}
+
+.item ul {
+  list-style: none;
+  display: block;
+  float: left;
+  font-weight: bold;
+  font-size: 18px;
+  position: relative;
+  left: 450px;
+  bottom: 210px;
+  font-size: 15px;
+  padding: 90px;
+
+}
+
+.colo{
+  color:rgba(155, 119, 0, 1) ;
+}
+.team{
+  position: relative;
+  top:200px;
+}
