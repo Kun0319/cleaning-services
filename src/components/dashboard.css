@@ -1,3 +1,4 @@
+/* ##################################Sidebar-style */
 .aside {
   width: 206px;
   height: 807px;
@@ -49,4 +50,87 @@
 }
 .aside span {
   font-size: 16px;
+  cursor: pointer;
+}
+/* #################################Order-style*/
+.dashOrder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1091px;
+  height: 808px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  border: 1px solid #ffc107;
+  background: #fffef9;
+  background-image: url("/public/images/dashboard-background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: 100%;
+  position: relative;
+}
+.dashOrder > h3 {
+  color: #eaac00;
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 38px;
+  margin-bottom: 65px;
+}
+.orderTable {
+  display: flex;
+  flex-direction: column;
+  width: 861px;
+  height: auto;
+  top: 133px;
+  left: 115px;
+  padding: 0px 24px 0px 24px;
+  gap: 12px;
+}
+.orderThead,
+.orderTbody {
+  display: flex;
+  justify-content: space-between;
+}
+.orderThead {
+  border-bottom: 1px solid #664d03;
+}
+.orderTbody:hover {
+  background-color: #fff8e1;
+}
+.orderTbody {
+  cursor: pointer;
+  display: flex;
+  padding: 12px 12px;
+  justify-content: space-between;
+  text-align: center;
+  border-radius: 30px;
+}
+.dashOrder span,
+.orderThead {
+  color: #664d03;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+}
+.orderBtn {
+  border: none;
+  width: 94px;
+  height: 42px;
+  border-radius: 10px;
+  background: #997404;
+  color: #fff;
+  text-align: center;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400px;
+  line-height: normal;
+  margin: 15px;
+}
+.orderBtns {
+  position: absolute;
+  bottom: 20px;
 }
