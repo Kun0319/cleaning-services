@@ -1,9 +1,4 @@
 import React, { Component } from 'react';
-// import background from '../../public/images/Frame.png';  // ./images/Frame.png
-// import circleImage1 from '../../public/image/circleImage1.webp'; //  ./images/circleImage1.webp
-// import circleImage2 from '../../public/image/circleImage2.webp';  // ./images/circleImage2.webp
-// import logo from '../../public/image/logo.png'; // ./images/logo.png
-// import raccoon from '../../public/image/raccoon.png'; // ./images/raccoon.png'
 
 
 
