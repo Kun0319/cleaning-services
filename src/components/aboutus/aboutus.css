@@ -1,0 +1,23 @@
+.container, .serviceArea, .location {
+    background-color: #FFFEF9;
+    border: 1px solid #FFD740;
+    width: 80%;
+
+
+}
+
+.card {
+    background-color: #FFFEF9;
+    border: 1px solid #FFD740;
+    width: 380px;
+}
+
+h3 {
+    font-size: 32px;
+}
+
+p {
+    font-size: 20px;
+    color: #3F3350;
+
+}
