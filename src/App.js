@@ -12,7 +12,7 @@ function App() {
     <div className="service-process">
       <Narbar />
       <Indexbg />
-      <Service/>
+      <Service />
       <Title />
       <Process />
       <StaffInfos />
