@@ -1,7 +1,7 @@
-import StaffInfo from "./components/StaffInfo";
+import StaffInfos from "./components/StaffInfos";
 
 function App() {
-  return <StaffInfo />;
+  return <StaffInfos />;
 }
 
 export default App;
