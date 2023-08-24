@@ -16,11 +16,8 @@ function App() {
       <StaffInfos />
       <Topic />
       <Footer />
-<<<<<<< HEAD
-=======
       <Case />
 
->>>>>>> cg
     </div>
   );
 }
