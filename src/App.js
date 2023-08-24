@@ -3,6 +3,7 @@ import Indexbg from "./components/homepage/indexbg";
 import Service from "./components/homepage/Service.js";
 import Topic from "./components/homepage/Topic";
 import Footer from "./components/Footer";
+import Case from "./components/caseshare/case";
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
       <StaffInfos />
       <Topic />
       <Footer />
+<<<<<<< HEAD
+=======
+      <Case />
+
+>>>>>>> cg
     </div>
   );
 }
