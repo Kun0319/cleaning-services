@@ -1,11 +1,17 @@
 import Narbar from "./components/narbar";
-import Member from "./components/member";
+// import Order from "./components/AdminOrder";
+import Sidebar from "./components/Sidebar";
+// import PersonalInfo from "./components/PersonalInfo"
+import Memberinfo from "./components/MemberInfo";
 
 function App() {
   return (
     <div className="service-process">
       <Narbar />
-      <Member />
+      <div className="container"
+        style={{ display: "flex", gap: "15px", justifyContent: "center" }}> <Sidebar />
+        <Memberinfo />
+      </div>
     </div>
   );
 }
