@@ -8,6 +8,7 @@
   background: #fffef9;
   padding: 67px 41px;
 }
+
 .aside .aside-main {
   display: flex;
   width: 124px;
@@ -15,6 +16,7 @@
   align-items: center;
   gap: 4px;
 }
+
 .aside-main div {
   display: flex;
   width: 106px;
@@ -24,6 +26,7 @@
   gap: 4px;
   border-bottom: 1px solid #ffc107;
 }
+
 .aside-input {
   border: none;
   border-bottom: 1px solid #ffc107;
@@ -37,6 +40,7 @@
   height: 48px;
   /* outline: none;  */
 }
+
 ::placeholder,
 .aside-title,
 .aside span {
@@ -48,25 +52,30 @@
   letter-spacing: 0em;
   text-align: left;
 }
+
 .aside span {
   font-size: 16px;
   cursor: pointer;
 }
+
 /* #################################member-style */
-.aside-main > h3 {
+.aside-main>h3 {
   color: #eaac00;
   font-family: Inter;
   font-size: 28px;
   font-weight: 400;
   line-height: normal;
 }
+
 .aside-main .member {
   align-items: center;
 }
+
 .aside-title-member {
   border-left: 2px solid #ffc107;
   padding-left: 15px;
 }
+
 /* #################################Order-style*/
 .dashOrder {
   display: flex;
@@ -84,7 +93,8 @@
   background-position-y: 100%;
   position: relative;
 }
-.dashOrder > h3 {
+
+.dashOrder>h3 {
   color: #eaac00;
   font-family: Inter;
   font-size: 28px;
@@ -93,6 +103,7 @@
   margin-top: 38px;
   margin-bottom: 65px;
 }
+
 .orderTable {
   display: flex;
   flex-direction: column;
@@ -103,17 +114,50 @@
   padding: 0px 24px 0px 24px;
   gap: 12px;
 }
+
+.orderInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 50px 0px 15px 0px;
+}
+
+.orderCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.line {
+  width: 60px;
+  border: 1px solid #ffc107;
+  border-radius: 30px;
+}
+
+.orderText {
+  color: #664d03;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
 .orderThead,
 .orderTbody {
   display: flex;
   justify-content: space-between;
 }
+
 .orderThead {
   border-bottom: 1px solid #664d03;
 }
+
 .orderTbody:hover {
   background-color: #fff8e1;
 }
+
 .orderTbody {
   cursor: pointer;
   display: flex;
@@ -122,6 +166,7 @@
   text-align: center;
   border-radius: 30px;
 }
+
 .dashOrder span,
 .orderThead {
   color: #664d03;
@@ -130,6 +175,7 @@
   font-weight: 400;
   line-height: normal;
 }
+
 .orderBtn {
   border: none;
   width: 94px;
@@ -145,6 +191,7 @@
   line-height: normal;
   margin: 15px;
 }
+
 .orderBtns {
   position: absolute;
   bottom: 20px;
