@@ -1,7 +1,8 @@
 import Narbar from "./components/narbar";
-// import SidebarAdmin from "./components/SidebarAdmin";
-import SidebarMember from "./components/SidebarMember";
-import OrderList from "./components/OrderList";
+import Indexbg from "./components/homepage/indexbg";
+import Service from "./components/homepage/Service.js";
+import Topic from "./components/homepage/Topic";
+import Footer from "./components/Footer";
 function App() {
   return (
     <div className="service-process">
