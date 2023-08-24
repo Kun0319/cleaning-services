@@ -4,11 +4,7 @@ import Button from "./Button";
 const Step3Area = () => {
   return (
     <>
-      <form
-        action=""
-        method="post"
-        className="container book-step1 book-step3 flex-column"
-      >
+      <form action="" method="post" className=" book-step3">
         <div id="clientInfo">
           <div>
             <input type="checkbox" name="" id="" />
