@@ -1,5 +1,5 @@
 import React from "react";
-import './aboutus.css'
+import './aboutus.css';
 
 const Aboutus = () => {
     return (
@@ -11,7 +11,7 @@ const Aboutus = () => {
 
             </div>
 
-            <div className="carditem" style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div className="carditem">
                 <div className="card">
                     <h3 className="title1">專業團隊</h3>
                     <img src="public/images/aboutus-001.png"></img>
@@ -33,7 +33,7 @@ const Aboutus = () => {
             <div className="serviceArea">
                 <h3>服務地區 Service Area</h3>
                 <img src="public/images/flower.png" alt="flower"></img>
-                <div className="content" style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <div className="content">
                     <div><img src="public/images/aboutus-004.png"></img></div>
                     <div><p>台中市全區皆可預約，
                         預約後，師傅將於選擇日期抵達您的宅邸，不需另外收取工人費或樓層費等費用、價格保證公開透明 !！</p></div>
@@ -44,7 +44,7 @@ const Aboutus = () => {
             <div className="location">
                 <h3>地點 Location</h3>
                 <img src="public/images/flower.png" alt="flower"></img>
-                <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                <div className="map">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.4184949785486!2d120.63260162534858!3d24.157051678395053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693dc6f8bd1971%3A0xf7ce6c40c06fb76!2z5Lit6I-v6Zu75L-h6KiT57e05omA57ac5ZCI5aSn5qiT!5e0!3m2!1szh-TW!2stw!4v1692776380122!5m2!1szh-TW!2stw" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     <div className="socialmedia">
                         <ul>

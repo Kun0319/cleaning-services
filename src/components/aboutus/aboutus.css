@@ -21,3 +21,13 @@ p {
     color: #3F3350;
 
 }
+
+.carditem {
+    display: flex;
+    justify-content: space-between;
+}
+
+.content, .map {
+    display: flex;
+    justify-content: space-evenly;
+}
