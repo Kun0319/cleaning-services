@@ -57,7 +57,7 @@ p {
 .book-step1 {
   min-width: 365px;
   width: 1312px;
-  height: 653px;
+  min-height: 653px;
   text-align: center;
   color: #664d03;
   border: 1px solid #ffc107;
@@ -245,7 +245,7 @@ p {
 }
 /* Step3Area*/
 .book-step3 {
-  height: 653px;
+  min-height: 653px;
   min-width: 365px;
   width: 1312px;
   text-align: center;
@@ -275,7 +275,6 @@ p {
 #clientInfo select {
   font-size: 1rem;
   color: #664d03;
-
   margin: 0 12px;
   border: 1px solid #dee2e6;
   border-radius: 6px;
@@ -290,3 +289,62 @@ p {
   margin: 0 12px;
 }
 /* Step4Area*/
+
+.book4-top {
+  max-width: 648px;
+  width: 75%;
+  background-color: #ffe69c66;
+  border-radius: 30px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.book4-top th {
+  font-size: 1.125rem;
+  padding: 0 1rem 1rem 1rem;
+  border-bottom: 1px solid #664d03;
+}
+.book4-top td {
+  font-size: 1rem;
+  padding-top: 1rem;
+}
+.book4-middle label {
+  font-size: 1.25rem;
+}
+.book4-middle select {
+  width: 300px;
+  min-width: 155px;
+  font-size: 1rem;
+  color: #664d03;
+  margin: 0 0 1.25rem 12px;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  background-color: white;
+  padding: 0.3rem 0.8rem;
+}
+.book4-bottom {
+  border-radius: 10px;
+  border: 1px solid #664d03;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+}
+.book4-bottom label {
+  font-size: 1.25rem;
+}
+.book4-bottom input {
+  width: 75px;
+  text-align: center;
+  font-size: 1rem;
+  color: #664d03;
+  margin: 0 10px;
+  padding: 0.2rem;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  background-color: white;
+}
+.creaditCard {
+  margin-bottom: 1.25rem;
+}
+.book4-comment input {
+  margin: 0 10px;
+}
