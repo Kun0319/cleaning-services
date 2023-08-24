@@ -3,11 +3,11 @@ const OrderList = () => {
   // 假資料props
   const orderList = [
     { orderNumber: "C0019", content: "客廳清潔", orderStatus: 1 },
-    { orderNumber: "C0019", content: "客廳清潔", orderStatus: 1 },
-    { orderNumber: "C0019", content: "客廳清潔", orderStatus: 1 },
-    { orderNumber: "C0123", content: "客廳清潔", orderStatus: 0 },
-    { orderNumber: "C0123", content: "客廳清潔", orderStatus: 0 },
-    { orderNumber: "C0123", content: "客廳清潔", orderStatus: 0 },
+    { orderNumber: "C0019", content: "客廳213213清潔", orderStatus: 1 },
+    { orderNumber: "C012312019", content: "客廳清潔", orderStatus: 1 },
+    { orderNumber: "C0123", content: "客廳12321清潔", orderStatus: 0 },
+    { orderNumber: "C01123123", content: "客廳清潔", orderStatus: 0 },
+    { orderNumber: "C0123", content: "客廳清潔哭哭哭", orderStatus: 0 },
   ];
   return (
     <div className="dashOrder">
@@ -21,14 +21,14 @@ const OrderList = () => {
         {orderList.map((orderList) => {
           return (
             <div
-              className="orderTbody"
+              className="orderTbody row"
               onClick={() => {
                 alert("AAAAAAAAAAAAAAAAAA");
               }}
             >
-              <span>{orderList.orderNumber}</span>
-              <span>{orderList.content}</span>
-              <span>{orderList.orderStatus ? "新訂單" : "已接單"}</span>
+              <span className="col">{orderList.orderNumber}</span>
+              <span className="col">{orderList.content}</span>
+              <span className="col">{orderList.orderStatus ? "新訂2132132131單qwdq" : "已接單"}</span>
             </div>
           );
         })}

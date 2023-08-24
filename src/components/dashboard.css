@@ -8,6 +8,7 @@
   background: #fffef9;
   padding: 67px 41px;
 }
+
 .aside .aside-main {
   display: flex;
   width: 124px;
@@ -15,6 +16,7 @@
   align-items: center;
   gap: 4px;
 }
+
 .aside-main div {
   display: flex;
   width: 106px;
@@ -24,6 +26,7 @@
   gap: 4px;
   border-bottom: 1px solid #ffc107;
 }
+
 .aside-input {
   border: none;
   border-bottom: 1px solid #ffc107;
@@ -37,6 +40,7 @@
   height: 48px;
   /* outline: none;  */
 }
+
 ::placeholder,
 .aside-title,
 .aside span {
@@ -48,25 +52,30 @@
   letter-spacing: 0em;
   text-align: left;
 }
+
 .aside span {
   font-size: 16px;
   cursor: pointer;
 }
+
 /* #################################member-style */
-.aside-main > h3 {
+.aside-main>h3 {
   color: #eaac00;
   font-family: Inter;
   font-size: 28px;
   font-weight: 400;
   line-height: normal;
 }
+
 .aside-main .member {
   align-items: center;
 }
+
 .aside-title-member {
   border-left: 2px solid #ffc107;
   padding-left: 15px;
 }
+
 /* #################################Order-style*/
 .dashOrder {
   display: flex;
@@ -84,7 +93,8 @@
   background-position-y: 100%;
   position: relative;
 }
-.dashOrder > h3 {
+
+.dashOrder>h3 {
   color: #eaac00;
   font-family: Inter;
   font-size: 28px;
@@ -93,6 +103,7 @@
   margin-top: 38px;
   margin-bottom: 65px;
 }
+
 .orderTable {
   display: flex;
   flex-direction: column;
@@ -103,25 +114,41 @@
   padding: 0px 24px 0px 24px;
   gap: 12px;
 }
+
 .orderThead,
 .orderTbody {
   display: flex;
   justify-content: space-between;
 }
+
 .orderThead {
   border-bottom: 1px solid #664d03;
 }
+
 .orderTbody:hover {
   background-color: #fff8e1;
 }
+
 .orderTbody {
   cursor: pointer;
   display: flex;
   padding: 12px 12px;
-  justify-content: space-between;
-  text-align: center;
+  /* justify-content: space-between; */
   border-radius: 30px;
 }
+
+.orderTbody span:nth-child(1) {
+  text-align: left;
+}
+
+.orderTbody span:nth-child(2) {
+  text-align: center;
+}
+
+.orderTbody span:nth-child(3) {
+  text-align: right;
+}
+
 .dashOrder span,
 .orderThead {
   color: #664d03;
@@ -130,6 +157,7 @@
   font-weight: 400;
   line-height: normal;
 }
+
 .orderBtn {
   border: none;
   width: 94px;
@@ -145,6 +173,7 @@
   line-height: normal;
   margin: 15px;
 }
+
 .orderBtns {
   position: absolute;
   bottom: 20px;
