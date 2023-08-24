@@ -162,9 +162,20 @@
   cursor: pointer;
   display: flex;
   padding: 12px 12px;
-  justify-content: space-between;
-  text-align: center;
+  /* justify-content: space-between; */
   border-radius: 30px;
+}
+
+.orderTbody span:nth-child(1) {
+  text-align: left;
+}
+
+.orderTbody span:nth-child(2) {
+  text-align: center;
+}
+
+.orderTbody span:nth-child(3) {
+  text-align: right;
 }
 
 .dashOrder span,

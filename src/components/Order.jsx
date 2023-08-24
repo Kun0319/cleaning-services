@@ -42,14 +42,14 @@ const Order = () => {
         {order.map((order) => {
           return (
             <div
-              className="orderTbody"
+              className="orderTbody row"
               onClick={() => {
                 alert("AAAAAAAAAAAAAAAAAA");
               }}
             >
-              <span>{order.orderNumber}</span>
-              <span>{order.content}</span>
-              <span>{order.orderStatus ? "處理中" : "訂單完成"}</span>
+              <span className="col">{order.orderNumber}</span>
+              <span className="col">{order.content}</span>
+              <span className="col">{order.orderStatus ? "處理中" : "已完成"}</span>
             </div>
           );
         })}
