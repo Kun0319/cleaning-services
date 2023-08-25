@@ -1,7 +1,8 @@
 import Narbar from "./components/narbar";
 // import SidebarAdmin from "./components/SidebarAdmin";
 import SidebarMember from "./components/SidebarMember";
-import Order from "./components/Order";
+import OrderDone from "./components/OrderDone";
+import Score from "./components/score";
 function App() {
   return (
     <div className="service-process">
@@ -11,7 +12,8 @@ function App() {
         style={{ display: "flex", gap: "15px", justifyContent: "center" }}
       >
         <SidebarMember />
-        <Order />
+        <OrderDone />
+        <Score />
       </div>
     </div>
   );
