@@ -1,4 +1,6 @@
 import React from 'react';
+import './case.css';
+
 
 function CommentItem({ imgSrc, stars, content }) {
   return (

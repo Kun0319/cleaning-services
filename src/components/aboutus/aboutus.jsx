@@ -11,7 +11,7 @@ const Aboutus = () => {
 
   return (
     <div>
-      <div className="container">
+      <div className="companycontainer">
         <h3>公司介紹 HISTORY</h3>
         <img src="images/flower.png" alt="flower" />
         <p>浣熊管家清潔公司於2023年成立，由六位充滿活力的年輕創辦人發起，專為忙碌的上班族量身打造。我們以可愛浣熊形象為特色，致力於提供高品質清潔服務，讓您的家環境煥然一新。讓浣熊管家成為您信賴的伙伴，帶來整潔舒適的生活，讓您專注於更重要的事務。</p>

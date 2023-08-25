@@ -1,11 +1,12 @@
 import React from 'react';
+import './aboutus.css';
 
 function Card({ title, imgSrc, content }) {
   return (
-    <div className="card">
-      <h3>{title}</h3>
-      <img src={imgSrc} alt="" />
-      <p>{content}</p>
+    <div className="teamcard">
+      <h3 className="cardtitle">{title}</h3>
+      <img src={imgSrc} alt="" className="cardimg"/>
+      <p className="cardp">{content}</p>
     </div>
   );
 }
