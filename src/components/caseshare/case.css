@@ -1,4 +1,4 @@
-.title {
+.caseTitle {
     margin: 0 auto;
     background-image: url('../../../public/images/case-bg.png');
     background-repeat: no-repeat;
@@ -13,7 +13,7 @@
     width: 90%;
 }
 
-.title h2 {
+.caseTitle h2 {
     color: #3F3350;
     font-size: 32px;
 }

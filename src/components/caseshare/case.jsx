@@ -36,7 +36,7 @@ const Case = () => {
 
   return (
     <>
-      <div className="title">
+      <div className="caseTitle">
         <h2>案例分享</h2>
       </div>
 
