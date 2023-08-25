@@ -79,7 +79,7 @@ p {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  background-color: plum;
+  /* background-color: plum; */
 }
 .book-step1 h5 {
   margin: 0;
@@ -162,6 +162,7 @@ p {
   justify-content: center;
 }
 .book-step1 .right {
+  /* background-color: lightblue; */
   width: 476px;
   max-height: 480px;
   display: flex;
@@ -289,29 +290,30 @@ p {
   margin: 0 12px;
 }
 /* Step4Area*/
-
-.book4-top {
-  max-width: 648px;
-  width: 75%;
-  background-color: #ffe69c66;
+.book4-left {
   border-radius: 30px;
   padding: 1.25rem;
   margin-bottom: 1.25rem;
 }
-
-.book4-top th {
+#book4-order {
+  width: 75%;
+  height: 100%;
+  background-color: #ffe69c66;
+  border-radius: 30px;
+  padding: 1rem;
+}
+#book4-order th {
   font-size: 1.125rem;
-  padding: 0 1rem 1rem 1rem;
   border-bottom: 1px solid #664d03;
 }
-.book4-top td {
-  font-size: 1rem;
-  padding-top: 1rem;
+.book4-pay {
+  width: 100%;
+  height: 100%;
 }
-.book4-middle label {
+.payMethod label {
   font-size: 1.25rem;
 }
-.book4-middle select {
+.payMethod select {
   width: 300px;
   min-width: 155px;
   font-size: 1rem;
@@ -322,17 +324,19 @@ p {
   background-color: white;
   padding: 0.3rem 0.8rem;
 }
-.book4-bottom {
+
+.creaditCard {
   border-radius: 10px;
   border: 1px solid #664d03;
   margin-bottom: 1.25rem;
   padding: 1.25rem;
 }
-.book4-bottom label {
+.creaditCard label {
   font-size: 1.25rem;
 }
-.book4-bottom input {
-  width: 75px;
+
+.creaditCard input {
+  width: 65px;
   text-align: center;
   font-size: 1rem;
   color: #664d03;
@@ -345,6 +349,20 @@ p {
 .creaditCard {
   margin-bottom: 1.25rem;
 }
+
 .book4-comment input {
   margin: 0 10px;
+}
+
+/* Step4Area*/
+#book5-top {
+  display: flex;
+  align-items: center;
+  font-size: 3rem;
+}
+#book5-top h5 {
+  font-size: 2rem;
+}
+#book5-bottom img {
+  min-width: 350px;
 }
