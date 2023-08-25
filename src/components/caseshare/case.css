@@ -1,20 +1,21 @@
 .title {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     background-image: url('../../../public/images/case-bg.png');
     background-repeat: no-repeat;
     background-clip: border-box;
-    width: 90%;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    margin-top: 48px;
     margin-bottom: 48px;
+    width: 90%;
 }
 
-h2 {
+.title h2 {
     color: #3F3350;
+    font-size: 32px;
 }
 
 .cardcontainer {
@@ -24,7 +25,7 @@ h2 {
     margin-bottom: 48px;
 }
 
-.card {
+.casecard {
     margin-left: auto;
     margin-right: auto;
     background-color: #FFFEF9;
@@ -34,8 +35,12 @@ h2 {
     margin-bottom: 24px;
 }
 
-.card p {
+.casecard p {
     padding: 24px;
+}
+
+.caseimg {
+    width: 100%;
 }
 
 .content {
@@ -48,8 +53,10 @@ h2 {
     justify-content: flex-start;
     align-items: center;
 }
+
 .commentitem {
-    margin-bottom: 24px;
+    margin: 24px;
+
 }
 
 .icon {
@@ -61,11 +68,22 @@ h2 {
 .people {
     width: 120px;
     height: 120px;
+    margin: 16px;
 }
 
 .comment {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin: 24px;
+}
+
+@media (max-width: 992px) {
+    .commentitem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
 
 }
