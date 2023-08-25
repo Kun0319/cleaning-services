@@ -12,11 +12,11 @@ function CardContainer() {
   ];
 
   return (
-    <div className="cardcontainer">
+    <div className="casecardcontainer">
       {cardData.map((card, index) => (
         <div className="casecard" key={index}>
           <img src={card.imgSrc} alt="" className="caseimg"/>
-          <div className="content">
+          <div className="casecontent">
             <p>{card.title}</p>
             <p>{card.date}</p>
           </div>
@@ -42,7 +42,7 @@ const Case = () => {
 
       <CardContainer />
 
-      <div className="comment">
+      <div className="casecomment">
         {commentData.map((comment, index) => (
           <CommentItem key={index} {...comment} />
         ))}

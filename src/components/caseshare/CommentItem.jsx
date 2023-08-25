@@ -8,7 +8,7 @@ function CommentItem({ imgSrc, stars, content }) {
       <div className="commentpeople">
         <img src={imgSrc} className="people" />
         {Array.from({ length: stars }).map((_, starIndex) => (
-          <img key={starIndex} src="images/icon-star.png" className="icon" />
+          <img key={starIndex} src="images/icon-star.png" className="caseicon" />
         ))}
       </div>
       <p>{content}</p>

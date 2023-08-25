@@ -18,7 +18,7 @@
     font-size: 32px;
 }
 
-.cardcontainer {
+.casecardcontainer {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -43,7 +43,7 @@
     width: 100%;
 }
 
-.content {
+.casecontent {
     display: flex;
     justify-content: space-between;
 }
@@ -59,7 +59,7 @@
 
 }
 
-.icon {
+.caseicon {
     width: 24px;
     height: 24px;
 
@@ -71,7 +71,7 @@
     margin: 16px;
 }
 
-.comment {
+.casecomment {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
