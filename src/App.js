@@ -5,10 +5,7 @@ import Book2 from "./pages/book/Book2";
 import Book3 from "./pages/book/Book3";
 import Book4 from "./pages/book/Book4";
 import Book5 from "./pages/book/Book5";
-import Memberinfo from "./pages/member/MemberInfo";
-import Personalinfo from "./pages/member/PersonalInfo";
-import AdminOrder from "./pages/order/AdminOrder";
-import Sidebar from "./components/Sidebar";
+
 
 function App() {
   return (
