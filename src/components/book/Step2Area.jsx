@@ -1,8 +1,11 @@
 import React from "react";
 import Button from "./Button";
-import Calender from "./Calendar.jsx";
+import MyCalendar from "./MyCalendar";
 
 const Step2Area = () => {
+  const weeks = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+  const time = ["08:00", "13:00", "18:00"];
+
   return (
     <form
       action=""
@@ -14,28 +17,33 @@ const Step2Area = () => {
           <div className="step2Top">
             <h5>選擇服務時間</h5>
             <div className="chooseTime">
-              <div className="service-week">星期一</div>
-              <div className="service-week">星期二</div>
-              <div className="service-week">星期三</div>
-              <div className="service-week">星期四</div>
-              <div className="service-week">星期五</div>
-              <div className="service-week">星期六</div>
+              {weeks.map((week, index) => {
+                return (
+                  <div className="service-week" key={index}>
+                    {week}
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="step2Bottom">
             <h5>選擇服務時段</h5>
             <div className="chooseTime">
-              <div className="service-week">08:00</div>
-              <div className="service-week">13:00</div>
-              <div className="service-week">18:00</div>
+              {time.map((time, index) => {
+                return (
+                  <div className="service-week" key={index}>
+                    {time}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
         <div className="right">
-          <Calender />
+          <MyCalendar />
         </div>
       </div>
-      <Button />
+      <Button pre="/book1" next="/book3" />
     </form>
   );
 };

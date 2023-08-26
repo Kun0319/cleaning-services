@@ -1,10 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Button = (props) => {
   return (
     <div className="bookbtns">
-      <button id={props.class}>上一步</button>
-      <button>下一步</button>
+      <Link to="/book1" id={props.class}>
+        上一步
+      </Link>
+      <Link to={props.next}>下一步</Link>
     </div>
   );
 };
