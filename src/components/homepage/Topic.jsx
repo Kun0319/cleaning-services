@@ -12,7 +12,6 @@ const Topic = () => {
 
                 </ul>
                 <ul>
-                    <li>.</li>
                     <li>
                         <h1>|</h1>
                     </li>
@@ -26,7 +25,6 @@ const Topic = () => {
 
                 </ul>
                 <ul>
-                    <li>.</li>
                     <li>
                         <h1>|</h1>
                     </li>
@@ -35,7 +33,6 @@ const Topic = () => {
                     <li>Award Winning</li>
                 </ul>
                 <ul>
-                    <li>.</li>
                     <li>
                         <h1>|</h1>
                     </li>
