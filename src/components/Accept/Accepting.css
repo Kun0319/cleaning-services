@@ -1,0 +1,55 @@
+.Accepting {
+    height: 850px;
+    border: 1px solid #FFD740;
+    border-radius: 30px;
+    background-color: #FFFEF9;
+    position: relative;
+    top: 85px;
+}
+
+.Accepting-title {
+    color: #EAAC00;
+    font-size: 32px;
+    margin-left: 30px;
+    margin-top: 40px;
+
+
+
+}
+
+.Accepting p {
+    color: #664D03;
+    font-size: 25px;
+    padding: 24px;
+    font-weight: bold;
+
+}
+
+.Accepting-form ul{
+    list-style: none;
+    float: left;
+    margin-left: 60px;
+
+}
+.Accepting-li{
+    line-height: 150px;
+    color:#664D03;
+   
+}
+.Accepting-text{
+    font-size: 12px;
+    text-align: center;
+}
+.Accepting-form{
+    color: #664D03;
+    position: relative;
+    left: 75px;
+    overflow: hidden;
+}
+.Accepting-fee p{
+    padding-left: 50px;
+    color: #664D03;
+}
+.Accepting-fee{
+margin-top: 70px;
+}
