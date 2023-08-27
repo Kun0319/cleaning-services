@@ -1,6 +1,8 @@
 import React from "react";
 import Member from "./Member";
 import Button from "./Button";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const Step1Area = () => {
   const members = [
@@ -138,6 +140,18 @@ const Step1Area = () => {
       v: 24,
     },
   ];
+  const changeClickStyle1 = (e, pElm, tElm) => {
+    const otherItems = document.querySelectorAll(pElm);
+    otherItems.forEach((item) => {
+      item.classList.remove("selected");
+    });
+    let targetElement = e.target;
+    while (!targetElement.classList.contains(tElm)) {
+      targetElement = targetElement.parentElement;
+    }
+    targetElement.classList.toggle("selected");
+  };
+
   return (
     <form
       action=""
@@ -177,7 +191,20 @@ const Step1Area = () => {
                 return (
                   <p key={index}>
                     {item.area}
-                    <i className="bi bi-info-circle"></i>
+                    <OverlayTrigger
+                      key={index}
+                      placement="top"
+                      overlay={
+                        <Tooltip
+                          id={`tooltip-${index}`}
+                          className="custom-tooltip"
+                        >
+                          {item.detail}
+                        </Tooltip>
+                      }
+                    >
+                      <i className="bi bi-info-circle"></i>
+                    </OverlayTrigger>
                   </p>
                 );
               })}
@@ -186,21 +213,33 @@ const Step1Area = () => {
         </div>
         <div className="right">
           <div id="chooseMember">
-            <div className="not-specify ">
+            <div
+              className="not-specify"
+              onClick={(e) => {
+                changeClickStyle1(e, ".memberItem", "not-specify");
+              }}
+            >
               <h5>不指定人員</h5>
             </div>
-            <div id="specify">
-              {members.map((p, index) => {
-                return (
-                  <Member
-                    class=""
-                    score={p.score}
-                    name={p.name}
-                    img={p.img}
-                    key={index}
-                  />
-                );
-              })}
+            <div>
+              <div className="specify">
+                {members.map((p, index) => {
+                  return (
+                    <Member
+                      onClick={(e) => {
+                        changeClickStyle1(e, ".memberItem", "memberItem");
+                        document
+                          .querySelector(".not-specify")
+                          .classList.remove("selected");
+                      }}
+                      score={p.score}
+                      name={p.name}
+                      img={p.img}
+                      key={index}
+                    />
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>

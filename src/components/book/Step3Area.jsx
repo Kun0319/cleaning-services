@@ -83,9 +83,9 @@ const Step3Area = () => {
         method="post"
         className="d-flex flex-column align-items-center container "
       >
-        <div className=" book-step3 ">
+        <div className=" book-step3 container">
           <div id="clientInfo">
-            <div>
+            <div className="sameMember">
               <input type="checkbox" name="isSame" id="same" />
               <label htmlFor="same">同會員基本資料</label>
             </div>
@@ -120,20 +120,29 @@ const Step3Area = () => {
                 required
               />
             </div>
-            <div>
+            <div className="d-flex align-items-center flex-wrap book3-address ">
               <img src="./images/address.png" alt="icon" />
               <label htmlFor="userAddress">清掃地址</label>
-              <input type="text" value="台中市" />
-              <select name="cleaningAddress" id="userAddress">
-                {adreessDist.map((item, index) => {
-                  return (
-                    <option value={item.v} key={index}>
-                      {item.dist}
-                    </option>
-                  );
-                })}
-              </select>
-              <input type="text" placeholder="請輸入詳細地址" required />
+
+              <div className="d-flex align-items-center detail-address ">
+                <input type="text" value="台中市" id="cleaning-city" />
+                <select name="cleaningAddress" id="userAddress">
+                  {adreessDist.map((item, index) => {
+                    return (
+                      <option value={item.v} key={index}>
+                        {item.dist}
+                      </option>
+                    );
+                  })}
+                </select>
+
+                <input
+                  type="text"
+                  placeholder="請輸入詳細地址"
+                  id="detail-address"
+                  required
+                />
+              </div>
             </div>
             <div>
               <img src="./images/info.png" alt="icon" />

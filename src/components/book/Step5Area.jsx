@@ -13,7 +13,6 @@ const Step5Area = () => {
       <div id="book5-bottom">
         <img src="./images/raccoon.png" alt="raccoon" />
       </div>
-      <div></div>
     </div>
   );
 };
