@@ -1,4 +1,4 @@
-import "./dashboard.css";
+import "../dashboard/leo.css";
 const OrderList = () => {
   // 假資料props
   const orderList = [

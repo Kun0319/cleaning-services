@@ -1,0 +1,220 @@
+/* ##################################Sidebar-style */
+.aside {
+    /* width: 206px; */
+    max-height: auto;
+    /* flex: 1; */
+    border-radius: 50px;
+    border: 1px solid #ffc107;
+    background: #fffef9;
+    padding: 4em 2em;
+}
+
+.aside .aside-main {
+    display: flex;
+    /* width: 124px; */
+    flex-direction: column;
+    align-items: start;
+    gap: 4px;
+}
+
+.aside-main div {
+    display: flex;
+    /* width: 106px; */
+    padding: 12px 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border-bottom: 1px solid #ffc107;
+}
+
+.aside-input {
+    border: none;
+    border-bottom: 1px solid #ffc107;
+    background-color: rgba(255, 254, 249, 0);
+    background-color: #fffef9;
+    background-image: url("/public/images/search.png");
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding-left: 40px;
+    width: 100%;
+    height: 48px;
+    /* outline: none; */
+}
+
+::placeholder,
+.aside-title,
+.aside span {
+    color: #664d03;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+.aside span {
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border: 1px solid #664d0300;
+}
+
+.aside span::before {
+    content: "";
+    display: inline-block;
+    border-radius: 28px;
+    width: 16px;
+    height: 16px;
+    background-image: url("/public/images/chevron-right.png");
+}
+
+.aside span:hover {
+    border: 1px solid #664d03;
+    background-color: #fff8e1;
+    border-radius: 4px;
+    color: #664d03;
+    cursor: pointer;
+}
+
+.aside span:active {
+    border: 1px solid #664d03;
+    background-color: #664d03;
+    border-radius: 4px;
+    color: #fff8e1;
+    cursor: pointer;
+}
+
+.Link-decoration {
+    text-decoration: none;
+}
+
+/* #################################member-style */
+.aside-main>h3 {
+    color: #eaac00;
+    font-family: Inter;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.aside-main .member {
+    align-items: center;
+}
+
+.aside-title-member {
+    border-left: 2px solid #ffc107;
+    padding-left: 15px;
+}
+
+/* #################################Order-style*/
+.dashOrder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* width: 1091px; */
+    /* height: 808px; */
+    min-height: 100vh;
+    /* flex: 4; */
+    border-radius: 50px;
+    border: 1px solid #ffc107;
+    background: #fffef9;
+    background-image: url("/public/images/dashboard-background.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: 100%;
+    position: relative;
+}
+
+.dashOrder>h3 {
+    color: #eaac00;
+    font-family: Inter;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 38px;
+    margin-bottom: 65px;
+}
+
+.orderTable {
+    display: flex;
+    flex-direction: column;
+    width: 861px;
+    height: auto;
+    top: 133px;
+    left: 115px;
+    padding: 0px 24px 0px 24px;
+    gap: 12px;
+}
+
+.orderThead,
+.orderTbody {
+    display: flex;
+    justify-content: space-between;
+}
+
+.orderThead {
+    border-bottom: 1px solid #664d03;
+}
+
+.orderTbody:hover {
+    background-color: #fff8e1;
+}
+
+/* .orderTbody {
+    cursor: pointer;
+    display: flex;
+    padding: 12px 12px;
+    justify-content: space-between;
+    text-align: center;
+    border-radius: 30px;
+} */
+.orderTbody {
+    cursor: pointer;
+    display: flex;
+    padding: 12px 12px;
+    /* justify-content: space-between; */
+    border-radius: 30px;
+}
+
+.orderTbody span:nth-child(1) {
+    text-align: left;
+}
+
+.orderTbody span:nth-child(2) {
+    text-align: center;
+}
+
+.orderTbody span:nth-child(3) {
+    text-align: right;
+}
+
+.dashOrder span,
+.orderThead {
+    color: #664d03;
+    font-family: Inter;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.orderBtn {
+    border: none;
+    width: 94px;
+    height: 42px;
+    border-radius: 10px;
+    background: #997404;
+    color: #fff;
+    text-align: center;
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400px;
+    line-height: normal;
+    margin: 15px;
+}
+
+.orderBtns {
+    position: absolute;
+    bottom: 20px;
+}
