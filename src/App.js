@@ -19,8 +19,8 @@ function App() {
         <Route path="/book4" element={<Book4 />} />
         <Route path="/book5" element={<Book5 />} />
         <Route path="/dashboard" element={<Dashboard />}>
-          <Route index="/dashboard/pathA" element={<OrderList />} />
-          <Route path="/dashboard/pathA" element={<OrderList />} />
+          <Route index="/dashboard/" element={<OrderList />} />
+          <Route path="/dashboard/" element={<OrderList />} />
           <Route path="/dashboard/pathB" element={<ComponentB />} />
           <Route path="/dashboard/pathC" element={<ComponentC />} />
         </Route>

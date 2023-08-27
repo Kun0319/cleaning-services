@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom'
-import "./dashboard.css";
+import "../dashboard/leo.css";
 
 const SidebarAdmin = () => {
   return (
