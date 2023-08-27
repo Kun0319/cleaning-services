@@ -40,18 +40,19 @@ const Step4Area = () => {
           <div className="right">
             <div className="book4-pay">
               <div className="payMethod">
-                <label htmlFor="">付款方式</label>
-                <select name="" id="">
-                  <option value="">信用卡一次付清</option>
+                <label htmlFor="pay-method">付款方式</label>
+                <select name="payMethod" id="pay-method">
+                  <option value="payInFull">信用卡一次付清</option>
                 </select>
               </div>
               <div className="d-flex justify-content-center my-3">
                 <div className="creaditCard d-flex flex-column align-items-start ">
-                  <label htmlFor="" className="mt-2">
+                  <label htmlFor="creaditCard-number" className="mt-2">
                     信用卡號碼
                   </label>
                   <div className="mt-2">
                     <input
+                      id="creaditCard-number"
                       className="ms-0"
                       type="text"
                       placeholder="****"
@@ -81,35 +82,34 @@ const Step4Area = () => {
                     />
                   </div>
                   <div className="mt-4 mb-2">
-                    <label htmlFor="">有效月 / 年</label>
+                    <label htmlFor="deadline">有效月 / 年</label>
                     <input
+                      id="deadline"
                       type="text"
                       placeholder="MM/YY"
                       pattern="(0[1-9]|1[0-2])/(2[3-9]|3[0-9])"
                       required
                     />
-                    <label htmlFor="">背面末三碼</label>
+                    <label htmlFor="securityCode">背面末三碼</label>
                     <input
+                      id="securityCode"
                       type="text"
                       placeholder="***"
                       pattern="[0-9]{3}"
                       required
                     />
                   </div>
-                  {/* <div className="mt-2"> */}
-
-                  {/* </div> */}
                 </div>
               </div>
             </div>
           </div>
           <div className="book4-comment">
-            <input type="checkbox" name="" id="" required />
+            <input type="checkbox" name="isAgree" id="agree" required />
             我已閱讀 <u>非清潔服務範圍</u>、<u>取消或更改服務政策</u>、
             <u>服務條款</u> 及 <u>隱私權政策</u>
           </div>
         </div>
-        <Button />
+        <Button pre="/book3" next="/book5" />
       </form>
     </>
   );
