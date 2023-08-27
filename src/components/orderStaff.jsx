@@ -1,4 +1,4 @@
-import "./dashboard.css";
+import "./order.css";
 
 const ContactCard = () => {
     return (

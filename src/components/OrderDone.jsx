@@ -1,4 +1,4 @@
-import "./dashboard.css";
+import "./order.css";
 // import OrderStaff from "./orderStaff";
 
 const OrderDone = () => {
