@@ -1,311 +1,337 @@
 /* ##################################Sidebar-style */
 .aside {
-    width: 206px;
-    height: 807px;
-    flex-shrink: 0;
-    border-radius: 50px;
-    border: 1px solid #ffc107;
-    background: #fffef9;
-    padding: 67px 41px;
-  }
-  
-  .aside .aside-main {
-    display: flex;
-    width: 124px;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-  }
-  
-  .aside-main div {
-    display: flex;
-    width: 106px;
-    padding: 12px 0px;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-    border-bottom: 1px solid #ffc107;
-  }
-  
-  .aside-input {
-    border: none;
-    border-bottom: 1px solid #ffc107;
-    background-color: rgba(255, 254, 249, 0);
-    background-color: #fffef9;
-    background-image: url("/public/images/search.png");
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    padding-left: 40px;
-    width: 124px;
-    height: 48px;
-    /* outline: none;  */
-  }
-  
-  ::placeholder,
-  .aside-title,
-  .aside span {
-    color: #664d03;
-    font-family: Inter;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0em;
-    text-align: left;
-  }
-  
-  .aside span {
-    font-size: 16px;
-    cursor: pointer;
-  }
-  
-  /* #################################member-style */
-  .aside-main>h3 {
-    color: #eaac00;
-    font-family: Inter;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: normal;
-  }
-  
-  .aside-main .member {
-    align-items: center;
-  }
-  
-  .aside-title-member {
-    border-left: 2px solid #ffc107;
-    padding-left: 15px;
-  }
-  
-  /* #################################Order-style*/
-  .dashOrder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 1091px;
-    height: 808px;
-    flex-shrink: 0;
-    border-radius: 50px;
-    border: 1px solid #ffc107;
-    background: #fffef9;
-    background-image: url("/public/images/dashboard-background.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position-y: 100%;
-    position: relative;
-  }
-  
-  .dashOrder>h3 {
-    color: #eaac00;
-    font-family: Inter;
-    font-size: 28px;
-    font-weight: 400;
-    line-height: normal;
-    margin-top: 38px;
-    margin-bottom: 65px;
-  }
-  
-  .orderTable {
-    display: flex;
-    flex-direction: column;
-    width: 861px;
-    height: auto;
-    top: 133px;
-    left: 115px;
-    padding: 0px 24px 0px 24px;
-    gap: 12px;
-  }
-  
-  .orderInfo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-    margin: 50px 0px 15px 0px;
-  }
-  
-  .orderCard {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
-  
-  .line {
-    width: 60px;
-    border: 1px solid #ffc107;
-    border-radius: 30px;
-  }
-  
-  .orderText {
-    color: #664d03;
-    margin-top: 20px;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .orderThead,
-  .orderTbody {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .orderThead {
-    border-bottom: 1px solid #664d03;
-  }
-  
-  .orderTbody:hover {
-    background-color: #fff8e1;
-  }
-  
-  .orderTbody {
-    cursor: pointer;
-    display: flex;
-    padding: 12px 12px;
-    /* justify-content: space-between; */
-    border-radius: 30px;
-  }
-  
-  .orderDn {
-    padding: 12px 0px;
-    border-radius: 10px;
-    cursor: auto;
-  }
-  
-  .orderDnbtn {
-    background-color: #FFC107;
-    border-radius: 30px;
-    padding: 10px;
-    margin: 0 auto;
-    border: 0;
-  }
-  
-  .orderTbody span:nth-child(1) {
-    text-align: left;
-  }
-  
-  .orderTbody span:nth-child(2) {
-    text-align: center;
-  }
-  
-  .orderTbody span:nth-child(3) {
-    text-align: center;
-  }
-  
-  .orderTbody span:nth-child(4) {
-    text-align: right;
-  }
-  
-  .dashOrder span,
-  .orderThead {
-    color: #664d03;
-    font-family: Inter;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: normal;
-  }
-  
-  .orderBtn {
-    border: none;
-    width: 94px;
-    height: 42px;
-    border-radius: 10px;
-    background: #997404;
-    color: #fff;
-    text-align: center;
-    font-family: Arial;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400px;
-    line-height: normal;
-    margin: 15px;
-  }
-  
-  .orderBtns {
-    position: absolute;
-    bottom: 20px;
-  }
-  
-  /* #################################Order-staff*/
-  
-  .card {
-    width: 426px;
-    height: 152px;
-    border-radius: 30px;
-    background-color: #FFF8E1;
-    display: flex;
-    align-items: center;
-    padding: 24px 48px 24px 48px;
-    text-align: center;
-    margin: 0 auto;
-    gap: 33px;
-  }
-  
-  .card img {
-    width: 80px;
-    height: 80px;
-    margin-right: 20px;
-  }
-  
-  .card-text {
-    width: 248px;
-    height: 100%;
-    gap: 16px;
-    text-align: left;
-    color: #664d03;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  /* #################################Order-score*/
-  
-  .scoreOP {
-    width: 445px;
-    height: 799px;
-    left: 498px;
-    border: 1px solid #FFC107;
-    gap: 33px;
-    border-radius: 30px;
-  }
-  
-  .scoreTop {
-    width: 443px;
-    height: 80px;
-    border-radius: 30px 30px 0px 0px;
-    gap: 20px;
-    padding: 0px 52px 0px 52px;
-    background-color: #FFF8E1;
-    color: #EAAC00;
-    font-size: 28px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 0 auto;
-    text-align: center;
-    line-height: 80px
-  }
-  
-  .scoreBody {
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    display: flex;
-    margin: 0 auto;
-    margin-top: 20px;
-    color:#664d03;
-  }
-  
-  .orderStaff {
-    margin: 0 auto;
-    width: 80px;
-    height: 80px;
-    margin-top: 30px; 
-  }
-  
-  .scoreStart{
-    margin: 0 auto;
-    margin-top: 30px; 
-    width: 168px;
-    height: 24px;
-  }
+  width: 206px;
+  height: 807px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  border: 1px solid #ffc107;
+  background: #fffef9;
+  padding: 67px 41px;
+}
+
+.aside .aside-main {
+  display: flex;
+  width: 124px;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.aside-main div {
+  display: flex;
+  width: 106px;
+  padding: 12px 0px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  border-bottom: 1px solid #ffc107;
+}
+
+.aside-input {
+  border: none;
+  border-bottom: 1px solid #ffc107;
+  background-color: rgba(255, 254, 249, 0);
+  background-color: #fffef9;
+  background-image: url("/public/images/search.png");
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding-left: 40px;
+  width: 124px;
+  height: 48px;
+  /* outline: none;  */
+}
+
+::placeholder,
+.aside-title,
+.aside span {
+  color: #664d03;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.aside span {
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* #################################member-style */
+.aside-main>h3 {
+  color: #eaac00;
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.aside-main .member {
+  align-items: center;
+}
+
+.aside-title-member {
+  border-left: 2px solid #ffc107;
+  padding-left: 15px;
+}
+
+/* #################################Order-style*/
+.dashOrder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 1091px;
+  height: 808px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  border: 1px solid #ffc107;
+  background: #fffef9;
+  background-image: url("/public/images/dashboard-background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: 100%;
+  position: relative;
+}
+
+.dashOrder>h3 {
+  color: #eaac00;
+  font-family: Inter;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: normal;
+  margin-top: 38px;
+  margin-bottom: 65px;
+}
+
+.orderTable {
+  display: flex;
+  flex-direction: column;
+  width: 861px;
+  height: auto;
+  top: 133px;
+  left: 115px;
+  padding: 0px 24px 0px 24px;
+  gap: 12px;
+}
+
+.orderInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 50px 0px 15px 0px;
+}
+
+.orderCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.line {
+  width: 60px;
+  border: 1px solid #ffc107;
+  border-radius: 30px;
+}
+
+.orderText {
+  color: #664d03;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.orderThead,
+.orderTbody {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orderThead {
+  border-bottom: 1px solid #664d03;
+}
+
+.orderTbody:hover {
+  background-color: #fff8e1;
+}
+
+.orderTbody {
+  cursor: pointer;
+  display: flex;
+  padding: 12px 12px;
+  /* justify-content: space-between; */
+  border-radius: 30px;
+}
+
+.orderDn {
+  padding: 12px 0px;
+  border-radius: 10px;
+  cursor: auto;
+}
+
+.orderDnbtn {
+  background-color: #FFC107;
+  border-radius: 30px;
+  padding: 10px;
+  margin: 0 auto;
+  border: 0;
+}
+
+.orderTbody span:nth-child(1) {
+  text-align: left;
+}
+
+.orderTbody span:nth-child(2) {
+  text-align: center;
+}
+
+.orderTbody span:nth-child(3) {
+  text-align: center;
+}
+
+.orderTbody span:nth-child(4) {
+  text-align: right;
+}
+
+.dashOrder span,
+.orderThead {
+  color: #664d03;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.orderBtn {
+  border: none;
+  width: 94px;
+  height: 42px;
+  border-radius: 10px;
+  background: #997404;
+  color: #fff;
+  text-align: center;
+  font-family: Arial;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400px;
+  line-height: normal;
+  margin: 15px;
+}
+
+.orderBtns {
+  position: absolute;
+  bottom: 20px;
+}
+
+/* #################################Order-staff*/
+
+.card {
+  width: 426px;
+  height: 152px;
+  border-radius: 30px;
+  background-color: #FFF8E1;
+  display: flex;
+  align-items: center;
+  padding: 24px 48px 24px 48px;
+  text-align: center;
+  margin: 0 auto;
+  gap: 33px;
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  margin-right: 20px;
+}
+
+.card-text {
+  width: 248px;
+  height: 100%;
+  gap: 16px;
+  text-align: left;
+  color: #664d03;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* #################################Order-score*/
+
+.scoreOP {
+  width: 445px;
+  height: 799px;
+  left: 498px;
+  border: 1px solid #FFC107;
+  gap: 33px;
+  border-radius: 30px;
+}
+
+.scoreTop {
+  width: 443px;
+  height: 80px;
+  border-radius: 30px 30px 0px 0px;
+  gap: 20px;
+  padding: 0px 52px 0px 52px;
+  background-color: #FFF8E1;
+  color: #EAAC00;
+  font-size: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 80px
+}
+
+.scoreBody {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 20px;
+  color: #664d03;
+}
+
+.orderStaff {
+  margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  margin-top: 30px;
+}
+
+.scoreStart {
+  margin: 0 auto;
+  margin-top: 30px;
+  width: 168px;
+  height: 24px;
+}
+
+.scorebtn {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background-color: #ffc107;
+  margin: 10px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.scoreinput {
+  width: 397px;
+  height: 114px;
+  border-radius: 10px;
+  border: 1px solid #DEE2E6;
+  padding: 16px;
+  gap: 8px;
+
+}
+
+.scoretext {
+  color: #664d03;
+  font-size: 20px;
+  font-weight: bold;
+}

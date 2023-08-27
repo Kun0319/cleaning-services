@@ -2,7 +2,7 @@ import Narbar from "./components/narbar";
 // import SidebarAdmin from "./components/SidebarAdmin";
 import SidebarMember from "./components/SidebarMember";
 import OrderDone from "./components/OrderDone";
-import Score from "./components/score";
+// import orderStaff from "./components/orderStaff";
 function App() {
   return (
     <div className="service-process">
@@ -13,7 +13,6 @@ function App() {
       >
         <SidebarMember />
         <OrderDone />
-        <Score />
       </div>
     </div>
   );
