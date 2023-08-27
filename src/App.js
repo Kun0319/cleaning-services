@@ -11,6 +11,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+
         <Route index element={<Home />} />
         <Route path="/book1" element={<Book1 />} />
         <Route path="/book2" element={<Book2 />} />

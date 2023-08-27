@@ -119,6 +119,25 @@
   border-radius: 50px;
   border: 1px solid #ffc107;
   background: #fffef9;
+}
+
+
+/* AdminOrder.css -----------------------------------------------------------------*/
+.position {
+  display: inline-flex;
+  padding: 16px 17px;
+  align-items: flex-start;
+}
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  width: 1091px;
+  height: 808px;
+  border: 1px solid #ffc107;
+  border-radius: 50px;
+  align-items: center;
+
   background-image: url("/public/images/dashboard-background.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -209,4 +228,92 @@
 .orderBtns {
   position: absolute;
   bottom: 20px;
+}
+
+.orderh3 {
+  padding: 25px 55px 30px 36px;
+  align-items: center;
+  color: #EAAC00;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 50px;
+
+}
+
+
+.orderContainer {
+  width: 913px;
+  background-color: #FFF8E1;
+  border-radius: 30px;
+  display: flex;
+  padding: 60px 48px;
+  flex-direction: column;
+  align-items: flex-start;
+
+}
+
+.orderContent {
+  display: flex;
+  font-weight: 600;
+  color: #664D03;
+  line-height: 50px;
+  gap: 24px;
+}
+
+.btncontain {
+  padding-top: 20px;
+}
+
+.btncontain>button {
+  color: white;
+  width: 94px;
+  height: 42px;
+  /* justify-content: center; */
+  /* align-items: start; */
+  border-radius: 10px;
+  background: rgba(130, 100, 56, 0.46);
+  margin-inline: 15px;
+}
+
+.btncontain>button:nth-child(2) {
+  background: #997404;
+}
+
+/* Memberinfo.css && PersonalInfo.css------------------------------------------------------*/
+.orderContentMem {
+
+  display: flex;
+  font-weight: 600;
+  color: #664D03;
+  line-height: 50px;
+  gap: 24px;
+}
+
+.tablecontainer {
+  width: 902px;
+  height: 320px;
+  top: 133px;
+  left: 94.5px;
+  padding: 0px 24px 0px 24px;
+
+  color: #664D03;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.memberth {
+
+  border-bottom: 3px solid #664D03;
+}
+
+.memtbody {
+  text-align: center;
+}
+
+.memtbody>tr:nth-child(1) {
+  border: 1px solid #FFF8E1;
+  background: #FFF8E1;
+  border-radius: 30px;
 }

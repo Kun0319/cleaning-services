@@ -1,6 +1,6 @@
 .question {
     height: 145px;
-    background-image: url(images/question-001.png);
+    background-image: url(/public/images/question-001.png);
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
@@ -9,7 +9,7 @@
     font-size: 30px;
     border-radius: 25px 0px 0px;
     position: relative;
-    top: 150px;
+    top: 85px;
 }
 
 .tabe {
@@ -27,7 +27,7 @@
 
 .arrangement {
     position: relative;
-    top: 210px;
+    top: 130px;
 }
 
 .question-line {
@@ -37,7 +37,7 @@
     border: 2px solid #FFC107;
     border-radius: 25px;
     position: relative;
-    top: 250px;
+    top: 150px;
 
 
 }
