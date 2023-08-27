@@ -1,26 +1,26 @@
 /* ##################################Sidebar-style */
 .aside {
-  width: 206px;
-  height: 807px;
-  flex-shrink: 0;
+  /* width: 206px; */
+  max-height: auto;
+  /* flex: 1; */
   border-radius: 50px;
   border: 1px solid #ffc107;
   background: #fffef9;
-  padding: 67px 41px;
+  padding: 4em 2em;
 }
 
 .aside .aside-main {
   display: flex;
-  width: 124px;
+  /* width: 124px; */
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   gap: 4px;
 }
 
 .aside-main div {
   display: flex;
-  width: 106px;
-  padding: 12px 0px;
+  /* width: 106px; */
+  padding: 12px 8px;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
@@ -36,9 +36,9 @@
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding-left: 40px;
-  width: 124px;
+  width: 100%;
   height: 48px;
-  /* outline: none;  */
+  /* outline: none; */
 }
 
 ::placeholder,
@@ -56,6 +56,37 @@
 .aside span {
   font-size: 16px;
   cursor: pointer;
+  padding: 8px 12px;
+  border: 1px solid #664d0300;
+}
+
+.aside span::before {
+  content: "";
+  display: inline-block;
+  border-radius: 28px;
+  width: 16px;
+  height: 16px;
+  background-image: url("/public/images/chevron-right.png");
+}
+
+.aside span:hover {
+  border: 1px solid #664d03;
+  background-color: #fff8e1;
+  border-radius: 4px;
+  color: #664d03;
+  cursor: pointer;
+}
+
+.aside span:active {
+  border: 1px solid #664d03;
+  background-color: #664d03;
+  border-radius: 4px;
+  color: #fff8e1;
+  cursor: pointer;
+}
+
+.Link-decoration {
+  text-decoration: none;
 }
 
 /* #################################member-style */
@@ -81,9 +112,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1091px;
-  height: 808px;
-  flex-shrink: 0;
+  /* width: 1091px; */
+  /* height: 808px; */
+  min-height: 100vh;
+  /* flex: 4; */
   border-radius: 50px;
   border: 1px solid #ffc107;
   background: #fffef9;
@@ -107,7 +139,7 @@
 .orderTable {
   display: flex;
   flex-direction: column;
-  width: 861px;
+  /* width: 861px; */
   height: auto;
   top: 133px;
   left: 115px;
@@ -160,7 +192,7 @@
 
 .orderBtn {
   border: none;
-  width: 94px;
+  /* width: 94px; */
   height: 42px;
   border-radius: 10px;
   background: #997404;

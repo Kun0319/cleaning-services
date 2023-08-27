@@ -5,7 +5,8 @@ import Book2 from "./pages/book/Book2";
 import Book3 from "./pages/book/Book3";
 import Book4 from "./pages/book/Book4";
 import Book5 from "./pages/book/Book5";
-
+import { OrderList, ComponentB, ComponentC } from "./components/dashboard/DashboardSet"
+import Dashboard from "./pages/Dashboard"
 function App() {
   return (
     <BrowserRouter>
@@ -16,6 +17,12 @@ function App() {
         <Route path="/book3" element={<Book3 />} />
         <Route path="/book4" element={<Book4 />} />
         <Route path="/book5" element={<Book5 />} />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route index="/dashboard/pathA" element={<OrderList />} />
+          <Route path="/dashboard/pathA" element={<OrderList />} />
+          <Route path="/dashboard/pathB" element={<ComponentB />} />
+          <Route path="/dashboard/pathC" element={<ComponentC />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
