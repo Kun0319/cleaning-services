@@ -80,10 +80,8 @@
 .dashOrder {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 1091px;
-  height: 808px;
-  flex-shrink: 0;
+  max-height: auto;
+  gap: 18px;
   border-radius: 50px;
   border: 1px solid #ffc107;
   background: #fffef9;
@@ -92,6 +90,7 @@
   background-size: contain;
   background-position-y: 100%;
   position: relative;
+  padding: 38px;
 }
 
 .dashOrder>h3 {
@@ -100,87 +99,74 @@
   font-size: 28px;
   font-weight: 400;
   line-height: normal;
-  margin-top: 38px;
-  margin-bottom: 65px;
-}
-
-.orderTable {
-  display: flex;
-  flex-direction: column;
-  width: 861px;
-  height: auto;
-  top: 133px;
-  left: 115px;
-  padding: 0px 24px 0px 24px;
-  gap: 12px;
-}
-
-.orderThead,
-.orderTbody {
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
 }
 
 .orderThead {
   border-bottom: 1px solid #664d03;
 }
 
-.orderTbody:hover {
+.orderTbody tr td:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.orderTbody tr td:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.orderTbody tr:hover {
   background-color: #fff8e1;
 }
 
-.orderTbody {
+.orderTbody tr {
   cursor: pointer;
-  display: flex;
-  padding: 12px 12px;
-  /* justify-content: space-between; */
-  border-radius: 30px;
+  line-height: 2;
 }
 
-.orderTbody span:nth-child(1) {
-  text-align: left;
-}
-
-.orderTbody span:nth-child(2) {
-  text-align: center;
-}
-
-.orderTbody span:nth-child(3) {
-  text-align: right;
-}
-
-.orderTbody span:nth-child(4) {
-  text-align: right;
-}
-
-.dashOrder span,
-.orderThead {
+.orderThead,
+.orderTbody {
+  width: 100%;
   color: #664d03;
   font-family: Inter;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 400;
   line-height: normal;
+  text-align: center;
 }
 
 .orderBtn {
-  border: none;
-  width: 94px;
-  height: 42px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 8px 20px;
   border-radius: 10px;
-  background: #997404;
-  color: #fff;
-  text-align: center;
-  font-family: Arial;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400px;
-  line-height: normal;
-  margin: 15px;
+  font-weight: 400;
+  font-family: Inter;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #997404;
+  border: none;
+  box-shadow: 0 4px #999;
+  margin: 10px;
 }
 
-.orderBtns {
-  position: absolute;
-  bottom: 20px;
+.orderBtn:hover {
+  background-color: #664d03
+}
+
+.orderBtn:active {
+  background-color: #664d03;
+  box-shadow: 0 3px #666;
+  transform: translateY(2px);
+}
+
+.orderBtn-group {
+  display: flex;
+  justify-content: center;
 }
 
 
