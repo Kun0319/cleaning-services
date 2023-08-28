@@ -19,7 +19,7 @@ const OrderDone = () => {
 
   return (
     <div className="dashOrder">
-      <div className="orderTable">
+      
         <div className="orderInfo">
           <span className="orderCard">
             <img src="images/order.png" alt="" />
@@ -76,7 +76,7 @@ const OrderDone = () => {
           <OrderStaff />
         </div>
 
-        <div className="orderBtns">
+        <div className="orderBtn-group">
           <button
             onClick={() => {
               alert("AAAAAAAAAAAAAAAAAA");
@@ -94,7 +94,6 @@ const OrderDone = () => {
             下一頁
           </button>
         </div>
-      </div>
     </div>
   );
 };
