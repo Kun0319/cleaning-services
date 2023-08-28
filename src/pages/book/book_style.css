@@ -386,11 +386,12 @@
 #book-step5 {
   /* min-width: 365px;
   min-height: 653px; */
-  max-width: 1296px;
+  max-width: 1272px;
   margin-bottom: 5.25rem;
 }
 #book5-top {
   display: flex;
+
   align-items: center;
   font-size: 3rem;
 }

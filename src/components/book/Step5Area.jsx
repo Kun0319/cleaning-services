@@ -10,6 +10,7 @@ const Step5Area = () => {
         <i className="bi bi-check-circle me-2"></i>
         <h5>預約完成！</h5>
       </div>
+      <p className="mt-2 fs-5">我們將於 2023/8/23 星期三 13:00 開始為您服務!</p>
       <div id="book5-bottom">
         <img src="/images/question-007.png" alt="raccoon" />
       </div>
