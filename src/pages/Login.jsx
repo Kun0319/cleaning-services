@@ -1,11 +1,11 @@
-import Narber from "../components/narbar"
+import Navber from "../components/navbar"
 // import { Outlet } from 'react-router-dom'
 
 
 export default function Login() {
     return (
         <>
-            <Narber />
+            <Navber />
             <div>i'm Login</div>
         </>
     )

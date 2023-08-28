@@ -1,11 +1,11 @@
-import Narber from "../components/narbar"
+import Navbar from "../components/navbar"
 // import { Outlet } from 'react-router-dom'
 
 
 export default function Case() {
     return (
         <>
-            <Narber />
+            <Navbar />
             <div>i'm Case</div>
         </>
     )

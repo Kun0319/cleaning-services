@@ -1,12 +1,12 @@
 import React from 'react'
 import SidebarAdmin from "../components/dashboard/SidebarAdmin"
-import Narbar from '../components/narbar'
+import Navbar from '../components/navbar'
 import { Outlet } from 'react-router-dom'
 
 export default function Dashboard() {
     return (
         <div className='container'>
-            <Narbar />
+            <Navbar />
             <div className='row'>
                 <div className='col-12 col-lg-3'>
                     <SidebarAdmin />

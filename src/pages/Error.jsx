@@ -1,11 +1,11 @@
-import Narber from "../components/narbar"
+import Navber from "../components/navbar"
 // import { Outlet } from 'react-router-dom'
 
 
 export default function Error() {
     return (
         <>
-            <Narber />
+            <Navber />
             <div>{window.location.replace("/")}</div>
         </>
     )

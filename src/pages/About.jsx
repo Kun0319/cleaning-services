@@ -1,4 +1,4 @@
-import Narber from "../components/narbar"
+import Navbar from "../components/navbar"
 import Aboutus from "../components/aboutus/aboutus"
 // import { Outlet } from 'react-router-dom'
 
@@ -6,7 +6,7 @@ import Aboutus from "../components/aboutus/aboutus"
 export default function About() {
     return (
         <>
-            <Narber />
+            <Navbar />
             <Aboutus />
         </>
     )

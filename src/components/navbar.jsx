@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap';
 
 
-class narbar extends Component {
+class navbar extends Component {
     state = {
 
     };
@@ -84,7 +84,7 @@ class narbar extends Component {
     }
 }
 
-export default narbar;
+export default navbar;
 
 
 // #ffc107
