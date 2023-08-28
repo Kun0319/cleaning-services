@@ -21,10 +21,32 @@ const OrderDone = () => {
     <div className="dashOrder">
       <div className="orderTable">
         <div className="orderInfo">
-          {/* 你的订单状态图标和文本 */}
+          <span className="orderCard">
+            <img src="images/order.png" alt="" />
+            <p className="orderText ">訂單成立</p>
+          </span>
+          <p className="line"></p>
+          <span className="orderCard">
+            <img src="images/orderGoing.png" alt="" />
+            <p className="orderText ">已送達</p>
+          </span>
+          <p className="line"></p>
+          <span className="orderCard">
+            <img src="images/orderCleaning.png" alt="" />
+            <p className="orderText ">清掃中</p>
+          </span>
+          <p className="line"></p>
+          <span className="orderCard">
+            <img src="images/orderCleaned.png" alt="" />
+            <p className="orderText ">完成清潔</p>
+          </span>
+          <p className="line"></p>
+          <span className="orderCard">
+            <img src="images/orderDone.png" alt="" />
+            <p className="orderText ">完成訂單</p>
+          </span>
         </div>
 
-        {/* 订单表格 */}
         <table>
           <thead className="orderThead">
             <tr>
