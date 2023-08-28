@@ -65,7 +65,7 @@ const Step2Area = () => {
           <MyCalendar />
         </div>
       </div>
-      <Button pre="/book1" next="/book3" />
+      <Button pre="/book" next="/book/book3" />
     </form>
   );
 };

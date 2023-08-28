@@ -3,13 +3,11 @@ import ProgressIcon from "../../components/book/ProgressIcon";
 import ProgressIconactive from "../../components/book/ProgressIconactive";
 import ProgressLine from "../../components/book/ProgressLine";
 import Step2Area from "../../components/book/Step2Area";
-import NarbarIcon from "../../components/narbarIcon";
 import "./book_style.css";
 
 const Book2 = () => {
   return (
     <>
-      <NarbarIcon />
       <div className="bottomArea">
         <div className="progressBar">
           <ProgressIcon text="選擇服務" class="bi bi-hand-index-thumb" />

@@ -54,92 +54,6 @@ const Step1Area = () => {
       detail: "地板刷洗、水管擦拭、曬衣桿擦拭",
     },
   ];
-  const weekNum = [
-    {
-      num: "4週",
-      v: 4,
-    },
-    {
-      num: "5週",
-      v: 5,
-    },
-    {
-      num: "6週",
-      v: 6,
-    },
-    {
-      num: "7週",
-      v: 7,
-    },
-    {
-      num: "8週",
-      v: 8,
-    },
-    {
-      num: "9週",
-      v: 9,
-    },
-    {
-      num: "10週",
-      v: 10,
-    },
-    {
-      num: "11週",
-      v: 11,
-    },
-    {
-      num: "12週",
-      v: 12,
-    },
-    {
-      num: "13週",
-      v: 13,
-    },
-    {
-      num: "14週",
-      v: 14,
-    },
-    {
-      num: "15週",
-      v: 15,
-    },
-    {
-      num: "16週",
-      v: 16,
-    },
-    {
-      num: "17週",
-      v: 17,
-    },
-    {
-      num: "18週",
-      v: 18,
-    },
-    {
-      num: "19週",
-      v: 19,
-    },
-    {
-      num: "20週",
-      v: 20,
-    },
-    {
-      num: "21週",
-      v: 21,
-    },
-    {
-      num: "22週",
-      v: 22,
-    },
-    {
-      num: "23週",
-      v: 23,
-    },
-    {
-      num: "24週",
-      v: 24,
-    },
-  ];
   const changeClickStyle1 = (e, pElm, tElm) => {
     const otherItems = document.querySelectorAll(pElm);
     otherItems.forEach((item) => {
@@ -175,10 +89,10 @@ const Step1Area = () => {
               <h4>選擇服務週數</h4>
             </label>
             <select name="service_weeks" id="serviceWeeks">
-              {weekNum.map((item, index) => {
+              {Array.from({ length: 21 }, (v, i) => i).map((item) => {
                 return (
-                  <option value={item.v} key={index}>
-                    {item.num}
+                  <option value={item + 4} key={item}>
+                    {item + 4}週
                   </option>
                 );
               })}
@@ -244,7 +158,7 @@ const Step1Area = () => {
           </div>
         </div>
       </div>
-      <Button class="not-press" next="/book2" />
+      <Button class="not-press" next="/book/book2" />
     </form>
   );
 };

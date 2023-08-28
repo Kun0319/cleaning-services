@@ -17,7 +17,8 @@ function MyCalendar() {
   };
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
-
+  const maxdate = new Date();
+  maxdate.setMonth(maxdate.getMonth() + 2);
   return (
     <div className="calendar-container">
       <h5 className="mb-4">選擇服務開始日期</h5>
@@ -25,6 +26,7 @@ function MyCalendar() {
         onChange={handleDateChange}
         value={null}
         minDate={tomorrow}
+        maxDate={maxdate}
         calendarType="hebrew"
         showNeighboringMonth={false}
         formatDay={(locale, date) => {

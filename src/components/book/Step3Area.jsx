@@ -90,7 +90,7 @@ const Step3Area = () => {
               <label htmlFor="same">同會員基本資料</label>
             </div>
             <div>
-              <img src="./images/staffInfo-raccoon.png" alt="icon" />
+              <img src="/images/staffInfo-raccoon.png" alt="icon" />
               <label htmlFor="userName">姓　　名</label>
               <input
                 type="text"
@@ -100,7 +100,7 @@ const Step3Area = () => {
               />
             </div>
             <div>
-              <img src="./images/phone.png" alt="icon" />
+              <img src="/images/phone.png" alt="icon" />
               <label htmlFor="userPhone">手機號碼</label>
               <input
                 id="userPhone"
@@ -111,7 +111,7 @@ const Step3Area = () => {
               />
             </div>
             <div>
-              <img src="./images/mail.png" alt="icon" />
+              <img src="/images/mail.png" alt="icon" />
               <label htmlFor="userMail">電子信箱</label>
               <input
                 id="userMail"
@@ -121,7 +121,7 @@ const Step3Area = () => {
               />
             </div>
             <div className="d-flex align-items-center flex-wrap book3-address ">
-              <img src="./images/address.png" alt="icon" />
+              <img src="/images/address.png" alt="icon" />
               <label htmlFor="userAddress">清掃地址</label>
 
               <div className="d-flex align-items-center detail-address ">
@@ -145,13 +145,13 @@ const Step3Area = () => {
               </div>
             </div>
             <div>
-              <img src="./images/info.png" alt="icon" />
+              <img src="/images/info.png" alt="icon" />
               <label htmlFor="notes">訂單備註</label>
               <input type="text" id="notes" />
             </div>
           </div>
         </div>
-        <Button pre="/book2" next="/book4" />
+        <Button pre="/book/book2" next="/book/book4" />
       </form>
     </>
   );

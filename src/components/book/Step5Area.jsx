@@ -11,7 +11,7 @@ const Step5Area = () => {
         <h5>預約完成！</h5>
       </div>
       <div id="book5-bottom">
-        <img src="./images/raccoon.png" alt="raccoon" />
+        <img src="/images/question-007.png" alt="raccoon" />
       </div>
     </div>
   );

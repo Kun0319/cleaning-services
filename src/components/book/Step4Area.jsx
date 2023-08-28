@@ -109,7 +109,7 @@ const Step4Area = () => {
             <u>服務條款</u> 及 <u>隱私權政策</u>
           </div>
         </div>
-        <Button pre="/book3" next="/book5" />
+        <Button pre="/book/book3" next="/book/book5" />
       </form>
     </>
   );
