@@ -1,6 +1,5 @@
-import React from 'react';
-import './order.css';
-import OrderStaff from './orderStaff';
+import "./order.css";
+import OrderStaff from "./orderStaff";
 
 const OrderDone = () => {
   const order = [
@@ -12,41 +11,20 @@ const OrderDone = () => {
           17:20:13
         </>
       ),
-      orderStaff: '李大媽',
-      content: '客廳清潔',
-      orderStatus: '完成訂單',
-    },
+      orderStaff: "李大媽",
+      content: "客廳清潔",
+      orderStatus: "完成訂單"
+    }
   ];
 
   return (
     <div className="dashOrder">
       <div className="orderTable">
         <div className="orderInfo">
-          <span className="orderCard">
-            <img src="images/order.png" alt="" />
-            <p className="orderText">訂單成立</p>
-          </span>
-          <p className="line"></p>
-          <span className="orderCard">
-            <img src="images/orderGoing.png" alt="" />
-            <p className="orderText">已送達</p>
-          </span>
-          <p className="line"></p>
-          <span className="orderCard">
-            <img src="images/orderCleaning.png" alt="" />
-            <p className="orderText">清掃中</p>
-          </span>
-          <p className="line"></p>
-          <span className="orderCard">
-            <img src="images/orderCleaned.png" alt="" />
-            <p className="orderText">完成清潔</p>
-          </span>
-          <p className="line"></p>
-          <span className="orderCard">
-            <img src="images/orderDone.png" alt="" />
-            <p className="orderText">完成訂單</p>
-          </span>
+          {/* 你的订单状态图标和文本 */}
         </div>
+
+        {/* 订单表格 */}
         <table>
           <thead className="orderThead">
             <tr>
@@ -56,47 +34,44 @@ const OrderDone = () => {
               <th>完成狀態</th>
             </tr>
           </thead>
-          <tbody className="orderTbody">
-          {order.map((order) => (
-              <tr className="orderTbody row orderDn">
-                <td>{order.doneTime}</td>
-                <td>{order.orderStaff}</td>
-                <td>{order.content}</td>
-                <td>
-                  <button
-                    className="orderDnbtn"
-                    onClick={() => {
-                      alert('AAAAAAAAAAAAAAAAAA');
-                    }}
-                  >
-                    {order.orderStatus}
+          <tbody>
+            {order.map((orderItem, index) => (
+              <tr key={index} className="orderTbody orderDn">
+                <td className="col">{orderItem.doneTime}</td>
+                <td className="col">{orderItem.orderStaff}</td>
+                <td className="col">{orderItem.content}</td>
+                <td className="col">
+                  <button className="orderDnbtn" onClick={() => alert("AAAAAAAAAAAAAAAAAA")}>
+                    {orderItem.orderStatus}
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-      </div>
-      <div className="staffInfo">
-        <OrderStaff />
-      </div>
-      <div className="orderBtns">
-        <button
-          onClick={() => {
-            alert('AAAAAAAAAAAAAAAAAA');
-          }}
-          className="orderBtn"
-        >
-          上一頁
-        </button>
-        <button
-          onClick={() => {
-            alert('AAAAAAAAAAAAAAAAAA');
-          }}
-          className="orderBtn"
-        >
-          下一頁
-        </button>
+
+        <div className="staffInfo">
+          <OrderStaff />
+        </div>
+
+        <div className="orderBtns">
+          <button
+            onClick={() => {
+              alert("AAAAAAAAAAAAAAAAAA");
+            }}
+            className="orderBtn"
+          >
+            上一頁
+          </button>
+          <button
+            onClick={() => {
+              alert("AAAAAAAAAAAAAAAAAA");
+            }}
+            className="orderBtn"
+          >
+            下一頁
+          </button>
+        </div>
       </div>
     </div>
   );
