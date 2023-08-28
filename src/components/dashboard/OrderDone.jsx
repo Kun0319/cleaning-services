@@ -47,8 +47,8 @@ const OrderDone = () => {
             <p className="orderText">完成訂單</p>
           </span>
         </div>
-        <table className="orderTable">
-          <thead>
+        <table>
+          <thead className="orderThead">
             <tr>
               <th>訂單成立</th>
               <th>派遣專員</th>
@@ -56,13 +56,13 @@ const OrderDone = () => {
               <th>完成狀態</th>
             </tr>
           </thead>
-          <tbody>
-            {order.map((order) => (
+          <tbody className="orderTbody">
+          {order.map((order) => (
               <tr className="orderTbody row orderDn">
-                <td className="col">{order.doneTime}</td>
-                <td className="col">{order.orderStaff}</td>
-                <td className="col">{order.content}</td>
-                <td className="col">
+                <td>{order.doneTime}</td>
+                <td>{order.orderStaff}</td>
+                <td>{order.content}</td>
+                <td>
                   <button
                     className="orderDnbtn"
                     onClick={() => {
