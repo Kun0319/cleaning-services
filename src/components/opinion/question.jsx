@@ -1,5 +1,5 @@
 import React from "react";
-import './Question.css';
+import './question.css';
 const Question = () => {
     return (
 
@@ -109,8 +109,8 @@ const Question = () => {
                 </div>
                 <div className="Raccoon"><img src="images/question-007.png" width="477px" height="393px" /></div>
 
-            </div>     
             </div>
+        </div>
 
 
     );

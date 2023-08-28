@@ -1,21 +1,27 @@
-import "./leo.css";
-import fakeList from "./fakeList.json"
+import "./dashboard.css";
+import data from "./fakeList.json"
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const OrderList = (props) => {
-  const [number, setNumber] = useState(1);//顯示幾筆
+  const [number, setNumber] = useState(5);//顯示幾筆
   const [start, setStart] = useState(0);//從哪開始
-  // let page = (Math.ceil(data.length / number))
-  useEffect(() => {
-    console.log("Count updated:", start);
-  }, [start]);
+  // 目標頁數
+  // const pages = (Math.ceil(data.length / number))
+  // 起始頁數
+  // const [page, setPage] = useState(1);
+  const navigate = useNavigate()
+
   const prevPageClick = () => {
-    setStart(start - 1)
+    console.log(number, start)
+    setNumber(number - 5 > 0 ? number - 5 : 5)
+    setStart(start - 5 > 0 ? start - 5 : 0)
   }
   const nextPageClick = () => {
-    setStart(start + 1)
+    console.log(number, start)
+    setNumber(start + 5 < data.length ? number + 5 : number)
+    setStart(start + 5 < data.length ? start + 5 : start)
   }
-  // console.log(page, data.length)
   return (
     <div className="dashOrder">
       <h3>管理訂單</h3>
@@ -32,16 +38,18 @@ const OrderList = (props) => {
           </tr>
         </thead>
         <tbody className="orderTbody">
-          {fakeList.slice(start, number).map(({
+          {data.slice(start, number).map(({
             orderNumber,
             memberId,
             orderDate,
             weekOfTimes,
             weekOfAmount,
             price,
-            orderStatus }, i) => {
+            orderStatus }) => {
             return (
-              <tr key={i}>
+              <tr key={memberId} onClick={() => {
+                navigate(`/dashboard/AdminOrder/${memberId}`)
+              }}>
                 <td>{orderNumber}</td>
                 <td>{memberId}</td>
                 <td>{orderDate}</td>
@@ -54,7 +62,7 @@ const OrderList = (props) => {
           })}
         </tbody>
       </table>
-      <div>
+      <div className="orderBtn-group">
         <div className="orderBtn"
           onClick={prevPageClick}>
           上一頁
