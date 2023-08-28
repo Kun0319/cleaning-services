@@ -313,18 +313,19 @@
 }
 
 .scorebtn {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   border-radius: 5px;
   background-color: #ffc107;
   margin: 10px;
+  padding: 0  ;
   text-align: center;
   vertical-align: middle;
 }
 
 .scoreinput {
   width: 397px;
-  height: 114px;
+  height: 85px;
   border-radius: 10px;
   border: 1px solid #DEE2E6;
   padding: 16px;

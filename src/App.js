@@ -1,9 +1,9 @@
-import Narbar from "./components/narbar";
+import Narbar from "./components/dashboard/narbar";
 // import SidebarAdmin from "./components/SidebarAdmin";
-import SidebarMember from "./components/SidebarMember";
-import OrderDone from "./components/OrderDone";
+import SidebarMember from "./components/dashboard/SidebarMember";
+import OrderDone from "./components/dashboard/OrderDone";
+// import Score from "./components/dashboard/score";
 // import Order from "./components/Order";
-// import orderStaff from "./components/orderStaff";
 function App() {
   return (
     <div className="service-process">
@@ -14,6 +14,7 @@ function App() {
       >
         <SidebarMember />
         <OrderDone />
+        {/* <Score /> */}
       </div>
     </div>
   );
