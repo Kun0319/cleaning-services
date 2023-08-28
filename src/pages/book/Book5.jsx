@@ -3,7 +3,7 @@ import ProgressIcon from "../../components/book/ProgressIcon";
 import ProgressIconactive from "../../components/book/ProgressIconactive";
 import ProgressLine from "../../components/book/ProgressLine";
 import Step5Area from "../../components/book/Step5Area";
-import Narbar from "../../components/narbar";
+import Narbar from "../../components/navbar";
 import "../../components/book/book_style.css";
 
 const Book5 = () => {
