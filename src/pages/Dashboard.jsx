@@ -8,10 +8,10 @@ export default function Dashboard() {
         <div className='container'>
             <Narbar />
             <div className='row'>
-                <div className='col-3'>
+                <div className='col-12 col-lg-3'>
                     <SidebarAdmin />
                 </div>
-                <div className='col-9'>
+                <div className='col-12 col-lg-9'>
                     <Outlet />
                 </div>
             </div>

@@ -6,13 +6,13 @@ import Book2 from "./pages/book/Book2";
 import Book3 from "./pages/book/Book3";
 import Book4 from "./pages/book/Book4";
 import Book5 from "./pages/book/Book5";
-import { OrderList } from "./components/dashboard/DashboardSet";
-import Dashboard from "./pages/Dashboard";
-import MemberInfo from "./pages/member/MemberInfo";
-import PersonalInfo from "./pages/member/PersonalInfo";
-import Aboutus from "./components/aboutus/aboutus";
-import Accepting from "./components/Accept/Accepting";
-import Case from "./components/caseshare/case";
+import { OrderList, UndoneOrder, DoneOrder } from "./components/dashboard/DashboardSet"
+import Dashboard from "./pages/Dashboard"
+import MemberInfo from "./pages/member/MemberInfo"
+import PersonalInfo from "./pages/member/PersonalInfo"
+import Aboutus from "./components/aboutus/aboutus"
+import Accepting from "./components/Accept/Accepting"
+import Case from "./components/caseshare/case"
 import Question from "./components/opinion/question";
 import AdminOrder from "./pages/order/AdminOrder";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -45,6 +45,9 @@ function App() {
             path="/dashboard/AdminOrder/:memberID"
             element={<AdminOrder />}
           />
+          <Route path="/dashboard/UndoneOrder/" element={<UndoneOrder />} />
+          <Route path="/dashboard/DoneOrder/" element={<DoneOrder />} />
+          <Route path="/dashboard/AdminOrder/:memberID" element={<AdminOrder />} />
           <Route path="/dashboard/memberInfo/" element={<MemberInfo />} />
           <Route
             path="/dashboard/PersonalInfo/:memberID"
