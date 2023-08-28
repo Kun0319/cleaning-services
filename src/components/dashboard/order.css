@@ -115,35 +115,6 @@
   gap: 12px;
 }
 
-.orderInfo {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
-  margin: 50px 0px 15px 0px;
-}
-
-.orderCard {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.line {
-  width: 60px;
-  border: 1px solid #ffc107;
-  border-radius: 30px;
-}
-
-.orderText {
-  color: #664d03;
-  margin-top: 20px;
-  font-size: 20px;
-  font-weight: bold;
-}
-
 .orderThead,
 .orderTbody {
   display: flex;
@@ -164,20 +135,6 @@
   padding: 12px 12px;
   /* justify-content: space-between; */
   border-radius: 30px;
-}
-
-.orderDn {
-  padding: 12px 0px;
-  border-radius: 10px;
-  cursor: auto;
-}
-
-.orderDnbtn {
-  background-color: #FFC107;
-  border-radius: 30px;
-  padding: 10px;
-  margin: 0 auto;
-  border: 0;
 }
 
 .orderTbody span:nth-child(1) {
@@ -226,7 +183,53 @@
   bottom: 20px;
 }
 
-/* #################################Order-staff*/
+
+
+/* #################################wayne*/
+
+.orderInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 50px 0px 15px 0px;
+}
+
+.orderCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.line {
+  width: 60px;
+  border: 1px solid #ffc107;
+  border-radius: 30px;
+}
+
+.orderText {
+  color: #664d03;
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.orderDn {
+  padding: 12px 0px;
+  border-radius: 10px;
+  cursor: auto;
+}
+
+.orderDnbtn {
+  background-color: #FFC107;
+  border-radius: 30px;
+  padding: 10px;
+  margin: 0 auto;
+  border: 0;
+}
+
 .contact-table {
   width: 426px;
   height: 152px;
@@ -258,8 +261,6 @@
   bottom: 15%;
   left: 5%;
 }
-
-/* #################################Order-score*/
 
 .scoreOP {
   width: 445px;
@@ -318,7 +319,7 @@
   border-radius: 5px;
   background-color: #ffc107;
   margin: 10px;
-  padding: 0  ;
+  padding: 0;
   text-align: center;
   vertical-align: middle;
 }
