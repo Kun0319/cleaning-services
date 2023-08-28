@@ -1,5 +1,5 @@
 import "./order.css";
-// import OrderStaff from "./orderStaff";
+import OrderStaff from "./orderStaff";
 
 const Order = () => {
   // 假資料props
@@ -56,6 +56,7 @@ const Order = () => {
           );
         })}
       </div>
+      <div className="staffInfo"><OrderStaff/></div>
       <div className="orderBtns">
         <button
           onClick={() => {

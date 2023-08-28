@@ -62,7 +62,7 @@ const OrderDone = () => {
           );
         })}
       </div>
-      <div>
+      <div className="staffInfo">
       <OrderStaff />
       </div>
       <div className="orderBtns">
