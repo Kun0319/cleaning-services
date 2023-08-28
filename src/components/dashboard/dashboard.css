@@ -1,26 +1,22 @@
 /* ##################################Sidebar-style */
 .aside {
-    /* width: 206px; */
     max-height: auto;
-    /* flex: 1; */
     border-radius: 50px;
     border: 1px solid #ffc107;
     background: #fffef9;
-    padding: 4em 2em;
+    padding: 4em;
 }
 
 .aside .aside-main {
     display: flex;
-    /* width: 124px; */
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     gap: 4px;
 }
 
 .aside-main div {
     display: flex;
-    /* width: 106px; */
-    padding: 12px 8px;
+    padding: 12px 4px;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
@@ -36,9 +32,8 @@
     background-position: 10px 10px;
     background-repeat: no-repeat;
     padding-left: 40px;
-    width: 100%;
+    width: 25%;
     height: 48px;
-    /* outline: none; */
 }
 
 .aside-input::placeholder,
@@ -123,14 +118,16 @@
     padding: 38px;
 }
 
-.dashOrder>h3 {
+.dashOrder h3 {
     color: #eaac00;
     font-family: Inter;
     font-size: 28px;
     font-weight: 400;
     line-height: normal;
     text-align: center;
+    margin-left: auto;
 }
+
 
 .orderThead {
     border-bottom: 1px solid #664d03;
@@ -197,4 +194,95 @@
 .orderBtn-group {
     display: flex;
     justify-content: center;
+}
+
+#orderTh_RWD {
+    transform: scale(0);
+}
+
+#orderTh {
+    transform: scale(1);
+}
+
+@media screen and (max-width: 997px) {
+    .aside {
+        max-height: 120px;
+        padding: 20px;
+        border-radius: 50px;
+        margin: 20px auto;
+    }
+
+    .aside .aside-main {
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 0;
+        border: none;
+    }
+
+    .aside-input {
+        display: none;
+    }
+
+    .aside-main div {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        border-bottom: 0px solid #ffc107;
+
+    }
+
+    .aside-main div h5 {
+        border-left: 6px solid #664d03
+    }
+
+
+    .aside-title {
+        font-size: 18px;
+        line-height: 0.5;
+    }
+
+    .aside span {
+        font-size: 14px;
+        line-height: 0.5;
+        padding: 4px;
+    }
+
+    .aside span::before {
+        width: 14px;
+        height: 14px;
+    }
+
+    .dashOrder {
+        gap: 0px;
+    }
+
+    .dashOrder>h3 {
+        margin: 0;
+        line-height: 0.5;
+    }
+
+
+    #orderTh {
+        transform: scale(0);
+    }
+
+    #orderTh_RWD {
+        transform: scale(1);
+    }
+
+    .orderThead,
+    .orderTbody {
+        width: 100%;
+        color: #664d03;
+        font-family: Inter;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+    }
+
+    .orderBtn {
+        font-size: 14px;
+        padding: 4px 10px;
+    }
 }

@@ -3,7 +3,7 @@ import data from "./fakeList.json"
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const OrderList = (props) => {
+const UndoneOrder = (props) => {
   const limitCount = 8;//顯示幾筆
   const [number, setNumber] = useState(limitCount);
   const [start, setStart] = useState(0);//從哪開始
@@ -21,20 +21,19 @@ const OrderList = (props) => {
     } return "未完成"
   }
 
+  const undone = data.filter(data => data.orderStatus === "0");//篩選未完成訂單
+
   const prevPageClick = () => {
     setNumber(number - limitCount > 0 ? number - limitCount : limitCount)
     setStart(start - limitCount > 0 ? start - limitCount : 0)
   }
   const nextPageClick = () => {
-    setNumber(start + limitCount < data.length ? number + limitCount : number)
-    setStart(start + limitCount < data.length ? start + limitCount : start)
+    setNumber(start + limitCount < undone.length ? number + limitCount : number)
+    setStart(start + limitCount < undone.length ? start + limitCount : start)
   }
   return (
     <div className="dashOrder">
-      <div className="orderHead">
-        <h3>管理訂單</h3>
-        <input className="aside-input" type="text" placeholder="查詢訂單" />
-      </div>
+      <h3>管理訂單</h3>
       <table>
         <thead className="orderThead">
           <tr id="orderTh">
@@ -57,7 +56,7 @@ const OrderList = (props) => {
           </tr>
         </thead>
         <tbody className="orderTbody">
-          {data.slice(start, number).map(({
+          {undone.slice(start, number).map(({
             orderNumber,
             memberId,
             orderDate,
@@ -94,4 +93,4 @@ const OrderList = (props) => {
     </div>
   );
 };
-export default OrderList;
+export default UndoneOrder;

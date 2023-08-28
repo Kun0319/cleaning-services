@@ -16,8 +16,23 @@ export default function App() {
         <img src="images/flower.png" alt="" />
       </div>
       <Swiper
-        slidesPerView={3}
+        spaceBetween={20}
+        slidesPerView={1}
         freeMode={true}
+        breakpoints={{
+          1200: {
+            slidesPerView: 4,
+          },
+          992: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          576: {
+            slidesPerView: 1,
+          },
+        }}
         className="swiper mySwiper swiper-wrapper"
       >
         <SwiperSlide className="introduceCard swiper-slide">
