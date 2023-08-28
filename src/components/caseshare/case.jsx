@@ -1,6 +1,8 @@
 import React from "react";
 import './case.css';
 import CommentItem from "./CommentItem";
+import Narbar from "../narbar";
+import Footer from "../Footer";
 
 function CardContainer() {
   const cardData = [
@@ -36,6 +38,7 @@ const Case = () => {
 
   return (
     <>
+      <Narbar />
       <div className="caseTitle">
         <h2>案例分享</h2>
       </div>
@@ -47,6 +50,8 @@ const Case = () => {
           <CommentItem key={index} {...comment} />
         ))}
       </div>
+
+      <Footer />
     </>
   );
 }

@@ -7,12 +7,17 @@ import Book4 from "./pages/book/Book4";
 import Book5 from "./pages/book/Book5";
 import { OrderList, ComponentB, ComponentC } from "./components/dashboard/DashboardSet"
 import Dashboard from "./pages/Dashboard"
+import Aboutus from "./components/aboutus/aboutus";
+import Case from "./components/caseshare/case";
+
 function App() {
   return (
     <BrowserRouter>
       <Routes>
 
         <Route index element={<Home />} />
+        <Route path="/aboutus" element={<Aboutus />} />
+        <Route path="/case" element={<Case />} />
         <Route path="/book1" element={<Book1 />} />
         <Route path="/book2" element={<Book2 />} />
         <Route path="/book3" element={<Book3 />} />

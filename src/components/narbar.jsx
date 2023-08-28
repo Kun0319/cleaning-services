@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 
-class narbar extends Component {
+class Narbar extends Component {
     state = {
 
     };
@@ -55,7 +55,7 @@ class narbar extends Component {
     }
 }
 
-export default narbar;
+export default Narbar;
 
 
 // #ffc107
