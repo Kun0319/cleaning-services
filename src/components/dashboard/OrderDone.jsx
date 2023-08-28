@@ -72,7 +72,7 @@ const OrderDone = () => {
           </tbody>
         </table>
 
-        <div className="staffInfo">
+        <div >
           <OrderStaff />
         </div>
 
