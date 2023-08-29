@@ -3,7 +3,7 @@ import Narbar from "./components/dashboard/narbar";
 import SidebarMember from "./components/dashboard/SidebarMember";
 // import OrderDone from "./components/dashboard/OrderDone";
 import Order from "./components/dashboard/Order";
-import Score from "./components/dashboard/score";
+// import Score from "./components/dashboard/score";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       >
         <SidebarMember />
         <Order />
-        <Score />
+        {/* <Score /> */}
       </div>
     </div>
   );
