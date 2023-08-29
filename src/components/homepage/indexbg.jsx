@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 class indexbg extends Component {
   state = {};
@@ -6,7 +7,9 @@ class indexbg extends Component {
     backgroundColor: "#ffc107",
     height: "3em",
     width: "15em",
-    color: "#664D03"
+    color: "#664D03",
+    top: "15%",
+    left: "10%" 
   };
 
 
@@ -27,19 +30,22 @@ class indexbg extends Component {
 
         {/* 文字及預約按鈕 */}
         <div className="d-flex row   justify-content-center position-absolute"
-          style={{ top: "15%", left: "10%" }}>
-          <h1 style={{ color: "#3F3350", textAlign: "center" }}>
+          style={{ top: "15%", left: "5%" }}>
+          <h1 className="h2" style={{ color: "#3F3350", textAlign: "center" }}>
             浣熊管家<br />讓你有個乾淨的家
           </h1>
-          <button className='btn'
-            style={this.btn}>
-            立即預約
-          </button>
+           <Link to="/book" style={{justifyContent:"center",display:"flex",textDecoration:"none"}}>
+            <button className='btn'
+              style={this.btn}>
+              立即預約
+            </button>
+          </Link>
+
         </div>
 
         {/* 圓形圖片 */}
         <div className="position-absolute d-none d-xxl-block"
-          style={{ top: '5%', right: "40%" }}>
+          style={{ top: '0%', right: "40%" }}>
           <img
             src="images/circleImage1.webp"
             alt=""
@@ -50,7 +56,7 @@ class indexbg extends Component {
 
 
         <div className="position-absolute d-none d-xxl-block"
-          style={{ right: "20%" }}>
+          style={{ right: "19%", top: "15%" }}>
           <img
             src="images/circleImage2.webp"
             alt=""

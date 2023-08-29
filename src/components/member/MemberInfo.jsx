@@ -1,5 +1,5 @@
 import React from 'react';
-import "../../components/dashboard/dashboard.css";
+import "./member.css"
 const Memberinfo = () => {
     return (
         <div>

@@ -48,10 +48,11 @@ class navbar extends Component {
                     </nav >
                 </div>
                 {/* ///////////////////////// */}
+                {/* RWD Navbar */}
                 <div className=' container d-md-block  d-lg-none   '>
 
                     <Navbar expand="lg">
-                        <Navbar.Brand href="#"><img src='images/logo.png' style={{ width: "5em", height: "3em" }} alt="" className='img-fluid' /></Navbar.Brand>
+                        <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "8em", height: "5em" }} alt="" className='img-fluid' /></Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarCollapse" />
                         <Navbar.Collapse id="navbarCollapse">
 
