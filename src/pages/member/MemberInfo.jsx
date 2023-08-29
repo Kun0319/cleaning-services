@@ -1,5 +1,5 @@
 import React from 'react';
-
+import "./member.css"
 const Memberinfo = () => {
     return (
         <div>
