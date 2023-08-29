@@ -1,17 +1,35 @@
 import "./dashboard.css";
 import data from "./fakeList.json"
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const OrderList = (props) => {
   const limitCount = 8;//顯示幾筆
   const [number, setNumber] = useState(limitCount);
   const [start, setStart] = useState(0);//從哪開始
+  const [getData, setGetData] = useState(data)
+  const [inputVal, setInPutVal] = useState('')
   const navigate = useNavigate()//導向
   // 目標頁數
   // const pages = (Math.ceil(data.length / number))
   // 起始頁數
   // const [page, setPage] = useState(1);
+
+
+  const handleInPutVal = (e) => {
+    setInPutVal(e.target.value)
+  }
+  const sreachOrder = () => {
+    data.filter((obj) => {
+      let res = {}
+      for (let val in obj) {
+        if (obj[val] === inputVal) {
+          res = obj
+        }
+      }
+      console.log(res);
+    })
+  }
 
   const handleOrderStatus = (orderStatus) => {
     if (orderStatus === "1") {
@@ -33,7 +51,10 @@ const OrderList = (props) => {
     <div className="dashOrder">
       <div className="orderHead">
         <h3>管理訂單</h3>
-        <input className="aside-input" type="text" placeholder="查詢訂單" />
+        <img src="/images/search.png" alt="img-button" className="aside-img-button"
+          onClick={sreachOrder} />
+        <input className="aside-input" type="text" placeholder="查詢訂單" value={inputVal} onChange={handleInPutVal}
+          onClick={(e) => { e.target.value = '' }} />
       </div>
       <table>
         <thead className="orderThead">
