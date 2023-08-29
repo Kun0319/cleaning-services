@@ -1,7 +1,8 @@
 import Narbar from "./components/dashboard/narbar";
 // import SidebarAdmin from "./components/SidebarAdmin";
 import SidebarMember from "./components/dashboard/SidebarMember";
-import OrderDone from "./components/dashboard/OrderDone";
+// import OrderDone from "./components/dashboard/OrderDone";
+import Order from "./components/dashboard/Order";
 import Score from "./components/dashboard/score";
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
         style={{ display: "flex", gap: "15px", justifyContent: "center" }}
       >
         <SidebarMember />
-        <OrderDone />
+        <Order />
         <Score />
       </div>
     </div>

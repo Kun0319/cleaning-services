@@ -56,7 +56,7 @@ const Order = () => {
           );
         })}
       </div>
-      <div className="staffInfo"><OrderStaff/></div>
+      <div ><OrderStaff /></div>
       <div className="orderBtns">
         <button
           onClick={() => {
