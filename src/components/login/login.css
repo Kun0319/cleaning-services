@@ -132,3 +132,10 @@ button {
     align-items: center;
 }
 
+.loginbg {
+    background-image: url(../../../public/images/loginin-bg.png);
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    background-position: center bottom ;
+}
+

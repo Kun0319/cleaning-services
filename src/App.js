@@ -16,6 +16,7 @@ import Case from "./components/caseshare/case"
 import Question from "./components/opinion/question";
 import AdminOrder from "./pages/order/AdminOrder";
 import ProtectedRoute from "./components/ProtectedRoute";
+import LoginPage from "./components/login/LoginPage";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/accepting" element={<Accepting />} />
         <Route path="/case" element={<Case />} />
         <Route path="/question" element={<Question />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/book" element={<Book />}>
           <Route index="/book/" element={<Book1 />} />
           <Route path="/book/book2" element={<Book2 />} />
