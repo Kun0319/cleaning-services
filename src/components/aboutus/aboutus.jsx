@@ -1,6 +1,8 @@
 import React from 'react';
 import './aboutus.css';
 import Card from './card';
+import Narbar from '../narbar';
+import Footer from '../Footer';
 
 const Aboutus = () => {
   const cardData = [
@@ -11,6 +13,7 @@ const Aboutus = () => {
 
   return (
     <div>
+      < Narbar />
       <div className="companycontainer">
         <h3 className='companyh3'>公司介紹 HISTORY</h3>
         <img src="images/flower.png" alt="flower" />
@@ -57,6 +60,7 @@ const Aboutus = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
