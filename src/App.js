@@ -2,8 +2,8 @@ import Narbar from "./components/dashboard/narbar";
 // import SidebarAdmin from "./components/SidebarAdmin";
 import SidebarMember from "./components/dashboard/SidebarMember";
 import OrderDone from "./components/dashboard/OrderDone";
-// import Score from "./components/dashboard/score";
-// import Order from "./components/Order";
+import Score from "./components/dashboard/score";
+
 function App() {
   return (
     <div className="service-process">
@@ -14,7 +14,7 @@ function App() {
       >
         <SidebarMember />
         <OrderDone />
-        {/* <Score /> */}
+        <Score />
       </div>
     </div>
   );
