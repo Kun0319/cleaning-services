@@ -9,6 +9,7 @@ import { OrderList, ComponentB, ComponentC } from "./components/dashboard/Dashbo
 import Dashboard from "./pages/Dashboard"
 import Aboutus from "./components/aboutus/aboutus";
 import Case from "./components/caseshare/case";
+import LoginPage from "./components/login/LoginPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="/aboutus" element={<Aboutus />} />
         <Route path="/case" element={<Case />} />
+        <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/book1" element={<Book1 />} />
         <Route path="/book2" element={<Book2 />} />
         <Route path="/book3" element={<Book3 />} />
