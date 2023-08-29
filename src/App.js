@@ -16,13 +16,14 @@ import Case from "./components/caseshare/case"
 import Question from "./components/opinion/question";
 import AdminOrder from "./pages/order/AdminOrder";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Error from "./pages/Error"
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route index element={<Home />} />
-        <Route path="/aboutus" element={<Aboutus />} />
-        <Route path="/accepting" element={<Accepting />} />
+        <Route path="/about" element={<Aboutus />} />
+        <Route path="/service" element={<Accepting />} />
         <Route path="/case" element={<Case />} />
         <Route path="/question" element={<Question />} />
         <Route path="/book" element={<Book />}>
@@ -54,6 +55,7 @@ function App() {
             element={<PersonalInfo />}
           />
         </Route>
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   );

@@ -6,7 +6,7 @@ export default function Error() {
     return (
         <>
             <Narber />
-            <div>{window.location.replace("/")}</div>
+            <div><h1>錯誤網址!!!~~</h1></div>
         </>
     )
 }
