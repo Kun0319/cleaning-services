@@ -17,6 +17,8 @@ import Question from "./components/opinion/question";
 import AdminOrder from "./pages/order/AdminOrder";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Error from "./pages/Error"
+import Member from "./pages/Member";
+import Order from "./components/dashboard/Order";
 function App() {
   return (
     <BrowserRouter>
@@ -56,6 +58,9 @@ function App() {
           />
         </Route>
         <Route path="*" element={<Error />} />
+        <Route path="/member" element={<Member />}>
+          <Route index="/member/" element={<Order />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
