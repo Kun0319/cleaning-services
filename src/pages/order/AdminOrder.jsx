@@ -14,13 +14,14 @@ class member extends Component {
     render() {
         return (
             <div>
-                <div className='position'>
+                {/* 8/30 註解內容是表示路徑用 還需修改 */}
+                {/* <div className='position'>
                     首頁
                     /
                     訂單狀態
                     /
                     管理訂單
-                </div>
+                </div> */}
 
                 {/* 內容 */}
                 <div className='Container'>

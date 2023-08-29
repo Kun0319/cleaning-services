@@ -3,13 +3,16 @@ import "./member.css"
 const Memberinfo = () => {
     return (
         <div>
-            <div className='position'>
+            {/* 8/30 註解內容是表示路徑用 還需修改 */}
+            {/* <div className='position'>
                 首頁
                 /
                 會員管理
                 /
                 會員資料
-            </div>
+            </div> */}
+           
+           
 
             <div className='Container'>
                 <h3 className='orderh3'>會員資料</h3>

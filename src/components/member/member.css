@@ -8,7 +8,7 @@
 .Container {
     display: flex;
     flex-direction: column;
-    width: 1091px;
+    width: 1000px;
     height: 808px;
     border: 1px solid #ffc107;
     border-radius: 50px;
