@@ -10,6 +10,12 @@ const Score = () => {
         { id: 4, name: '細心點數：', value: 5 }
     ]);
 
+    const [isOpen, setIsOpen] = useState(true);
+
+    const handleClose = () => {
+        setIsOpen(false);
+    };
+
     return (
         <dialog open className="scoreOP">
             <div className="scoreTop"><u>填寫評價</u></div>
@@ -36,9 +42,7 @@ const Score = () => {
             <div className="scoreBody">
                 <div className="orderBtns">
                     <button
-                        onClick={() => {
-                            alert("AAAAAAAAAAAAAAAAAA");
-                        }}
+                        onClick={handleClose}
                         className="orderBtn"
                     >
                         略過
@@ -48,6 +52,7 @@ const Score = () => {
                             alert("AAAAAAAAAAAAAAAAAA");
                         }}
                         className="orderBtn"
+
                     >
                         送出評論
                     </button>
