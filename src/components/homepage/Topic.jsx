@@ -2,50 +2,50 @@ import React from "react";
 
 const Topic = () => {
     return (
-        <div className="team">
+        <div className="Topic-team">
             <div className="dr">
                 <ul>
-                    <li>
-                        <h2>321+</h2>
+                    <li style={{ fontSize: "35px"}}>
+                        321+
                     </li>
                     <li>Happy Customers</li>
 
                 </ul>
                 <ul>
                     <li>
-                        <h1>|</h1>
+                        <p>|</p>
                     </li>
 
                 </ul>
                 <ul>
-                    <li>
-                        <h2>30</h2>
+                    <li style={{ fontSize: "35px" }}>
+                        30
                     </li>
                     <li>Team Members</li>
 
                 </ul>
                 <ul>
                     <li>
-                        <h1>|</h1>
+                        <p>|</p>
                     </li>
                 </ul>
-                <ul><li><h2>8</h2> </li>
+                <ul><li style={{ fontSize: "35px" }}>8</li>
                     <li>Award Winning</li>
                 </ul>
                 <ul>
                     <li>
-                        <h1>|</h1>
+                        <p>|</p>
                     </li>
                 </ul>
                 <ul>
-                    <li><h2>100+</h2></li>
+                    <li style={{ fontSize: "35px" }}>100+</li>
                     <li> Project Complete</li>
                 </ul>
 
             </div>
             <div className="reserve">
-                <h2>立即了解預約</h2>
-                <b>心動不如馬上行動，趕快讓浣熊管家陪伴您有個乾淨的家!</b>
+                <p>立即了解預約</p>
+                心動不如馬上行動，趕快讓浣熊管家陪伴您有個乾淨的家 !
                 <br />
                 <br />
                 <br />

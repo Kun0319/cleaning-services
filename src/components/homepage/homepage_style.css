@@ -105,6 +105,10 @@ ul::-webkit-scrollbar {
   bottom: 40px;
   left: 50px;
 }
+.dr p{
+ font-size: 50px;
+line-height: 70px;
+}
 
 .reserve {
   color: rgba(147, 126, 93, 1);
@@ -112,7 +116,12 @@ ul::-webkit-scrollbar {
   width: 90%;
   height: 320px;
   margin: 0px auto;
-  padding: 65px;
+  padding: 80px;
+}
+.reserve p{
+  font-weight: bold;
+  font-size: 28px;
+  padding:20px
 }
 
 .inp {
@@ -127,12 +136,16 @@ ul::-webkit-scrollbar {
 
 }
 
-footer {
+.footer-team{
   background-color: rgba(254, 230, 156, 1);
   width: 90%;
   height: 210px;
   margin: 0px auto;
   border-radius: 25px;
+  position: relative;
+  top: 165px;
+
+ 
 }
 
 .footer-icon {
@@ -143,7 +156,7 @@ footer {
 .footer-icon li {
   display: inline-block;
   position: relative;
-  right: 30px;
+  right: 20px;
   bottom: -10px;
   padding: 3px;
 }
@@ -174,13 +187,11 @@ footer {
 
 }
 
+.Topic-team {position: relative;
+top: 100px;}
+
 .colo {
   color: rgba(155, 119, 0, 1);
-}
-
-.team {
-  position: relative;
-  top: 200px;
 }
 
 .dr h1 {
@@ -189,7 +200,7 @@ footer {
 
 /* footer  RWD */
 @media (max-width: 992px) {
-  footer {
+  .footer-team {
     height: auto;
     padding: 20px;
   }
@@ -230,7 +241,7 @@ footer {
 
 /* footer  RWD */
 @media (max-width: 768px) {
-  footer {
+  .footer-team {
     height: auto;
     padding: 20px;
   }

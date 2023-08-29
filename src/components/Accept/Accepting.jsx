@@ -58,8 +58,8 @@ const Accepting = () => {
 
 
             </div>
-
-            <Footer />
+           
+                <Footer />
         </div>
 
 
