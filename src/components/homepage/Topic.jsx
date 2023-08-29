@@ -49,7 +49,7 @@ const Topic = () => {
                 <br />
                 <br />
                 <br />
-                <a href="/book1"><button className="inp">立即預約</button></a>
+                <a href="/book/"><button className="inp">立即預約</button></a>
             </div>
         </div>
     );
