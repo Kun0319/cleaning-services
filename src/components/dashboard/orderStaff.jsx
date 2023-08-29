@@ -6,7 +6,7 @@ function ContactCard() {
       <table className="contact-table">
         <tr>
           <td>
-            <img src="images/orderStaff.png" alt="" className="contact-image" />
+            <img src="/images/orderStaff.png" alt="" className="contact-image" />
           </td>
           <td>
             <p>聯絡負責人：李大媽</p>

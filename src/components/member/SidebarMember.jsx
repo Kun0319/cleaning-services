@@ -2,7 +2,7 @@ import React from "react";
 import "../../components/dashboard/dashboard.css";
 const SidebarMember = () => {
   const arrowRight = () => {
-    return <img src="./images/chevron-right.png" alt="right" />;
+    return <img src="/images/chevron-right.png" alt="right" />;
   };
   return (
     <div className="aside">

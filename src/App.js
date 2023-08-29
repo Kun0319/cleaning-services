@@ -8,8 +8,8 @@ import Book4 from "./pages/book/Book4";
 import Book5 from "./pages/book/Book5";
 import { OrderList, UndoneOrder, DoneOrder } from "./components/dashboard/DashboardSet"
 import Dashboard from "./pages/Dashboard"
-import MemberInfo from "./pages/member/MemberInfo"
-import PersonalInfo from "./pages/member/PersonalInfo"
+import MemberInfo from "./components/member/MemberInfo"
+import PersonalInfo from "./components/member/PersonalInfo"
 import Aboutus from "./components/aboutus/aboutus"
 import Accepting from "./components/Accept/Accepting"
 import Case from "./components/caseshare/case"
@@ -19,6 +19,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Error from "./pages/Error"
 import Member from "./pages/Member";
 import Order from "./components/dashboard/Order";
+import OrderDone from "./components/dashboard/OrderDone";
+import Score from "./components/dashboard/score";
 import LoginPage from "./components/login/LoginPage";
 function App() {
   return (
@@ -62,6 +64,8 @@ function App() {
         <Route path="*" element={<Error />} />
         <Route path="/member" element={<Member />}>
           <Route index="/member/" element={<Order />} />
+          <Route path="/member/orderdone" element={<OrderDone />} />
+          <Route path="/member/Score/:orderID" element={<Score />} />
         </Route>
       </Routes>
     </BrowserRouter>
