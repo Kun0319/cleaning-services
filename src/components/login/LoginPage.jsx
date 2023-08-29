@@ -5,13 +5,15 @@ import './login.css'
 import { useState } from "react";
 import Login from "./login";
 import SignUp from "./signup";
-
+import Memberlogin from "./Memberlogin";
 
 
 const LoginPage = () => {
   const [showLogin, setShowLogin] = useState(true);
 
-  return (
+  return ( <>
+    < Narbar />
+    <div className="loginbg">
     <div className="loginContainer">
       <div className="loginSwitch">
         <div className="switchp">
@@ -33,6 +35,9 @@ const LoginPage = () => {
         {showLogin ? <Login /> : <SignUp />}
       </div>
     </div>
+    <Footer />    
+  </div>
+  </>
   );
 };
 
