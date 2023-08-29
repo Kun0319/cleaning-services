@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class narbar extends Component {
+class navbar extends Component {
   state = {};
 
   styles = {
@@ -81,6 +81,6 @@ class narbar extends Component {
   }
 }
 
-export default narbar;
+export default navbar;
 
 // #ffc107

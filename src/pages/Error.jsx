@@ -1,11 +1,11 @@
-import Narber from "../components/narbar"
+import Navber from "../components/navbar"
 // import { Outlet } from 'react-router-dom'
 
 
 export default function Error() {
     return (
         <>
-            <Narber />
+            <Navber />
             <div><h1>錯誤網址!!!~~</h1></div>
         </>
     )
