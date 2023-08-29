@@ -3,18 +3,22 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 .process-top {
   text-align: center;
 }
+
 .service-process {
   padding: 1rem;
   min-height: 70vh;
 }
+
 .title {
   font-size: 28px;
   color: #ffc107;
   margin: 3rem 0 0 0;
 }
+
 .process {
   display: flex;
   flex-wrap: wrap;
@@ -22,6 +26,7 @@
   align-items: center;
   margin: 10rem 0;
 }
+
 .process-list {
   text-align: center;
   display: flex;
@@ -30,6 +35,7 @@
   justify-content: center;
   margin: 1.5rem 0;
 }
+
 .steps {
   margin-top: 1rem;
   display: flex;
@@ -41,6 +47,7 @@
   color: #ffc107;
   margin: 0 1.8rem;
 }
+
 .step {
   display: flex;
   flex-direction: column;
@@ -48,28 +55,34 @@
   text-align: center;
   align-items: center;
 }
+
 .step h5 {
   font-size: 24px;
   color: #000b41;
 }
+
 .step p {
   font-size: 16px;
   color: #333333;
   margin: 0;
 }
+
 .process-img {
   text-align: center;
   justify-content: center;
   flex: 1 1;
 }
+
 .process-img img {
   width: 48%;
   min-width: 300px;
   border-radius: 15px;
 }
+
 ul::-webkit-scrollbar {
   display: none;
 }
+
 .dr {
   background-color: rgba(255, 222, 138, 1);
   height: 120px;
@@ -90,7 +103,7 @@ ul::-webkit-scrollbar {
   padding: 56px;
   position: relative;
   bottom: 40px;
- left: 50px;
+  left: 50px;
 }
 
 .reserve {
@@ -132,6 +145,7 @@ footer {
   position: relative;
   right: 30px;
   bottom: -10px;
+  padding: 3px;
 }
 
 .footer-img {
@@ -160,13 +174,87 @@ footer {
 
 }
 
-.colo{
-  color:rgba(155, 119, 0, 1) ;
+.colo {
+  color: rgba(155, 119, 0, 1);
 }
-.team{
+
+.team {
   position: relative;
-  top:200px;
+  top: 200px;
 }
-.dr h1{
+
+.dr h1 {
   line-height: 80px;
+}
+
+/* footer  RWD */
+@media (max-width: 992px) {
+  footer {
+    height: auto;
+    padding: 20px;
+  }
+
+  .footer-icon li {
+    display: inline-block;
+    position: static;
+    margin: 40px auto;
+    padding-right: 30px;
+  }
+
+  .footer-img {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .item ul {
+    list-style: none;
+    display: block;
+    float: none;
+    font-weight: bold;
+    font-size: 18px;
+    position: static;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
+  .colo {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .team {
+    top: 0;
+  }
+}
+
+/* footer  RWD */
+@media (max-width: 768px) {
+  footer {
+    height: auto;
+    padding: 20px;
+  }
+
+  .footer-img {
+    left: 0;
+    text-align: center;
+  }
+
+  .footer-icon li {
+    display: inline-block;
+    margin: 40px auto;
+    padding: 10px 10px;
+  }
+
+  .item ul {
+    float: none;
+    text-align: center;
+    position: static;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .team {
+    top: 0;
+  }
 }

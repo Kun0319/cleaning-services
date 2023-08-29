@@ -37,23 +37,18 @@ const Footer = () => {
           <li className="colo">Navigation</li>
           <br />
           <li>
-            <a href="#" className="footer-a">
-              公司介紹
+            <a href="/aboutus"><button className="footer-a">公司介紹</button>
             </a>
           </li>
           <li>
-            <a href="#" className="footer-a">
-              服務項目
+            <a href="/accepting"><button className="footer-a">服務項目</button>
             </a>
           </li>
           <li>
-            <a href="#" className="footer-a">
-              案例分享
-            </a>
+            <a href="/case"><button className="footer-a">案例分享</button></a>
           </li>
           <li>
-            <a href="#" className="footer-a">
-              常見問題
+            <a href="/question"><button className="footer-a"> 常見問題</button>
             </a>
           </li>
         </ul>

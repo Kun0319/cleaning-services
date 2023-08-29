@@ -2,8 +2,8 @@ import React from "react";
 
 const Topic = () => {
     return (
-        <div class="team">
-            <div class="dr">
+        <div className="team">
+            <div className="dr">
                 <ul>
                     <li>
                         <h2>321+</h2>
@@ -43,13 +43,13 @@ const Topic = () => {
                 </ul>
 
             </div>
-            <div class="reserve">
+            <div className="reserve">
                 <h2>立即了解預約</h2>
                 <b>心動不如馬上行動，趕快讓浣熊管家陪伴您有個乾淨的家!</b>
                 <br />
                 <br />
                 <br />
-                <input class="inp" type="button" value="立即預約" name="button" />
+                <a href="/book1"><button className="inp">立即預約</button></a>
             </div>
         </div>
     );
