@@ -1,7 +1,7 @@
 import React from 'react';
 import './aboutus.css';
 import Card from './card';
-import Narbar from '../narbar';
+import Navbar from '../navbar';
 import Footer from '../Footer';
 
 const Aboutus = () => {
@@ -13,7 +13,7 @@ const Aboutus = () => {
 
   return (
     <div>
-      < Narbar />
+      < Navbar />
       <div className="companycontainer">
         <h3 className='companyh3'>公司介紹 HISTORY</h3>
         <img src="images/flower.png" alt="flower" />
@@ -32,7 +32,7 @@ const Aboutus = () => {
         <div className="servicecontent">
           <div><img src="images/aboutus-004.png" alt="service area" /></div>
           <div>
-            <p className='companyp'p>台中市全區皆可預約，預約後，師傅將於選擇日期抵達您的宅邸，不需另外收取工人費或樓層費等費用，價格保證公開透明！！</p>
+            <p className='companyp' p>台中市全區皆可預約，預約後，師傅將於選擇日期抵達您的宅邸，不需另外收取工人費或樓層費等費用，價格保證公開透明！！</p>
           </div>
         </div>
       </div>

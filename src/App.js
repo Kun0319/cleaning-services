@@ -19,6 +19,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Error from "./pages/Error"
 import Member from "./pages/Member";
 import Order from "./components/dashboard/Order";
+import LoginPage from "./components/login/LoginPage";
 function App() {
   return (
     <BrowserRouter>
@@ -28,6 +29,7 @@ function App() {
         <Route path="/service" element={<Accepting />} />
         <Route path="/case" element={<Case />} />
         <Route path="/question" element={<Question />} />
+        <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/book" element={<Book />}>
           <Route index="/book/" element={<Book1 />} />
           <Route path="/book/book2" element={<Book2 />} />

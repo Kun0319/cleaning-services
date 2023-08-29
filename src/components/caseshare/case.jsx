@@ -1,7 +1,7 @@
 import React from "react";
 import './case.css';
 import CommentItem from "./CommentItem";
-import Narbar from "../narbar";
+import Navbar from "../navbar";
 import Footer from "../Footer";
 
 function CardContainer() {
@@ -17,7 +17,7 @@ function CardContainer() {
     <div className="casecardcontainer">
       {cardData.map((card, index) => (
         <div className="casecard" key={index}>
-          <img src={card.imgSrc} alt="" className="caseimg"/>
+          <img src={card.imgSrc} alt="" className="caseimg" />
           <div className="casecontent">
             <p>{card.title}</p>
             <p>{card.date}</p>
@@ -38,7 +38,7 @@ const Case = () => {
 
   return (
     <>
-      <Narbar />
+      <Navbar />
       <div className="caseTitle">
         <h2>案例分享</h2>
       </div>
