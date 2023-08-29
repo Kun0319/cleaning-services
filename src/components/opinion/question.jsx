@@ -25,7 +25,7 @@ const Question = () => {
                                 <b>請問目前服務範圍只有台中嗎？</b>
                             </li>
                         </ul>
-                        <li className="list-group-item tabe" style={{ backgroundColor: " #FFF8E1", fontSize: "18px" }}>對的，目前因人手狀況只提供台中服務，未來如有擴展其他區域將於官網通知，敬啟等候！</li>
+                        <li className="list-group-item tabe" style={{ color: "#997404" }}> 對的，目前因人手狀況只提供台中服務，未來如有擴展其他區域將於官網通知，敬啟等候！</li>
                         <ul />
                     </div>
 
