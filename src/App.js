@@ -67,6 +67,7 @@ function App() {
         <Route path="*" element={<Error />} />
         <Route path="/member" element={<Member />}>
           <Route index="/member/" element={<Order />} />
+          <Route path="/member/:orderNumber" element={<Order />} />
           <Route path="/member/orderdone" element={<OrderDone />} />
           <Route path="/member/Score/:orderID" element={<Score />} />
         </Route>
