@@ -59,11 +59,28 @@ input::placeholder {
     color: #664D03;
 }
 
+.cancelbtn {
+    width: 140px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #FFF3CD;
+    color: #664D03;
+}
+
 button {
     background-color: #FFFEF9;
     border: 1px solid #FFFEF9;
     color: #664D03;
     margin: 12px;
+}
+
+.revisebtn {
+    width: 60px;
+    height: 36px;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: #FFC107;
+    border: 1px solid #FFC107;
 }
 
 .loginTab {

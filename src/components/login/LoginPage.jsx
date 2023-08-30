@@ -35,7 +35,6 @@ const LoginPage = () => {
           {showLogin ? <Login /> : <SignUp />}
         </div>
       </div>
-      <Footer />
     </div>
   </>
   );
