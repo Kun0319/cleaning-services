@@ -24,7 +24,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin: 10rem 0;
+  margin: 6rem 0;
 }
 
 .process-list {
@@ -89,26 +89,25 @@ ul::-webkit-scrollbar {
   width: 90%;
   margin: 0px auto;
   border-radius: 25px;
-  color: rgb(0, 0, 0);
-  overflow: hidden;
+  padding-left: 130px;
 
 }
 
-.dr ul {
-  list-style: none;
-  display: block;
-  float: left;
-  font-weight: bold;
+.dr b {
+  font-size: 32px;
   color: white;
-  padding: 56px;
-  position: relative;
-  bottom: 40px;
-  left: 50px;
+  line-height: 70px;
 }
 .dr p{
- font-size: 50px;
-line-height: 70px;
+  color: white;
 }
+
+.dr h1 {
+  line-height: 100px;
+  color: white;
+
+}
+
 
 .reserve {
   color: rgba(147, 126, 93, 1);
@@ -118,10 +117,11 @@ line-height: 70px;
   margin: 0px auto;
   padding: 80px;
 }
-.reserve p{
+
+.reserve p {
   font-weight: bold;
   font-size: 28px;
-  padding:20px
+  padding: 20px
 }
 
 .inp {
@@ -136,7 +136,7 @@ line-height: 70px;
 
 }
 
-.footer-team{
+.footer-team {
   background-color: rgba(254, 230, 156, 1);
   width: 90%;
   height: 210px;
@@ -145,7 +145,7 @@ line-height: 70px;
   position: relative;
   top: 165px;
 
- 
+
 }
 
 .footer-icon {
@@ -180,26 +180,25 @@ line-height: 70px;
   font-weight: bold;
   font-size: 18px;
   position: relative;
-  left: 450px;
+  left: 350px;
   bottom: 210px;
   font-size: 15px;
   padding: 90px;
 
 }
 
-.Topic-team {position: relative;
-top: 100px;}
+.Topic-team {
+  position: relative;
+  top: 100px;
+}
 
 .colo {
   color: rgba(155, 119, 0, 1);
 }
 
-.dr h1 {
-  line-height: 80px;
-}
 
-/* footer  RWD */
-@media (max-width: 992px) {
+/*RWD */
+@media (max-width: 996px) {
   .footer-team {
     height: auto;
     padding: 20px;
@@ -239,7 +238,8 @@ top: 100px;}
   }
 }
 
-/* footer  RWD */
+
+/*RWD */
 @media (max-width: 768px) {
   .footer-team {
     height: auto;
@@ -261,11 +261,29 @@ top: 100px;}
     float: none;
     text-align: center;
     position: static;
-    margin: 0 auto;
+    margin: 10 auto;
     padding: 0;
   }
 
   .team {
     top: 0;
+  }
+
+}
+
+@media (min-width: 997px) and (max-width: 1350px) {
+  .item ul {
+    position: relative;
+    left: 350px;
+    bottom: 190px;
+    padding: 70px;
+  }
+}
+@media (min-width: 997px) and (max-width: 1250px){
+  .item ul {
+    position: relative;
+    left: 265px;
+    bottom: 170px;
+    padding: 45px;
   }
 }

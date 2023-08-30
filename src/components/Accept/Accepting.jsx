@@ -4,7 +4,7 @@ import Navbar from '../navbar';
 import Footer from '../Footer';
 const Accepting = () => {
     return (
-        // 抱歉大家 這裡要做coverflow可是一直有錯誤 還再修改 先讓靜態出來
+    
         <div>
             < Navbar />
             <div class="row Accepting-img">
@@ -53,7 +53,7 @@ const Accepting = () => {
 
                 <div class="Accepting-fee"><h3 className="Accepting-title">服務費用 Service Area</h3>
                     <img src="images/flower.png" alt="flower" />
-                    <p>每小時 500元 / 一次</p>
+                    <p>每小時 500元  優惠()</p>
                 </div>
 
 

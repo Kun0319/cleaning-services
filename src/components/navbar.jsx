@@ -34,7 +34,7 @@ class navbar extends Component {
                 <div className='container  d-md-none d-none d-lg-block '>
                     <nav style={this.styles} className='d-flex'>
                         {/* logo */}
-                        <img src='/images/logo.png' style={{ width: "10em", height: "6em" }} alt="" className='img-fluid' />
+                        <a href="/#"><img src='/images/logo.png' style={{ width: "10em", height: "6em" }} alt="" className='img-fluid' /></a>
                         <div className='ms-auto d-flex align-items-center' >
                             <Link to="/about" style={this.atagstyle} className=' mx-3  text-decoration-none '>關於我們</Link>
                             <Link to="/service" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</Link>

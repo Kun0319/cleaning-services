@@ -53,7 +53,7 @@ const staffInfos = () => {
   ];
   return (
     <div className="container">
-      <div className="process-top">
+      <div className="process-top staffInfo-title">
         <h3 className="title">員工評價 Staff evaluation</h3>
         <img src="images/flower.png" alt="" />
       </div>
