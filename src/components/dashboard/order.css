@@ -217,6 +217,31 @@
   border: 0;
 }
 
+.doneTbody tr td:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.doneTbody tr td:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.doneTbody tr {
+  line-height: 2;
+}
+
+.orderThead,
+.doneTbody {
+  width: 100%;
+  color: #664d03;
+  font-family: Inter;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+}
+
 .contact-table {
   width: 426px;
   height: 152px;
@@ -234,7 +259,7 @@
 
 .contact-table td {
   color: #664d03;
-  font-size: 16px;
+  font-size: 14px;
   padding: 8px;
   border: 1px solid #ccc;
   border: none;

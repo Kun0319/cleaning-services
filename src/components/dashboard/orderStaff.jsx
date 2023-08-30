@@ -1,17 +1,20 @@
 import "./order.css";
+import data from "./orderStafffake.json";
 
 function ContactCard() {
+  const orderStaff = data[0];
+
   return (
     <div>
       <table className="contact-table">
         <tr>
           <td>
-            <img src="images/orderStaff.png" alt="" className="contact-image" />
+            <img src={orderStaff.img} alt="" className="contact-image" />
           </td>
           <td>
-            <p>聯絡負責人：李大媽</p>
-            <p>聯絡電話：0912345678</p>
-            <p>聯絡信箱: 123@gmail.com</p>
+            <p>聯絡負責人：{orderStaff.orderStaff}</p>
+            <p>聯絡電話：{orderStaff.staffPhone}</p>
+            <p>聯絡信箱：{orderStaff.staffEmail}</p>
           </td>
         </tr>
       </table>
