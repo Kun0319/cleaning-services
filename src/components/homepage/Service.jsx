@@ -9,7 +9,7 @@ import "./Service.css";
 export default function App() {
   return (
     <>
-      <div className="process-top">
+      <div className="process-top Service-img">
         <h3 className="title">服務項目 Get our Service</h3>
         <img src="images/flower.png" alt="" />
       </div>
