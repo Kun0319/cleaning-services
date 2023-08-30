@@ -15,7 +15,7 @@ function App() {
       >
         <SidebarMember />
         <OrderDone />
-        <Score />
+        {/* <Score /> */}
       </div>
     </div>
   );

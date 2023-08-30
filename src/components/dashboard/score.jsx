@@ -3,6 +3,7 @@ import "./order.css";
 import Fraction from './Fraction';
 import data from "./scoreFake.json";
 
+
 function ContactCard() {
     const score = data[0];
 

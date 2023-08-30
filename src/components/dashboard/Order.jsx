@@ -1,14 +1,11 @@
+import React, { useState } from 'react';
 import "./order.css";
-import OrderStaff from "./orderStaff";
-import data from "./orderFake.json"
+import data from "./orderFake.json";
 
 const Order = () => {
-  // 假資料props
-
 
   return (
     <div className="dashOrder">
-
       <div className="orderInfo">
         <span className="orderCard">
           <img src="images/order.png" alt="" />
@@ -54,18 +51,24 @@ const Order = () => {
                 key={index}
                 onClick={() => {
                   alert("AAAAAAAAAAAAAAAAAA");
-                }}>
+                }}
+              >
                 <td>{orderNumber}</td>
                 <td>{content}</td>
-                <td>{orderStatus === "1" ? "處理中" : "已完成"}</td>
+                <td>
+                  {orderStatus === "0"
+                    ? "新訂單"
+                    : orderStatus === "1"
+                      ? "處理中"
+                      : orderStatus === "99"
+                        ? "已完成"
+                        : "未知狀態"}
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <div>
-        <OrderStaff />
-      </div>
       <div className="orderBtn-group">
         <button
           onClick={() => {

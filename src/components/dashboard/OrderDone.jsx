@@ -61,23 +61,27 @@ const OrderDone = () => {
             content,
             orderStatus }) => {
             return (
-              <tr key={index}>
+              <tr key={index}
+                onClick={() => {
+                  alert("AAAAAAAAAAAAAAAAAA");
+                }}
+              >
                 <td dangerouslySetInnerHTML={{ __html: orderDonetime(doneTime) }}></td>
                 <td>{orderStaff}</td>
                 <td>{content}</td>
                 <td>
-                  <button className={orderStatus === "99" ? "orderDnbtn" : ""}>
-                    完成訂單
-                  </button>
+                  {orderStatus === "99" ? (
+                    <button className="orderDnbtn">完成訂單</button>
+                  ) : (
+                    orderStatus === "0" ? "新訂單" : "處理中"
+                  )}
                 </td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <div >
-        <OrderStaff />
-      </div>
+      <OrderStaff />
       <div className="orderBtn-group">
         <button
           onClick={() => {
