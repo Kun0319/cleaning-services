@@ -6,17 +6,21 @@ import Book2 from "./pages/book/Book2";
 import Book3 from "./pages/book/Book3";
 import Book4 from "./pages/book/Book4";
 import Book5 from "./pages/book/Book5";
-import { OrderList, UndoneOrder, DoneOrder } from "./components/dashboard/DashboardSet"
-import Dashboard from "./pages/Dashboard"
-import MemberInfo from "./components/member/MemberInfo"
-import PersonalInfo from "./components/member/PersonalInfo"
-import Aboutus from "./components/aboutus/aboutus"
-import Accepting from "./components/Accept/Accepting"
-import Case from "./components/caseshare/case"
+import {
+  OrderList,
+  UndoneOrder,
+  DoneOrder,
+} from "./components/dashboard/DashboardSet";
+import Dashboard from "./pages/Dashboard";
+import MemberInfo from "./components/member/MemberInfo";
+import PersonalInfo from "./components/member/PersonalInfo";
+import Aboutus from "./components/aboutus/aboutus";
+import Accepting from "./components/Accept/Accepting";
+import Case from "./components/caseshare/case";
 import Question from "./components/opinion/question";
 import AdminOrder from "./pages/order/AdminOrder";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Error from "./pages/Error"
+import Error from "./pages/Error";
 import Member from "./pages/Member";
 import Order from "./components/dashboard/Order";
 import OrderDone from "./components/dashboard/OrderDone";
@@ -47,10 +51,13 @@ function App() {
             </ProtectedRoute>
           }
         >
-          <Route index="/dashboard/" element={<OrderList />} />
+          <Route index="/dashboard" element={<OrderList />} />
           <Route path="/dashboard/UndoneOrder/" element={<UndoneOrder />} />
           <Route path="/dashboard/DoneOrder/" element={<DoneOrder />} />
-          <Route path="/dashboard/AdminOrder/:memberID" element={<AdminOrder />} />
+          <Route
+            path="/dashboard/AdminOrder/:memberID"
+            element={<AdminOrder />}
+          />
           <Route path="/dashboard/memberInfo/" element={<MemberInfo />} />
           <Route
             path="/dashboard/PersonalInfo/:memberID"
