@@ -1,63 +1,75 @@
+import React, { useState } from 'react';
 import "./order.css";
-import OrderStaff from "./orderStaff";
+import data from "./orderFake.json";
 
 const Order = () => {
-  // 假資料props
-  const order = [
-    { orderNumber: "C0019", content: "客廳清潔", orderStatus: 1 },
-    { orderNumber: "C0123", content: "客廳清潔", orderStatus: 0 },
-  ];
+
   return (
     <div className="dashOrder">
-      <div className="orderTable">
-        <div className="orderInfo">
-          <span class="orderCard">
-            <img src="images/order.png" alt="" />
-            <p class="orderText ">訂單成立</p>
-          </span>
-          <p class="line"></p>
-          <span class="orderCard">
-            <img src="images/orderGoing.png" alt="" />
-            <p class="orderText ">已送達</p>
-          </span>
-          <p class="line"></p>
-          <span class="orderCard">
-            <img src="images/orderCleaning.png" alt="" />
-            <p class="orderText ">清掃中</p>
-          </span>
-          <p class="line"></p>
-          <span class="orderCard">
-            <img src="images/orderCleaned.png" alt="" />
-            <p class="orderText ">完成清潔</p>
-          </span>
-          <p class="line"></p>
-          <span class="orderCard">
-            <img src="images/orderDone.png" alt="" />
-            <p class="orderText ">完成訂單</p>
-          </span>
-        </div>
-        <div className="orderThead">
-          <span>訂單編號</span>
-          <span>訂單內容</span>
-          <span>訂單狀態</span>
-        </div>
-        {order.map((order) => {
-          return (
-            <div
-              className="orderTbody row"
-              onClick={() => {
-                alert("AAAAAAAAAAAAAAAAAA");
-              }}
-            >
-              <span className="col">{order.orderNumber}</span>
-              <span className="col">{order.content}</span>
-              <span className="col">{order.orderStatus ? "處理中" : "已完成"}</span>
-            </div>
-          );
-        })}
+      <div className="orderInfo">
+        <span className="orderCard">
+          <img src="images/order.png" alt="" />
+          <p className="orderText ">訂單成立</p>
+        </span>
+        <p className="line"></p>
+        <span className="orderCard">
+          <img src="images/orderGoing.png" alt="" />
+          <p className="orderText ">已送達</p>
+        </span>
+        <p className="line"></p>
+        <span className="orderCard">
+          <img src="images/orderCleaning.png" alt="" />
+          <p className="orderText ">清掃中</p>
+        </span>
+        <p className="line"></p>
+        <span className="orderCard">
+          <img src="images/orderCleaned.png" alt="" />
+          <p className="orderText ">完成清潔</p>
+        </span>
+        <p className="line"></p>
+        <span className="orderCard">
+          <img src="images/orderDone.png" alt="" />
+          <p className="orderText ">完成訂單</p>
+        </span>
       </div>
-      <div ><OrderStaff /></div>
-      <div className="orderBtns">
+      <table>
+        <thead className="orderThead">
+          <tr>
+            <th>訂單編號</th>
+            <th>訂單內容</th>
+            <th>訂單狀態</th>
+          </tr>
+        </thead>
+        <tbody className="orderTbody">
+          {data.map(({
+            index,
+            orderNumber,
+            content,
+            orderStatus }) => {
+            return (
+              <tr
+                key={index}
+                onClick={() => {
+                  alert("AAAAAAAAAAAAAAAAAA");
+                }}
+              >
+                <td>{orderNumber}</td>
+                <td>{content}</td>
+                <td>
+                  {orderStatus === "0"
+                    ? "新訂單"
+                    : orderStatus === "1"
+                      ? "處理中"
+                      : orderStatus === "99"
+                        ? "已完成"
+                        : "未知狀態"}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <div className="orderBtn-group">
         <button
           onClick={() => {
             alert("AAAAAAAAAAAAAAAAAA");
@@ -78,4 +90,5 @@ const Order = () => {
     </div>
   );
 };
+
 export default Order;
