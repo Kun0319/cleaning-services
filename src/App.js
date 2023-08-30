@@ -14,8 +14,8 @@ function App() {
         style={{ display: "flex", gap: "15px", justifyContent: "center" }}
       >
         <SidebarMember />
-        <OrderDone />
-        {/* <Score /> */}
+        <Order />
+        <Score />
       </div>
     </div>
   );
