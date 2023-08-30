@@ -1,17 +1,26 @@
 import "./dashboard.css";
-import data from "./fakeList.json"
-import React, { useState } from 'react'
+import axios from "axios";
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const UndoneOrder = (props) => {
   const limitCount = 8;//顯示幾筆
   const [number, setNumber] = useState(limitCount);
   const [start, setStart] = useState(0);//從哪開始
+  const [orderAPI, setOrderAPI] = useState([]);
   const navigate = useNavigate()//導向
-  // 目標頁數
-  // const pages = (Math.ceil(data.length / number))
-  // 起始頁數
-  // const [page, setPage] = useState(1);
+
+  // 訂單API
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await axios.get("http://localhost:4107/orderlist");
+        setOrderAPI(result.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }; fetchData();
+  }, [])
 
   const handleOrderStatus = (orderStatus) => {
     if (orderStatus === "1") {
@@ -21,7 +30,7 @@ const UndoneOrder = (props) => {
     } return "未完成"
   }
 
-  const undone = data.filter(data => data.orderStatus === "0");//篩選未完成訂單
+  const undone = orderAPI.filter(data => data.orderStatus === "0");//篩選未完成訂單
 
   const prevPageClick = () => {
     setNumber(number - limitCount > 0 ? number - limitCount : limitCount)

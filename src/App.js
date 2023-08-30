@@ -48,10 +48,6 @@ function App() {
           }
         >
           <Route index="/dashboard/" element={<OrderList />} />
-          <Route
-            path="/dashboard/AdminOrder/:memberID"
-            element={<AdminOrder />}
-          />
           <Route path="/dashboard/UndoneOrder/" element={<UndoneOrder />} />
           <Route path="/dashboard/DoneOrder/" element={<DoneOrder />} />
           <Route path="/dashboard/AdminOrder/:memberID" element={<AdminOrder />} />

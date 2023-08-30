@@ -1,17 +1,25 @@
 import "./dashboard.css";
-import data from "./fakeList.json"
-import React, { useState } from 'react'
+import axios from "axios";
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const DoneOrder = (props) => {
   const limitCount = 8;//顯示幾筆
   const [number, setNumber] = useState(limitCount);
   const [start, setStart] = useState(0);//從哪開始
+  const [orderAPI, setOrderAPI] = useState([]);
   const navigate = useNavigate()//導向
-  // 目標頁數
-  // const pages = (Math.ceil(data.length / number))
-  // 起始頁數
-  // const [page, setPage] = useState(1);
+  // 訂單API
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await axios.get("http://localhost:4107/orderlist");
+        setOrderAPI(result.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }; fetchData();
+  }, [])
 
   const handleOrderStatus = (orderStatus) => {
     if (orderStatus === "1") {
@@ -21,15 +29,15 @@ const DoneOrder = (props) => {
     } return "未完成"
   }
 
-  const undone = data.filter(data => data.orderStatus === "99");//篩選完成訂單
+  const done = orderAPI.filter(data => data.orderStatus === "99");//篩選完成訂單
 
   const prevPageClick = () => {
     setNumber(number - limitCount > 0 ? number - limitCount : limitCount)
     setStart(start - limitCount > 0 ? start - limitCount : 0)
   }
   const nextPageClick = () => {
-    setNumber(start + limitCount < undone.length ? number + limitCount : number)
-    setStart(start + limitCount < undone.length ? start + limitCount : start)
+    setNumber(start + limitCount < done.length ? number + limitCount : number)
+    setStart(start + limitCount < done.length ? start + limitCount : start)
   }
   return (
     <div className="dashOrder">
@@ -56,7 +64,7 @@ const DoneOrder = (props) => {
           </tr>
         </thead>
         <tbody className="orderTbody">
-          {undone.slice(start, number).map(({
+          {done.slice(start, number).map(({
             orderNumber,
             memberId,
             orderDate,

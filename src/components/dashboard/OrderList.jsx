@@ -8,26 +8,38 @@ const OrderList = (props) => {
   const limitCount = 8;//顯示幾筆
   const [number, setNumber] = useState(limitCount);
   const [start, setStart] = useState(0);//從哪開始
-  const [data, setData] = useState([])//資料變數
-  const [inputVal, setInPutVal] = useState()//搜尋變數
   const navigate = useNavigate()//導向
-  const orderAPI = "http://localhost:4107/orderlist";
+  const [data, setData] = useState([])//資料變數
+  const [searchInput, setSearchInput] = useState('')//搜尋變數
+  const [orderAPI, setOrderAPI] = useState([]);
 
   // 訂單API
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get(orderAPI);
-        setData(result.data);
+        const result = await axios.get("http://localhost:4107/orderlist");
+        setOrderAPI(result.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
-    } fetchData();
+    }; fetchData();
   }, [])
 
-
-  const handleInPutVal = (e) => {
-    setInPutVal(e.target.value)
+  const searchItem = (searchvalue) => {
+    setSearchInput(searchvalue)
+    if (searchvalue !== '') {
+      const filterData = orderAPI.filter((obj) => {
+        return Object.values(obj).includes(searchvalue)
+      })
+      console.log(filterData)
+      setData(filterData)
+    } else {
+      setData(orderAPI)
+    }
+  }
+  const handleClear = (e) => {
+    e.target.value = ''
+    setSearchInput('')
   }
 
 
@@ -43,7 +55,7 @@ const OrderList = (props) => {
     setNumber(number - limitCount > 0 ? number - limitCount : limitCount)
     setStart(start - limitCount > 0 ? start - limitCount : 0)
   }
-  const nextPageClick = () => {
+  const nextPageClick = (data) => {
     setNumber(start + limitCount < data.length ? number + limitCount : number)
     setStart(start + limitCount < data.length ? start + limitCount : start)
   }
@@ -52,8 +64,10 @@ const OrderList = (props) => {
       <div className="orderHead">
         <h3>管理訂單</h3>
         <img src="/images/search.png" alt="img-button" className="aside-img-button" />
-        <input className="aside-input" type="text" placeholder="查詢訂單" value={inputVal} onChange={handleInPutVal}
-          onClick={(e) => { e.target.value = '' }} />
+        <input className="aside-input" type="text" placeholder="查詢訂單"
+          onClick={handleClear}
+          onChange={(e) => { searchItem(e.target.value) }}
+        />
       </div>
       <table>
         <thead className="orderThead">
@@ -77,7 +91,7 @@ const OrderList = (props) => {
           </tr>
         </thead>
         <tbody className="orderTbody">
-          {data.slice(start, number).map(({
+          {searchInput.length > 1 ? (data.slice(start, number).map(({
             orderNumber,
             memberId,
             orderDate,
@@ -98,16 +112,37 @@ const OrderList = (props) => {
                 <td>{handleOrderStatus(orderStatus)}</td>
               </tr>
             );
-          })}
+          })) : (orderAPI.slice(start, number).map(({
+            orderNumber,
+            memberId,
+            orderDate,
+            weekOfTimes,
+            weekOfAmount,
+            price,
+            orderStatus }) => {
+            return (
+              <tr key={memberId} onClick={() => {
+                navigate(`/dashboard/AdminOrder/${memberId}`)
+              }}>
+                <td>{orderNumber}</td>
+                <td>{memberId}</td>
+                <td>{orderDate}</td>
+                <td>{weekOfTimes}次&frasl;週</td>
+                <td>{weekOfAmount}週</td>
+                <td>{price}</td>
+                <td>{handleOrderStatus(orderStatus)}</td>
+              </tr>
+            );
+          }))}
         </tbody>
       </table>
       <div className="orderBtn-group">
         <div className="orderBtn"
-          onClick={prevPageClick}>
+          onClick={() => prevPageClick()}>
           上一頁
         </div>
         <div className="orderBtn"
-          onClick={nextPageClick}>
+          onClick={() => nextPageClick(orderAPI)}>
           下一頁
         </div>
       </div>

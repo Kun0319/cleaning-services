@@ -1,29 +1,41 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import "../../components/dashboard/dashboard.css";
 const SidebarMember = () => {
-  const arrowRight = () => {
-    return <img src="/images/chevron-right.png" alt="right" />;
-  };
   return (
     <div className="aside">
       <div className="aside-main">
         <h3>會員專區</h3>
-        <div className="member">
-          <h5 className="aside-title aside-title-member">會員資料</h5>
-          <span>{arrowRight()}修改密碼</span>
-          <span>{arrowRight()}更改密碼</span>
+        <div>
+          <h5 className="aside-title">會員資料</h5>
+          <Link to="" className="Link-decoration"><span>基本資料</span></Link>
+          <Link to="" className="Link-decoration"><span>更改密碼</span></Link>
         </div>
-        <div className="member">
-          <h5 className="aside-title aside-title-member">訂單查詢</h5>
-        </div>
-        <div className="member">
-          <h5 className="aside-title aside-title-member">歷史訂單</h5>
-        </div>
-        <div className="member">
-          <h5 className="aside-title aside-title-member">我的評價</h5>
+        <div>
+          <h5 className="aside-title">我的訂單</h5>
+          <Link to="" className="Link-decoration"><span>執行訂單</span></Link>
+          <Link to="" className="Link-decoration"><span>歷史訂單</span></Link>
         </div>
       </div>
     </div>
+    // <div className="aside">
+    //   <div className="aside-main">
+    //     <h3>會員專區</h3>
+    //     <div className="member">
+    //       <h5 className="aside-title aside-title-member">會員資料</h5>
+    //       <Link to=""><span>基本資料</span></Link>
+    //       <Link to=""><span>更改密碼</span></Link>
+    //     </div>
+    //     <div className="member">
+    //       <h5 className="aside-title aside-title-member">
+    //         <Link to="">訂單查詢</Link>
+    //       </h5>
+    //     </div>
+    //     <div className="member">
+    //       <h5 className="aside-title aside-title-member">歷史訂單</h5>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 
