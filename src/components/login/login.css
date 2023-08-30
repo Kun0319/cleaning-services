@@ -17,6 +17,34 @@ ul {
 
 }
 
+.loginrightbox {
+    border-radius: 30px;
+    padding: 48px;
+    width: 70%;
+    background-color: #FFFEF9;
+    border: 1px solid #FFC107;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.loginrightbox p {
+    margin-right: 12px;
+    margin-top: 12px;
+}
+
+.loginrightbox li {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+}
+.loginrightbox select {
+    margin: 0px 12px 0px 12px;
+
+}
+
 .loginimg {
     width: 200px;
 }
@@ -31,6 +59,7 @@ ul {
 
 .loginli {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     margin-bottom: 24px;
 
@@ -111,3 +140,28 @@ button {
     background-clip: border-box;
     background-position: center bottom;
 }
+
+.membercontainer {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Rwd */
+
+@media (max-width: 992px) {
+    .membercontainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .loginrightbox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    
+    }
+
+
+  }

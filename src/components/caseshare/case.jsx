@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import './case.css';
 import CommentItem from "./CommentItem";
 import Navbar from "../navbar";
@@ -12,6 +13,10 @@ function CardContainer() {
     { imgSrc: 'images/case-007.png', title: '客廳清潔', date: '2022/06' },
     { imgSrc: 'images/case-008.png', title: '廚房清潔', date: '2022/02' },
   ];
+
+  // 用useState管理卡片的翻轉狀態
+  const [flippedCards, setFlippedCards] = useState([]); 
+
 
   return (
     <div className="casecardcontainer">
