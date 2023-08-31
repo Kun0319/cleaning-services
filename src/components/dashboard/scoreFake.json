@@ -1,8 +1,7 @@
 [
     {
-        "img":"images/orderStaff.png",
-        "starImg":"images/staffInfo-star.png",
+        "img": "/images/orderStaff.png",
+        "starImg": "/images/staffInfo-star.png",
         "orderStaff": "李大媽"
     }
-
 ]
