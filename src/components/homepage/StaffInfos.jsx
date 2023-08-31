@@ -17,7 +17,7 @@ const staffInfos = () => {
     {
       name: "林正秉",
       covid: 0,
-      star: 4.4,
+      star: 2.5,
       number: "A01",
       caseCount: "123",
       levle: "2",
@@ -53,14 +53,14 @@ const staffInfos = () => {
   ];
   return (
     <div className="container">
-      <div className="process-top">
+      <div className="process-top staffInfo-title">
         <h3 className="title">員工評價 Staff evaluation</h3>
         <img src="images/flower.png" alt="" />
       </div>
       <Swiper
-        loop={true}
+        loop={false}
         // 物件間距
-        spaceBetween={20}
+        spaceBetween={0}
         // 顯示個數
         slidesPerView={1}
         freeMode={true}
