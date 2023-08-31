@@ -24,7 +24,6 @@ import Error from "./pages/Error";
 import Member from "./pages/Member";
 import Order from "./components/dashboard/Order";
 import OrderDone from "./components/dashboard/OrderDone";
-import Score from "./components/dashboard/score";
 import LoginPage from "./components/login/LoginPage";
 function App() {
   return (
@@ -67,8 +66,7 @@ function App() {
         <Route path="*" element={<Error />} />
         <Route path="/member" element={<Member />}>
           <Route index="/member/" element={<Order />} />
-          <Route path="/member/orderdone" element={<OrderDone />} />
-          <Route path="/member/Score/:orderID" element={<Score />} />
+          <Route path="/member/:orderNumber" element={<OrderDone />} />
         </Route>
       </Routes>
     </BrowserRouter>

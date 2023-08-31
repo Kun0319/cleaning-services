@@ -109,6 +109,11 @@
   border: 1px solid #FFC107;
   gap: 33px;
   border-radius: 30px;
+  position: absolute;
+  top: -10%;
+  transform: translateY(-100%);
+  transform: translateX(-100%);
+  z-index: 1399;
 }
 
 .scoreTop {
