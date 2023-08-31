@@ -43,7 +43,7 @@ const SidebarMember = () => {
             to=""
             className="Link-decoration"
           >
-            <span>執行訂單</span>
+            <span>處理中</span>
           </Link>
           <Link
             onClick={(e) => {

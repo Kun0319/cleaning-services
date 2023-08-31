@@ -1,6 +1,8 @@
+import React, { useState } from "react";
 import "./order.css";
 import OrderStaff from "./orderStaff";
 import data from "./orderDonefake.json";
+import Score from "./score";
 
 function orderDonetime(orderDonetime) {
   const date = new Date(orderDonetime);
@@ -8,16 +10,19 @@ function orderDonetime(orderDonetime) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
-  const seconds = String(date.getSeconds()).padStart(2, '0');
 
-  return `${year}/${month}/${day}<br />${hours}:${minutes}:${seconds}`;
+  return `${year}/${month}/${day}`;
 }
 
+
+
 const OrderDone = () => {
+  const [modal, setModal] = useState(false)
+
+
   return (
     <div className="dashOrder">
+      {modal && <Score setModal={setModal} />}
       <div className="orderInfo">
         <span className="orderCard">
           <img src="images/order.png" alt="" />
@@ -61,17 +66,13 @@ const OrderDone = () => {
             content,
             orderStatus }) => {
             return (
-              <tr key={index}
-                onClick={() => {
-                  alert("AAAAAAAAAAAAAAAAAA");
-                }}
-              >
+              <tr key={index}>
                 <td dangerouslySetInnerHTML={{ __html: orderDonetime(doneTime) }}></td>
                 <td>{orderStaff}</td>
                 <td>{content}</td>
                 <td>
-                  {orderStatus === "99" ? (
-                    <button className="orderDnbtn">完成訂單</button>
+                  {orderStatus === "99" ? (//按鈕要改成發送評論後要還可以點進去看歷史評論但無法更改
+                    <button onClick={() => { setModal(true) }} className="orderDnbtn">完成訂單</button>
                   ) : (
                     orderStatus === "0" ? "新訂單" : "處理中"
                   )}
@@ -82,7 +83,7 @@ const OrderDone = () => {
         </tbody>
       </table>
       <OrderStaff />
-      <div className="orderBtn-group">
+      {/* <div className="orderBtn-group">
         <button
           onClick={() => {
             alert("AAAAAAAAAAAAAAAAAA");
@@ -99,7 +100,7 @@ const OrderDone = () => {
         >
           下一頁
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
