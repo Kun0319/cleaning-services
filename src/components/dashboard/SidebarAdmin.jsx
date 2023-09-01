@@ -74,6 +74,15 @@ const SidebarAdmin = () => {
               changeStyle(e);
             }}
           >
+            <span>員工資料</span>
+          </Link>
+          <Link
+            to={"/dashboard/banlist"}
+            className="Link-decoration"
+            onClick={(e) => {
+              changeStyle(e);
+            }}
+          >
             <span>黑名單</span>
           </Link>
         </div>

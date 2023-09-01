@@ -1,24 +1,24 @@
 /* AdminOrder.css -----------------------------------------------------------------*/
 .position {
-    display: inline-flex;
-    padding: 16px 17px;
-    align-items: flex-start;
+  display: inline-flex;
+  padding: 16px 17px;
+  align-items: flex-start;
 }
 
 .Container {
-    display: flex;
-    flex-direction: column;
-    width: 1000px;
-    height: 808px;
-    border: 1px solid #ffc107;
-    border-radius: 50px;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: 808px;
+  border: 1px solid #ffc107;
+  border-radius: 50px;
+  align-items: center;
 
-    background-image: url("/public/images/dashboard-background.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position-y: 100%;
-    position: relative;
+  background-image: url("/public/images/dashboard-background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: 100%;
+  position: relative;
 }
 
 /* .dashOrder>h3 {
@@ -107,89 +107,85 @@
 } */
 
 .orderh3 {
-    padding: 25px 55px 30px 36px;
-    align-items: center;
-    color: #EAAC00;
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 50px;
-
+  padding: 25px 55px 30px 36px;
+  align-items: center;
+  color: #eaac00;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 50px;
 }
 
-
 .orderContainer {
-    width: 913px;
-    background-color: #FFF8E1;
-    border-radius: 30px;
-    display: flex;
-    padding: 60px 48px;
-    flex-direction: column;
-    align-items: flex-start;
-
+  width: 913px;
+  background-color: #fff8e1;
+  border-radius: 30px;
+  display: flex;
+  padding: 60px 48px;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .orderContent {
-    display: flex;
-    font-weight: 600;
-    color: #664D03;
-    line-height: 50px;
-    gap: 24px;
+  display: flex;
+  font-weight: 400;
+  color: #664d03;
+  line-height: 1.5;
+  gap: 24px;
+}
+.orderContainer table tr td {
+  border: 1px solid #664d03;
 }
 
 .btncontain {
-    padding-top: 20px;
+  padding-top: 20px;
 }
 
-.btncontain>button {
-    color: white;
-    width: 94px;
-    height: 42px;
-    /* justify-content: center; */
-    /* align-items: start; */
-    border-radius: 10px;
-    background: rgba(130, 100, 56, 0.46);
-    margin-inline: 15px;
+.btncontain > .notClear {
+  background: rgba(130, 100, 56, 0.46);
 }
-
-.btncontain>button:nth-child(2) {
-    background: #997404;
+.btncontain > button {
+  color: white;
+  width: 94px;
+  height: 42px;
+  /* justify-content: center; */
+  /* align-items: start; */
+  border-radius: 10px;
+  background: #997404;
+  margin-inline: 15px;
 }
 
 /* Memberinfo.css && PersonalInfo.css------------------------------------------------------*/
 .orderContentMem {
-
-    display: flex;
-    font-weight: 600;
-    color: #664D03;
-    line-height: 50px;
-
+  display: flex;
+  font-weight: 600;
+  color: #664d03;
+  line-height: 50px;
 }
 
 .tablecontainer {
-    width: 902px;
-    height: 320px;
-    top: 133px;
-    left: 94.5px;
-    padding: 0px 24px 0px 24px;
+  width: 902px;
+  height: 320px;
+  top: 133px;
+  left: 94.5px;
+  padding: 0px 24px 0px 24px;
 
-    color: #664D03;
-    font-family: Inter;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: normal;
+  color: #664d03;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: normal;
 }
 
 .memberth {
-
-    border-bottom: 3px solid #664D03;
+  border-bottom: 3px solid #664d03;
 }
 
 .memtbody {
-    text-align: center;
+  text-align: center;
 }
 
-.memtbody>tr:nth-child(1) {
-    border: 1px solid #FFF8E1;
-    background: #FFF8E1;
-    border-radius: 30px;
+.memtbody > tr:nth-child(1) {
+  border: 1px solid #fff8e1;
+  background: #fff8e1;
+  border-radius: 30px;
 }

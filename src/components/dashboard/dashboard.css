@@ -1,6 +1,6 @@
 /* ##################################Sidebar-style */
 .aside {
-  max-height: auto;
+  min-height: 800px;
   border-radius: 50px;
   border: 1px solid #ffc107;
   background: #fffef9;
@@ -109,7 +109,7 @@
 .dashOrder {
   display: flex;
   flex-direction: column;
-  max-height: auto;
+  min-height: 800px;
   gap: 18px;
   border-radius: 50px;
   border: 1px solid #ffc107;
@@ -218,12 +218,14 @@
 
 @media screen and (max-width: 997px) {
   .aside {
-    max-height: 120px;
+    min-height: 120px;
     padding: 20px;
     border-radius: 50px;
     margin: 20px auto;
   }
-
+  .aside-img-button {
+    display: none;
+  }
   .aside .aside-main {
     flex-direction: row;
     justify-content: space-evenly;
@@ -263,6 +265,7 @@
   }
 
   .dashOrder {
+    min-height: auto;
     gap: 0px;
   }
 

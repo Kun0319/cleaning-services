@@ -1,53 +1,173 @@
-import React, { Component } from 'react';
-
-
-
-
-class member extends Component {
-    state = {};
-    btn = {
-        height: "2em",
-        width: "8em",
-        color: "#664D03",
-    }
-
-    render() {
-        return (
-            <div>
-                {/* 8/30 註解內容是表示路徑用 還需修改 */}
-                {/* <div className='position'>
-                    首頁
-                    /
-                    訂單狀態
-                    /
-                    管理訂單
-                </div> */}
-
-                {/* 內容 */}
-                <div className='Container'>
-                    <h3 className='orderh3'>管理訂單</h3>
-                    <div className="orderContainer" >
-                        <h5 className='orderContent'>
-                            訂單編號：C00019<br />
-                            顧客姓名：鍾秋節<br />
-                            電話：0912345667<br />
-                            Email：123@gmail<br />
-                            地址：台中市黎明路二段658號<br />
-                            訂單內容：客廳清潔<br />
-                            附註：客廳的花瓶不要移動，那花瓶要十二萬，清理時要小心點。<br />
-                        </h5>
-                        <img src="/images/vase.png" alt="" />
-                    </div>
-
-                    <div className='btncontain' >
-                        <button >取消訂單</button>
-                        <button >確認付款</button>
-                    </div>
-                </div>
-            </div>
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+const Member = () => {
+  const { order } = useParams();
+  const [orderData, setOrderData] = useState({});
+  //接收資料
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await axios.get(
+          `http://localhost:4107/AdminOrder/${order}`
         );
+        setOrderData(result.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     }
-}
+    fetchData();
+  }, []);
 
-export default member;
+  const {
+    memberId,
+    memberName,
+    IDnum,
+    email,
+    phone,
+    city,
+    adreess,
+    staffName,
+    staffId,
+    staffPhone,
+    staffEmail,
+    time_W,
+    time_T,
+    common,
+    pay,
+    weekOfTimes,
+    orderDate,
+    orderNumber,
+    orderStatus,
+    weekOfAmount,
+    finish,
+    price,
+  } = orderData;
+
+  const handleOrderStatus = (orderStatus) => {
+    if (orderStatus === 0) {
+      return "新訂單";
+    } else if (orderStatus === 1) {
+      return "未完成";
+    }
+    return "已完成";
+  };
+
+  async function handleOrderUpdata() {
+    try {
+      const result = await axios.put(
+        "http://localhost:4107/AdminOrder/updata",
+        { orderData }
+      );
+      console.log(result);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  return (
+    <div>
+      <div className="Container">
+        <h3 className="orderh3">管理訂單</h3>
+        <div className="orderContainer">
+          <h5 className="orderContent">
+            <table border={1}>
+              <tr>
+                <th style={{ fontWeight: "600" }}>訂單資料</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>訂單編號:{orderNumber}</td>
+                <td>服務星期:{time_W}</td>
+              </tr>
+              <tr>
+                <td>訂單狀態:{handleOrderStatus(orderStatus)}</td>
+                <td>服務時段:{time_T}</td>
+              </tr>
+              <tr>
+                <td>付款方式:{pay}</td>
+                <td>服務週數:{weekOfAmount}</td>
+              </tr>
+              <tr>
+                <td>訂單金額:{price}</td>
+                <td>服務次數:{weekOfTimes}</td>
+              </tr>
+              <tr>
+                <td>訂單日期:{orderDate}</td>
+                <td>
+                  完成次數:<span style={{ color: "red" }}>{finish}</span>/
+                  {weekOfAmount}
+                </td>
+              </tr>
+            </table>
+            <table border={1}>
+              <tr>
+                <th style={{ fontWeight: "600" }}>會員資料</th>
+                <th style={{ fontWeight: "600" }}>清潔員</th>
+              </tr>
+              <tr>
+                <td>會員編號:{memberId}</td>
+                <td>編號:{staffId}</td>
+              </tr>
+              <tr>
+                <td>會員姓名:{memberName}</td>
+                <td>姓名:{staffName}</td>
+              </tr>
+              <tr>
+                <td>身分證字號:{IDnum}</td>
+                <td>手機:{staffPhone}</td>
+              </tr>
+              <tr>
+                <td>手機:{phone}</td>
+                <td>信箱:{staffEmail}</td>
+              </tr>
+              <tr>
+                <td>Email:{email}</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>地址:{city + adreess}</td>
+                <td></td>
+              </tr>
+            </table>
+          </h5>
+          <h5 className="orderContent">備註:{common}</h5>
+        </div>
+
+        <div className="btncontain">
+          {/* 送出後更改訂單狀態 */}
+          <button
+            className={finish !== weekOfAmount ? "notClear" : ""}
+            disabled={finish !== weekOfAmount ? true : false}
+            onClick={() => {
+              setOrderData((status) => {
+                return { ...status, orderStatus: 2 };
+              });
+              handleOrderUpdata();
+            }}
+          >
+            訂單完成
+          </button>
+          <button
+            onClick={() => {
+              setOrderData((count) => {
+                return {
+                  ...count,
+                  finish:
+                    count.finish + 1 <= weekOfAmount
+                      ? count.finish + 1
+                      : count.finish,
+                };
+              });
+              handleOrderUpdata();
+            }}
+          >
+            打掃完成
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Member;

@@ -54,7 +54,7 @@ function App() {
           <Route path="/dashboard/UndoneOrder/" element={<UndoneOrder />} />
           <Route path="/dashboard/DoneOrder/" element={<DoneOrder />} />
           <Route
-            path="/dashboard/AdminOrder/:memberID"
+            path="/dashboard/AdminOrder/:orderNumber"
             element={<AdminOrder />}
           />
           <Route path="/dashboard/memberInfo/" element={<MemberInfo />} />

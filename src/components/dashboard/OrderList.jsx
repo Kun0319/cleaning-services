@@ -157,7 +157,7 @@ const OrderList = (props) => {
                       <tr
                         key={memberId}
                         onClick={() => {
-                          navigate(`/dashboard/AdminOrder/${memberId}`);
+                          navigate(`/dashboard/AdminOrder/${orderNumber}`);
                         }}
                       >
                         <td>{orderNumber}</td>
