@@ -18,7 +18,7 @@ const Member = () => {
       }
     }
     fetchData();
-  });
+  }, [order]);
 
   const {
     memberId,
