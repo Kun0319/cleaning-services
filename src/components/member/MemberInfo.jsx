@@ -108,7 +108,7 @@ const MemberInfo = (props) => {
                       <tr
                         key={uid}
                         onClick={() => {
-                          navigate(`/dashboard/PersonalInfo/${userid}`);
+                          navigate(`/dashboard/PersonalInfo/${uid}`);
                         }}
                       >
                         <td>{userid}</td>
@@ -130,7 +130,7 @@ const MemberInfo = (props) => {
                       <tr
                         key={uid}
                         onClick={() => {
-                          navigate(`/dashboard/PersonalInfo/${userid}`);
+                          navigate(`/dashboard/PersonalInfo/${uid}`);
                         }}
                       >
                         <td>{userid}</td>

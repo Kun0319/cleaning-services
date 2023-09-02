@@ -59,7 +59,7 @@ function App() {
           />
           <Route path="/dashboard/PersonalInfo/" element={<MemberInfo />} />
           <Route
-            path="/dashboard/PersonalInfo/:userid"
+            path="/dashboard/PersonalInfo/:uid"
             element={<PersonalInfo />}
           />
           <Route path="/dashboard/memberInfo/" element={<MemberInfo />} />

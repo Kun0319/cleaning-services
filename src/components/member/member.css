@@ -135,7 +135,16 @@
 .orderContainer table tr td {
   border: 1px solid #664d03;
 }
-
+.notBorder {
+  border: none;
+}
+.orderContent li:nth-of-type(even) {
+  border-bottom: 3px solid #997404;
+  line-height: 1;
+}
+.orderContent li:nth-of-type(odd) {
+  font-weight: 700;
+}
 .btncontain {
   padding-top: 20px;
 }
