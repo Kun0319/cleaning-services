@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import "../../components/member/member.css";
 const Member = () => {
   const { order } = useParams();
   const [orderData, setOrderData] = useState({});
@@ -17,7 +18,7 @@ const Member = () => {
       }
     }
     fetchData();
-  }, []);
+  });
 
   const {
     memberId,
@@ -70,7 +71,7 @@ const Member = () => {
       <div className="Container">
         <h3 className="orderh3">管理訂單</h3>
         <div className="orderContainer">
-          <h5 className="orderContent">
+          <div className="orderContent">
             <table border={1}>
               <tr>
                 <th style={{ fontWeight: "600" }}>訂單資料</th>
@@ -103,34 +104,44 @@ const Member = () => {
             <table border={1}>
               <tr>
                 <th style={{ fontWeight: "600" }}>會員資料</th>
-                <th style={{ fontWeight: "600" }}>清潔員</th>
               </tr>
               <tr>
                 <td>會員編號:{memberId}</td>
-                <td>編號:{staffId}</td>
               </tr>
               <tr>
                 <td>會員姓名:{memberName}</td>
-                <td>姓名:{staffName}</td>
               </tr>
               <tr>
                 <td>身分證字號:{IDnum}</td>
-                <td>手機:{staffPhone}</td>
               </tr>
               <tr>
                 <td>手機:{phone}</td>
-                <td>信箱:{staffEmail}</td>
               </tr>
               <tr>
                 <td>Email:{email}</td>
-                <td></td>
               </tr>
               <tr>
                 <td>地址:{city + adreess}</td>
-                <td></td>
               </tr>
             </table>
-          </h5>
+            <table border={1}>
+              <tr>
+                <th style={{ fontWeight: "600" }}>清潔員</th>
+              </tr>
+              <tr>
+                <td>編號:{staffId}</td>
+              </tr>
+              <tr>
+                <td>姓名:{staffName}</td>
+              </tr>
+              <tr>
+                <td>手機:{staffPhone}</td>
+              </tr>
+              <tr>
+                <td>Email:{staffEmail}</td>
+              </tr>
+            </table>
+          </div>
           <h5 className="orderContent">備註:{common}</h5>
         </div>
 

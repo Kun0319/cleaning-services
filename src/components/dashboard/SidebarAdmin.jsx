@@ -59,7 +59,7 @@ const SidebarAdmin = () => {
         <div>
           <h5 className="aside-title">會員管理</h5>
           <Link
-            to={"/dashboard/memberInfo"}
+            to={"/dashboard/PersonalInfo"}
             className="Link-decoration"
             onClick={(e) => {
               changeStyle(e);
@@ -68,7 +68,7 @@ const SidebarAdmin = () => {
             <span>會員資料</span>
           </Link>
           <Link
-            to={"/dashboard/banlist"}
+            to={"/dashboard/memberInfo"}
             className="Link-decoration"
             onClick={(e) => {
               changeStyle(e);

@@ -8,12 +8,12 @@
 .Container {
   display: flex;
   flex-direction: column;
-  width: 1000px;
-  height: 808px;
+  width: 100%;
+  height: clamp(100%, 808px, auto);
   border: 1px solid #ffc107;
   border-radius: 50px;
   align-items: center;
-
+  padding: 50px;
   background-image: url("/public/images/dashboard-background.png");
   background-repeat: no-repeat;
   background-size: contain;
@@ -116,20 +116,20 @@
 }
 
 .orderContainer {
-  width: 913px;
+  width: 100%;
   background-color: #fff8e1;
   border-radius: 30px;
   display: flex;
   padding: 60px 48px;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
-
 .orderContent {
   display: flex;
+  justify-content: space-around;
   font-weight: 400;
   color: #664d03;
-  line-height: 1.5;
+  line-height: 2;
   gap: 24px;
 }
 .orderContainer table tr td {
@@ -188,4 +188,9 @@
   border: 1px solid #fff8e1;
   background: #fff8e1;
   border-radius: 30px;
+}
+@media screen and (max-width: 997px) {
+  .orderContent {
+    flex-direction: column;
+  }
 }

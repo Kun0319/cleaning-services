@@ -57,9 +57,14 @@ function App() {
             path="/dashboard/AdminOrder/:orderNumber"
             element={<AdminOrder />}
           />
+          <Route path="/dashboard/PersonalInfo/" element={<MemberInfo />} />
+          <Route
+            path="/dashboard/PersonalInfo/:userid"
+            element={<PersonalInfo />}
+          />
           <Route path="/dashboard/memberInfo/" element={<MemberInfo />} />
           <Route
-            path="/dashboard/PersonalInfo/:memberID"
+            path="/dashboard/memberInfo/:memberID"
             element={<PersonalInfo />}
           />
         </Route>

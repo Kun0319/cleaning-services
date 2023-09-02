@@ -1,73 +1,160 @@
-import React from 'react';
-import "./member.css"
-const Memberinfo = () => {
-    return (
-        <div>
-            {/* 8/30 註解內容是表示路徑用 還需修改 */}
-            {/* <div className='position'>
-                首頁
-                /
-                會員管理
-                /
-                會員資料
-            </div> */}
-           
-           
+import "../dashboard/dashboard.css";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-            <div className='Container'>
-                <h3 className='orderh3'>會員資料</h3>
-                <div>
-                    <table className='tablecontainer '>
+const MemberInfo = (props) => {
+  const limitCount = 8; //顯示幾筆
+  const [number, setNumber] = useState(limitCount);
+  const [start, setStart] = useState(0); //從哪開始
+  const navigate = useNavigate(); //導向
+  const [data, setData] = useState([]); //資料變數
+  const [searchInput, setSearchInput] = useState(""); //搜尋變數
+  const [orderAPI, setOrderAPI] = useState([]); //API變數
 
-                        <thead>
-                            <tr className='memberth'>
-                                <th>編號</th>
-                                <th>姓名</th>
-                                <th>電話</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
+  // 會員資料API
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await axios.get(
+          "http://localhost:4107/dashboard/memberInfo"
+        );
+        setOrderAPI(() => {
+          return result.data;
+        });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
+  }, []);
 
-                        <tbody className='memtbody'>
-                            <tr>
+  // 搜尋訂單
+  const searchItem = (searchvalue) => {
+    setSearchInput(searchvalue);
+    if (searchvalue !== "") {
+      const filterData = orderAPI.filter((obj) => {
+        return Object.values(obj).includes(searchvalue);
+      });
+      setData(filterData);
+    } else {
+      setData(orderAPI);
+    }
+  };
 
-                                <td> A01</td>
-                                <td>邱小如</td>
-                                <td>0923456780</td>
-                                <td>1233@gmail.com</td>
+  // 消除搜尋內容
+  const handleClear = (e) => {
+    e.target.value = "";
+    setSearchInput("");
+  };
 
-                            </tr>
-                            <tr>
-                                <td>A02</td>
-                                <td>邱小如</td>
-                                <td>0923456780</td>
-                                <td>1233@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>A03</td>
-                                <td>邱小如</td>
-                                <td>0923456780</td>
-                                <td>1233@gmail.com</td>
-                            </tr>
-                            <tr>
-                                <td>A04</td>
-                                <td>邱小如</td>
-                                <td>0923456780</td>
-                                <td>1233@gmail.com</td>
-                            </tr>
-                        </tbody>
-                    </table>
+  // 換頁
+  const prevPageClick = () => {
+    setNumber(number - limitCount > 0 ? number - limitCount : limitCount);
+    setStart(start - limitCount > 0 ? start - limitCount : 0);
+  };
+  const nextPageClick = (data) => {
+    setNumber(start + limitCount < data.length ? number + limitCount : number);
+    setStart(start + limitCount < data.length ? start + limitCount : start);
+  };
 
-                </div>
-                <div className='btncontain memberbtn' >
-                    <button >上一頁</button>
-                    <button >下一頁</button>
-                </div>
-            </div>
-        </div >
-
-
-    )
-}
-
-export default Memberinfo;
+  return (
+    <div className="dashOrder">
+      <div className="orderHead">
+        <h3>會員管理</h3>
+        <img
+          src="/images/search.png"
+          alt="img-button"
+          className="aside-img-button"
+        />
+        <input
+          className="aside-input"
+          type="text"
+          placeholder="會員查詢"
+          onClick={handleClear}
+          onChange={(e) => {
+            searchItem(e.target.value);
+          }}
+        />
+      </div>
+      <table>
+        <thead className="orderThead">
+          <tr id="orderTh">
+            <th>會員編號</th>
+            <th>姓名</th>
+            <th>身分證</th>
+            <th>連絡電話</th>
+            <th>縣市</th>
+            <th>地區</th>
+            <th>地址</th>
+          </tr>
+          <tr id="orderTh_RWD">
+            <th>會員編號</th>
+            <th>姓名</th>
+            <th>身分證</th>
+            <th>連絡電話</th>
+            <th>縣市</th>
+            <th>地區</th>
+            <th>地址</th>
+          </tr>
+        </thead>
+        <tbody className="orderTbody">
+          {searchInput.length > 1
+            ? data
+                .slice(start, number)
+                .map(
+                  ({ uid, name, phone, id, city, rural, address, userid }) => {
+                    return (
+                      <tr
+                        key={uid}
+                        onClick={() => {
+                          navigate(`/dashboard/PersonalInfo/${userid}`);
+                        }}
+                      >
+                        <td>{userid}</td>
+                        <td>{name}</td>
+                        <td>{id}</td>
+                        <td>{phone}</td>
+                        <td>{city}</td>
+                        <td>{rural}</td>
+                        <td>{address}</td>
+                      </tr>
+                    );
+                  }
+                )
+            : orderAPI
+                .slice(start, number)
+                .map(
+                  ({ uid, name, phone, id, city, rural, address, userid }) => {
+                    return (
+                      <tr
+                        key={uid}
+                        onClick={() => {
+                          navigate(`/dashboard/PersonalInfo/${userid}`);
+                        }}
+                      >
+                        <td>{userid}</td>
+                        <td>{name}</td>
+                        <td>{id}</td>
+                        <td>{phone}</td>
+                        <td>{city}</td>
+                        <td>{rural}</td>
+                        <td>{address}</td>
+                      </tr>
+                    );
+                  }
+                )}
+        </tbody>
+      </table>
+      <div className="orderBtn-group">
+        <div className="orderBtn" onClick={() => prevPageClick()}>
+          上一頁
+        </div>
+        <div className="orderBtn" onClick={() => nextPageClick(orderAPI)}>
+          下一頁
+        </div>
+      </div>
+    </div>
+  );
+};
+export default MemberInfo;

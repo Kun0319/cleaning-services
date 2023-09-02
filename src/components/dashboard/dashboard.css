@@ -151,9 +151,13 @@
   background-color: #fff8e1;
 }
 
-.orderTbody tr {
+.orderTbody tr td {
   cursor: pointer;
   line-height: 2;
+  white-space: nowrap; /* 禁止文字自動換行 */
+  overflow: hidden; /* 隱藏超出部分 */
+  text-overflow: ellipsis; /* 使用省略號表示被隱藏的內容 */
+  width: calc(100% / 7);
 }
 
 .orderThead,
