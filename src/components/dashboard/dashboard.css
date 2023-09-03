@@ -219,6 +219,43 @@
   color: #fff8e1;
   cursor: pointer;
 }
+.staff-accordion {
+  border: 1px solid #997404;
+  border-radius: 10px;
+  width: 100%;
+  padding: 0.3rem;
+  margin-top: 5px;
+  /* position: relative; */
+  cursor: pointer;
+}
+
+.staff-header {
+  font-weight: 700;
+  color: #664d03;
+}
+.staff-accordion.active {
+  background-color: #997404;
+}
+.staff-content {
+  width: 100%;
+  border: 1px solid #997404;
+  border-radius: 10px;
+  background-color: #fff8e1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1388;
+}
+.staff-listBtn {
+  font-weight: bolder;
+  position: absolute;
+  border-radius: 100px;
+  right: 5%;
+  top: 5%;
+}
+.ControllAccordion::-webkit-scrollbar {
+  display: none;
+}
 
 @media screen and (max-width: 997px) {
   .aside {

@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const MemberInfo = (props) => {
+const Banlist = (props) => {
   const limitCount = 8; //顯示幾筆
   const [number, setNumber] = useState(limitCount);
   const [start, setStart] = useState(0); //從哪開始
@@ -61,7 +61,7 @@ const MemberInfo = (props) => {
   return (
     <div className="dashOrder">
       <div className="orderHead">
-        <h3>會員資料</h3>
+        <h3>黑名單</h3>
         <img
           src="/images/search.png"
           alt="img-button"
@@ -70,7 +70,7 @@ const MemberInfo = (props) => {
         <input
           className="aside-input"
           type="text"
-          placeholder="會員查詢"
+          placeholder="黑名單查詢"
           onClick={handleClear}
           onChange={(e) => {
             searchItem(e.target.value);
@@ -157,4 +157,4 @@ const MemberInfo = (props) => {
     </div>
   );
 };
-export default MemberInfo;
+export default Banlist;

@@ -45,18 +45,6 @@ const SidebarAdmin = () => {
           </Link>
         </div>
         <div>
-          <h5 className="aside-title">訂單修改</h5>
-          <Link
-            to={"/dashboard/delete"}
-            className="Link-decoration"
-            onClick={(e) => {
-              changeStyle(e);
-            }}
-          >
-            <span>刪除</span>
-          </Link>
-        </div>
-        <div>
           <h5 className="aside-title">會員管理</h5>
           <Link
             to={"/dashboard/PersonalInfo"}
@@ -68,7 +56,7 @@ const SidebarAdmin = () => {
             <span>會員資料</span>
           </Link>
           <Link
-            to={"/dashboard/memberInfo"}
+            to={"/dashboard/StaffList"}
             className="Link-decoration"
             onClick={(e) => {
               changeStyle(e);

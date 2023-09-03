@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const MemberInfo = (props) => {
+const StaffList = (props) => {
   const limitCount = 8; //顯示幾筆
   const [number, setNumber] = useState(limitCount);
   const [start, setStart] = useState(0); //從哪開始
@@ -17,7 +17,7 @@ const MemberInfo = (props) => {
     async function fetchData() {
       try {
         const result = await axios.get(
-          "http://localhost:4107/dashboard/memberInfo"
+          "http://localhost:4107/dashboard/StaffList/"
         );
         setOrderAPI(() => {
           return result.data;
@@ -29,7 +29,7 @@ const MemberInfo = (props) => {
     fetchData();
   }, []);
 
-  // 搜尋訂單
+  //   搜尋訂單
   const searchItem = (searchvalue) => {
     setSearchInput(searchvalue);
     if (searchvalue !== "") {
@@ -42,7 +42,7 @@ const MemberInfo = (props) => {
     }
   };
 
-  // 消除搜尋內容
+  //   消除搜尋內容
   const handleClear = (e) => {
     e.target.value = "";
     setSearchInput("");
@@ -61,7 +61,7 @@ const MemberInfo = (props) => {
   return (
     <div className="dashOrder">
       <div className="orderHead">
-        <h3>會員資料</h3>
+        <h3>員工資料</h3>
         <img
           src="/images/search.png"
           alt="img-button"
@@ -70,7 +70,7 @@ const MemberInfo = (props) => {
         <input
           className="aside-input"
           type="text"
-          placeholder="會員查詢"
+          placeholder="員工查詢"
           onClick={handleClear}
           onChange={(e) => {
             searchItem(e.target.value);
@@ -80,22 +80,26 @@ const MemberInfo = (props) => {
       <table>
         <thead className="orderThead">
           <tr id="orderTh">
-            <th>會員編號</th>
+            <th>員工編號</th>
             <th>姓名</th>
-            <th>身分證</th>
             <th>連絡電話</th>
-            <th>縣市</th>
-            <th>地區</th>
-            <th>地址</th>
+            <th>Email</th>
+            <th>疫苗接種</th>
+            <th>服務件數</th>
+            <th>良民證</th>
+            <th>racheck</th>
+            <th>photo</th>
           </tr>
           <tr id="orderTh_RWD">
-            <th>會員編號</th>
+            <th>員工編號</th>
             <th>姓名</th>
-            <th>身分證</th>
             <th>連絡電話</th>
-            <th>縣市</th>
-            <th>地區</th>
-            <th>地址</th>
+            <th>Email</th>
+            <th>疫苗接種</th>
+            <th>服務件數</th>
+            <th>良民證</th>
+            <th>racheck</th>
+            <th>photo</th>
           </tr>
         </thead>
         <tbody className="orderTbody">
@@ -103,21 +107,33 @@ const MemberInfo = (props) => {
             ? data
                 .slice(start, number)
                 .map(
-                  ({ uid, name, phone, id, city, rural, address, userid }) => {
+                  ({
+                    employeeid,
+                    name,
+                    phone,
+                    email,
+                    photo,
+                    vaccine,
+                    goodid,
+                    racheck,
+                    cases,
+                  }) => {
                     return (
                       <tr
-                        key={uid}
+                        key={employeeid}
                         onClick={() => {
-                          navigate(`/dashboard/PersonalInfo/${uid}`);
+                          navigate(`/dashboard/StaffList/${employeeid}`);
                         }}
                       >
-                        <td>{userid}</td>
+                        <td>{employeeid}</td>
                         <td>{name}</td>
-                        <td>{id}</td>
                         <td>{phone}</td>
-                        <td>{city}</td>
-                        <td>{rural}</td>
-                        <td>{address}</td>
+                        <td>{email}</td>
+                        <td>{vaccine}</td>
+                        <td>{cases}</td>
+                        <td>{goodid}</td>
+                        <td>{racheck}</td>
+                        <td>{photo}</td>
                       </tr>
                     );
                   }
@@ -125,21 +141,33 @@ const MemberInfo = (props) => {
             : orderAPI
                 .slice(start, number)
                 .map(
-                  ({ uid, name, phone, id, city, rural, address, userid }) => {
+                  ({
+                    employeeid,
+                    name,
+                    phone,
+                    email,
+                    photo,
+                    vaccine,
+                    goodid,
+                    racheck,
+                    cases,
+                  }) => {
                     return (
                       <tr
-                        key={uid}
+                        key={employeeid}
                         onClick={() => {
-                          navigate(`/dashboard/PersonalInfo/${uid}`);
+                          navigate(`/dashboard/StaffList/${employeeid}`);
                         }}
                       >
-                        <td>{userid}</td>
+                        <td>{employeeid}</td>
                         <td>{name}</td>
-                        <td>{id}</td>
                         <td>{phone}</td>
-                        <td>{city}</td>
-                        <td>{rural}</td>
-                        <td>{address}</td>
+                        <td>{email}</td>
+                        <td>{vaccine}</td>
+                        <td>{cases}</td>
+                        <td>{goodid}</td>
+                        <td>{racheck}</td>
+                        <td>{photo}</td>
                       </tr>
                     );
                   }
@@ -157,4 +185,4 @@ const MemberInfo = (props) => {
     </div>
   );
 };
-export default MemberInfo;
+export default StaffList;
