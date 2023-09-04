@@ -98,7 +98,8 @@ ul::-webkit-scrollbar {
   color: white;
   line-height: 70px;
 }
-.dr p{
+
+.dr p {
   color: white;
 }
 
@@ -140,10 +141,10 @@ ul::-webkit-scrollbar {
   background-color: rgba(254, 230, 156, 1);
   width: 90%;
   height: 210px;
-  margin: 0px auto;
+  margin:0 auto;
   border-radius: 25px;
   position: relative;
-  top: 165px;
+  top: 135px;
 
 
 }
@@ -175,16 +176,14 @@ ul::-webkit-scrollbar {
 
 .item ul {
   list-style: none;
-  display: block;
   float: left;
   font-weight: bold;
   font-size: 18px;
   position: relative;
   left: 350px;
-  bottom: 210px;
+  bottom: 120px;
   font-size: 15px;
-  padding: 90px;
-
+  padding-left: 140px;
 }
 
 .Topic-team {
@@ -279,7 +278,8 @@ ul::-webkit-scrollbar {
     padding: 70px;
   }
 }
-@media (min-width: 997px) and (max-width: 1250px){
+
+@media (min-width: 997px) and (max-width: 1250px) {
   .item ul {
     position: relative;
     left: 265px;
