@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-const Step3Area = () => {
+const Step3Area = ({ formData, setFormData }) => {
   const adreessDist = [
     {
       dist: "中區",
@@ -76,6 +76,17 @@ const Step3Area = () => {
       v: "Shalu",
     },
   ];
+  const checkPhone = () => {
+    let phone = document.querySelector("#userPhone");
+    document.querySelector("#userPhone+span").innerHTML =
+      phone.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
+  };
+  const checkName = () => {
+    let name = document.querySelector("#userName");
+    document.querySelector("#userName+span").innerHTML =
+      name.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
+  };
+
   return (
     <>
       <form
@@ -95,9 +106,12 @@ const Step3Area = () => {
               <input
                 type="text"
                 placeholder="請輸入姓名"
+                pattern=".{2,20}"
                 id="userName"
                 required
+                onInput={checkName}
               />
+              <span>&nbsp;</span>
             </div>
             <div>
               <img src="/images/phone.png" alt="icon" />
@@ -106,9 +120,11 @@ const Step3Area = () => {
                 id="userPhone"
                 type="tel"
                 placeholder="09********"
-                pattern="[0][9][0-9]{8}"
+                pattern="^09[0-9]{8}$"
                 required
+                onInput={checkPhone}
               />
+              <span>&nbsp;</span>
             </div>
             <div>
               <img src="/images/mail.png" alt="icon" />

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Step5Area = () => {
+const Step5Area = ({ formData, setFormData }) => {
   return (
     <div
       className="book-step1 flex-column align-items-center container "

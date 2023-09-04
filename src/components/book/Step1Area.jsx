@@ -1,32 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Member from "./Member";
 import Button from "./Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import axios from "axios";
 
-const Step1Area = () => {
-  const members = [
-    {
-      name: "王美美",
-      score: 4.8,
-      img: "./images/cleaner1.jpg",
-    },
-    {
-      name: "陳家家",
-      score: 4.2,
-      img: "./images/cleaner2.jpg",
-    },
-    {
-      name: "邱仙仙",
-      score: 4.4,
-      img: "./images/cleaner3.jpg",
-    },
-    {
-      name: "高強強",
-      score: 4.9,
-      img: "./images/cleaner4.jpg",
-    },
-  ];
+const Step1Area = ({ formData, setFormData }) => {
   const areaInfo = [
     {
       area: "客廳",
@@ -64,6 +43,40 @@ const Step1Area = () => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
+    formData.employeeid = targetElement.id;
+    setFormData(formData);
+    // console.log(formData);
+  };
+  const [membersData, setMemberData] = useState([]);
+  const [weekCount, setWeekCount] = useState(4);
+  const [weekPrice, setWeekPrice] = useState(8000);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4107/book/price?week=${weekCount}`)
+      .then((res) => {
+        setWeekPrice(res.data[0].price);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [weekCount]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4107/book/employee-info")
+      .then((response) => {
+        setMemberData(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const getPrice = () => {
+    let option = document.querySelector("select").value;
+    setWeekCount(Number(option));
+    formData.weeks = Number(option);
+    setFormData(formData);
+    // console.log(formData);
   };
 
   return (
@@ -88,7 +101,7 @@ const Step1Area = () => {
             <label htmlFor="serviceWeeks">
               <h4>選擇服務週數</h4>
             </label>
-            <select name="service_weeks" id="serviceWeeks">
+            <select name="service_weeks" id="serviceWeeks" onChange={getPrice}>
               {Array.from({ length: 21 }, (v, i) => i).map((item) => {
                 return (
                   <option value={item + 4} key={item}>
@@ -97,7 +110,11 @@ const Step1Area = () => {
                 );
               })}
             </select>
+            <output>{weekPrice} 元</output>
           </div>
+          <p className="mt-2 memo">
+            &#9959;一次訂購8週(含)以上打9折、16週(含)以上打8折&#9959;
+          </p>
           <div id="cleanArea">
             <h5>定期提供以下區域的清潔服務</h5>
             <div id="cleanInfo">
@@ -129,6 +146,7 @@ const Step1Area = () => {
           <div id="chooseMember">
             <div
               className="not-specify"
+              id="null"
               onClick={(e) => {
                 changeClickStyle1(e, ".memberItem", "not-specify");
               }}
@@ -137,7 +155,7 @@ const Step1Area = () => {
             </div>
             <div>
               <div className="specify">
-                {members.map((p, index) => {
+                {membersData.map((p, index) => {
                   return (
                     <Member
                       onClick={(e) => {
@@ -146,10 +164,11 @@ const Step1Area = () => {
                           .querySelector(".not-specify")
                           .classList.remove("selected");
                       }}
-                      score={p.score}
+                      score={p.total_efficiency}
                       name={p.name}
-                      img={p.img}
+                      img={p.photo}
                       key={index}
+                      id={`RA${(index + 1).toString().padStart(3, 0)}`}
                     />
                   );
                 })}
