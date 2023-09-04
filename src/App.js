@@ -37,11 +37,11 @@ function App() {
     name: null,
     phone: null,
     email: null,
-    city: null,
-    rural: null,
+    city: "台中市",
+    rural: "中區",
     address: null,
     note: null,
-    pay: null,
+    pay: "信用卡一次付清",
   });
   return (
     <BrowserRouter>

@@ -24,6 +24,21 @@ const Step2Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
+    formData.week = e.target.id;
+    setFormData(formData);
+  };
+  const changeClickStyle3 = (e, pElm, tElm) => {
+    const otherItems = document.querySelectorAll(pElm);
+    otherItems.forEach((item) => {
+      item.classList.remove("selected");
+    });
+    let targetElement = e.target;
+    while (!targetElement.classList.contains(tElm)) {
+      targetElement = targetElement.parentElement;
+    }
+    targetElement.classList.toggle("selected");
+    formData.time = e.target.id;
+    setFormData(formData);
   };
   const [weekMode, setWeekMode] = useState([]);
   useEffect(() => {
@@ -54,6 +69,7 @@ const Step2Area = ({ formData, setFormData }) => {
                     <div
                       className="service-week"
                       key={index}
+                      id={index}
                       onClick={(e) => {
                         changeClickStyle2(e, ".service-week", "service-week");
                       }}
@@ -79,8 +95,9 @@ const Step2Area = ({ formData, setFormData }) => {
                   <div
                     className="service-time"
                     key={index}
+                    id={index}
                     onClick={(e) => {
-                      changeClickStyle2(e, ".service-time", "service-time");
+                      changeClickStyle3(e, ".service-time", "service-time");
                     }}
                   >
                     {time}
@@ -91,7 +108,7 @@ const Step2Area = ({ formData, setFormData }) => {
           </div>
         </div>
         <div className="right">
-          <MyCalendar />
+          <MyCalendar formData={formData} setFormData={setFormData} />
         </div>
       </div>
       <Button pre="/book" next="/book/book3" />
