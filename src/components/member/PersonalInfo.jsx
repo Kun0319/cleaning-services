@@ -6,6 +6,8 @@ const PersonalInfo = () => {
   const { uid } = useParams();
   const [personNumber, setPersonNumber] = useState(parseInt(uid));
   const [memberData, setMemberData] = useState({});
+  const [addBlackList, setAddBlackList] = useState(false);
+  const [inputValue, setInputValue] = useState("");
   const [dataLength, setDatalength] = useState(null);
   const navigate = useNavigate();
 
@@ -42,6 +44,45 @@ const PersonalInfo = () => {
     navigate(`/dashboard/PersonalInfo/${newPersonNumber}`);
   }
 
+  // 加黑名單
+  function handleBlacklist() {
+    setAddBlackList(!addBlackList);
+  }
+
+  // 送出黑名單理由
+  function sendBlackList() {
+    try {
+      axios.put(
+        `http://localhost:4107/dashboard/PersonalInfo/blacklist/${uid}`,
+        { why: inputValue }
+      );
+      setAddBlackList(!addBlackList);
+      setInputValue("");
+      alert("成功送出");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error updata data:", error);
+    }
+  }
+
+  // 解除黑名單
+  async function deleteBlackList() {
+    try {
+      await axios.put(
+        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${uid}`,
+        { uid: uid }
+      );
+      await axios.delete(
+        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${uid}`,
+        { uid: uid }
+      );
+      alert("成功解除");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error updata data:", error);
+    }
+  }
+
   const {
     name,
     birthday,
@@ -54,6 +95,7 @@ const PersonalInfo = () => {
     address,
     admin,
     userid,
+    blacklist,
   } = memberData;
 
   return (
@@ -83,18 +125,63 @@ const PersonalInfo = () => {
               <li>{password}</li>
               <li>權限:</li>
               <li>{admin}</li>
+              <li>黑名單:</li>
+              <li>
+                {blacklist ? (
+                  <span className="text-danger fw-bold">黑名單</span>
+                ) : (
+                  <span className="text-success fw-bold">正常用戶</span>
+                )}
+              </li>
             </ol>
           </h5>
-          {/* 黑名單還要取值做判斷 */}
-          <div>
-            {true ? (
-              <button className="btn btn-danger">加入黑名單</button>
+
+          <div
+            style={{ position: "relative", width: "100%", textAlign: "center" }}
+          >
+            {addBlackList ? (
+              <div className="blacklist-content">
+                <label htmlFor="black">{`"${name}"`}加入黑名單的原因:</label>
+                <input
+                  type="text"
+                  id="black"
+                  className="w-100"
+                  autocomplete="off"
+                  value={inputValue}
+                  onInput={(e) => {
+                    setInputValue(e.target.value);
+                  }}
+                />
+                <button
+                  className="btn btn-primary ms-0"
+                  onClick={sendBlackList}
+                >
+                  送出
+                </button>
+                <button
+                  className="btn btn-danger ms-0"
+                  onClick={() => {
+                    setAddBlackList(!addBlackList);
+                    setInputValue("");
+                  }}
+                >
+                  取消
+                </button>
+              </div>
             ) : (
-              <button className="btn btn-success">解除黑名單</button>
+              ""
+            )}
+            {blacklist ? (
+              <button className="btn btn-success" onClick={deleteBlackList}>
+                解除黑名單
+              </button>
+            ) : (
+              <button className="btn btn-danger" onClick={handleBlacklist}>
+                加入黑名單
+              </button>
             )}
           </div>
         </div>
-
         <div className="btncontain">
           <button onClick={prevPage}>上一頁</button>
           <button onClick={nextPage}>下一頁</button>

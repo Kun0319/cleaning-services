@@ -221,6 +221,8 @@
 }
 .staff-accordion {
   border: 1px solid #997404;
+  color: #664d03;
+  background-color: #fff8e1;
   border-radius: 10px;
   width: 100%;
   padding: 0.3rem;
@@ -231,19 +233,22 @@
 
 .staff-header {
   font-weight: 700;
-  color: #664d03;
 }
 .staff-accordion.active {
   background-color: #997404;
+  color: #fff8e1;
 }
 .staff-content {
+  display: flex;
+  height: auto;
+  flex-wrap: wrap;
   width: 100%;
+  padding: 5px;
+  color: #664d03;
   border: 1px solid #997404;
   border-radius: 10px;
   background-color: #fff8e1;
-  position: absolute;
-  top: 0;
-  left: 0;
+  /* position: absolute; */
   z-index: 1388;
 }
 .staff-listBtn {
@@ -255,6 +260,18 @@
 }
 .ControllAccordion::-webkit-scrollbar {
   display: none;
+}
+
+.blacklist-content {
+  color: #664d03;
+  font-weight: bold;
+  width: 100%;
+  border: 1px solid #997404;
+  border-radius: 10px;
+  background-color: #fff8e1;
+  padding: 10px;
+  position: absolute;
+  z-index: 1388;
 }
 
 @media screen and (max-width: 997px) {

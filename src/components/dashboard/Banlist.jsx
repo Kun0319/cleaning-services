@@ -17,7 +17,7 @@ const Banlist = (props) => {
     async function fetchData() {
       try {
         const result = await axios.get(
-          "http://localhost:4107/dashboard/memberInfo"
+          "http://localhost:4107/dashboard/blacklist"
         );
         setOrderAPI(() => {
           return result.data;
@@ -57,7 +57,7 @@ const Banlist = (props) => {
     setNumber(start + limitCount < data.length ? number + limitCount : number);
     setStart(start + limitCount < data.length ? start + limitCount : start);
   };
-
+  console.log(orderAPI);
   return (
     <div className="dashOrder">
       <div className="orderHead">
