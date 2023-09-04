@@ -74,7 +74,7 @@ function App() {
             path="/dashboard/DoneOrder/:employeeid"
             element={<DoneOrder />}
           />
-          <Route path="/dashboard/banlist" element={<Banlist />} />
+          <Route path="/dashboard/blacklist" element={<Banlist />} />
         </Route>
         <Route path="*" element={<Error />} />
         <Route path="/member" element={<Member />}>

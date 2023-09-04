@@ -30,7 +30,7 @@ const Score = ({ setModal }) => {
       );
       console.log(result);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error updata data:", error);
     }
   }
 

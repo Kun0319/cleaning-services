@@ -65,7 +65,7 @@ const SidebarAdmin = () => {
             <span>員工資料</span>
           </Link>
           <Link
-            to={"/dashboard/banlist"}
+            to={"/dashboard/blacklist"}
             className="Link-decoration"
             onClick={(e) => {
               changeStyle(e);
