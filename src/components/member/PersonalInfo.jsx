@@ -8,6 +8,7 @@ const PersonalInfo = () => {
   const [memberData, setMemberData] = useState({});
   const [addBlackList, setAddBlackList] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [why, setWhy] = useState("");
   const [dataLength, setDatalength] = useState(null);
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ const PersonalInfo = () => {
         setMemberData(result.data.data[0]);
         setDatalength(result.data.length);
         setPersonNumber(parseInt(uid));
+        setWhy(result.data.why[0].why || "");
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -97,7 +99,6 @@ const PersonalInfo = () => {
     userid,
     blacklist,
   } = memberData;
-
   return (
     <div>
       <div className="Container">
@@ -128,7 +129,7 @@ const PersonalInfo = () => {
               <li>黑名單:</li>
               <li>
                 {blacklist ? (
-                  <span className="text-danger fw-bold">黑名單</span>
+                  <span className="text-danger fw-bold">黑名單:{why}</span>
                 ) : (
                   <span className="text-success fw-bold">正常用戶</span>
                 )}
@@ -146,7 +147,7 @@ const PersonalInfo = () => {
                   type="text"
                   id="black"
                   className="w-100"
-                  autocomplete="off"
+                  autoComplete="off"
                   value={inputValue}
                   onInput={(e) => {
                     setInputValue(e.target.value);
