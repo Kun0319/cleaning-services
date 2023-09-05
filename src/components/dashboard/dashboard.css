@@ -25,8 +25,8 @@
 
 .aside-img-button {
   position: absolute;
-  top: 85px;
-  left: 50px;
+  top: 10px;
+  left: 10px;
   cursor: pointer;
 }
 
@@ -88,7 +88,7 @@
 }
 
 /* #################################member-style */
-.aside-main > h3 {
+.aside-main>h3 {
   color: #eaac00;
   font-family: Inter;
   font-size: 28px;
@@ -154,9 +154,12 @@
 .orderTbody tr td {
   cursor: pointer;
   line-height: 2;
-  white-space: nowrap; /* 禁止文字自動換行 */
-  overflow: hidden; /* 隱藏超出部分 */
-  text-overflow: ellipsis; /* 使用省略號表示被隱藏的內容 */
+  white-space: nowrap;
+  /* 禁止文字自動換行 */
+  overflow: hidden;
+  /* 隱藏超出部分 */
+  text-overflow: ellipsis;
+  /* 使用省略號表示被隱藏的內容 */
   width: calc(100% / 7);
 }
 
@@ -219,6 +222,7 @@
   color: #fff8e1;
   cursor: pointer;
 }
+
 .staff-accordion {
   border: 1px solid #997404;
   color: #664d03;
@@ -234,10 +238,12 @@
 .staff-header {
   font-weight: 700;
 }
+
 .staff-accordion.active {
   background-color: #997404;
   color: #fff8e1;
 }
+
 .staff-content {
   display: flex;
   height: auto;
@@ -251,6 +257,7 @@
   /* position: absolute; */
   z-index: 1388;
 }
+
 .staff-listBtn {
   font-weight: bolder;
   position: absolute;
@@ -258,6 +265,7 @@
   right: 5%;
   top: 5%;
 }
+
 .ControllAccordion::-webkit-scrollbar {
   display: none;
 }
@@ -281,9 +289,11 @@
     border-radius: 50px;
     margin: 20px auto;
   }
+
   .aside-img-button {
     display: none;
   }
+
   .aside .aside-main {
     flex-direction: row;
     justify-content: space-evenly;
@@ -327,7 +337,7 @@
     gap: 0px;
   }
 
-  .dashOrder > h3 {
+  .dashOrder>h3 {
     margin: 0;
     line-height: 0.5;
   }

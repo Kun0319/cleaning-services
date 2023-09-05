@@ -68,20 +68,22 @@ const UndoneOrder = (props) => {
     <div className="dashOrder">
       <div className="orderHead">
         <h3>未完成訂單</h3>
-        <img
-          src="/images/search.png"
-          alt="img-button"
-          className="aside-img-button"
-        />
-        <input
-          className="aside-input"
-          type="text"
-          placeholder="查詢訂單"
-          onClick={handleClear}
-          onChange={(e) => {
-            searchItem(e.target.value);
-          }}
-        />
+        <div style={{ position: "relative" }}>
+          <img
+            src="/images/search.png"
+            alt="img-button"
+            className="aside-img-button"
+          />
+          <input
+            className="aside-input"
+            type="text"
+            placeholder="會員查詢"
+            onClick={handleClear}
+            onChange={(e) => {
+              searchItem(e.target.value);
+            }}
+          />
+        </div>
       </div>
       <table>
         <thead className="orderThead">
@@ -107,65 +109,65 @@ const UndoneOrder = (props) => {
         <tbody className="orderTbody">
           {searchInput.length > 1
             ? data
-                .slice(start, number)
-                .map(
-                  ({
-                    orderNumber,
-                    memberId,
-                    orderDate,
-                    weekOfTimes,
-                    weekOfAmount,
-                    price,
-                    orderStatus,
-                  }) => {
-                    return (
-                      <tr
-                        key={memberId}
-                        onClick={() => {
-                          navigate(`/dashboard/AdminOrder/${memberId}`);
-                        }}
-                      >
-                        <td>{orderNumber}</td>
-                        <td>{memberId}</td>
-                        <td>{orderDate}</td>
-                        <td>{weekOfTimes}次&frasl;週</td>
-                        <td>{weekOfAmount}週</td>
-                        <td>{price}</td>
-                        <td>{handleOrderStatus(orderStatus)}</td>
-                      </tr>
-                    );
-                  }
-                )
+              .slice(start, number)
+              .map(
+                ({
+                  orderNumber,
+                  memberId,
+                  orderDate,
+                  weekOfTimes,
+                  weekOfAmount,
+                  price,
+                  orderStatus,
+                }) => {
+                  return (
+                    <tr
+                      key={memberId}
+                      onClick={() => {
+                        navigate(`/dashboard/AdminOrder/${memberId}`);
+                      }}
+                    >
+                      <td>{orderNumber}</td>
+                      <td>{memberId}</td>
+                      <td>{orderDate}</td>
+                      <td>{weekOfTimes}次&frasl;週</td>
+                      <td>{weekOfAmount}週</td>
+                      <td>{price}</td>
+                      <td>{handleOrderStatus(orderStatus)}</td>
+                    </tr>
+                  );
+                }
+              )
             : orderAPI
-                .slice(start, number)
-                .map(
-                  ({
-                    orderNumber,
-                    memberId,
-                    orderDate,
-                    weekOfTimes,
-                    weekOfAmount,
-                    price,
-                    orderStatus,
-                  }) => {
-                    return (
-                      <tr
-                        key={memberId}
-                        onClick={() => {
-                          navigate(`/dashboard/AdminOrder/${memberId}`);
-                        }}
-                      >
-                        <td>{orderNumber}</td>
-                        <td>{memberId}</td>
-                        <td>{orderDate}</td>
-                        <td>{weekOfTimes}次&frasl;週</td>
-                        <td>{weekOfAmount}週</td>
-                        <td>{price}</td>
-                        <td>{handleOrderStatus(orderStatus)}</td>
-                      </tr>
-                    );
-                  }
-                )}
+              .slice(start, number)
+              .map(
+                ({
+                  orderNumber,
+                  memberId,
+                  orderDate,
+                  weekOfTimes,
+                  weekOfAmount,
+                  price,
+                  orderStatus,
+                }) => {
+                  return (
+                    <tr
+                      key={memberId}
+                      onClick={() => {
+                        navigate(`/dashboard/AdminOrder/${memberId}`);
+                      }}
+                    >
+                      <td>{orderNumber}</td>
+                      <td>{memberId}</td>
+                      <td>{orderDate}</td>
+                      <td>{weekOfTimes}次&frasl;週</td>
+                      <td>{weekOfAmount}週</td>
+                      <td>{price}</td>
+                      <td>{handleOrderStatus(orderStatus)}</td>
+                    </tr>
+                  );
+                }
+              )}
         </tbody>
       </table>
       <div className="orderBtn-group">

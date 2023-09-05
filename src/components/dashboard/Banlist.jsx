@@ -62,20 +62,22 @@ const Banlist = (props) => {
     <div className="dashOrder">
       <div className="orderHead">
         <h3>黑名單</h3>
-        <img
-          src="/images/search.png"
-          alt="img-button"
-          className="aside-img-button"
-        />
-        <input
-          className="aside-input"
-          type="text"
-          placeholder="黑名單查詢"
-          onClick={handleClear}
-          onChange={(e) => {
-            searchItem(e.target.value);
-          }}
-        />
+        <div style={{ position: "relative" }}>
+          <img
+            src="/images/search.png"
+            alt="img-button"
+            className="aside-img-button"
+          />
+          <input
+            className="aside-input"
+            type="text"
+            placeholder="會員查詢"
+            onClick={handleClear}
+            onChange={(e) => {
+              searchItem(e.target.value);
+            }}
+          />
+        </div>
       </div>
       <table>
         <thead className="orderThead">
@@ -101,49 +103,49 @@ const Banlist = (props) => {
         <tbody className="orderTbody">
           {searchInput.length > 1
             ? data
-                .slice(start, number)
-                .map(
-                  ({ uid, name, phone, id, city, rural, address, userid }) => {
-                    return (
-                      <tr
-                        key={uid}
-                        onClick={() => {
-                          navigate(`/dashboard/PersonalInfo/${uid}`);
-                        }}
-                      >
-                        <td>{userid}</td>
-                        <td>{name}</td>
-                        <td>{id}</td>
-                        <td>{phone}</td>
-                        <td>{city}</td>
-                        <td>{rural}</td>
-                        <td>{address}</td>
-                      </tr>
-                    );
-                  }
-                )
+              .slice(start, number)
+              .map(
+                ({ uid, name, phone, id, city, rural, address, userid }) => {
+                  return (
+                    <tr
+                      key={uid}
+                      onClick={() => {
+                        navigate(`/dashboard/PersonalInfo/${uid}`);
+                      }}
+                    >
+                      <td>{userid}</td>
+                      <td>{name}</td>
+                      <td>{id}</td>
+                      <td>{phone}</td>
+                      <td>{city}</td>
+                      <td>{rural}</td>
+                      <td>{address}</td>
+                    </tr>
+                  );
+                }
+              )
             : orderAPI
-                .slice(start, number)
-                .map(
-                  ({ uid, name, phone, id, city, rural, address, userid }) => {
-                    return (
-                      <tr
-                        key={uid}
-                        onClick={() => {
-                          navigate(`/dashboard/PersonalInfo/${uid}`);
-                        }}
-                      >
-                        <td>{userid}</td>
-                        <td>{name}</td>
-                        <td>{id}</td>
-                        <td>{phone}</td>
-                        <td>{city}</td>
-                        <td>{rural}</td>
-                        <td>{address}</td>
-                      </tr>
-                    );
-                  }
-                )}
+              .slice(start, number)
+              .map(
+                ({ uid, name, phone, id, city, rural, address, userid }) => {
+                  return (
+                    <tr
+                      key={uid}
+                      onClick={() => {
+                        navigate(`/dashboard/PersonalInfo/${uid}`);
+                      }}
+                    >
+                      <td>{userid}</td>
+                      <td>{name}</td>
+                      <td>{id}</td>
+                      <td>{phone}</td>
+                      <td>{city}</td>
+                      <td>{rural}</td>
+                      <td>{address}</td>
+                    </tr>
+                  );
+                }
+              )}
         </tbody>
       </table>
       <div className="orderBtn-group">

@@ -62,20 +62,22 @@ const StaffList = (props) => {
     <div className="dashOrder">
       <div className="orderHead">
         <h3>員工資料</h3>
-        <img
-          src="/images/search.png"
-          alt="img-button"
-          className="aside-img-button"
-        />
-        <input
-          className="aside-input"
-          type="text"
-          placeholder="員工查詢"
-          onClick={handleClear}
-          onChange={(e) => {
-            searchItem(e.target.value);
-          }}
-        />
+        <div style={{ position: "relative" }}>
+          <img
+            src="/images/search.png"
+            alt="img-button"
+            className="aside-img-button"
+          />
+          <input
+            className="aside-input"
+            type="text"
+            placeholder="會員查詢"
+            onClick={handleClear}
+            onChange={(e) => {
+              searchItem(e.target.value);
+            }}
+          />
+        </div>
       </div>
       <table>
         <thead className="orderThead">
@@ -88,7 +90,6 @@ const StaffList = (props) => {
             <th>服務件數</th>
             <th>良民證</th>
             <th>racheck</th>
-            <th>photo</th>
           </tr>
           <tr id="orderTh_RWD">
             <th>員工編號</th>
@@ -99,79 +100,78 @@ const StaffList = (props) => {
             <th>服務件數</th>
             <th>良民證</th>
             <th>racheck</th>
-            <th>photo</th>
           </tr>
         </thead>
         <tbody className="orderTbody">
           {searchInput.length > 1
             ? data
-                .slice(start, number)
-                .map(
-                  ({
-                    employeeid,
-                    name,
-                    phone,
-                    email,
-                    photo,
-                    vaccine,
-                    goodid,
-                    racheck,
-                    cases,
-                  }) => {
-                    return (
-                      <tr
-                        key={employeeid}
-                        onClick={() => {
-                          navigate(`/dashboard/StaffList/${employeeid}`);
-                        }}
-                      >
-                        <td>{employeeid}</td>
-                        <td>{name}</td>
-                        <td>{phone}</td>
-                        <td>{email}</td>
-                        <td>{vaccine}</td>
-                        <td>{cases}</td>
-                        <td>{goodid}</td>
-                        <td>{racheck}</td>
-                        <td>{photo}</td>
-                      </tr>
-                    );
-                  }
-                )
+              .slice(start, number)
+              .map(
+                ({
+                  employeeid,
+                  name,
+                  phone,
+                  email,
+                  photo,
+                  vaccine,
+                  goodid,
+                  racheck,
+                  cases,
+                }) => {
+                  return (
+                    <tr
+                      key={employeeid}
+                      onClick={() => {
+                        navigate(`/dashboard/StaffList/${employeeid}`);
+                      }}
+                    >
+                      <td>{employeeid}</td>
+                      <td>{name}</td>
+                      <td>{phone}</td>
+                      <td>{email}</td>
+                      <td>{vaccine}</td>
+                      <td>{cases}</td>
+                      <td>{goodid}</td>
+                      <td>{racheck}</td>
+                      <td>{photo}</td>
+                    </tr>
+                  );
+                }
+              )
             : orderAPI
-                .slice(start, number)
-                .map(
-                  ({
-                    employeeid,
-                    name,
-                    phone,
-                    email,
-                    photo,
-                    vaccine,
-                    goodid,
-                    racheck,
-                    cases,
-                  }) => {
-                    return (
-                      <tr
-                        key={employeeid}
-                        onClick={() => {
-                          navigate(`/dashboard/StaffList/${employeeid}`);
-                        }}
-                      >
-                        <td>{employeeid}</td>
-                        <td>{name}</td>
-                        <td>{phone}</td>
-                        <td>{email}</td>
-                        <td>{vaccine}</td>
-                        <td>{cases}</td>
-                        <td>{goodid}</td>
-                        <td>{racheck}</td>
-                        <td>{photo}</td>
-                      </tr>
-                    );
-                  }
-                )}
+              .slice(start, number)
+              .map(
+                ({
+                  employeeid,
+                  name,
+                  phone,
+                  email,
+                  photo,
+                  vaccine,
+                  goodid,
+                  racheck,
+                  cases,
+                }) => {
+                  return (
+                    <tr
+                      key={employeeid}
+                      onClick={() => {
+                        navigate(`/dashboard/StaffList/${employeeid}`);
+                      }}
+                    >
+                      <td>{employeeid}</td>
+                      <td>{name}</td>
+                      <td>{phone}</td>
+                      <td>{email}</td>
+                      <td>{vaccine}</td>
+                      <td>{cases}</td>
+                      <td>{goodid}</td>
+                      <td>{racheck}</td>
+                      <td>{photo}</td>
+                    </tr>
+                  );
+                }
+              )}
         </tbody>
       </table>
       <div className="orderBtn-group">
