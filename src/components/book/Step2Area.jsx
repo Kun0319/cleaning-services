@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
 import MyCalendar from "./MyCalendar";
+import axios from "axios";
 
-const Step2Area = () => {
-  const weeks = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+const Step2Area = ({ formData, setFormData }) => {
+  const weeks = [
+    "星期日",
+    "星期一",
+    "星期二",
+    "星期三",
+    "星期四",
+    "星期五",
+    "星期六",
+  ];
   const time = ["08:00", "13:00", "18:00"];
   const changeClickStyle2 = (e, pElm, tElm) => {
     const otherItems = document.querySelectorAll(pElm);
@@ -15,7 +24,34 @@ const Step2Area = () => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
+    formData.week = e.target.id;
+    setFormData(formData);
   };
+  const changeClickStyle3 = (e, pElm, tElm) => {
+    const otherItems = document.querySelectorAll(pElm);
+    otherItems.forEach((item) => {
+      item.classList.remove("selected");
+    });
+    let targetElement = e.target;
+    while (!targetElement.classList.contains(tElm)) {
+      targetElement = targetElement.parentElement;
+    }
+    targetElement.classList.toggle("selected");
+    formData.time = e.target.id;
+    setFormData(formData);
+  };
+  const [weekMode, setWeekMode] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:4107/book/free-time")
+      .then((res) => {
+        setWeekMode(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <form
       action=""
@@ -27,18 +63,27 @@ const Step2Area = () => {
           <div className="step2Top">
             <h5>選擇服務時間</h5>
             <div className="chooseTime">
-              {weeks.map((week, index) => {
-                return (
-                  <div
-                    className="service-week"
-                    key={index}
-                    onClick={(e) => {
-                      changeClickStyle2(e, ".service-week", "service-week");
-                    }}
-                  >
-                    {week}
-                  </div>
-                );
+              {weekMode.map((week, index) => {
+                if (week) {
+                  return (
+                    <div
+                      className="service-week"
+                      key={index}
+                      id={index}
+                      onClick={(e) => {
+                        changeClickStyle2(e, ".service-week", "service-week");
+                      }}
+                    >
+                      {weeks[index]}
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="not-choose" key={index}>
+                      {weeks[index]}
+                    </div>
+                  );
+                }
               })}
             </div>
           </div>
@@ -50,8 +95,9 @@ const Step2Area = () => {
                   <div
                     className="service-time"
                     key={index}
+                    id={index}
                     onClick={(e) => {
-                      changeClickStyle2(e, ".service-time", "service-time");
+                      changeClickStyle3(e, ".service-time", "service-time");
                     }}
                   >
                     {time}
@@ -62,7 +108,7 @@ const Step2Area = () => {
           </div>
         </div>
         <div className="right">
-          <MyCalendar />
+          <MyCalendar formData={formData} setFormData={setFormData} />
         </div>
       </div>
       <Button pre="/book" next="/book/book3" />

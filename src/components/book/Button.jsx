@@ -7,7 +7,9 @@ const Button = (props) => {
       <Link to={props.pre} id={props.class}>
         上一步
       </Link>
-      <Link to={props.next}>下一步</Link>
+      <Link to={props.next} onClick={props.onClick}>
+        下一步
+      </Link>
     </div>
   );
 };

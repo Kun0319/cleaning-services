@@ -2,7 +2,7 @@ import React from "react";
 
 const Member = (props) => {
   return (
-    <div className="memberItem" onClick={props.onClick}>
+    <div className="memberItem" onClick={props.onClick} id={props.id}>
       <div className="memberImg">
         <img className="img-fluid " src={props.img} alt="staffimg" />
       </div>

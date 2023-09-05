@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "./Button";
 
-const Step3Area = () => {
+const Step3Area = ({ formData, setFormData }) => {
   const adreessDist = [
     {
       dist: "中區",
@@ -76,6 +76,42 @@ const Step3Area = () => {
       v: "Shalu",
     },
   ];
+  const checkPhone = () => {
+    let phone = document.querySelector("#userPhone");
+    document.querySelector("#userPhone+span").innerHTML =
+      phone.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
+    formData.phone = phone.value;
+    setFormData(formData);
+  };
+  const checkName = () => {
+    let name = document.querySelector("#userName");
+    document.querySelector("#userName+span").innerHTML =
+      name.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
+    formData.name = name.value;
+    setFormData(formData);
+  };
+  const saveMail = () => {
+    let mail = document.querySelector("#userMail").value;
+    formData.email = mail;
+    setFormData(formData);
+    console.log(formData);
+  };
+  const saveDist = () => {
+    let dist = document.querySelector("#userAddress").value;
+    formData.rural = dist;
+    setFormData(formData);
+  };
+  const saveAddress = () => {
+    let address = document.querySelector("#detail-address").value;
+    formData.address = address;
+    setFormData(formData);
+  };
+  const saveNote = () => {
+    let note = document.querySelector("#notes").value;
+    formData.note = note;
+    setFormData(formData);
+  };
+
   return (
     <>
       <form
@@ -95,9 +131,12 @@ const Step3Area = () => {
               <input
                 type="text"
                 placeholder="請輸入姓名"
+                pattern=".{2,20}"
                 id="userName"
                 required
+                onInput={checkName}
               />
+              <span>&nbsp;</span>
             </div>
             <div>
               <img src="/images/phone.png" alt="icon" />
@@ -106,9 +145,11 @@ const Step3Area = () => {
                 id="userPhone"
                 type="tel"
                 placeholder="09********"
-                pattern="[0][9][0-9]{8}"
+                pattern="^09[0-9]{8}$"
                 required
+                onInput={checkPhone}
               />
+              <span>&nbsp;</span>
             </div>
             <div>
               <img src="/images/mail.png" alt="icon" />
@@ -117,6 +158,7 @@ const Step3Area = () => {
                 id="userMail"
                 type="email"
                 placeholder="abc123@gmail.com"
+                onInput={saveMail}
                 required
               />
             </div>
@@ -126,10 +168,14 @@ const Step3Area = () => {
 
               <div className="d-flex align-items-center detail-address ">
                 <input type="text" value="台中市" id="cleaning-city" />
-                <select name="cleaningAddress" id="userAddress">
+                <select
+                  name="cleaningAddress"
+                  id="userAddress"
+                  onChange={saveDist}
+                >
                   {adreessDist.map((item, index) => {
                     return (
-                      <option value={item.v} key={index}>
+                      <option value={item.dist} key={index}>
                         {item.dist}
                       </option>
                     );
@@ -140,6 +186,7 @@ const Step3Area = () => {
                   type="text"
                   placeholder="請輸入詳細地址"
                   id="detail-address"
+                  onInput={saveAddress}
                   required
                 />
               </div>
@@ -147,7 +194,7 @@ const Step3Area = () => {
             <div>
               <img src="/images/info.png" alt="icon" />
               <label htmlFor="notes">訂單備註</label>
-              <input type="text" id="notes" />
+              <input type="text" id="notes" onInput={saveNote} />
             </div>
           </div>
         </div>

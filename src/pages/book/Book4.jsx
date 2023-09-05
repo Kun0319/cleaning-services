@@ -5,7 +5,7 @@ import ProgressLine from "../../components/book/ProgressLine";
 import Step4Area from "../../components/book/Step4Area";
 import "./book_style.css";
 
-const Book4 = () => {
+const Book4 = ({ formData, setFormData }) => {
   return (
     <>
       <div className="bottomArea">
@@ -23,7 +23,7 @@ const Book4 = () => {
           <ProgressLine />
           <ProgressIcon text="預約完成" class="bi bi-clipboard-check" />
         </div>
-        <Step4Area />
+        <Step4Area formData={formData} setFormData={setFormData} />
       </div>
     </>
   );

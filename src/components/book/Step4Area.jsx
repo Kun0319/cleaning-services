@@ -1,7 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
+import axios from "axios";
 
-const Step4Area = () => {
+const Step4Area = ({ formData, setFormData }) => {
+  const weeks = [
+    "星期日",
+    "星期一",
+    "星期二",
+    "星期三",
+    "星期四",
+    "星期五",
+    "星期六",
+  ];
+  const time = ["08:00", "13:00", "18:00"];
+  const [price, setPrice] = useState("");
+
+  function checkPay() {
+    const cardNumber = "0000-1111-2222-3333";
+    const monthYear = "10/23";
+    const securityCode = "357";
+    let nextBtn = document.querySelector(".bookbtns>a:nth-child(2)");
+    console.log(nextBtn);
+    let cardInput = document.querySelectorAll(
+      ".creaditCard input[type='text']"
+    );
+    console.log(cardInput);
+    let card = ``;
+    for (let i = 0; i < 4; i++) {
+      card += cardInput[i].value + "-";
+    }
+    card = card.substring(0, 19);
+    if (
+      card === cardNumber &&
+      cardInput[4].value === monthYear &&
+      cardInput[5].value === securityCode
+    ) {
+      setTimeout(() => {
+        alert("付款成功！");
+        window.location.replace("/book/book5");
+      }, 2000);
+    }
+  }
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4107/book/price?week=${formData.weeks}`)
+      .then((res) => {
+        setPrice(res.data[0].price);
+      })
+      .catch((err) => {
+        console.log(err);
+      }, []);
+  });
   return (
     <>
       <form
@@ -21,19 +70,21 @@ const Step4Area = () => {
               </tr>
               <tr>
                 <td className="fw-bold">清潔週數</td>
-                <td>4週</td>
+                <td>{formData.weeks} 週</td>
               </tr>
               <tr>
                 <td className="fw-bold">服務時間</td>
-                <td>星期三　13:00</td>
+                <td>
+                  {weeks[formData.week]}　{time[formData.time]}
+                </td>
               </tr>
               <tr>
                 <td className="fw-bold">開始日期</td>
-                <td>2023/08/23</td>
+                <td>{formData.date}</td>
               </tr>
               <tr>
                 <td className="fw-bold">訂單金額</td>
-                <td>8000元</td>
+                <td>{price} 元</td>
               </tr>
             </table>
           </div>
@@ -57,6 +108,7 @@ const Step4Area = () => {
                       type="text"
                       placeholder="****"
                       pattern="[0-9]{4}"
+                      maxLength={4}
                       required
                     />
                     -
@@ -64,6 +116,7 @@ const Step4Area = () => {
                       type="text"
                       placeholder="****"
                       pattern="[0-9]{4}"
+                      maxLength={4}
                       required
                     />
                     -
@@ -71,6 +124,7 @@ const Step4Area = () => {
                       type="text"
                       placeholder="****"
                       pattern="[0-9]{4}"
+                      maxLength={4}
                       required
                     />
                     -
@@ -78,6 +132,7 @@ const Step4Area = () => {
                       type="text"
                       placeholder="****"
                       pattern="[0-9]{4}"
+                      maxLength={4}
                       required
                     />
                   </div>
@@ -109,7 +164,8 @@ const Step4Area = () => {
             <u>服務條款</u> 及 <u>隱私權政策</u>
           </div>
         </div>
-        <Button pre="/book/book3" next="/book/book5" />
+        {/* next="/book/book5" */}
+        <Button pre="/book/book3" onClick={checkPay} />
       </form>
     </>
   );
