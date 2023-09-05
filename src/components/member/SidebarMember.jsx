@@ -19,7 +19,7 @@ const SidebarMember = () => {
             onClick={(e) => {
               changeStyle(e);
             }}
-            to=""
+            to={"/member/memberinfo"}
             className="Link-decoration"
           >
             <span>基本資料</span>
@@ -28,7 +28,7 @@ const SidebarMember = () => {
             onClick={(e) => {
               changeStyle(e);
             }}
-            to=""
+            to={"/member/changepwd"}
             className="Link-decoration"
           >
             <span>更改密碼</span>

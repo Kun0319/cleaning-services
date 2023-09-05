@@ -1,7 +1,7 @@
 import React from "react";
 import './login.css'
-import SidebarMember from "../member/SidebarMember";
 import "../../components/dashboard/dashboard.css";
+import SidebarMember from "../member/SidebarMember";
 import Navbar from "../navbar";
 
 
@@ -85,43 +85,40 @@ const Memberlogin = () => {
 
 
     return <>
-        < Navbar />
         
-        <div className="loginbg">
             <div className="membercontainer">
-                <SidebarMember />
                 <div className="loginrightbox">
                     <div className="loginflex">
                         <ul>
                             <li className="loginli">
-                                <img src="./images/nameicon.png" className="loginicon" />
+                                <img src="/images/nameicon.png" className="loginicon" />
                                 <p>姓名</p>
                                 <input value="李小明" disabled="disabled"></input>
                             </li>
                             <li className="loginli">
-                                <img src="./images/date.png" className="loginicon" />
+                                <img src="/images/date.png" className="loginicon" />
                                 <p>生日</p>
                                 <input value="1995/01/01" disabled="disabled"></input>
                             </li>
                             <li className="loginli">
-                                <img src="./images/idnumber.png" className="loginicon" />
+                                <img src="/images/idnumber.png" className="loginicon" />
                                 <p>身分證字號</p>
                                 <input value="A12345678" disabled="disabled"></input>
                             </li>
                             <li className="loginli">
-                                <img src="./images/tet.png" className="loginicon" />
+                                <img src="/images/tet.png" className="loginicon" />
                                 <p>手機號碼</p>
                                 <input placeholder="請輸入手機號碼"></input>
                                 <button className="revisebtn">修改</button>
                             </li>
                             <li className="loginli">
-                                <img src="./images/icon-4.png" className="loginicon" />
+                                <img src="/images/icon-4.png" className="loginicon" />
                                 <p>信箱</p>
                                 <input type="email" placeholder="請輸入信箱"></input>
                                 <button className="revisebtn">修改</button>
                             </li>
                             <li className="loginli">
-                                <img src="./images/icon-6.png" className="loginicon" />
+                                <img src="/images/icon-6.png" className="loginicon" />
                                 <p>地址</p>
                                 <input type="text" value="台中市" id="cleaning-city" />
                                 <select name="cleaningAddress" id="userAddress">
@@ -141,11 +138,6 @@ const Memberlogin = () => {
                             />
                             <button className="revisebtn">修改</button>
                             </li>
-                            <li className="loginli">
-                                <img src="./images/password.png" className="loginicon" />
-                                <p>密碼</p>
-                                <input placeholder="請輸入密碼"></input>
-                            </li>
                         </ul>
             
                         <div>
@@ -154,8 +146,11 @@ const Memberlogin = () => {
                         </div>
                     </div>
                 </div>
+                <div className="loginbg">
+                  <br></br><br>
+                  </br><br></br><br></br>
+                </div>
             </div>
-        </div>
 
 
     

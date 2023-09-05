@@ -16,18 +16,17 @@ ul {
     align-items: center;
 
 }
-
+/* 
 .loginrightbox {
     border-radius: 30px;
     padding: 48px;
-    width: 70%;
     background-color: #FFFEF9;
     border: 1px solid #FFC107;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-}
+} */
 
 .loginrightbox p {
     margin-right: 12px;
@@ -139,21 +138,31 @@ button {
     background-repeat: no-repeat;
     background-clip: border-box;
     background-position: center bottom;
+    width: 100%;
 }
 
-.membercontainer {
-    display: flex;
-    justify-content: space-between;
-    width: 80%;
-    margin: 0 auto;
+.membercontainer{
+    border-radius: 30px;
+    padding: 48px;
+    background-color: #FFFEF9;
+    border: 1px solid #FFC107;
+    width: 100%;
+}
+
+
+.loginclass {
+    width: 100%;
+    background-color: #FFC107;
 }
 
 /* Rwd */
 
-@media (max-width: 992px) {
+@media (max-width: 997px) {
     .membercontainer {
         display: flex;
         flex-direction: column;
+        margin: 0 auto;
+
     }
 
     .loginrightbox {
