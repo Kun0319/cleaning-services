@@ -45,7 +45,7 @@ function App() {
     rural: "中區",
     address: null,
     note: null,
-    pay: "信用卡一次付清",
+    pay: "1",
   });
   return (
     <BrowserRouter>

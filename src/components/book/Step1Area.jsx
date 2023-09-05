@@ -45,6 +45,7 @@ const Step1Area = ({ formData, setFormData }) => {
     targetElement.classList.toggle("selected");
     formData.employeeid = targetElement.id;
     setFormData(formData);
+    console.log(formData.employeeid);
     // console.log(formData);
   };
   const [membersData, setMemberData] = useState([]);
@@ -76,7 +77,6 @@ const Step1Area = ({ formData, setFormData }) => {
     setWeekCount(Number(option));
     formData.weeks = Number(option);
     setFormData(formData);
-    // console.log(formData);
   };
 
   return (

@@ -14,9 +14,13 @@ const Step2Area = ({ formData, setFormData }) => {
     "星期六",
   ];
   const time = ["08:00", "13:00", "18:00"];
-  const changeClickStyle2 = (e, pElm, tElm) => {
+  const changeClickStyle2 = (e, pElm, tElm, t) => {
     const otherItems = document.querySelectorAll(pElm);
+    const clearTime = document.querySelectorAll(t);
     otherItems.forEach((item) => {
+      item.classList.remove("selected");
+    });
+    clearTime.forEach((item) => {
       item.classList.remove("selected");
     });
     let targetElement = e.target;
@@ -26,6 +30,18 @@ const Step2Area = ({ formData, setFormData }) => {
     targetElement.classList.toggle("selected");
     formData.week = e.target.id;
     setFormData(formData);
+    if (formData.week) {
+      axios
+        .get(
+          `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}&weekDay=${formData.week}`
+        )
+        .then((res) => {
+          setTimeMode(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   const changeClickStyle3 = (e, pElm, tElm) => {
     const otherItems = document.querySelectorAll(pElm);
@@ -39,11 +55,28 @@ const Step2Area = ({ formData, setFormData }) => {
     targetElement.classList.toggle("selected");
     formData.time = e.target.id;
     setFormData(formData);
+    if (formData.week) {
+      axios
+        .get(
+          `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}&weekDay=${formData.week}&timespan=${formData.time}`
+        )
+        .then((res) => {
+          setDayMode(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   const [weekMode, setWeekMode] = useState([]);
+  const [timeMode, setTimeMode] = useState([1, 1, 1]);
+  const [dayMode, setDayMode] = useState([]);
+
   useEffect(() => {
     axios
-      .get("http://localhost:4107/book/free-time")
+      .get(
+        `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}`
+      )
       .then((res) => {
         setWeekMode(res.data);
       })
@@ -61,7 +94,7 @@ const Step2Area = ({ formData, setFormData }) => {
       <div className="d-flex container justify-content-center align-items-center book-step1">
         <div className="left">
           <div className="step2Top">
-            <h5>選擇服務時間</h5>
+            <h5>1. 選擇服務時間</h5>
             <div className="chooseTime">
               {weekMode.map((week, index) => {
                 if (week) {
@@ -71,7 +104,12 @@ const Step2Area = ({ formData, setFormData }) => {
                       key={index}
                       id={index}
                       onClick={(e) => {
-                        changeClickStyle2(e, ".service-week", "service-week");
+                        changeClickStyle2(
+                          e,
+                          ".service-week",
+                          "service-week",
+                          ".service-time"
+                        );
                       }}
                     >
                       {weeks[index]}
@@ -88,27 +126,39 @@ const Step2Area = ({ formData, setFormData }) => {
             </div>
           </div>
           <div className="step2Bottom">
-            <h5>選擇服務時段</h5>
+            <h5>2. 選擇服務時段</h5>
             <div className="chooseTime">
-              {time.map((time, index) => {
-                return (
-                  <div
-                    className="service-time"
-                    key={index}
-                    id={index}
-                    onClick={(e) => {
-                      changeClickStyle3(e, ".service-time", "service-time");
-                    }}
-                  >
-                    {time}
-                  </div>
-                );
+              {timeMode.map((t, index) => {
+                if (t) {
+                  return (
+                    <div
+                      className="service-time"
+                      key={index}
+                      id={index}
+                      onClick={(e) => {
+                        changeClickStyle3(e, ".service-time", "service-time");
+                      }}
+                    >
+                      {time[index]}
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div className="not-choose" key={index}>
+                      {time[index]}
+                    </div>
+                  );
+                }
               })}
             </div>
           </div>
         </div>
         <div className="right">
-          <MyCalendar formData={formData} setFormData={setFormData} />
+          <MyCalendar
+            formData={formData}
+            setFormData={setFormData}
+            freeDays={dayMode}
+          />
         </div>
       </div>
       <Button pre="/book" next="/book/book3" />
