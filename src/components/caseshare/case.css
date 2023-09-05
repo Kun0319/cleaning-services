@@ -146,6 +146,10 @@
 }
 
 
+.memberscore-overlay {
+    z-index: 9999;
+}
+
 
 
 @media (max-width: 992px) {

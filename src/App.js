@@ -28,6 +28,8 @@ import Member from "./pages/Member";
 import Order from "./components/dashboard/Order";
 import OrderDone from "./components/dashboard/OrderDone";
 import LoginPage from "./components/login/LoginPage";
+import Memberlogin from "./components/login/Memberlogin";
+import ChangePwd from "./components/login/ChangePwd";
 function App() {
   return (
     <BrowserRouter>
@@ -60,7 +62,7 @@ function App() {
             path="/dashboard/AdminOrder/:orderNumber"
             element={<AdminOrder />}
           />
-          <Route path="/dashboard/PersonalInfo/" element={<MemberInfo />} />
+          <Route path="/dashboard/PersonalInfo/" element={<PersonalInfo />} />
           <Route
             path="/dashboard/PersonalInfo/:uid"
             element={<PersonalInfo />}
@@ -80,6 +82,8 @@ function App() {
         <Route path="/member" element={<Member />}>
           <Route index="/member/" element={<Order />} />
           <Route path="/member/:orderNumber" element={<OrderDone />} />
+          <Route path="/member/memberinfo" element={<Memberlogin />} />
+          <Route path="/member/changepwd" element={<ChangePwd />} />
         </Route>
       </Routes>
     </BrowserRouter>
