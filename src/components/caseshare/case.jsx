@@ -1,8 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import './case.css';
 import CommentItem from "./CommentItem";
 import Navbar from "../navbar";
 import Footer from "../Footer";
+import Memberscore from "./memberscore";
+
 
 function CardContainer() {
   const cardData = [
@@ -13,14 +16,34 @@ function CardContainer() {
     { imgSrc: 'images/case-008.png', title: '廚房清潔', date: '2022/02' },
   ];
 
+  // 用useState管理卡片的翻轉狀態
+  const [flippedCards, setFlippedCards] = useState(cardData.map(() => false));
+  const handleCardClick = (index) => {
+    // 使用索引來切換對應卡片的翻轉狀態
+    const newFlippedCards = [...flippedCards];
+    newFlippedCards[index] = !newFlippedCards[index];
+    setFlippedCards(newFlippedCards);
+  };
+
   return (
     <div className="casecardcontainer">
       {cardData.map((card, index) => (
-        <div className="casecard" key={index}>
-          <img src={card.imgSrc} alt="" className="caseimg" />
-          <div className="casecontent">
-            <p>{card.title}</p>
-            <p>{card.date}</p>
+        <div
+          className={`casecard ${flippedCards[index] ? 'flipped' : ''}`}
+          key={index}
+          onClick={() => handleCardClick(index)}
+        >
+          <div className="flipper">
+            <div className="front">
+              <img src={card.imgSrc} alt="" className="caseimg" />
+              <div className="casecontent">
+                <p>{card.title}</p>
+                <p>{card.date}</p>
+              </div>
+            </div>
+            <div className="back">
+              <div></div>
+            </div>
           </div>
         </div>
       ))}
@@ -36,6 +59,8 @@ const Case = () => {
     { imgSrc: 'images/case-001.png', stars: 5, content: '推推！臥室的塵蟎都清除了，呼吸真新鮮！' }
   ];
 
+  
+
   return (
     <>
       <Navbar />
@@ -50,8 +75,6 @@ const Case = () => {
           <CommentItem key={index} {...comment} />
         ))}
       </div>
-
-      <Footer />
     </>
   );
 }
