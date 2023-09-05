@@ -3,8 +3,8 @@ import { useRef, useState, useEffect, useContext } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
 
 import axios from './axios'
-
-// const LOGIN_URL = '/dashboard/memberInfo';
+import { json } from "react-router-dom";
+const LOGIN_URL = '/dashboard/memberInfo';
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -27,12 +27,11 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email, password)
         try {
-            const response = await axios.post('/login',
+            const response = await axios.post(LOGIN_URL,
                 JSON.stringify({ email, password }),
                 {
-                    headers: { 'Content-Type': 'application/json' },
+
                     withCredentials: false
                 }
             );
@@ -81,7 +80,7 @@ const Login = () => {
 
 
                     <img src="./images/loginimg.png" className="loginimg" />
-                    <form onSubmit={handleSubmit} >
+                    <form action="" onSubmit={handleSubmit}>
                         <ul>
                             <li className="loginli">
                                 <img src="./images/nameicon.png" className="loginicon" />
@@ -89,7 +88,7 @@ const Login = () => {
                                 <input placeholder="請輸入帳號"
                                     type="text"
                                     ref={userRef}
-                                    id="email"
+                                    id="mail"
                                     autoComplete="off"
                                     onChange={(e) => setUseremail(e.target.value)}
                                     value={email}
