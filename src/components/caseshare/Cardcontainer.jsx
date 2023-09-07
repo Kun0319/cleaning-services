@@ -4,12 +4,12 @@ import './case.css';
 function CardContainer() {
 
     const cardData = [
-        { imgSrc: 'images/case-004.png', title: '客廳清潔', date: '2022/10' },
-        { imgSrc: 'images/case-005.png', title: '浴室清潔', date: '2022/10' },
-        { imgSrc: 'images/case-006.png', title: '餐廳清潔', date: '2022/09' },
-        { imgSrc: 'images/case-007.png', title: '客廳清潔', date: '2022/06' },
-        { imgSrc: 'images/case-004.png', title: '客廳清潔', date: '2022/06' },
-        { imgSrc: 'images/case-008.png', title: '廚房清潔', date: '2022/02' },
+        { imgSrcBefore: 'images/dirty-001.png', imgSrcAfter: 'images/case-004.png', title: '客廳清潔', date: '2022/10' },
+        { imgSrcBefore: 'images/dirty-002.png', imgSrcAfter: 'images/case-005.png', title: '廚房清潔', date: '2022/10' },
+        { imgSrcBefore: 'images/dirty-003.png', imgSrcAfter: 'images/case-006.png', title: '餐廳清潔', date: '2022/09' },
+        { imgSrcBefore: 'images/dirty-004.png', imgSrcAfter: 'images/case-007.png', title: '浴室清潔', date: '2022/06' },
+        { imgSrcBefore: 'images/dirty-005.png', imgSrcAfter: 'images/case-004.png', title: '客廳清潔', date: '2022/06' },
+        { imgSrcBefore: 'images/dirty-006.png', imgSrcAfter: 'images/case-008.png', title: '髒污清潔', date: '2022/02' },
     ];
 
     const [flippedCards, setFlippedCards] = useState(Array(cardData.length).fill(false));
@@ -30,14 +30,14 @@ function CardContainer() {
                 >
                     <div className="flipper">
                         <div className="front">
-                            <img src={card.imgSrc} alt="" className="caseimg" />
+                            <img src={card.imgSrcBefore} alt="" className="caseimg" />
                             <div className="casecontent">
                                 <p>{card.title}</p>
                                 <p>{card.date}</p>
                             </div>
                         </div>
                         <div className="back">
-                            <img src={card.imgSrc} alt="" className="caseimg" />
+                            <img src={card.imgSrcAfter} alt="" className="caseimg" />
                             <div className="casecontent">
                                 <p>{card.title}</p>
                                 <p>{card.date}</p>
@@ -51,3 +51,4 @@ function CardContainer() {
 }
 
 export default CardContainer;
+
