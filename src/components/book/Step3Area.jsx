@@ -1,81 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
+import axios from "axios";
 
 const Step3Area = ({ formData, setFormData }) => {
-  const adreessDist = [
-    {
-      dist: "中區",
-      v: "Central",
-    },
-    {
-      dist: "北區",
-      v: "North",
-    },
-    {
-      dist: "南區",
-      v: "South",
-    },
-    {
-      dist: "西區",
-      v: "West",
-    },
-    {
-      dist: "東區",
-      v: "Eastern",
-    },
-    {
-      dist: "北屯區",
-      v: "Beitun",
-    },
-    {
-      dist: "南屯區",
-      v: "Nantun",
-    },
-    {
-      dist: "西屯區",
-      v: "Xitun",
-    },
-    {
-      dist: "豐原區",
-      v: "Fengyuan",
-    },
-    {
-      dist: "大里區",
-      v: "Dali",
-    },
-    {
-      dist: "太平區",
-      v: "Taiping",
-    },
-    {
-      dist: "烏日區",
-      v: "Uri",
-    },
-    {
-      dist: "大雅區",
-      v: "Daya",
-    },
-    {
-      dist: "潭子區",
-      v: "Tanzi",
-    },
-    {
-      dist: "新社區",
-      v: "Xinshe",
-    },
-    {
-      dist: "神岡區",
-      v: "Shengang",
-    },
-    {
-      dist: "龍井區",
-      v: "Longjing",
-    },
-    {
-      dist: "沙鹿區",
-      v: "Shalu",
-    },
-  ];
+  let [dist, setDist] = useState([]);
   const checkPhone = () => {
     let phone = document.querySelector("#userPhone");
     document.querySelector("#userPhone+span").innerHTML =
@@ -97,8 +25,8 @@ const Step3Area = ({ formData, setFormData }) => {
     console.log(formData);
   };
   const saveDist = () => {
-    let dist = document.querySelector("#userAddress").value;
-    formData.rural = dist;
+    let userDist = document.querySelector("#userAddress").value;
+    formData.rural = userDist;
     setFormData(formData);
   };
   const saveAddress = () => {
@@ -111,6 +39,16 @@ const Step3Area = ({ formData, setFormData }) => {
     formData.note = note;
     setFormData(formData);
   };
+  useEffect(() => {
+    axios
+      .get("http://localhost:4107/book/dist")
+      .then((res) => {
+        setDist(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
 
   return (
     <>
@@ -173,7 +111,7 @@ const Step3Area = ({ formData, setFormData }) => {
                   id="userAddress"
                   onChange={saveDist}
                 >
-                  {adreessDist.map((item, index) => {
+                  {dist.map((item, index) => {
                     return (
                       <option value={item.dist} key={index}>
                         {item.dist}
