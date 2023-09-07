@@ -133,7 +133,7 @@ const OrderList = (props) => {
                     >
                       <td>{ornumber}</td>
                       <td>{employeeid}</td>
-                      <td>{new Date(ordertime).toLocaleDateString()}</td>
+                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
                       <td>{weeknumber}次</td>
                       <td>{money}</td>
@@ -163,7 +163,7 @@ const OrderList = (props) => {
                     >
                       <td>{ornumber}</td>
                       <td>{employeeid}</td>
-                      <td>{new Date(ordertime).toLocaleDateString()}</td>
+                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
                       <td>{weeknumber}次</td>
                       <td>{money}</td>

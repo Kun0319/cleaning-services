@@ -122,7 +122,7 @@ const Member = () => {
             </tr>
             <tr>
               <td>訂單編號:{ornumber}</td>
-              <td>服務日期:{new Date(date).toLocaleDateString()}</td>
+              <td>服務日期:{new Date(date).toLocaleDateString('en-CA')}</td>
             </tr>
             <tr>
               <td>訂單狀態:{handleOrderStatus(state)}</td>
@@ -144,8 +144,8 @@ const Member = () => {
               </td>
             </tr>
             <tr>
-              <td>訂單日期:{new Date(ordertime).toLocaleString()}</td>
-              <td>完成時間:{new Date(orderdone).toLocaleString()}</td>
+              <td>訂單日期:{new Date(ordertime).toLocaleString('en-CA')}</td>
+              <td>完成時間:{new Date(orderdone).toLocaleString('en-CA')}</td>
             </tr>
           </table>
           <h5 className="orderContent">備註:{note ?? "無"}</h5>
