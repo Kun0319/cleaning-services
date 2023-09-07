@@ -18,7 +18,7 @@ const OrderList = (props) => {
       try {
         const result = await axios.get("http://localhost:4107/orderlist");
         setOrderAPI(() => {
-          return result.data.filter((data) => data.orderStatus === "2");
+          return result.data.filter((data) => data.state === 2)
         });
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -26,15 +26,16 @@ const OrderList = (props) => {
     }
     fetchData();
   }, []);
-
+  console.log(orderAPI)
   // 搜尋訂單
   const searchItem = (searchvalue) => {
     setSearchInput(searchvalue);
     if (searchvalue !== "") {
       const filterData = orderAPI.filter((obj) => {
-        return Object.values(obj).includes(searchvalue);
+        return Object.values(obj).some((value) =>
+          String(value).toLowerCase().includes(searchvalue.toLowerCase())
+        );
       });
-      console.log(filterData);
       setData(filterData);
     } else {
       setData(orderAPI);
@@ -48,10 +49,10 @@ const OrderList = (props) => {
   };
 
   // 判斷訂單狀態
-  const handleOrderStatus = (orderStatus) => {
-    if (orderStatus === "0") {
+  const handleOrderStatus = (state) => {
+    if (state === "0") {
       return "新訂單";
-    } else if (orderStatus === "1") {
+    } else if (state === "1") {
       return "未完成";
     }
     return "已完成";
@@ -115,28 +116,28 @@ const OrderList = (props) => {
               .slice(start, number)
               .map(
                 ({
-                  orderNumber,
-                  memberId,
-                  orderDate,
-                  weekOfTimes,
-                  weekOfAmount,
-                  price,
-                  orderStatus,
+                  ornumber,
+                  employeeid,
+                  weeks,
+                  ordertime,
+                  weeknumber,
+                  money,
+                  state,
                 }) => {
                   return (
                     <tr
-                      key={memberId}
+                      key={ornumber}
                       onClick={() => {
-                        navigate(`/dashboard/AdminOrder/${memberId}`);
+                        navigate(`/dashboard/AdminOrder/${ornumber}`);
                       }}
                     >
-                      <td>{orderNumber}</td>
-                      <td>{memberId}</td>
-                      <td>{orderDate}</td>
-                      <td>{weekOfTimes}次&frasl;週</td>
-                      <td>{weekOfAmount}週</td>
-                      <td>{price}</td>
-                      <td>{handleOrderStatus(orderStatus)}</td>
+                      <td>{ornumber}</td>
+                      <td>{employeeid}</td>
+                      <td>{new Date(ordertime).toLocaleDateString()}</td>
+                      <td>{weeks}週</td>
+                      <td>{weeknumber}次</td>
+                      <td>{money}</td>
+                      <td>{handleOrderStatus(state)}</td>
                     </tr>
                   );
                 }
@@ -145,28 +146,28 @@ const OrderList = (props) => {
               .slice(start, number)
               .map(
                 ({
-                  orderNumber,
-                  memberId,
-                  orderDate,
-                  weekOfTimes,
-                  weekOfAmount,
-                  price,
-                  orderStatus,
+                  ornumber,
+                  employeeid,
+                  weeks,
+                  weeknumber,
+                  ordertime,
+                  money,
+                  state,
                 }) => {
                   return (
                     <tr
-                      key={memberId}
+                      key={ornumber}
                       onClick={() => {
-                        navigate(`/dashboard/AdminOrder/${memberId}`);
+                        navigate(`/dashboard/AdminOrder/${ornumber}`);
                       }}
                     >
-                      <td>{orderNumber}</td>
-                      <td>{memberId}</td>
-                      <td>{orderDate}</td>
-                      <td>{weekOfTimes}次&frasl;週</td>
-                      <td>{weekOfAmount}週</td>
-                      <td>{price}</td>
-                      <td>{handleOrderStatus(orderStatus)}</td>
+                      <td>{ornumber}</td>
+                      <td>{employeeid}</td>
+                      <td>{new Date(ordertime).toLocaleDateString()}</td>
+                      <td>{weeks}週</td>
+                      <td>{weeknumber}次</td>
+                      <td>{money}</td>
+                      <td>{handleOrderStatus(state)}</td>
                     </tr>
                   );
                 }

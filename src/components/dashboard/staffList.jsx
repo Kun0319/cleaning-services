@@ -34,7 +34,9 @@ const StaffList = (props) => {
     setSearchInput(searchvalue);
     if (searchvalue !== "") {
       const filterData = orderAPI.filter((obj) => {
-        return Object.values(obj).includes(searchvalue);
+        return Object.values(obj).some((value) =>
+          String(value).toLowerCase().includes(searchvalue.toLowerCase())
+        );
       });
       setData(filterData);
     } else {
@@ -86,20 +88,18 @@ const StaffList = (props) => {
             <th>姓名</th>
             <th>連絡電話</th>
             <th>Email</th>
-            <th>疫苗接種</th>
             <th>服務件數</th>
             <th>良民證</th>
-            <th>racheck</th>
+            <th>浣熊認證</th>
           </tr>
           <tr id="orderTh_RWD">
             <th>員工編號</th>
             <th>姓名</th>
             <th>連絡電話</th>
             <th>Email</th>
-            <th>疫苗接種</th>
             <th>服務件數</th>
             <th>良民證</th>
-            <th>racheck</th>
+            <th>浣熊認證</th>
           </tr>
         </thead>
         <tbody className="orderTbody">
@@ -109,11 +109,9 @@ const StaffList = (props) => {
               .map(
                 ({
                   employeeid,
-                  name,
-                  phone,
-                  email,
-                  photo,
-                  vaccine,
+                  employeename,
+                  employeephone,
+                  employeeemail,
                   goodid,
                   racheck,
                   cases,
@@ -126,14 +124,12 @@ const StaffList = (props) => {
                       }}
                     >
                       <td>{employeeid}</td>
-                      <td>{name}</td>
-                      <td>{phone}</td>
-                      <td>{email}</td>
-                      <td>{vaccine}</td>
+                      <td>{employeename}</td>
+                      <td>{employeephone}</td>
+                      <td>{employeeemail}</td>
                       <td>{cases}</td>
                       <td>{goodid}</td>
                       <td>{racheck}</td>
-                      <td>{photo}</td>
                     </tr>
                   );
                 }
@@ -143,11 +139,9 @@ const StaffList = (props) => {
               .map(
                 ({
                   employeeid,
-                  name,
-                  phone,
-                  email,
-                  photo,
-                  vaccine,
+                  employeename,
+                  employeephone,
+                  employeeemail,
                   goodid,
                   racheck,
                   cases,
@@ -160,14 +154,12 @@ const StaffList = (props) => {
                       }}
                     >
                       <td>{employeeid}</td>
-                      <td>{name}</td>
-                      <td>{phone}</td>
-                      <td>{email}</td>
-                      <td>{vaccine}</td>
+                      <td>{employeename}</td>
+                      <td>{employeephone}</td>
+                      <td>{employeeemail}</td>
                       <td>{cases}</td>
                       <td>{goodid}</td>
                       <td>{racheck}</td>
-                      <td>{photo}</td>
                     </tr>
                   );
                 }

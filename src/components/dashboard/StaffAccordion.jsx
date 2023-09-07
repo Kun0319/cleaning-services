@@ -9,20 +9,21 @@ function StaffAccordion({ staffListData, active, onClick }) {
     careful, //細心
     manner, //態度
     reply, //留言
-    phone,
-    email,
-    city,
-    rural,
-    address,
+    orphone,
+    oremail,
+    orcity,
+    orrural,
+    oraddress,
     uid,
-    name,
+    orname,
     money,
     pay,
     ordertime,
     orderdone,
     state,
+    note//備註
   } = staffListData;
-  console.log(efficiency);
+
   // 判斷訂單狀態
   const handleOrderStatus = (state) => {
     if (state === "0") {
@@ -33,33 +34,37 @@ function StaffAccordion({ staffListData, active, onClick }) {
     return "已完成";
   };
 
+  // 時間格式化
+  const ordt = new Date(ordertime).toLocaleString()
+  const ordd = new Date(orderdone).toLocaleString()
+
   return (
     <div
       className={`staff-accordion ${active ? "active" : ""}`}
       onClick={onClick}
     >
       <div className="staff-header">
-        {ornumber}/{name}/{city}
-        {rural}
-        {address}/{money}元/{ordertime}
+        {ornumber}_{orname}_{orcity}
+        {orrural}
+        {oraddress}_{money}元_{ordt}
       </div>
       {active && (
         <div className="staff-content">
           <ol>
             <li>員工編號:{employeeid}</li>
             <li>訂單編號:{ornumber}</li>
-            <li>不知道誰的手機:{phone}</li>
+            <li>會員手機:{orphone}</li>
             <li>訂單金額:{money}</li>
             <li>付款方式:{pay ? "信用卡" : "其他"}</li>
-            <li>不知道誰的信箱:{email}</li>
+            <li>會員信箱:{oremail}</li>
             <li>訂單狀態:{handleOrderStatus(state)}</li>
             <li>
-              訂單會員:{uid}.{name}
+              訂單會員:{uid}.{orname}
             </li>
             <li>
-              服務地址:{city}
-              {rural}
-              {address}
+              服務地址:{orcity}
+              {orrural}
+              {oraddress}
             </li>
           </ol>
           <ol>
@@ -95,8 +100,8 @@ function StaffAccordion({ staffListData, active, onClick }) {
                 style={{ clipPath: `inset(0 ${100 - manner * 20}% 0 0)` }}
               />
             </li>
-            <li>訂單日期:{ordertime}</li>
-            <li>完成時間:{orderdone}</li>
+            <li>訂單日期:{ordt}</li>
+            <li>完成時間:{ordd}</li>
           </ol>
           <h3>評論:{reply}</h3>
         </div>
