@@ -18,8 +18,7 @@ function MyCalendar({ formData, setFormData, freeDays }) {
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 1);
   const maxdate = new Date();
-  // maxdate.setMonth(maxdate.getMonth() + 2);
-  maxdate.setMonth(maxdate.getMonth() + 1);
+  maxdate.setMonth(maxdate.getMonth() + 2);
   let allowedDates = [];
   allowedDates = freeDays.map((d, index) => {
     console.log(d);
