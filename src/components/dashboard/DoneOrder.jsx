@@ -81,7 +81,7 @@ const OrderList = (props) => {
           <input
             className="aside-input"
             type="text"
-            placeholder="會員查詢"
+            placeholder="訂單查詢"
             onClick={handleClear}
             onChange={(e) => {
               searchItem(e.target.value);
