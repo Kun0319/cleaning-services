@@ -34,7 +34,7 @@ class navbar extends Component {
                 <div className='container  d-md-none d-none d-lg-block '>
                     <nav style={this.styles} className='d-flex'>
                         {/* logo */}
-                        <a href="/#"><img src='/images/logo.png' style={{ width: "10em", height: "6em" }} alt="" className='img-fluid' /></a>
+                        <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "10em", height: "6em" }} alt="" className='img-fluid' /></Navbar.Brand>
                         <div className='ms-auto d-flex align-items-center' >
                             <Link to="/about" style={this.atagstyle} className=' mx-3  text-decoration-none '>關於我們</Link>
                             <Link to="/service" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</Link>
@@ -43,7 +43,11 @@ class navbar extends Component {
                             <a href=""> <img src="images/info.png" alt=""
                                 className='m-3'
                                 style={{ width: "2rem" }} /></a>
-                            <button className='px-3 mx-2 btn  ' style={this.btn}><Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>登入</Link></button>
+                                <button className='px-3 mx-2 btn  ' style={this.btn}>
+                            <Link to="/loginpage" style={this.atagstyle} className='mx-3 px-3 mx-2  text-decoration-none'>
+                                    登入
+                            </Link>
+                                </button>
                         </div>
                     </nav >
                 </div>
@@ -61,7 +65,11 @@ class navbar extends Component {
                                 <Nav.Link href="/service" style={this.atagstyle}>服務項目</Nav.Link>
                                 <Nav.Link href="/case" style={this.atagstyle}>案例分享</Nav.Link>
                                 <Nav.Link href="/question" style={this.atagstyle}>常見問題</Nav.Link>
-                                <button className=' btn  px-3 mx-2' style={this.btn}><Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>登入</Link></button>
+                                    <button className=' btn  px-3 me-2' style={this.btn}>
+                                <Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>
+                                        登入
+                                </Link>
+                                    </button>
 
                             </Nav>
 
