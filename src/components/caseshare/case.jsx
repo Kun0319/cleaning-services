@@ -5,51 +5,8 @@ import CommentItem from "./CommentItem";
 import Navbar from "../navbar";
 import Footer from "../Footer";
 import Memberscore from "./memberscore";
+import CardContainer from "./Cardcontainer";
 
-
-function CardContainer() {
-  const cardData = [
-    { imgSrc: 'images/case-004.png', title: '客廳清潔', date: '2022/10' },
-    { imgSrc: 'images/case-005.png', title: '浴室清潔', date: '2022/10' },
-    { imgSrc: 'images/case-006.png', title: '餐廳清潔', date: '2022/09' },
-    { imgSrc: 'images/case-007.png', title: '客廳清潔', date: '2022/06' },
-    { imgSrc: 'images/case-008.png', title: '廚房清潔', date: '2022/02' },
-  ];
-
-  // 用useState管理卡片的翻轉狀態
-  const [flippedCards, setFlippedCards] = useState(cardData.map(() => false));
-  const handleCardClick = (index) => {
-    // 使用索引來切換對應卡片的翻轉狀態
-    const newFlippedCards = [...flippedCards];
-    newFlippedCards[index] = !newFlippedCards[index];
-    setFlippedCards(newFlippedCards);
-  };
-
-  return (
-    <div className="casecardcontainer">
-      {cardData.map((card, index) => (
-        <div
-          className={`casecard ${flippedCards[index] ? 'flipped' : ''}`}
-          key={index}
-          onClick={() => handleCardClick(index)}
-        >
-          <div className="flipper">
-            <div className="front">
-              <img src={card.imgSrc} alt="" className="caseimg" />
-              <div className="casecontent">
-                <p>{card.title}</p>
-                <p>{card.date}</p>
-              </div>
-            </div>
-            <div className="back">
-              <div></div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 
 const Case = () => {
@@ -58,8 +15,6 @@ const Case = () => {
     { imgSrc: 'images/case-002.png', stars: 4, content: '解決了我多日的煩腦，上班沒時間清掃廁所，謝謝！' },
     { imgSrc: 'images/case-001.png', stars: 5, content: '推推！臥室的塵蟎都清除了，呼吸真新鮮！' }
   ];
-
-  
 
   return (
     <>
