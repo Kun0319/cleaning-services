@@ -6,16 +6,13 @@ import Memberscore from './memberscore';
 function CommentItem({ imgSrc, stars, content }) {
   const [showMemberscore, setShowMemberscore] = useState(false);
 
-  const openMemberscore = () => {
-    setShowMemberscore(true);
-  };
-
-  const closeMemberscore = () => {
-    setShowMemberscore(false);
+  const toggleMemberscore = () => {
+    // 使用 setShowMemberscore 的前一個狀態值來切換 showMemberscore 的值
+    setShowMemberscore((prevShowMemberscore) => !prevShowMemberscore);
   };
 
   return (
-    <div className="commentitem" onClick={openMemberscore}>
+    <div className="commentitem" onClick={toggleMemberscore}>
       <div className="commentpeople">
         <img src={imgSrc} className="people" alt="People" />
         {Array.from({ length: stars }).map((_, starIndex) => (
@@ -30,8 +27,8 @@ function CommentItem({ imgSrc, stars, content }) {
       <p>{content}</p>
 
       {showMemberscore && (
-        <div className="memberscore-overlay" onClick={closeMemberscore}>
-          <Memberscore onClose={closeMemberscore} />
+        <div className="memberscore-overlay">
+          <Memberscore onClose={toggleMemberscore} />
         </div>
       )}
     </div>

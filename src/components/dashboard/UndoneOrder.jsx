@@ -18,7 +18,7 @@ const UndoneOrder = (props) => {
       try {
         const result = await axios.get("http://localhost:4107/orderlist");
         setOrderAPI(() => {
-          return result.data.filter((data) => data.orderStatus === "1");
+          return result.data.filter((data) => data.state === 1);
         });
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -32,9 +32,10 @@ const UndoneOrder = (props) => {
     setSearchInput(searchvalue);
     if (searchvalue !== "") {
       const filterData = orderAPI.filter((obj) => {
-        return Object.values(obj).includes(searchvalue);
+        return Object.values(obj).some((value) =>
+          String(value).toLowerCase().includes(searchvalue.toLowerCase())
+        );
       });
-      console.log(filterData);
       setData(filterData);
     } else {
       setData(orderAPI);
@@ -47,10 +48,10 @@ const UndoneOrder = (props) => {
     setSearchInput("");
   };
 
-  const handleOrderStatus = (orderStatus) => {
-    if (orderStatus === "0") {
+  const handleOrderStatus = (state) => {
+    if (state === 0) {
       return "新訂單";
-    } else if (orderStatus === "1") {
+    } else if (state === 1) {
       return "未完成";
     }
     return "已完成";
@@ -77,7 +78,7 @@ const UndoneOrder = (props) => {
           <input
             className="aside-input"
             type="text"
-            placeholder="會員查詢"
+            placeholder="訂單查詢"
             onClick={handleClear}
             onChange={(e) => {
               searchItem(e.target.value);
@@ -112,28 +113,28 @@ const UndoneOrder = (props) => {
               .slice(start, number)
               .map(
                 ({
-                  orderNumber,
-                  memberId,
-                  orderDate,
-                  weekOfTimes,
-                  weekOfAmount,
-                  price,
-                  orderStatus,
+                  ornumber,
+                  employeeid,
+                  ordertime,
+                  weeks,
+                  weeknumber,
+                  money,
+                  state,
                 }) => {
                   return (
                     <tr
-                      key={memberId}
+                      key={ornumber}
                       onClick={() => {
-                        navigate(`/dashboard/AdminOrder/${memberId}`);
+                        navigate(`/dashboard/AdminOrder/${ornumber}`);
                       }}
                     >
-                      <td>{orderNumber}</td>
-                      <td>{memberId}</td>
-                      <td>{orderDate}</td>
-                      <td>{weekOfTimes}次&frasl;週</td>
-                      <td>{weekOfAmount}週</td>
-                      <td>{price}</td>
-                      <td>{handleOrderStatus(orderStatus)}</td>
+                      <td>{ornumber}</td>
+                      <td>{employeeid}</td>
+                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
+                      <td>{weeks}週</td>
+                      <td>{weeknumber}次</td>
+                      <td>{money}</td>
+                      <td>{handleOrderStatus(state)}</td>
                     </tr>
                   );
                 }
@@ -142,28 +143,28 @@ const UndoneOrder = (props) => {
               .slice(start, number)
               .map(
                 ({
-                  orderNumber,
-                  memberId,
-                  orderDate,
-                  weekOfTimes,
-                  weekOfAmount,
-                  price,
-                  orderStatus,
+                  ornumber,
+                  employeeid,
+                  ordertime,
+                  weeks,
+                  weeknumber,
+                  money,
+                  state,
                 }) => {
                   return (
                     <tr
-                      key={memberId}
+                      key={ornumber}
                       onClick={() => {
-                        navigate(`/dashboard/AdminOrder/${memberId}`);
+                        navigate(`/dashboard/AdminOrder/${ornumber}`);
                       }}
                     >
-                      <td>{orderNumber}</td>
-                      <td>{memberId}</td>
-                      <td>{orderDate}</td>
-                      <td>{weekOfTimes}次&frasl;週</td>
-                      <td>{weekOfAmount}週</td>
-                      <td>{price}</td>
-                      <td>{handleOrderStatus(orderStatus)}</td>
+                      <td>{ornumber}</td>
+                      <td>{employeeid}</td>
+                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
+                      <td>{weeks}週</td>
+                      <td>{weeknumber}週</td>
+                      <td>{money}</td>
+                      <td>{handleOrderStatus(state)}</td>
                     </tr>
                   );
                 }

@@ -34,7 +34,9 @@ const Banlist = (props) => {
     setSearchInput(searchvalue);
     if (searchvalue !== "") {
       const filterData = orderAPI.filter((obj) => {
-        return Object.values(obj).includes(searchvalue);
+        return Object.values(obj).some((value) =>
+          String(value).toLowerCase().includes(searchvalue.toLowerCase())
+        );
       });
       setData(filterData);
     } else {

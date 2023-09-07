@@ -34,9 +34,10 @@ const OrderList = (props) => {
     setSearchInput(searchvalue);
     if (searchvalue !== "") {
       const filterData = orderAPI.filter((obj) => {
-        return Object.values(obj).includes(searchvalue);
+        return Object.values(obj).some((value) =>
+          String(value).toLowerCase().includes(searchvalue.toLowerCase())
+        );
       });
-      console.log(filterData);
       setData(filterData);
     } else {
       setData(orderAPI);
@@ -82,7 +83,7 @@ const OrderList = (props) => {
           <input
             className="aside-input"
             type="text"
-            placeholder="會員查詢"
+            placeholder="訂單查詢"
             onClick={handleClear}
             onChange={(e) => {
               searchItem(e.target.value);
@@ -117,28 +118,28 @@ const OrderList = (props) => {
               .slice(start, number)
               .map(
                 ({
-                  orderNumber,
-                  memberId,
-                  orderDate,
-                  weekOfTimes,
-                  weekOfAmount,
-                  price,
-                  orderStatus,
+                  ornumber,
+                  employeeid,
+                  ordertime,
+                  weeks,
+                  weeknumber,
+                  money,
+                  state,
                 }) => {
                   return (
                     <tr
-                      key={memberId}
+                      key={ornumber}
                       onClick={() => {
-                        navigate(`/dashboard/AdminOrder/${memberId}`);
+                        navigate(`/dashboard/AdminOrder/${ornumber}`);
                       }}
                     >
-                      <td>{orderNumber}</td>
-                      <td>{memberId}</td>
-                      <td>{orderDate}</td>
-                      <td>{weekOfTimes}次&frasl;週</td>
-                      <td>{weekOfAmount}週</td>
-                      <td>{price}</td>
-                      <td>{handleOrderStatus(orderStatus)}</td>
+                      <td>{ornumber}</td>
+                      <td>{employeeid}</td>
+                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
+                      <td>{weeks}週</td>
+                      <td>{weeknumber}次</td>
+                      <td>{money}</td>
+                      <td>{handleOrderStatus(state)}</td>
                     </tr>
                   );
                 }
@@ -147,28 +148,28 @@ const OrderList = (props) => {
               .slice(start, number)
               .map(
                 ({
-                  orderNumber,
-                  memberId,
-                  orderDate,
-                  weekOfTimes,
-                  weekOfAmount,
-                  price,
-                  orderStatus,
+                  ornumber,
+                  employeeid,
+                  ordertime,
+                  weeks,
+                  weeknumber,
+                  money,
+                  state,
                 }) => {
                   return (
                     <tr
-                      key={memberId}
+                      key={ornumber}
                       onClick={() => {
-                        navigate(`/dashboard/AdminOrder/${orderNumber}`);
+                        navigate(`/dashboard/AdminOrder/${ornumber}`);
                       }}
                     >
-                      <td>{orderNumber}</td>
-                      <td>{memberId}</td>
-                      <td>{orderDate}</td>
-                      <td>{weekOfTimes}次&frasl;週</td>
-                      <td>{weekOfAmount}週</td>
-                      <td>{price}</td>
-                      <td>{handleOrderStatus(orderStatus)}</td>
+                      <td>{ornumber}</td>
+                      <td>{employeeid}</td>
+                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
+                      <td>{weeks}週</td>
+                      <td>{weeknumber}週</td>
+                      <td>{money}</td>
+                      <td>{handleOrderStatus(state)}</td>
                     </tr>
                   );
                 }

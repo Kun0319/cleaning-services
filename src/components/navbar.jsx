@@ -43,7 +43,7 @@ class navbar extends Component {
                             <a href=""> <img src="images/info.png" alt=""
                                 className='m-3'
                                 style={{ width: "2rem" }} /></a>
-                            <button className='px-3 mx-2 btn  ' style={this.btn}>登入</button>
+                            <button className='px-3 mx-2 btn  ' style={this.btn}><Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>登入</Link></button>
                         </div>
                     </nav >
                 </div>
@@ -61,7 +61,7 @@ class navbar extends Component {
                                 <Nav.Link href="/service" style={this.atagstyle}>服務項目</Nav.Link>
                                 <Nav.Link href="/case" style={this.atagstyle}>案例分享</Nav.Link>
                                 <Nav.Link href="/question" style={this.atagstyle}>常見問題</Nav.Link>
-                                <button className=' btn  px-3 mx-2' style={this.btn}>登入</button>
+                                <button className=' btn  px-3 mx-2' style={this.btn}><Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>登入</Link></button>
 
                             </Nav>
 
