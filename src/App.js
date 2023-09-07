@@ -90,10 +90,10 @@ function App() {
           <Route path="/dashboard/UndoneOrder/" element={<UndoneOrder />} />
           <Route path="/dashboard/DoneOrder/" element={<DoneOrder />} />
           <Route
-            path="/dashboard/AdminOrder/:orderNumber"
+            path="/dashboard/AdminOrder/:ornumber"
             element={<AdminOrder />}
           />
-          <Route path="/dashboard/PersonalInfo/" element={<PersonalInfo />} />
+          <Route path="/dashboard/PersonalInfo/" element={<MemberInfo />} />
           <Route
             path="/dashboard/PersonalInfo/:uid"
             element={<PersonalInfo />}

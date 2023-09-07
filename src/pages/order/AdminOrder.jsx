@@ -1,54 +1,53 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../../components/member/member.css";
 const Member = () => {
-  const { order } = useParams();
+  const { ornumber } = useParams();
   const [orderData, setOrderData] = useState({});
   //接收資料
   useEffect(() => {
     async function fetchData() {
       try {
         const result = await axios.get(
-          `http://localhost:4107/AdminOrder/${order}`
+          `http://localhost:4107/AdminOrder/${ornumber}`
         );
-        setOrderData(result.data);
+        setOrderData(result.data[0]);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
     fetchData();
-  }, [order]);
-
+  }, [ornumber]);
+  console.log(orderData)
   const {
-    memberId,
-    memberName,
-    IDnum,
-    email,
-    phone,
-    city,
-    adreess,
-    staffName,
-    staffId,
-    staffPhone,
-    staffEmail,
-    time_W,
-    time_T,
-    common,
+    uid,
+    orname,
+    oremail,
+    orphone,
+    orcity,
+    orrural,
+    oraddress,
+    money,
     pay,
-    weekOfTimes,
-    orderDate,
-    orderNumber,
-    orderStatus,
-    weekOfAmount,
-    finish,
-    price,
+    ordertime,
+    orderdone,
+    state,
+    note,
+    employeeid,
+    date,
+    time,
+    weeks,
+    weeknumber,
+    employeename,
+    employeephone,
+    employeeemail
   } = orderData;
 
-  const handleOrderStatus = (orderStatus) => {
-    if (orderStatus === 0) {
+  const handleOrderStatus = (state) => {
+    if (state === 0) {
       return "新訂單";
-    } else if (orderStatus === 1) {
+    } else if (state === 1) {
       return "未完成";
     }
     return "已完成";
@@ -74,85 +73,91 @@ const Member = () => {
           <div className="orderContent">
             <table border={1}>
               <tr>
-                <th style={{ fontWeight: "600" }}>訂單資料</th>
-                <th></th>
+                <th style={{ fontWeight: "600" }}>
+                  <Link
+                    to={`/dashboard/PersonalInfo/${uid}`}
+                    className="Link-decoration">訂購人資料</Link>
+                </th>
               </tr>
               <tr>
-                <td>訂單編號:{orderNumber}</td>
-                <td>服務星期:{time_W}</td>
+                <td>會員編號:{uid}</td>
               </tr>
               <tr>
-                <td>訂單狀態:{handleOrderStatus(orderStatus)}</td>
-                <td>服務時段:{time_T}</td>
+                <td>訂購人姓名:{orname}</td>
               </tr>
               <tr>
-                <td>付款方式:{pay}</td>
-                <td>服務週數:{weekOfAmount}</td>
+                <td>聯絡方式:{orphone}</td>
               </tr>
               <tr>
-                <td>訂單金額:{price}</td>
-                <td>服務次數:{weekOfTimes}</td>
-              </tr>
-              <tr>
-                <td>訂單日期:{orderDate}</td>
-                <td>
-                  完成次數:<span style={{ color: "red" }}>{finish}</span>/
-                  {weekOfAmount}
-                </td>
+                <td>Email:{oremail}</td>
               </tr>
             </table>
             <table border={1}>
               <tr>
-                <th style={{ fontWeight: "600" }}>會員資料</th>
+                <th style={{ fontWeight: "600" }}>
+                  <Link
+                    to={`/dashboard/StaffList/${employeeid}`}
+                    className="Link-decoration">清潔員</Link>
+                </th>
               </tr>
               <tr>
-                <td>會員編號:{memberId}</td>
+                <td>員工編號:{employeeid}</td>
               </tr>
               <tr>
-                <td>會員姓名:{memberName}</td>
+                <td>姓名:{employeename}</td>
               </tr>
               <tr>
-                <td>身分證字號:{IDnum}</td>
+                <td>聯絡方式:{employeephone}</td>
               </tr>
               <tr>
-                <td>手機:{phone}</td>
-              </tr>
-              <tr>
-                <td>Email:{email}</td>
-              </tr>
-              <tr>
-                <td>地址:{city + adreess}</td>
-              </tr>
-            </table>
-            <table border={1}>
-              <tr>
-                <th style={{ fontWeight: "600" }}>清潔員</th>
-              </tr>
-              <tr>
-                <td>編號:{staffId}</td>
-              </tr>
-              <tr>
-                <td>姓名:{staffName}</td>
-              </tr>
-              <tr>
-                <td>手機:{staffPhone}</td>
-              </tr>
-              <tr>
-                <td>Email:{staffEmail}</td>
+                <td>Email:{employeeemail}</td>
               </tr>
             </table>
           </div>
-          <h5 className="orderContent">備註:{common}</h5>
+          {/* 訂單資訊 */}
+          <table border={1}>
+            <tr>
+              <th style={{ fontWeight: "600" }}>訂單資料</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td>訂單編號:{ornumber}</td>
+              <td>服務日期:{new Date(date).toLocaleDateString()}</td>
+            </tr>
+            <tr>
+              <td>訂單狀態:{handleOrderStatus(state)}</td>
+              <td>服務時段:{time}</td>
+            </tr>
+            <tr>
+              <td>付款方式:{pay ? "信用卡" : "無"}</td>
+              <td>服務週數:{weeks}</td>
+            </tr>
+            <tr>
+              <td>訂單金額:{money}元</td>
+              <td>服務次數:{weeknumber}</td>
+            </tr>
+            <tr>
+              <td>清潔地址:{orcity + orrural + oraddress}</td>
+              <td>
+                完成次數:<span style={{ color: "red" }}>{weeknumber}</span>/
+                {weeks}
+              </td>
+            </tr>
+            <tr>
+              <td>訂單日期:{new Date(ordertime).toLocaleString()}</td>
+              <td>完成時間:{new Date(orderdone).toLocaleString()}</td>
+            </tr>
+          </table>
+          <h5 className="orderContent">備註:{note ?? "無"}</h5>
         </div>
-
+        {/* 按鈕 */}
         <div className="btncontain">
-          {/* 送出後更改訂單狀態 */}
           <button
-            className={finish !== weekOfAmount ? "notClear" : ""}
-            disabled={finish !== weekOfAmount ? true : false}
+            className={weeks !== weeknumber ? "notClear" : ""}
+            disabled={weeks !== weeknumber ? true : false}
             onClick={() => {
               setOrderData((status) => {
-                return { ...status, orderStatus: 2 };
+                return { ...status, state: 2 };
               });
               handleOrderUpdata();
             }}
@@ -164,10 +169,10 @@ const Member = () => {
               setOrderData((count) => {
                 return {
                   ...count,
-                  finish:
-                    count.finish + 1 <= weekOfAmount
-                      ? count.finish + 1
-                      : count.finish,
+                  weeknumber:
+                    count.weeknumber + 1 <= weeks
+                      ? count.weeknumber + 1
+                      : count.weeknumber,
                 };
               });
               handleOrderUpdata();

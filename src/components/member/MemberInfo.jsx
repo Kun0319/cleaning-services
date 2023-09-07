@@ -34,7 +34,9 @@ const MemberInfo = (props) => {
     setSearchInput(searchvalue);
     if (searchvalue !== "") {
       const filterData = orderAPI.filter((obj) => {
-        return Object.values(obj).includes(searchvalue);
+        return Object.values(obj).some((value) =>
+          String(value).toLowerCase().includes(searchvalue.toLowerCase())
+        );
       });
       setData(filterData);
     } else {
@@ -84,7 +86,6 @@ const MemberInfo = (props) => {
           <tr id="orderTh">
             <th>會員編號</th>
             <th>姓名</th>
-            <th>身分證</th>
             <th>連絡電話</th>
             <th>縣市</th>
             <th>地區</th>
@@ -93,7 +94,6 @@ const MemberInfo = (props) => {
           <tr id="orderTh_RWD">
             <th>會員編號</th>
             <th>姓名</th>
-            <th>身分證</th>
             <th>連絡電話</th>
             <th>縣市</th>
             <th>地區</th>
@@ -105,7 +105,7 @@ const MemberInfo = (props) => {
             ? data
               .slice(start, number)
               .map(
-                ({ uid, name, phone, id, city, rural, address, userid }) => {
+                ({ uid, name, phone, city, rural, address, userid }) => {
                   return (
                     <tr
                       key={uid}
@@ -115,7 +115,6 @@ const MemberInfo = (props) => {
                     >
                       <td>{userid}</td>
                       <td>{name}</td>
-                      <td>{id}</td>
                       <td>{phone}</td>
                       <td>{city}</td>
                       <td>{rural}</td>
@@ -127,7 +126,7 @@ const MemberInfo = (props) => {
             : orderAPI
               .slice(start, number)
               .map(
-                ({ uid, name, phone, id, city, rural, address, userid }) => {
+                ({ uid, name, phone, city, rural, address, userid }) => {
                   return (
                     <tr
                       key={uid}
@@ -137,7 +136,6 @@ const MemberInfo = (props) => {
                     >
                       <td>{userid}</td>
                       <td>{name}</td>
-                      <td>{id}</td>
                       <td>{phone}</td>
                       <td>{city}</td>
                       <td>{rural}</td>

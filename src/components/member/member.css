@@ -123,21 +123,35 @@
   padding: 60px 48px;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
 }
+
 .orderContent {
+  color: #664d03;
   display: flex;
   justify-content: space-around;
   font-weight: 400;
-  color: #664d03;
-  line-height: 2;
+  line-height: 1.5;
   gap: 24px;
 }
+
 .orderContainer table tr td {
   border: 1px solid #664d03;
 }
+
+.orderContainer table {
+  width: 100%;
+  color: #664d03;
+}
+
+.orderContainer table td {
+  width: 50%;
+}
+
 .notBorder {
   border: none;
 }
+
 .staffOrderList {
   display: flex;
   flex-direction: column;
@@ -151,21 +165,25 @@
   position: absolute;
   top: 25%;
 }
+
 .orderContent li:nth-of-type(even) {
   border-bottom: 3px solid #997404;
   line-height: 1;
 }
+
 .orderContent li:nth-of-type(odd) {
   font-weight: 700;
 }
+
 .btncontain {
   padding-top: 20px;
 }
 
-.btncontain > .notClear {
+.btncontain>.notClear {
   background: rgba(130, 100, 56, 0.46);
 }
-.btncontain > button {
+
+.btncontain>button {
   color: white;
   width: 94px;
   height: 42px;
@@ -206,11 +224,12 @@
   text-align: center;
 }
 
-.memtbody > tr:nth-child(1) {
+.memtbody>tr:nth-child(1) {
   border: 1px solid #fff8e1;
   background: #fff8e1;
   border-radius: 30px;
 }
+
 @media screen and (max-width: 997px) {
   .orderContent {
     flex-direction: column;
