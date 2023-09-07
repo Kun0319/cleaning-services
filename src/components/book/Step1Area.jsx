@@ -165,7 +165,7 @@ const Step1Area = ({ formData, setFormData }) => {
                           .classList.remove("selected");
                       }}
                       score={p.total_efficiency}
-                      name={p.name}
+                      name={p.employeename}
                       img={p.photo}
                       key={index}
                       id={`RA${(index + 1).toString().padStart(3, 0)}`}

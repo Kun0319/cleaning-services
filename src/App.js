@@ -33,6 +33,7 @@ import Memberlogin from "./components/login/Memberlogin";
 import ChangePwd from "./components/login/ChangePwd";
 function App() {
   const [formData, setFormData] = useState({
+    uid: null,
     weeks: 4,
     employeeid: null,
     week: null,
@@ -45,7 +46,6 @@ function App() {
     rural: "中區",
     address: null,
     note: null,
-    pay: "1",
   });
   return (
     <BrowserRouter>
