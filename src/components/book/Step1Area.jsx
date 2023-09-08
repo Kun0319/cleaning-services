@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Member from "./Member";
 import Button from "./Button";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,11 +7,11 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
 
 const Step1Area = ({ formData, setFormData }) => {
+  const navigate = useNavigate();
   const [membersData, setMemberData] = useState([]);
   const [weekCount, setWeekCount] = useState(4);
   const [weekPrice, setWeekPrice] = useState(8000);
-  const [nextBtn, setNextBtn] = useState('#');
-  const checkDataNum = document.getElementsByClassName('selected');
+  const checkDataNum = document.getElementsByClassName("selected");
 
   const areaInfo = [
     {
@@ -51,11 +52,6 @@ const Step1Area = ({ formData, setFormData }) => {
     targetElement.classList.toggle("selected");
     formData.employeeid = targetElement.id;
     setFormData(formData);
-    if (checkDataNum.length === 1){
-      setNextBtn('/book/book2');
-    }else{
-      setNextBtn('#');
-    }
   };
   useEffect(() => {
     axios
@@ -84,10 +80,13 @@ const Step1Area = ({ formData, setFormData }) => {
     formData.weeks = Number(option);
     setFormData(formData);
   };
-  let checkForm = () => {
-    if (checkDataNum.length !== 1)
-      alert('請完成表單填寫!');
-  }
+  let checkForm = (e) => {
+    e.preventDefault();
+    if (checkDataNum.length === 1) navigate("/book/book2");
+    else {
+      alert("請完成表單填寫!");
+    }
+  };
 
   return (
     <form
@@ -188,7 +187,7 @@ const Step1Area = ({ formData, setFormData }) => {
         </div>
       </div>
       {/* next="/book/book2" */}
-      <Button class="not-press" next={nextBtn} onClick={checkForm} />
+      <Button class="not-press" next="/book/book2" onClick={checkForm} />
     </form>
   );
 };

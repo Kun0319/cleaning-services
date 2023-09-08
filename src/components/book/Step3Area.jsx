@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import axios from "axios";
 
 const Step3Area = ({ formData, setFormData }) => {
-  const [nextBtn, setNextBtn] = useState('#');
-  const checkDataNum =document.querySelectorAll('#clientInfo input:not(#same):not(#notes)');
-  let userInputs = [];
+  const navigate = useNavigate();
+  const checkDataNum = document.querySelectorAll(
+    "#clientInfo input:not(#same):not(#notes)"
+  );
 
   let [dist, setDist] = useState([]);
   const checkPhone = () => {
@@ -51,24 +53,18 @@ const Step3Area = ({ formData, setFormData }) => {
       .catch((err) => {
         console.log(err);
       });
-  },[]);
-  useEffect(()=>{
-    checkDataNum.forEach(elm=>{
-      if(elm.value){
-        userInputs.push(elm.value);
-      }
-      if (userInputs.length === 5){
-        setNextBtn('/book/book4');
-      }else{
-        setNextBtn('#');
-      }
-    },[formData])
-
-  })
-  let checkForm = () => {
-    if (userInputs.length !== 5)
-      alert('請完成表單填寫!');
-  }
+  }, []);
+  let checkForm = (e) => {
+    e.preventDefault();
+    let check = Array.from(checkDataNum).every((ele) => {
+      return ele.value;
+    });
+    if (check) {
+      navigate("/book/book4");
+    } else {
+      alert("請完成表單填寫!");
+    }
+  };
 
   return (
     <>
@@ -85,7 +81,9 @@ const Step3Area = ({ formData, setFormData }) => {
             </div>
             <div>
               <img src="/images/staffInfo-raccoon.png" alt="icon" />
-              <label htmlFor="userName">姓　　名 <span className="text-danger">*</span></label>
+              <label htmlFor="userName">
+                姓　　名 <span className="text-danger">*</span>
+              </label>
               <input
                 type="text"
                 placeholder="請輸入姓名"
@@ -98,7 +96,9 @@ const Step3Area = ({ formData, setFormData }) => {
             </div>
             <div>
               <img src="/images/phone.png" alt="icon" />
-              <label htmlFor="userPhone">手機號碼 <span className="text-danger">*</span></label>
+              <label htmlFor="userPhone">
+                手機號碼 <span className="text-danger">*</span>
+              </label>
               <input
                 id="userPhone"
                 type="tel"
@@ -111,7 +111,9 @@ const Step3Area = ({ formData, setFormData }) => {
             </div>
             <div>
               <img src="/images/mail.png" alt="icon" />
-              <label htmlFor="userMail">電子信箱 <span className="text-danger">*</span></label>
+              <label htmlFor="userMail">
+                電子信箱 <span className="text-danger">*</span>
+              </label>
               <input
                 id="userMail"
                 type="email"
@@ -122,7 +124,9 @@ const Step3Area = ({ formData, setFormData }) => {
             </div>
             <div className="d-flex align-items-center flex-wrap book3-address ">
               <img src="/images/address.png" alt="icon" />
-              <label htmlFor="userAddress">清掃地址 <span className="text-danger">*</span></label>
+              <label htmlFor="userAddress">
+                清掃地址 <span className="text-danger">*</span>
+              </label>
 
               <div className="d-flex align-items-center detail-address ">
                 <input type="text" value="台中市" id="cleaning-city" />
@@ -156,7 +160,7 @@ const Step3Area = ({ formData, setFormData }) => {
             </div>
           </div>
         </div>
-        <Button pre="/book/book2" next={nextBtn} onClick={checkForm} />
+        <Button pre="/book/book2" next="/book/book4" onClick={checkForm} />
       </form>
     </>
   );

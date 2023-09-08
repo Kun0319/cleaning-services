@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import "../../pages/book/book_style.css";
 
-function MyCalendar({ formData, setFormData, freeDays, setNextBtn, nextBtn, checkDataNum }) {
+// setNextBtn, nextBtn,
+function MyCalendar({ formData, setFormData, freeDays, checkDataNum }) {
   // console.log(freeDays);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -14,11 +15,11 @@ function MyCalendar({ formData, setFormData, freeDays, setNextBtn, nextBtn, chec
       .toString()
       .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
     setFormData(formData);
-    if (checkDataNum.length === 2) {
-      setNextBtn('/book/book3');
-    } else {
-      setNextBtn('#');
-    }
+    // if (checkDataNum.length === 2) {
+    //   setNextBtn('/book/book3');
+    // } else {
+    //   setNextBtn('#');
+    // }
   };
 
   const tomorrow = new Date();
@@ -35,10 +36,13 @@ function MyCalendar({ formData, setFormData, freeDays, setNextBtn, nextBtn, chec
     );
   };
   const tileClassName = ({ date }) => {
-    if (selectedDate && date.toDateString() === selectedDate.toDateString() && date.toDateString() !== new Date().toDateString()) {
+    if (
+      selectedDate &&
+      date.toDateString() === selectedDate.toDateString() &&
+      date.toDateString() !== new Date().toDateString()
+    ) {
       return "selected";
-    } else
-      return "";
+    } else return "";
   };
   return (
     <div className="calendar-container">
