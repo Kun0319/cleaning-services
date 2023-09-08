@@ -477,9 +477,7 @@
   line-height: 16px;
   border-radius: 100%;
 }
-.react-calendar__tile--now {
-  text-decoration: underline;
-}
+
 .react-calendar__tile:enabled {
   color: #664d03;
 }
@@ -505,6 +503,10 @@
 }
 .step2Top > .chooseTime div:first-child {
   display: none;
+}
+.react-calendar__tile--now {
+  text-decoration: underline;
+  /* background-color: #82643800; */
 }
 
 /* RWD */

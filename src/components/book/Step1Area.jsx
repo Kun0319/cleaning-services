@@ -6,6 +6,12 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
 
 const Step1Area = ({ formData, setFormData }) => {
+  const [membersData, setMemberData] = useState([]);
+  const [weekCount, setWeekCount] = useState(4);
+  const [weekPrice, setWeekPrice] = useState(8000);
+  const [nextBtn, setNextBtn] = useState('#');
+  const checkDataNum = document.getElementsByClassName('selected');
+
   const areaInfo = [
     {
       area: "客廳",
@@ -45,12 +51,12 @@ const Step1Area = ({ formData, setFormData }) => {
     targetElement.classList.toggle("selected");
     formData.employeeid = targetElement.id;
     setFormData(formData);
-    console.log(formData.employeeid);
-    // console.log(formData);
+    if (checkDataNum.length === 1){
+      setNextBtn('/book/book2');
+    }else{
+      setNextBtn('#');
+    }
   };
-  const [membersData, setMemberData] = useState([]);
-  const [weekCount, setWeekCount] = useState(4);
-  const [weekPrice, setWeekPrice] = useState(8000);
   useEffect(() => {
     axios
       .get(`http://localhost:4107/book/price?week=${weekCount}`)
@@ -78,6 +84,10 @@ const Step1Area = ({ formData, setFormData }) => {
     formData.weeks = Number(option);
     setFormData(formData);
   };
+  let checkForm = () => {
+    if (checkDataNum.length !== 1)
+      alert('請完成表單填寫!');
+  }
 
   return (
     <form
@@ -177,7 +187,8 @@ const Step1Area = ({ formData, setFormData }) => {
           </div>
         </div>
       </div>
-      <Button class="not-press" next="/book/book2" />
+      {/* next="/book/book2" */}
+      <Button class="not-press" next={nextBtn} onClick={checkForm} />
     </form>
   );
 };
