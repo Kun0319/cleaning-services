@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import axios from "axios";
 
@@ -12,19 +13,18 @@ const Step4Area = ({ formData, setFormData }) => {
     "星期五",
     "星期六",
   ];
+  const navigate = useNavigate();
   const time = ["08:00", "13:00", "18:00"];
   const [price, setPrice] = useState("");
-
-  function checkPay() {
+  let checkForm = (e) => {
+    e.preventDefault();
     const cardNumber = "0000-1111-2222-3333";
     const monthYear = "10/23";
     const securityCode = "357";
-    let nextBtn = document.querySelector(".bookbtns>a:nth-child(2)");
-    console.log(nextBtn);
     let cardInput = document.querySelectorAll(
       ".creaditCard input[type='text']"
     );
-    console.log(cardInput);
+    let agreeCheck = document.querySelector("#agree");
     let card = ``;
     for (let i = 0; i < 4; i++) {
       card += cardInput[i].value + "-";
@@ -35,12 +35,16 @@ const Step4Area = ({ formData, setFormData }) => {
       cardInput[4].value === monthYear &&
       cardInput[5].value === securityCode
     ) {
+      if (!agreeCheck.checked) alert("請確實閱讀並勾選服務條款與隱私權政策");
       setTimeout(() => {
         alert("付款成功！");
-        window.location.replace("/book/book5");
+        navigate("/book/book5");
       }, 2000);
+    } else {
+      alert("付款失敗!");
     }
-  }
+  };
+
   useEffect(() => {
     axios
       .get(`http://localhost:4107/book/price?week=${formData.weeks}`)
@@ -165,7 +169,7 @@ const Step4Area = ({ formData, setFormData }) => {
           </div>
         </div>
         {/* next="/book/book5" */}
-        <Button pre="/book/book3" onClick={checkPay} />
+        <Button pre="/book/book3" next="/book/book5" onClick={checkForm} />
       </form>
     </>
   );
