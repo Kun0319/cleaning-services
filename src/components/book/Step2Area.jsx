@@ -90,7 +90,6 @@ const Step2Area = ({ formData, setFormData }) => {
   const checkForm = () => {
     if (checkDataNum.length !== 3)
       alert('請完成表單填寫!');
-    console.log(formData);
   }
 
   return (

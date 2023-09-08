@@ -39,6 +39,8 @@ const Step4Area = ({ formData, setFormData }) => {
         alert("付款成功！");
         window.location.replace("/book/book5");
       }, 2000);
+    }else{
+      alert('付款失敗!');
     }
   }
   useEffect(() => {
