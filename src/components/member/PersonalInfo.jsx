@@ -23,6 +23,7 @@ const PersonalInfo = () => {
   const [upAdmin, setUpAdmin] = useState("")
   const [upBirthDay, setUpBirthDay] = useState("")
   const [upRural, setUpRural] = useState("")
+  const [dist, setdist] = useState("")
 
 
   //接收資料
@@ -44,6 +45,7 @@ const PersonalInfo = () => {
         setUpRural(result.data.data[0].rural)
         setUpAdmin(result.data.data[0].admin)
         setUpPassWord(result.data.data[0].password)
+        setdist(result.data.address)
         setUpBirthDay(new Date(result.data.data[0].birthday).toLocaleDateString('en-CA'))
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -130,80 +132,6 @@ const PersonalInfo = () => {
     }
   }
 
-  const adreessDist = [
-    {
-      dist: "中區",
-      v: "Central",
-    },
-    {
-      dist: "北區",
-      v: "North",
-    },
-    {
-      dist: "南區",
-      v: "South",
-    },
-    {
-      dist: "西區",
-      v: "West",
-    },
-    {
-      dist: "東區",
-      v: "Eastern",
-    },
-    {
-      dist: "北屯區",
-      v: "Beitun",
-    },
-    {
-      dist: "南屯區",
-      v: "Nantun",
-    },
-    {
-      dist: "西屯區",
-      v: "Xitun",
-    },
-    {
-      dist: "豐原區",
-      v: "Fengyuan",
-    },
-    {
-      dist: "大里區",
-      v: "Dali",
-    },
-    {
-      dist: "太平區",
-      v: "Taiping",
-    },
-    {
-      dist: "烏日區",
-      v: "Uri",
-    },
-    {
-      dist: "大雅區",
-      v: "Daya",
-    },
-    {
-      dist: "潭子區",
-      v: "Tanzi",
-    },
-    {
-      dist: "新社區",
-      v: "Xinshe",
-    },
-    {
-      dist: "神岡區",
-      v: "Shengang",
-    },
-    {
-      dist: "龍井區",
-      v: "Longjing",
-    },
-    {
-      dist: "沙鹿區",
-      v: "Shalu",
-    },
-  ];
 
   const {
     name,
@@ -222,7 +150,7 @@ const PersonalInfo = () => {
 
   const btd = new Date(birthday).toLocaleDateString('en-CA')
 
-  console.log(String(rural))
+
   return (
     <div>
       <div className="Container">
@@ -243,13 +171,12 @@ const PersonalInfo = () => {
             </ol>
             <ol>
               <li>地址:</li>
-              {/* 無法使用預設資料 */}
               <li><input type="text" defaultValue={city} disabled={true} />
-                <select defaultValue={"南區"} required={true} onChange={(e) => setUpRural(e.target.value)} >
-                  {adreessDist.map((item, index) => {
+                <select defaultValue={upRural} required={true} onChange={(e) => setUpRural(e.target.value)} >
+                  {dist.map((dist, index) => {
                     return (
-                      <option value={item.dist} key={index}>
-                        {item.dist}
+                      <option value={dist.dist} key={index}>
+                        {dist.dist}
                       </option>
                     );
                   })}

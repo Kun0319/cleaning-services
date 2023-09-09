@@ -58,7 +58,7 @@ class navbar extends Component {
         {/* RWD */}
         <div className=' container d-md-block  d-lg-none   '>
           <Navbar expand="lg" >
-            <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "8em", height: "5em" , marginRight: "0", justifyItems: "start" }} alt="" className='img-fluid' /></Navbar.Brand>
+            <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "8em", height: "5em", marginRight: "0", justifyItems: "start" }} alt="" className='img-fluid' /></Navbar.Brand>
             {/* <Link><img src='/images/logo.png' style={{ width: "5em", height: "3em", marginRight: "0", justifyItems: "start" }} alt="" className='img-fluid' /></Link> */}
 
 
@@ -84,10 +84,9 @@ class navbar extends Component {
                 <Nav.Link href="/question" style={this.atagstyle}>
                   <img src="images/login.png" alt="" style={{ width: "1rem" }} />
                   會員專區
-                  </Nav.Link>
+                </Nav.Link>
 
               </Nav>
-
             </Navbar.Collapse>
 
           </Navbar>

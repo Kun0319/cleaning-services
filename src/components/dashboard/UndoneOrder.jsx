@@ -92,8 +92,8 @@ const UndoneOrder = (props) => {
             <th>訂單編號</th>
             <th>會員編號</th>
             <th>訂單日期</th>
-            <th>清潔頻率</th>
             <th>清潔週數</th>
+            <th>剩餘次數</th>
             <th>訂單金額</th>
             <th>訂單狀態</th>
           </tr>
@@ -117,7 +117,7 @@ const UndoneOrder = (props) => {
                   employeeid,
                   ordertime,
                   weeks,
-                  weeknumber,
+                  donetime,
                   money,
                   state,
                 }) => {
@@ -132,7 +132,7 @@ const UndoneOrder = (props) => {
                       <td>{employeeid}</td>
                       <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
-                      <td>{weeknumber}次</td>
+                      <td>{donetime}次</td>
                       <td>{money}</td>
                       <td>{handleOrderStatus(state)}</td>
                     </tr>
@@ -147,7 +147,7 @@ const UndoneOrder = (props) => {
                   employeeid,
                   ordertime,
                   weeks,
-                  weeknumber,
+                  donetime,
                   money,
                   state,
                 }) => {
@@ -162,7 +162,7 @@ const UndoneOrder = (props) => {
                       <td>{employeeid}</td>
                       <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
-                      <td>{weeknumber}週</td>
+                      <td>{donetime}週</td>
                       <td>{money}</td>
                       <td>{handleOrderStatus(state)}</td>
                     </tr>
