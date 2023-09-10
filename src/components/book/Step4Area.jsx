@@ -36,10 +36,12 @@ const Step4Area = ({ formData, setFormData }) => {
       cardInput[5].value === securityCode
     ) {
       if (!agreeCheck.checked) alert("請確實閱讀並勾選服務條款與隱私權政策");
-      setTimeout(() => {
-        alert("付款成功！");
-        navigate("/book/book5");
-      }, 2000);
+      else {
+        setTimeout(() => {
+          alert("付款成功！");
+          navigate("/book/book5");
+        }, 2000);
+      }
     } else {
       alert("付款失敗!");
     }

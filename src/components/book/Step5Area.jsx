@@ -1,6 +1,17 @@
 import React from "react";
 
 const Step5Area = ({ formData, setFormData }) => {
+  const weeks = [
+    "星期日",
+    "星期一",
+    "星期二",
+    "星期三",
+    "星期四",
+    "星期五",
+    "星期六",
+  ];
+  const time = ["08:00", "13:00", "18:00"];
+
   return (
     <div
       className="book-step1 flex-column align-items-center container "
@@ -10,7 +21,10 @@ const Step5Area = ({ formData, setFormData }) => {
         <i className="bi bi-check-circle me-2"></i>
         <h5>預約完成！</h5>
       </div>
-      <p className="mt-2 fs-5">我們將於 2023/8/23 星期三 13:00 開始為您服務!</p>
+      <p className="mt-2 fs-5">
+        我們將於 {formData.date} {weeks[formData.week]} {time[formData.time]}
+        開始為您服務!
+      </p>
       <div id="book5-bottom">
         <img src="/images/question-007.png" alt="raccoon" />
       </div>
