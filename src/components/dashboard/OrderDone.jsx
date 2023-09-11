@@ -25,27 +25,27 @@ const OrderDone = () => {
       {modal && <Score setModal={setModal} />}
       <div className="orderInfo">
         <span className="orderCard">
-          <img src="images/order.png" alt="" />
+          <img src="/images/order.png" alt="" />
           <p className="orderText ">訂單成立</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="images/orderGoing.png" alt="" />
+          <img src="/images/orderGoing.png" alt="" />
           <p className="orderText ">已送達</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="images/orderCleaning.png" alt="" />
+          <img src="/images/orderCleaning.png" alt="" />
           <p className="orderText ">清掃中</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="images/orderCleaned.png" alt="" />
+          <img src="/images/orderCleaned.png" alt="" />
           <p className="orderText ">完成清潔</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="images/orderDone.png" alt="" />
+          <img src="/images/orderDone.png" alt="" />
           <p className="orderText ">完成訂單</p>
         </span>
       </div>
