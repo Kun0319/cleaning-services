@@ -19,7 +19,7 @@ const OrderList = (props) => {
         const result = await axios.get("http://localhost:4107/orderlist");
         setOrderAPI(() => {
           return result.data.sort(function (a, b) {
-            return a.orderStatus >= b.orderStatus ? 1 : -1;
+            return a.state >= b.state ? 1 : -1;
           });
         });
       } catch (error) {
@@ -51,10 +51,10 @@ const OrderList = (props) => {
   };
 
   // 判斷訂單狀態
-  const handleOrderStatus = (orderStatus) => {
-    if (orderStatus === "0") {
+  const handleOrderStatus = (state) => {
+    if (state === 0) {
       return "新訂單";
-    } else if (orderStatus === "1") {
+    } else if (state === 1) {
       return "未完成";
     }
     return "已完成";
@@ -97,8 +97,8 @@ const OrderList = (props) => {
             <th>訂單編號</th>
             <th>會員編號</th>
             <th>訂單日期</th>
-            <th>清潔頻率</th>
             <th>清潔週數</th>
+            <th>剩餘次數</th>
             <th>訂單金額</th>
             <th>訂單狀態</th>
           </tr>
@@ -122,7 +122,7 @@ const OrderList = (props) => {
                   employeeid,
                   ordertime,
                   weeks,
-                  weeknumber,
+                  donetime,
                   money,
                   state,
                 }) => {
@@ -137,7 +137,7 @@ const OrderList = (props) => {
                       <td>{employeeid}</td>
                       <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
-                      <td>{weeknumber}次</td>
+                      <td>{donetime}次</td>
                       <td>{money}</td>
                       <td>{handleOrderStatus(state)}</td>
                     </tr>
@@ -152,7 +152,7 @@ const OrderList = (props) => {
                   employeeid,
                   ordertime,
                   weeks,
-                  weeknumber,
+                  donetime,
                   money,
                   state,
                 }) => {
@@ -167,7 +167,7 @@ const OrderList = (props) => {
                       <td>{employeeid}</td>
                       <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
-                      <td>{weeknumber}週</td>
+                      <td>{donetime}次</td>
                       <td>{money}</td>
                       <td>{handleOrderStatus(state)}</td>
                     </tr>
