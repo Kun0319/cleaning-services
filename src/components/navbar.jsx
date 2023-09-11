@@ -80,10 +80,10 @@ class navbar extends Component {
                                 style={{ width: "2rem" }} /></a>
 
 
-                            {this.state.isLoggedIn ? (<button className=' px-2 mx-2 btn' style={this.btn} onClick={this.handleLogout}>
+                            {this.state.isLoggedIn ? (<button className=' px-4 mx-3 btn' style={this.btn} onClick={this.handleLogout}>
                                 登出
-                            </button>) : (<button className=' px-2 mx-2 btn' style={this.btn} >
-                                <Link to="/loginpage" style={this.atagstyle} className='mx-3 px-2 mx-2  text-decoration-none'>
+                            </button>) : (<button className=' px-4 mx-3 btn' style={this.btn} >
+                                <Link to="/loginpage" style={this.atagstyle} className='  text-decoration-none'>
                                     登入
                                 </Link>
                             </button>)}
