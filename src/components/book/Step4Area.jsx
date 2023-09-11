@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import axios from "axios";
+import BookContext from "./book-context";
 
-const Step4Area = ({ formData, setFormData }) => {
+
+const Step4Area = () => {
   const weeks = [
     "星期日",
     "星期一",
@@ -14,8 +16,10 @@ const Step4Area = ({ formData, setFormData }) => {
     "星期六",
   ];
   const navigate = useNavigate();
+  const ctx = useContext(BookContext);
   const time = ["08:00", "13:00", "18:00"];
   const [price, setPrice] = useState("");
+
   let checkForm = (e) => {
     e.preventDefault();
     const cardNumber = "0000-1111-2222-3333";
@@ -49,7 +53,7 @@ const Step4Area = ({ formData, setFormData }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4107/book/price?week=${formData.weeks}`)
+      .get(`http://localhost:4107/book/price?week=${ctx.weeks}`)
       .then((res) => {
         setPrice(res.data[0].price);
       })
@@ -76,17 +80,17 @@ const Step4Area = ({ formData, setFormData }) => {
               </tr>
               <tr>
                 <td className="fw-bold">清潔週數</td>
-                <td>{formData.weeks} 週</td>
+                <td>{ctx.weeks} 週</td>
               </tr>
               <tr>
                 <td className="fw-bold">服務時間</td>
                 <td>
-                  {weeks[formData.week]}　{time[formData.time]}
+                  {weeks[ctx.week]}　{time[ctx.time]}
                 </td>
               </tr>
               <tr>
                 <td className="fw-bold">開始日期</td>
-                <td>{formData.date}</td>
+                <td>{ctx.date}</td>
               </tr>
               <tr>
                 <td className="fw-bold">訂單金額</td>
@@ -170,7 +174,6 @@ const Step4Area = ({ formData, setFormData }) => {
             <u>服務條款</u> 及 <u>隱私權政策</u>
           </div>
         </div>
-        {/* next="/book/book5" */}
         <Button pre="/book/book3" next="/book/book5" onClick={checkForm} />
       </form>
     </>

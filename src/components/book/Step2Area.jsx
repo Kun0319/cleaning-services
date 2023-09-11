@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import MyCalendar from "./MyCalendar";
 import axios from "axios";
+import BookContext from "./book-context";
 
-const Step2Area = ({ formData, setFormData }) => {
+
+const Step2Area = () => {
   const navigate = useNavigate();
+  const ctx = useContext(BookContext);
   const [weekMode, setWeekMode] = useState([]);
   const [timeMode, setTimeMode] = useState([1, 1, 1]);
   const [dayMode, setDayMode] = useState([]);
   const checkDataNum = document.getElementsByClassName("selected");
-
   const weeks = [
     "星期日",
     "星期一",
@@ -21,6 +23,7 @@ const Step2Area = ({ formData, setFormData }) => {
     "星期六",
   ];
   const time = ["08:00", "13:00", "18:00"];
+
   const changeClickStyle2 = (e, pElm, tElm, t) => {
     const otherItems = document.querySelectorAll(pElm);
     const clearTime = document.querySelectorAll(t);
@@ -35,12 +38,11 @@ const Step2Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
-    formData.week = e.target.id;
-    setFormData(formData);
-    if (formData.week) {
+    ctx.week = e.target.id;
+    if (ctx.week) {
       axios
         .get(
-          `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}&weekDay=${formData.week}`
+          `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}&weekDay=${ctx.week}`
         )
         .then((res) => {
           setTimeMode(res.data);
@@ -60,12 +62,11 @@ const Step2Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
-    formData.time = e.target.id;
-    setFormData(formData);
-    if (formData.week) {
+    ctx.time = e.target.id;
+    if (ctx.week) {
       axios
         .get(
-          `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}&weekDay=${formData.week}&timespan=${formData.time}`
+          `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}&weekDay=${ctx.week}&timespan=${ctx.time}`
         )
         .then((res) => {
           setDayMode(res.data);
@@ -78,7 +79,7 @@ const Step2Area = ({ formData, setFormData }) => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}`
+        `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}`
       )
       .then((res) => {
         setWeekMode(res.data);
@@ -166,12 +167,7 @@ const Step2Area = ({ formData, setFormData }) => {
         </div>
         <div className="right">
           <MyCalendar
-            formData={formData}
-            setFormData={setFormData}
             freeDays={dayMode}
-            // setNextBtn={setNextBtn}
-            // nextBtn={nextBtn}
-            checkDataNum={checkDataNum}
           />
         </div>
       </div>

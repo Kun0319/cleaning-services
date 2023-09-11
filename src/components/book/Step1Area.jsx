@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Member from "./Member";
 import Button from "./Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
+import BookContext from "./book-context";
 
-const Step1Area = ({ formData, setFormData }) => {
+const Step1Area = () => {
   const navigate = useNavigate();
+  const ctx = useContext(BookContext);
   const [membersData, setMemberData] = useState([]);
   const [weekCount, setWeekCount] = useState(4);
   const [weekPrice, setWeekPrice] = useState(8000);
   const checkDataNum = document.getElementsByClassName("selected");
-
   const areaInfo = [
     {
       area: "客廳",
@@ -40,6 +41,7 @@ const Step1Area = ({ formData, setFormData }) => {
       detail: "地板刷洗、水管擦拭、曬衣桿擦拭",
     },
   ];
+  
   const changeClickStyle1 = (e, pElm, tElm) => {
     const otherItems = document.querySelectorAll(pElm);
     otherItems.forEach((item) => {
@@ -50,8 +52,7 @@ const Step1Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
-    formData.employeeid = targetElement.id;
-    setFormData(formData);
+    ctx.employeeid = targetElement.id;
   };
   useEffect(() => {
     axios
@@ -77,8 +78,7 @@ const Step1Area = ({ formData, setFormData }) => {
   const getPrice = () => {
     let option = document.querySelector("select").value;
     setWeekCount(Number(option));
-    formData.weeks = Number(option);
-    setFormData(formData);
+    ctx.weeks = Number(option);
   };
   let checkForm = (e) => {
     e.preventDefault();

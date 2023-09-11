@@ -1,6 +1,9 @@
-import React from "react";
+import {React, useContext} from "react";
+import BookContext from "./book-context";
 
-const Step5Area = ({ formData, setFormData }) => {
+
+const Step5Area = () => {
+  const ctx = useContext(BookContext);
   const weeks = [
     "星期日",
     "星期一",
@@ -22,7 +25,7 @@ const Step5Area = ({ formData, setFormData }) => {
         <h5>預約完成！</h5>
       </div>
       <p className="mt-2 fs-5">
-        我們將於 {formData.date} {weeks[formData.week]} {time[formData.time]}
+        我們將於 {ctx.date} {weeks[ctx.week]} {time[ctx.time]}
         開始為您服務!
       </p>
       <div id="book5-bottom">

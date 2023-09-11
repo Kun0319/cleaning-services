@@ -1,48 +1,45 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import axios from "axios";
+import BookContext from "./book-context";
 
-const Step3Area = ({ formData, setFormData }) => {
+
+const Step3Area = () => {
   const navigate = useNavigate();
+  const ctx = useContext(BookContext);
   const checkDataNum = document.querySelectorAll(
     "#clientInfo input:not(#same):not(#notes)"
   );
-
   let [dist, setDist] = useState([]);
+
   const checkPhone = () => {
     let phone = document.querySelector("#userPhone");
     document.querySelector("#userPhone+span").innerHTML =
       phone.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
-    formData.phone = phone.value;
-    setFormData(formData);
+    ctx.phone = phone.value;
   };
   const checkName = () => {
     let name = document.querySelector("#userName");
     document.querySelector("#userName+span").innerHTML =
       name.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
-    formData.name = name.value;
-    setFormData(formData);
+      ctx.name = name.value;
   };
   const saveMail = () => {
     let mail = document.querySelector("#userMail").value;
-    formData.email = mail;
-    setFormData(formData);
+    ctx.email = mail;
   };
   const saveDist = () => {
     let userDist = document.querySelector("#userAddress").value;
-    formData.rural = userDist;
-    setFormData(formData);
+    ctx.rural = userDist;
   };
   const saveAddress = () => {
     let address = document.querySelector("#detail-address").value;
-    formData.address = address;
-    setFormData(formData);
+    ctx.address = address;
   };
   const saveNote = () => {
     let note = document.querySelector("#notes").value;
-    formData.note = note;
-    setFormData(formData);
+    ctx.note = note;
   };
   useEffect(() => {
     axios
