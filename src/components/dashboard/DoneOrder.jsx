@@ -26,7 +26,7 @@ const OrderList = (props) => {
     }
     fetchData();
   }, []);
-  console.log(orderAPI)
+  
   // 搜尋訂單
   const searchItem = (searchvalue) => {
     setSearchInput(searchvalue);
