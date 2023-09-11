@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import MyCalendar from "./MyCalendar";
 import axios from "axios";
 
 const Step2Area = ({ formData, setFormData }) => {
+  const navigate = useNavigate();
+  const [weekMode, setWeekMode] = useState([]);
+  const [timeMode, setTimeMode] = useState([1, 1, 1]);
+  const [dayMode, setDayMode] = useState([]);
+  const checkDataNum = document.getElementsByClassName("selected");
+
   const weeks = [
     "星期日",
     "星期一",
@@ -68,10 +75,6 @@ const Step2Area = ({ formData, setFormData }) => {
         });
     }
   };
-  const [weekMode, setWeekMode] = useState([]);
-  const [timeMode, setTimeMode] = useState([1, 1, 1]);
-  const [dayMode, setDayMode] = useState([]);
-
   useEffect(() => {
     axios
       .get(
@@ -84,6 +87,14 @@ const Step2Area = ({ formData, setFormData }) => {
         console.log(err);
       });
   }, []);
+
+  const checkForm = (e) => {
+    e.preventDefault();
+    if (checkDataNum.length === 3) navigate("/book/book3");
+    else {
+      alert("請完成表單填寫!");
+    }
+  };
 
   return (
     <form
@@ -158,10 +169,13 @@ const Step2Area = ({ formData, setFormData }) => {
             formData={formData}
             setFormData={setFormData}
             freeDays={dayMode}
+            // setNextBtn={setNextBtn}
+            // nextBtn={nextBtn}
+            checkDataNum={checkDataNum}
           />
         </div>
       </div>
-      <Button pre="/book" next="/book/book3" />
+      <Button pre="/book" next="/book/book3" onClick={checkForm} />
     </form>
   );
 };
