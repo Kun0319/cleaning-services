@@ -130,6 +130,19 @@ const PersonalInfo = () => {
     }
   }
 
+  // 刪除資料
+  async function deleteInfo() {
+    const confirmDelete = window.confirm("確定要刪除此資料嗎？");
+    if (confirmDelete) {
+      try {
+        navigate(`/dashboard/PersonalInfo`);
+        await axios.delete(`http://localhost:4107/dashboard/PersonalInfo/delete/${uid}`);
+      } catch (error) {
+        console.error("Error deleting data:", error);
+      }
+    }
+  }
+
   const adreessDist = [
     {
       dist: "中區",
@@ -312,8 +325,10 @@ const PersonalInfo = () => {
             // 編輯按鈕
             <div
               style={{ position: "relative", width: "100%", textAlign: "center" }}>
-              <button className="btn btn-danger" onClick={() => setEdit(!edit)}>取消編輯</button>
+              <button className="btn btn-secondary" onClick={() => setEdit(!edit)}>取消編輯</button>
               <button className="btn btn-primary" onClick={handleSendEdit}>完成編輯</button>
+              <br />
+              <button className="btn btn-danger" onClick={deleteInfo}>刪除此資料</button>
             </div>
             // 正常按鈕
             : <div
