@@ -186,7 +186,6 @@ const Step1Area = ({ formData, setFormData }) => {
           </div>
         </div>
       </div>
-      {/* next="/book/book2" */}
       <Button class="not-press" next="/book/book2" onClick={checkForm} />
     </form>
   );

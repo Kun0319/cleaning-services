@@ -35,7 +35,7 @@ const Step2Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
-    formData.week = e.target.id;
+    formData.week = Number(e.target.id);
     setFormData(formData);
     if (formData.week) {
       axios
@@ -60,7 +60,7 @@ const Step2Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
-    formData.time = e.target.id;
+    formData.time = Number(e.target.id);
     setFormData(formData);
     if (formData.week) {
       axios
