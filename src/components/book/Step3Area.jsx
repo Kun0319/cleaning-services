@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
 import axios from "axios";
 import BookContext from "./book-context";
+import Button from "./Button";
 
 
 const Step3Area = () => {
@@ -25,22 +25,7 @@ const Step3Area = () => {
       name.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
       ctx.name = name.value;
   };
-  const saveMail = () => {
-    let mail = document.querySelector("#userMail").value;
-    ctx.email = mail;
-  };
-  const saveDist = () => {
-    let userDist = document.querySelector("#userAddress").value;
-    ctx.rural = userDist;
-  };
-  const saveAddress = () => {
-    let address = document.querySelector("#detail-address").value;
-    ctx.address = address;
-  };
-  const saveNote = () => {
-    let note = document.querySelector("#notes").value;
-    ctx.note = note;
-  };
+
   useEffect(() => {
     axios
       .get("http://localhost:4107/book/dist")
@@ -57,6 +42,10 @@ const Step3Area = () => {
       return ele.value;
     });
     if (check) {
+      ctx.email = document.querySelector("#userMail").value;
+      ctx.rural = document.querySelector("#userAddress").value;
+      ctx.address = document.querySelector("#detail-address").value;
+      ctx.note = document.querySelector("#notes").value;
       navigate("/book/book4");
     } else {
       alert("請完成表單填寫!");
@@ -66,8 +55,6 @@ const Step3Area = () => {
   return (
     <>
       <form
-        action=""
-        method="post"
         className="d-flex flex-column align-items-center container "
       >
         <div className=" book-step3 container">
@@ -115,7 +102,6 @@ const Step3Area = () => {
                 id="userMail"
                 type="email"
                 placeholder="abc123@gmail.com"
-                onInput={saveMail}
                 required
               />
             </div>
@@ -130,7 +116,6 @@ const Step3Area = () => {
                 <select
                   name="cleaningAddress"
                   id="userAddress"
-                  onChange={saveDist}
                 >
                   {dist.map((item, index) => {
                     return (
@@ -145,7 +130,6 @@ const Step3Area = () => {
                   type="text"
                   placeholder="請輸入詳細地址"
                   id="detail-address"
-                  onInput={saveAddress}
                   required
                 />
               </div>
@@ -153,7 +137,8 @@ const Step3Area = () => {
             <div>
               <img src="/images/info.png" alt="icon" />
               <label htmlFor="notes">訂單備註</label>
-              <input type="text" id="notes" onInput={saveNote} />
+              <input type="text" id="notes" 
+              />
             </div>
           </div>
         </div>

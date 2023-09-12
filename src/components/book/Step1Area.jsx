@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Member from "./Member";
-import Button from "./Button";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
 import BookContext from "./book-context";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Member from "./Member";
+import Button from "./Button";
 
 const Step1Area = () => {
   const navigate = useNavigate();
@@ -90,8 +90,6 @@ const Step1Area = () => {
 
   return (
     <form
-      action=""
-      method="post"
       className="container d-flex  justify-content-center align-items-center flex-column"
     >
       <div className="d-flex container justify-content-center align-items-center book-step1">

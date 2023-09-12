@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
-import MyCalendar from "./MyCalendar";
 import axios from "axios";
 import BookContext from "./book-context";
+import MyCalendar from "./MyCalendar";
+import Button from "./Button";
 
 
 const Step2Area = () => {
@@ -100,8 +100,6 @@ const Step2Area = () => {
 
   return (
     <form
-      action=""
-      method="post"
       className="container d-flex  justify-content-center align-items-center flex-column"
     >
       <div className="d-flex container justify-content-center align-items-center book-step1">
@@ -109,61 +107,30 @@ const Step2Area = () => {
           <div className="step2Top">
             <h5>1. 選擇服務時間</h5>
             <div className="chooseTime">
-              {weekMode.map((week, index) => {
-                if (week) {
-                  return (
-                    <div
-                      className="service-week"
-                      key={index}
-                      id={index}
-                      onClick={(e) => {
-                        changeClickStyle2(
-                          e,
-                          ".service-week",
-                          "service-week",
-                          ".service-time"
-                        );
-                      }}
-                    >
-                      {weeks[index]}
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div className="not-choose" key={index}>
-                      {weeks[index]}
-                    </div>
-                  );
-                }
-              })}
-            </div>
+              {weekMode.map((week, index) => (
+                <div
+                  key={index}
+                  id={index}
+                  className={week ? 'service-week' : 'not-choose'}
+                  onClick={week ? (e) => changeClickStyle2(e, ".service-week", "service-week", ".service-time") : null}
+                >
+                  {weeks[index]}
+                </div>
+              ))}            </div>
           </div>
           <div className="step2Bottom">
             <h5>2. 選擇服務時段</h5>
             <div className="chooseTime">
-              {timeMode.map((t, index) => {
-                if (t) {
-                  return (
-                    <div
-                      className="service-time"
-                      key={index}
-                      id={index}
-                      onClick={(e) => {
-                        changeClickStyle3(e, ".service-time", "service-time");
-                      }}
-                    >
-                      {time[index]}
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div className="not-choose" key={index}>
-                      {time[index]}
-                    </div>
-                  );
-                }
-              })}
-            </div>
+              {timeMode.map((t, index) => (
+                <div
+                  key={index}
+                  id={index}
+                  className={t ? "service-time" : "not-choose"}
+                  onClick={t ? (e) => changeClickStyle3(e, ".service-time", "service-time") : null}
+                >
+                  {time[index]}
+                </div>
+              ))}            </div>
           </div>
         </div>
         <div className="right">
