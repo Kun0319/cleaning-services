@@ -4,13 +4,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../../components/member/member.css";
 const PersonalInfo = () => {
   const { userid } = useParams();
-  const [personNumber, setPersonNumber] = useState(parseInt(userid));
   const [memberData, setMemberData] = useState({});
   const [addBlackList, setAddBlackList] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [why, setWhy] = useState("");
   const [edit, setEdit] = useState(false);
-  const [dataLength, setDatalength] = useState(null);
   const navigate = useNavigate();
   // 編輯變數
   const [upName, setUpName] = useState("")
@@ -24,6 +22,7 @@ const PersonalInfo = () => {
   const [upBirthDay, setUpBirthDay] = useState("")
   const [upRural, setUpRural] = useState("")
   const [dist, setdist] = useState("")
+  const [useridarr, setUserIdArr] = useState("")
 
 
   //接收資料
@@ -33,9 +32,8 @@ const PersonalInfo = () => {
         const result = await axios.get(
           `http://localhost:4107/dashboard/PersonalInfo/${userid}`
         );
+        if(result){
         setMemberData(result.data.data[0]);
-        setDatalength(result.data.length);
-        setPersonNumber(parseInt(userid));
         setWhy(result.data.why[0].why || "");
         setUpName(result.data.data[0].name)
         setUpId(result.data.data[0].id)
@@ -47,27 +45,30 @@ const PersonalInfo = () => {
         setUpPassWord(result.data.data[0].password)
         setdist(result.data.address)
         setUpBirthDay(new Date(result.data.data[0].birthday).toLocaleDateString('en-CA'))
+        setUserIdArr(()=>{
+          const arr=[];
+          result.data.len.map((obj)=>{arr.push(obj.userid)})
+          return arr
+        })
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
     fetchData();
-  }, [personNumber, userid]);
+  }, [userid]);
 
-  //   上一頁
-  function prevPage() {
-    const newPersonNumber =
-      personNumber - 1 > 0 ? personNumber - 1 : personNumber;
-    setPersonNumber(newPersonNumber);
-    navigate(`/dashboard/PersonalInfo/${newPersonNumber}`);
+    //   上一頁
+  const prevPage = () => {
+    var data = useridarr[useridarr.indexOf(userid)-1]
+    var res = data ? data : userid
+    navigate(`/dashboard/PersonalInfo/${res}`)
   }
-
-  //   下一頁
-  function nextPage() {
-    const newPersonNumber =
-      personNumber + 1 <= dataLength ? personNumber + 1 : personNumber;
-    setPersonNumber(newPersonNumber);
-    navigate(`/dashboard/PersonalInfo/${newPersonNumber}`);
+   //   下一頁
+  const nextPage = () => {
+    var data = useridarr[useridarr.indexOf(userid)+1]
+    var res = data ? data : userid
+    navigate(`/dashboard/PersonalInfo/${res}`)
   }
 
   // 加黑名單

@@ -8,9 +8,10 @@ const StaffListInfo = () => {
   const { employeeid } = useParams();
   const [staffData, setStaffData] = useState({});
   const [staffListData, setStaffListData] = useState({});
-  const [dataLength, setDatalength] = useState(null);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+  const [useridarr, setUserIdArr] = useState({});
+
 
   //接收資料
   useEffect(() => {
@@ -21,7 +22,11 @@ const StaffListInfo = () => {
         );
         setStaffData(result.data.data[0]); //員工資料
         setStaffListData(result.data.list); //訂單紀錄
-        setDatalength(result.data.length[0].length); //員工總數
+        setUserIdArr(()=>{
+          const arr=[];
+          result.data.useridarr.map((obj)=>{arr.push(obj.employeeid)})
+          return arr
+        })//員工總數
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -29,16 +34,19 @@ const StaffListInfo = () => {
     fetchData();
   }, [employeeid]);
 
-  const prevStaffClick = () => {
-    var data = parseInt(employeeid.slice(2))
-    var res = data - 1 > 0 ? data - 1 : data
-    navigate(`/dashboard/StaffList/${"RA" + String(res).padStart(3, 0)}`)
-  }
-  const nextStaffClick = () => {
-    var data = parseInt(employeeid.slice(2))
-    var res = data + 1 > dataLength ? data : data + 1
-    navigate(`/dashboard/StaffList/${"RA" + String(res).padStart(3, 0)}`)
-  }
+
+      //   上一頁
+      const prevStaffClick = () => {
+        var data = useridarr[useridarr.indexOf(employeeid)-1]
+        var res = data ? data : employeeid
+        navigate(`/dashboard/StaffList/${res}`)
+      }
+       //   下一頁
+      const nextStaffClick = () => {
+        var data = useridarr[useridarr.indexOf(employeeid)+1]
+        var res = data ? data : employeeid
+        navigate(`/dashboard/StaffList/${res}`)
+      }
 
 
   const { employeename, employeephone, employeeemail, photo, vaccine, goodid, racheck, cases } =
