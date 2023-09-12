@@ -3,8 +3,8 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../components/member/member.css";
 const PersonalInfo = () => {
-  const { uid } = useParams();
-  const [personNumber, setPersonNumber] = useState(parseInt(uid));
+  const { userid } = useParams();
+  const [personNumber, setPersonNumber] = useState(parseInt(userid));
   const [memberData, setMemberData] = useState({});
   const [addBlackList, setAddBlackList] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -31,11 +31,11 @@ const PersonalInfo = () => {
     async function fetchData() {
       try {
         const result = await axios.get(
-          `http://localhost:4107/dashboard/PersonalInfo/${personNumber}`
+          `http://localhost:4107/dashboard/PersonalInfo/${userid}`
         );
         setMemberData(result.data.data[0]);
         setDatalength(result.data.length);
-        setPersonNumber(parseInt(uid));
+        setPersonNumber(parseInt(userid));
         setWhy(result.data.why[0].why || "");
         setUpName(result.data.data[0].name)
         setUpId(result.data.data[0].id)
@@ -52,7 +52,7 @@ const PersonalInfo = () => {
       }
     }
     fetchData();
-  }, [personNumber, uid]);
+  }, [personNumber, userid]);
 
   //   上一頁
   function prevPage() {
@@ -79,7 +79,7 @@ const PersonalInfo = () => {
   function sendBlackList() {
     try {
       axios.put(
-        `http://localhost:4107/dashboard/PersonalInfo/blacklist/${uid}`,
+        `http://localhost:4107/dashboard/PersonalInfo/blacklist/${userid}`,
         { why: inputValue }
       );
       setAddBlackList(!addBlackList);
@@ -95,12 +95,12 @@ const PersonalInfo = () => {
   async function deleteBlackList() {
     try {
       await axios.put(
-        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${uid}`,
-        { uid: uid }
+        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${userid}`,
+        { userid: userid }
       );
       await axios.delete(
-        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${uid}`,
-        { uid: uid }
+        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${userid}`,
+        { userid: userid }
       );
       alert("成功解除");
       window.location.reload();
@@ -113,7 +113,7 @@ const PersonalInfo = () => {
   async function handleSendEdit() {
     try {
       await axios.put(
-        `http://localhost:4107/dashboard/PersonalInfo/update/${uid}`,
+        `http://localhost:4107/dashboard/PersonalInfo/update/${userid}`,
         {
           upName: upName,
           upId: upId,
@@ -144,7 +144,6 @@ const PersonalInfo = () => {
     rural,
     address,
     admin,
-    userid,
     blacklist,
   } = memberData;
 
