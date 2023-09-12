@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap';
+import axios from './login/axios';
 
-
+const LOGOUT_URL = '/logout';
 
 class navbar extends Component {
 
@@ -27,14 +28,31 @@ class navbar extends Component {
     }
 
 
-    // handleLogin = () => {
-    //     // 在此處執行登入邏輯，並設定 isLoggedIn 狀態為 true
-    //     this.setState({ isLoggedIn: true });
-    // };
     handleLogout = () => {
         // 在此處執行登出邏輯，並設定 isLoggedIn 狀態為 false
-        document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        this.setState({ isLoggedIn: false });
+        var cofirmed = window.confirm("確定登出嗎?");
+        if (cofirmed == true) {
+            document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            this.setState({ isLoggedIn: false });
+
+            // 由後端自動產生的cookie名稱connect.sid 
+
+            axios.get(LOGOUT_URL, {}, {
+                headers: {
+                    'Clear-Cookie': "connect.sid",
+                },
+            }).then(response => {
+
+            }).catch(error => {
+
+            })
+        }
+
+
+
+
+
+
 
     };
 

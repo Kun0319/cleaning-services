@@ -4,6 +4,7 @@ import AuthContext, { AuthProvider } from './AuthContext';
 
 
 import axios from './axios'
+import { Row } from "react-bootstrap";
 const LOGIN_URL = '/login';
 
 
@@ -101,7 +102,7 @@ const Login = () => {
 
 
                     <img src="./images/loginimg.png" className="loginimg" />
-                    <form action="" onSubmit={handleSubmit}>
+                    <form action="" onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                         <ul>
                             <li className="loginli">
                                 <img src="./images/nameicon.png" className="loginicon" />
@@ -127,7 +128,7 @@ const Login = () => {
                                     required></input>
                             </li>
                         </ul>
-                        <button className="signupbtn" style={{ alignContent: "center" }} >登入</button>
+                        <button className="signupbtn" style={{}} >登入</button>
                     </form>
 
                 </div >
