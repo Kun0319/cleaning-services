@@ -235,3 +235,26 @@
     flex-direction: column;
   }
 }
+
+.bgdone {
+  position: relative;
+}
+
+.bgdone::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/public/images/bgdone.png");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: right bottom;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bgdone.complete::before {
+  opacity: 1;
+}

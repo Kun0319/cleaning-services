@@ -78,7 +78,7 @@ const Member = () => {
     <div>
       <div className="Container">
         <h3 className="orderh3">管理訂單</h3>
-        <div className="orderContainer">
+        <div className={`orderContainer bgdone ${state === 2 ? 'complete' : ''}`}>
           <div className="orderContent">
             <table border={1}>
               <tr>
