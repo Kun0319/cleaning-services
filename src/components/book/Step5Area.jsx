@@ -1,6 +1,5 @@
-import {React, useContext} from "react";
+import { React, useContext } from "react";
 import BookContext from "./book-context";
-
 
 const Step5Area = () => {
   const ctx = useContext(BookContext);

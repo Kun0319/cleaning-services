@@ -1,9 +1,8 @@
-import React, { useState, useEffect,useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BookContext from "./book-context";
 import Button from "./Button";
-
 
 const Step4Area = () => {
   const weeks = [
@@ -20,7 +19,7 @@ const Step4Area = () => {
   const time = ["08:00", "13:00", "18:00"];
   const [price, setPrice] = useState("");
 
-  let checkForm = (e) => {
+  let checkForm = async (e) => {
     e.preventDefault();
     const cardNumber = "0000-1111-2222-3333";
     const monthYear = "10/23";
@@ -41,9 +40,41 @@ const Step4Area = () => {
     ) {
       if (!agreeCheck.checked) alert("請確實閱讀並勾選服務條款與隱私權政策");
       else {
-        // axios.post('http://localhost:4107/book/new-order')
+        const {
+          employeeid,
+          date,
+          time,
+          weeks,
+          phone,
+          email,
+          city,
+          rural,
+          address,
+          name,
+          note,
+        } = ctx;
+        const result = await axios.post(
+          "http://localhost:4107/book/new-order",
+          {
+            uid: ctx.user.userid,
+            employeeid,
+            date,
+            time,
+            weeks,
+            phone,
+            email,
+            city,
+            rural,
+            address,
+            name,
+            note,
+          },
+          {
+            withCredentials: true,
+          }
+        );
         setTimeout(() => {
-          alert("付款成功！");
+          alert(`付款成功！`);
           navigate("/book/book5");
         }, 2000);
       }
@@ -54,7 +85,9 @@ const Step4Area = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4107/book/price?week=${ctx.weeks}`)
+      .get(`http://localhost:4107/book/price?week=${ctx.weeks}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setPrice(res.data[0].price);
       })
@@ -64,9 +97,7 @@ const Step4Area = () => {
   });
   return (
     <>
-      <form
-        className="container d-flex  justify-content-center align-items-center flex-column"
-      >
+      <form className="container d-flex  justify-content-center align-items-center flex-column">
         <div className="d-flex container justify-content-center align-items-center book-step1">
           <div className="left book4-left">
             <table id="book4-order">

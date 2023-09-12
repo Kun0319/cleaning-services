@@ -5,7 +5,6 @@ import BookContext from "./book-context";
 import MyCalendar from "./MyCalendar";
 import Button from "./Button";
 
-
 const Step2Area = () => {
   const navigate = useNavigate();
   const ctx = useContext(BookContext);
@@ -42,7 +41,10 @@ const Step2Area = () => {
     if (ctx.week) {
       axios
         .get(
-          `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}&weekDay=${ctx.week}`
+          `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}&weekDay=${ctx.week}`,
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => {
           setTimeMode(res.data);
@@ -67,7 +69,10 @@ const Step2Area = () => {
     if (ctx.week) {
       axios
         .get(
-          `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}&weekDay=${ctx.week}&timespan=${ctx.time}`
+          `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}&weekDay=${ctx.week}&timespan=${ctx.time}`,
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => {
           setDayMode(res.data);
@@ -80,7 +85,10 @@ const Step2Area = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}`
+        `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         setWeekMode(res.data);
@@ -99,9 +107,7 @@ const Step2Area = () => {
   };
 
   return (
-    <form
-      className="container d-flex  justify-content-center align-items-center flex-column"
-    >
+    <form className="container d-flex  justify-content-center align-items-center flex-column">
       <div className="d-flex container justify-content-center align-items-center book-step1">
         <div className="left">
           <div className="step2Top">
@@ -111,12 +117,23 @@ const Step2Area = () => {
                 <div
                   key={index}
                   id={index}
-                  className={week ? 'service-week' : 'not-choose'}
-                  onClick={week ? (e) => changeClickStyle2(e, ".service-week", "service-week", ".service-time") : null}
+                  className={week ? "service-week" : "not-choose"}
+                  onClick={
+                    week
+                      ? (e) =>
+                          changeClickStyle2(
+                            e,
+                            ".service-week",
+                            "service-week",
+                            ".service-time"
+                          )
+                      : null
+                  }
                 >
                   {weeks[index]}
                 </div>
-              ))}            </div>
+              ))}{" "}
+            </div>
           </div>
           <div className="step2Bottom">
             <h5>2. 選擇服務時段</h5>
@@ -126,17 +143,21 @@ const Step2Area = () => {
                   key={index}
                   id={index}
                   className={t ? "service-time" : "not-choose"}
-                  onClick={t ? (e) => changeClickStyle3(e, ".service-time", "service-time") : null}
+                  onClick={
+                    t
+                      ? (e) =>
+                          changeClickStyle3(e, ".service-time", "service-time")
+                      : null
+                  }
                 >
                   {time[index]}
                 </div>
-              ))}            </div>
+              ))}{" "}
+            </div>
           </div>
         </div>
         <div className="right">
-          <MyCalendar
-            freeDays={dayMode}
-          />
+          <MyCalendar freeDays={dayMode} />
         </div>
       </div>
       <Button pre="/book" next="/book/book3" onClick={checkForm} />
