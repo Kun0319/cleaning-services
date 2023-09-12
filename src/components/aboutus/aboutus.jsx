@@ -32,7 +32,7 @@ const Aboutus = () => {
         <div className="servicecontent">
           <div><img src="images/aboutus-004.png" alt="service area" /></div>
           <div>
-            <p className='companyp' p>台中市全區皆可預約，預約後，師傅將於選擇日期抵達您的宅邸，不需另外收取工人費或樓層費等費用，價格保證公開透明！！</p>
+            <p className='companyp' p>台中中區、北區、南區、西區、東區、北屯區、南屯區、西屯區、豐原區、大里區、太平區、烏日區、大雅區、潭子區、新社區、神岡區、龍井區、沙鹿區可預約，預約後，師傅將於選擇日期抵達您的宅邸，不需另外收取工人費或樓層費等費用，價格保證公開透明！！</p>
           </div>
         </div>
       </div>
