@@ -73,6 +73,15 @@ const SidebarAdmin = () => {
           >
             <span>黑名單</span>
           </Link>
+          <Link
+            to={"/dashboard/addstaff"}
+            className="Link-decoration"
+            onClick={(e) => {
+              changeStyle(e);
+            }}
+          >
+            <span>員工註冊</span>
+          </Link>
         </div>
       </div>
     </div>

@@ -282,6 +282,34 @@
   z-index: 1388;
 }
 
+.DashBoardAlert {
+  display: flex;
+  flex-direction: column ;
+  justify-content: space-around;
+  width: 12em;
+  height: 6em;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff8e1;
+  color: #997404;
+  font-weight: bold;
+  border: 2px solid #997404;
+  padding: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.DashBoardAlert-shell{
+  position:fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff8e1a0;
+  width: 100cqmax;
+  height:100cqmax;
+}
+
 @media screen and (max-width: 997px) {
   .aside {
     min-height: 120px;
@@ -364,5 +392,22 @@
   .orderBtn {
     font-size: 14px;
     padding: 4px 10px;
+  }
+  .DashBoardAlert {
+    display: flex;
+    flex-direction: column ;
+    justify-content: space-around;
+    width: 12em;
+    height: 6em;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff8e1;
+    color: #997404;
+    font-weight: bold;
+    border: 2px solid #997404;
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
 }

@@ -5,6 +5,8 @@ import DoneOrder from "./DoneOrder";
 import StaffList from "./staffList";
 import StaffListInfo from "./StaffListInfo";
 import Banlist from "./Banlist";
+import AddStaff from "./AddStaff";
+
 
 export {
   SidebarAdmin,
@@ -14,4 +16,5 @@ export {
   StaffList,
   StaffListInfo,
   Banlist,
+  AddStaff
 };
