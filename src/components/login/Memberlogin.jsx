@@ -108,9 +108,8 @@ const Memberlogin = () => {
   // 編輯模式的狀態
   const [isEditing, setIsEditing] = useState(false);
 
-  // 編輯後的手機號碼和信箱狀態
+  // 編輯後的手機號碼
   const [editedPhoneNumber, setEditedPhoneNumber] = useState("");
-  const [editedEmail, setEditedEmail] = useState("");
 
   // 編輯按鈕的點擊事件
   const handleEditClick = () => {
@@ -129,7 +128,6 @@ const Memberlogin = () => {
     setMemberData({
       ...memberData,
       phoneNumber: editedPhoneNumber,
-      email: editedEmail,
       address: {
         ...memberData.address,
         district: editedDistrict, // 更新地區
@@ -147,11 +145,6 @@ const Memberlogin = () => {
     setEditedPhoneNumber(newPhoneNumber);
   };
 
-  // 處理信箱輸入框的變化
-  const handleEmailChange = (event) => {
-    const newEmail = event.target.value;
-    setEditedEmail(newEmail);
-  };
 
   // 處理地址輸入框的變化
   const handleAddressChange = (event) => {
@@ -199,8 +192,8 @@ const Memberlogin = () => {
                 <input
                   type="email"
                   placeholder="請輸入信箱"
-                  value={editedEmail}
-                  onChange={handleEmailChange}
+                  value={memberData.email}
+                  disabled={isEditing} // 根據編輯模式來控制是否禁用
                 ></input>
               </li>
               <li className="loginli">
