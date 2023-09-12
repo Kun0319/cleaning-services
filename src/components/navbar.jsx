@@ -3,13 +3,47 @@ import { Link } from 'react-router-dom'
 import { Navbar, Nav } from 'react-bootstrap';
 
 
+
 class navbar extends Component {
-    state = {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedIn: false,
+        };
+    }
+
+
+    componentDidMount() {
+        // 檢查是否存在名為 "isLoggedIn" 的 cookie
+        const cookieValue = document.cookie
+            .split('; ')
+            .find(row => row.startsWith("isLoggedIn="));
+
+        // 如果找到 "isLoggedIn" 的 cookie，將登入狀態設置為 true
+        if (cookieValue) {
+            this.setState({ isLoggedIn: true });
+        }
+    }
+
+
+    // handleLogin = () => {
+    //     // 在此處執行登入邏輯，並設定 isLoggedIn 狀態為 true
+    //     this.setState({ isLoggedIn: true });
+    // };
+    handleLogout = () => {
+        // 在此處執行登出邏輯，並設定 isLoggedIn 狀態為 false
+        document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        this.setState({ isLoggedIn: false });
 
     };
 
+
+
+
+
     styles = {
-        // backgroundColor: "#ffc107",
+
         height: "6em",
     };
 
@@ -28,6 +62,7 @@ class navbar extends Component {
 
 
     render() {
+        // const { isLoggedIn } = this.state;
         return (
             <div>
                 {/* 導覽列 */}
@@ -43,11 +78,17 @@ class navbar extends Component {
                             <a href=""> <img src="images/info.png" alt=""
                                 className='m-3'
                                 style={{ width: "2rem" }} /></a>
-                                <button className='px-3 mx-2 btn  ' style={this.btn}>
-                            <Link to="/loginpage" style={this.atagstyle} className='mx-3 px-3 mx-2  text-decoration-none'>
+
+
+                            {this.state.isLoggedIn ? (<button className=' px-4 mx-3 btn' style={this.btn} onClick={this.handleLogout}>
+                                登出
+                            </button>) : (<button className=' px-4 mx-3 btn' style={this.btn} >
+                                <Link to="/loginpage" style={this.atagstyle} className='  text-decoration-none'>
                                     登入
-                            </Link>
-                                </button>
+                                </Link>
+                            </button>)}
+
+
                         </div>
                     </nav >
                 </div>
@@ -65,11 +106,17 @@ class navbar extends Component {
                                 <Nav.Link href="/service" style={this.atagstyle}>服務項目</Nav.Link>
                                 <Nav.Link href="/case" style={this.atagstyle}>案例分享</Nav.Link>
                                 <Nav.Link href="/question" style={this.atagstyle}>常見問題</Nav.Link>
-                                    <button className=' btn  px-3 me-2' style={this.btn}>
-                                <Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>
+
+
+
+                                {this.state.isLoggedIn ? (<button className=' btn  px-3 me-2' style={this.btn} onClick={this.handleLogout}>
+                                    登出
+                                </button>) : (<button className=' btn  px-3 me-2' style={this.btn} >
+                                    <Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>
                                         登入
-                                </Link>
-                                    </button>
+                                    </Link>
+                                </button>)}
+
 
                             </Nav>
 
@@ -91,10 +138,11 @@ class navbar extends Component {
             </div >
         );
     }
+
 }
 
 export default navbar;
 
 
-// #ffc107
+
 

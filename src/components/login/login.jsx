@@ -2,9 +2,22 @@ import React from "react";
 import { useRef, useState, useEffect, useContext } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
 
+
 import axios from './axios'
-import { json } from "react-router-dom";
 const LOGIN_URL = '/login';
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const Login = () => {
     const { setAuth } = useContext(AuthContext);
@@ -26,24 +39,32 @@ const Login = () => {
     }, [email, password])
 
     const handleSubmit = async (e) => {
+
         e.preventDefault();
         try {
             const response = await axios.post(LOGIN_URL,
                 JSON.stringify({ email, password }),
                 {
-                    headers: { "Content-Type": "application/json" },
-
+                    headers:
+                    {
+                        "Content-Type": "application/json"
+                    },
+                    credentials: 'include',
                 }
-            );
-            console.log(JSON.stringify(response?.data))
-            // console.log(JSON.stringify(response))
-            const accessToken = response?.data?.accessToken;
-            const roles = response?.data?.roles;
 
-            setAuth({ email, password, roles, accessToken });
+            );
+
+            // console.log(JSON.stringify(response?.data))
+            // console.log(JSON.stringify(response))
+
+            // const accessToken = response?.data?.accessToken;
+            // const roles = response?.data?.roles;
+
+            // setAuth({ email, password, roles, accessToken });
             setUseremail('');
             setPwd('');
             setSuccess(true);
+            document.cookie = 'isLoggedIn=true; path=/'
 
         } catch (err) {
             if (!err?.response) {
@@ -106,7 +127,7 @@ const Login = () => {
                                     required></input>
                             </li>
                         </ul>
-                        <button className="signupbtn " style={{ alignContent: "center" }} >登入</button>
+                        <button className="signupbtn" style={{ alignContent: "center" }} >登入</button>
                     </form>
 
                 </div >
