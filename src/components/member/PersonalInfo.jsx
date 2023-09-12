@@ -23,6 +23,7 @@ const PersonalInfo = () => {
   const [upAdmin, setUpAdmin] = useState("")
   const [upBirthDay, setUpBirthDay] = useState("")
   const [upRural, setUpRural] = useState("")
+  const [dist, setdist] = useState("")
 
 
   //接收資料
@@ -44,6 +45,7 @@ const PersonalInfo = () => {
         setUpRural(result.data.data[0].rural)
         setUpAdmin(result.data.data[0].admin)
         setUpPassWord(result.data.data[0].password)
+        setdist(result.data.address)
         setUpBirthDay(new Date(result.data.data[0].birthday).toLocaleDateString('en-CA'))
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -127,6 +129,19 @@ const PersonalInfo = () => {
       window.location.reload();
     } catch (error) {
       console.error("Error updata data:", error);
+    }
+  }
+
+  // 刪除資料
+  async function deleteInfo() {
+    const confirmDelete = window.confirm("確定要刪除此資料嗎？");
+    if (confirmDelete) {
+      try {
+        navigate(`/dashboard/PersonalInfo`);
+        await axios.delete(`http://localhost:4107/dashboard/PersonalInfo/delete/${uid}`);
+      } catch (error) {
+        console.error("Error deleting data:", error);
+      }
     }
   }
 
@@ -222,7 +237,7 @@ const PersonalInfo = () => {
 
   const btd = new Date(birthday).toLocaleDateString('en-CA')
 
-  console.log(String(rural))
+
   return (
     <div>
       <div className="Container">
@@ -243,13 +258,12 @@ const PersonalInfo = () => {
             </ol>
             <ol>
               <li>地址:</li>
-              {/* 無法使用預設資料 */}
               <li><input type="text" defaultValue={city} disabled={true} />
-                <select defaultValue={"南區"} required={true} onChange={(e) => setUpRural(e.target.value)} >
-                  {adreessDist.map((item, index) => {
+                <select defaultValue={upRural} required={true} onChange={(e) => setUpRural(e.target.value)} >
+                  {dist.map((dist, index) => {
                     return (
-                      <option value={item.dist} key={index}>
-                        {item.dist}
+                      <option value={dist.dist} key={index}>
+                        {dist.dist}
                       </option>
                     );
                   })}
@@ -312,8 +326,10 @@ const PersonalInfo = () => {
             // 編輯按鈕
             <div
               style={{ position: "relative", width: "100%", textAlign: "center" }}>
-              <button className="btn btn-danger" onClick={() => setEdit(!edit)}>取消編輯</button>
+              <button className="btn btn-secondary" onClick={() => setEdit(!edit)}>取消編輯</button>
               <button className="btn btn-primary" onClick={handleSendEdit}>完成編輯</button>
+              <br />
+              <button className="btn btn-danger" onClick={deleteInfo}>刪除此資料</button>
             </div>
             // 正常按鈕
             : <div

@@ -59,7 +59,7 @@ const Banlist = (props) => {
     setNumber(start + limitCount < data.length ? number + limitCount : number);
     setStart(start + limitCount < data.length ? start + limitCount : start);
   };
-  console.log(orderAPI);
+  
   return (
     <div className="dashOrder">
       <div className="orderHead">

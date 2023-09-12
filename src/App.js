@@ -13,6 +13,7 @@ import {
   StaffList,
   StaffListInfo,
   Banlist,
+  AddStaff
 } from "./components/dashboard/DashboardSet";
 import Dashboard from "./pages/Dashboard";
 import MemberInfo from "./components/member/MemberInfo";
@@ -92,9 +93,10 @@ function App() {
             element={<DoneOrder />}
           />
           <Route path="/dashboard/blacklist" element={<Banlist />} />
+          <Route path="/dashboard/addstaff" element={<AddStaff />} />
         </Route>
         <Route path="*" element={<Error />} />
-        <Route path="/member" element={<Member />}>
+        <Route path="/member/" element={<Member />}>
           <Route index="/member/" element={<Order />} />
           <Route path="/member/:orderNumber" element={<OrderDone />} />
           <Route path="/member/memberinfo" element={<Memberlogin />} />

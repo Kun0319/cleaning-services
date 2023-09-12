@@ -111,7 +111,7 @@ const StaffList = (props) => {
                   employeeid,
                   employeename,
                   employeephone,
-                  employeeemail,
+                  employeemail,
                   goodid,
                   racheck,
                   cases,
@@ -126,7 +126,7 @@ const StaffList = (props) => {
                       <td>{employeeid}</td>
                       <td>{employeename}</td>
                       <td>{employeephone}</td>
-                      <td>{employeeemail}</td>
+                      <td>{employeemail}</td>
                       <td>{cases}</td>
                       <td>{goodid}</td>
                       <td>{racheck}</td>
@@ -141,7 +141,7 @@ const StaffList = (props) => {
                   employeeid,
                   employeename,
                   employeephone,
-                  employeeemail,
+                  employeemail,
                   goodid,
                   racheck,
                   cases,
@@ -156,7 +156,7 @@ const StaffList = (props) => {
                       <td>{employeeid}</td>
                       <td>{employeename}</td>
                       <td>{employeephone}</td>
-                      <td>{employeeemail}</td>
+                      <td>{employeemail}</td>
                       <td>{cases}</td>
                       <td>{goodid}</td>
                       <td>{racheck}</td>

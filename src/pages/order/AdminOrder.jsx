@@ -21,7 +21,7 @@ const Member = () => {
   }, [ornumber]);
   console.log(orderData)
   const {
-    uid,
+    userid,
     orname,
     oremail,
     orphone,
@@ -38,7 +38,7 @@ const Member = () => {
     date,
     time,
     weeks,
-    weeknumber,
+    donetime,
     employeename,
     employeephone,
     employeeemail
@@ -51,6 +51,15 @@ const Member = () => {
       return "未完成";
     }
     return "已完成";
+  };
+
+  const handleTime = (time) => {
+    if (time === 0) {
+      return "08:00";
+    } else if (time === 1) {
+      return "13:00";
+    }
+    return "18:00";
   };
 
   async function handleOrderUpdata() {
@@ -69,18 +78,18 @@ const Member = () => {
     <div>
       <div className="Container">
         <h3 className="orderh3">管理訂單</h3>
-        <div className="orderContainer">
+        <div className={`orderContainer bgdone ${state === 2 ? 'complete' : ''}`}>
           <div className="orderContent">
             <table border={1}>
               <tr>
                 <th style={{ fontWeight: "600" }}>
                   <Link
-                    to={`/dashboard/PersonalInfo/${uid}`}
+                    to={`/dashboard/PersonalInfo/${userid}`}
                     className="Link-decoration">訂購人資料</Link>
                 </th>
               </tr>
               <tr>
-                <td>會員編號:{uid}</td>
+                <td>會員編號:{userid}</td>
               </tr>
               <tr>
                 <td>訂購人姓名:{orname}</td>
@@ -126,7 +135,7 @@ const Member = () => {
             </tr>
             <tr>
               <td>訂單狀態:{handleOrderStatus(state)}</td>
-              <td>服務時段:{time}</td>
+              <td>服務時段:{handleTime(time)}</td>
             </tr>
             <tr>
               <td>付款方式:{pay ? "信用卡" : "無"}</td>
@@ -134,12 +143,12 @@ const Member = () => {
             </tr>
             <tr>
               <td>訂單金額:{money}元</td>
-              <td>服務次數:{weeknumber}</td>
+              <td>服務次數:{donetime}</td>
             </tr>
             <tr>
               <td>清潔地址:{orcity + orrural + oraddress}</td>
               <td>
-                完成次數:<span style={{ color: "red" }}>{weeknumber}</span>/
+                完成次數:<span style={{ color: "red" }}>{donetime}</span>/
                 {weeks}
               </td>
             </tr>
@@ -153,8 +162,8 @@ const Member = () => {
         {/* 按鈕 */}
         <div className="btncontain">
           <button
-            className={weeks !== weeknumber ? "notClear" : ""}
-            disabled={weeks !== weeknumber ? true : false}
+            className={weeks !== donetime ? "notClear" : ""}
+            disabled={weeks !== donetime ? true : false}
             onClick={() => {
               setOrderData((status) => {
                 return { ...status, state: 2 };
@@ -169,10 +178,10 @@ const Member = () => {
               setOrderData((count) => {
                 return {
                   ...count,
-                  weeknumber:
-                    count.weeknumber + 1 <= weeks
-                      ? count.weeknumber + 1
-                      : count.weeknumber,
+                  donetime:
+                    count.donetime + 1 <= weeks
+                      ? count.donetime + 1
+                      : count.donetime,
                 };
               });
               handleOrderUpdata();
