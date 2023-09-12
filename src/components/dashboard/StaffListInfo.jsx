@@ -205,7 +205,7 @@ const StaffListInfo = () => {
                 defaultChecked={upVaccine === 1}
                 onChange={(e) => { setUpVaccine(e.target.checked ? 1 : 0); }}
                 required={true}
-              />是否接種疫苗</li>
+              />接種疫苗</li>
               <li>良民證:</li>
               <li><input
                 type="checkbox"
