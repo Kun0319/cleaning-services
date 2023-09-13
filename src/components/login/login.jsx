@@ -4,7 +4,7 @@ import AuthContext, { AuthProvider } from './AuthContext';
 
 
 import axios from './axios'
-import { Row } from "react-bootstrap";
+
 const LOGIN_URL = '/login';
 
 
@@ -55,6 +55,49 @@ const Login = () => {
 
             );
 
+
+
+
+            function getCookieValue(cookieName) {
+                const name = cookieName + "=";
+
+                // decodeURIComponent會對網頁上cookie做解碼
+                const decodedCookie = decodeURIComponent(document.cookie);
+
+                // 將cookie拆分
+                const cookieArray = decodedCookie.split(';');
+                // 找指定的cookie名稱
+                for (let i = 0; i < cookieArray.length; i++) {
+                    let cookie = cookieArray[i];
+
+                    // "connect.sid"
+                    while (cookie.charAt(0) === ' ') {
+                        // 切割空格部分
+                        cookie = cookie.substring(1);
+
+                    }
+                    // 找指定的name 也就是connect.sid
+                    if (cookie.indexOf(name) === 0) {
+                        // 去除名稱部分只留下值(資料)
+                        return cookie.substring(name.length, cookie.length);
+                    }
+                }
+                // 如果沒有找到該cookie 返回空字串
+                return "";
+            }
+
+            // 將 Cookie 值存到 localStorage
+            const cookieValue = getCookieValue("connect.sid"); // Cookie 名稱
+            console.log(cookieValue);
+            if (cookieValue) {
+                // localStorage：除非在用戶端被手動刪除，或是程式碼清除，否則將永久保存。
+                // sessionStorage：在每次關閉該頁面、或是關閉瀏覽器後就會自動被清除。
+                localStorage.setItem("userdata", cookieValue); //  localStorage 鍵名 可以自行修改
+                sessionStorage.setItem("userdata", cookieValue); //  localStorage 鍵名可以自行修改
+            }
+
+
+
             // console.log(JSON.stringify(response?.data))
             // console.log(JSON.stringify(response))
 
@@ -80,6 +123,12 @@ const Login = () => {
             errRef.current.focus();
         }
     }
+
+    // 儲存session
+    // 从 Cookie 中获取需要的值
+
+
+
 
 
     return (
