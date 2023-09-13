@@ -90,6 +90,8 @@ const Login = () => {
             const cookieValue = getCookieValue("connect.sid"); // Cookie 名稱
             console.log(cookieValue);
             if (cookieValue) {
+                // localStorage：除非在用戶端被手動刪除，或是程式碼清除，否則將永久保存。
+                // sessionStorage：在每次關閉該頁面、或是關閉瀏覽器後就會自動被清除。
                 localStorage.setItem("userdata", cookieValue); //  localStorage 鍵名 可以自行修改
                 sessionStorage.setItem("userdata", cookieValue); //  localStorage 鍵名可以自行修改
             }
