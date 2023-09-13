@@ -35,8 +35,14 @@ class navbar extends Component {
             document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
             this.setState({ isLoggedIn: false });
 
-            // 由後端自動產生的cookie名稱connect.sid 
+            // 清除localStorage
+            localStorage.clear();
 
+            // 清除sessionStorage
+            sessionStorage.clear();
+
+            
+            // 由後端自動產生的cookie名稱connect.sid 
             axios.get(LOGOUT_URL, {}, {
                 headers: {
                     'Clear-Cookie': "connect.sid",
