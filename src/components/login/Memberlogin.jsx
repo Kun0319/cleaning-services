@@ -1,13 +1,59 @@
 import React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './login.css'
 import "../../components/dashboard/dashboard.css";
-import SidebarMember from "../member/SidebarMember";
-import Navbar from "../navbar";
-
-
-
+import axios from "axios";
+import { useParams, Link } from "react-router-dom";
 const Memberlogin = () => {
+  const { userid } = useParams();
+  const [memberData, setMemberData] = useState({});
+  const [edit, setEdit] = useState(false);
+  // 編輯變數
+  const [upPhone, setUpPhone] = useState("")
+  const [upAddress, setUpAddress] = useState("")
+  const [upRural, setUpRural] = useState("")
+  const [dist, setdist] = useState("")
+
+
+  //接收資料
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await axios.get(`http://localhost:4107/member/memberinfo/${userid}`);
+        if (result.data && result.data.data && result.data.data[0]) {
+          setMemberData(result.data.data[0]);
+          setUpPhone(result.data.data[0].phone);
+          setUpAddress(result.data.data[0].address);
+          setUpRural(result.data.data[0].rural);
+          setdist(result.data.address);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
+  }, [userid]);
+
+  // 資料更新送出
+  async function handleSendEdit() {
+    try {
+      await axios.put(
+        `http://localhost:4107/member/memberinfo/update/${userid}`,
+        {
+          upPhone: upPhone,
+          upRural: upRural,
+          upAddress: upAddress,
+        }
+      );
+      console.log('handleSendEdit 被调用了');
+      window.location.reload();
+    } catch (error) {
+      console.error("Error updata data:", error);
+    }
+  }
+
+
+
   const adreessDist = [
     {
       dist: "中區",
@@ -84,81 +130,19 @@ const Memberlogin = () => {
   ];
 
 
-  // 定義會員資料的狀態
-  const [memberData, setMemberData] = useState({
-    name: "李小明",
-    birthday: "1995/01/01",
-    idNumber: "A12345678",
-    phoneNumber: "0912345678",
-    email: "123@gmail.com",
-    address: {
-      city: "台中市",
-      district: "南屯區",
-      detail: "黎明路658號",
-    },
-  });
 
-  // 用於地址編輯的狀態變數
-  const [editedAddress, setEditedAddress] = useState("");
+  const {
+    name,
+    birthday,
+    phone,
+    email,
+    id,
+    city,
+    rural,
+    address
+  } = memberData;
 
-  const [editedDistrict, setEditedDistrict] = useState(memberData.address.district);
-  const [isEditingDistrict, setIsEditingDistrict] = useState(false);
-
-
-  // 編輯模式的狀態
-  const [isEditing, setIsEditing] = useState(false);
-
-  // 編輯後的手機號碼和信箱狀態
-  const [editedPhoneNumber, setEditedPhoneNumber] = useState("");
-  const [editedEmail, setEditedEmail] = useState("");
-
-  // 編輯按鈕的點擊事件
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
-
-  // 取消按鈕的點擊事件
-  const handleCancelClick = () => {
-    setIsEditing(false);
-  };
-
-  // 儲存按鈕的點擊事件
-  const handleSaveClick = () => {
-    // 執行儲存修改的邏輯，這裡可以將修改後的資料提交給後端或更新到狀態中
-
-    setMemberData({
-      ...memberData,
-      phoneNumber: editedPhoneNumber,
-      email: editedEmail,
-      address: {
-        ...memberData.address,
-        district: editedDistrict, // 更新地區
-        detail: editedAddress,   // 更新詳細地址
-      },
-    });
-
-
-    setIsEditing(false);
-  };
-
-  // 處理手機號碼輸入框的變化
-  const handlePhoneNumberChange = (event) => {
-    const newPhoneNumber = event.target.value;
-    setEditedPhoneNumber(newPhoneNumber);
-  };
-
-  // 處理信箱輸入框的變化
-  const handleEmailChange = (event) => {
-    const newEmail = event.target.value;
-    setEditedEmail(newEmail);
-  };
-
-  // 處理地址輸入框的變化
-  const handleAddressChange = (event) => {
-    const newAddress = event.target.value;
-    setEditedAddress(newAddress);
-  };
-
+  const btd = new Date(birthday).toLocaleDateString('en-CA')
 
 
   // 如果處於編輯模式，渲染編輯表單，否則渲染會員資料
@@ -166,131 +150,127 @@ const Memberlogin = () => {
     <div className="membercontainer">
       <div className="loginrightbox">
         <div className="loginflex">
-          {isEditing ? (
+          {edit ? 
+
             // 編輯模式下的表單
             <ul>
               <li className="loginli">
                 <img src="/images/nameicon.png" className="loginicon" />
                 <p>姓名</p>
-                <input value={memberData.name} disabled="disabled"></input>
+                <input value={name} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/date.png" className="loginicon" />
                 <p>生日</p>
-                <input value={memberData.birthday} disabled="disabled"></input>
+                <input value={btd} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/idnumber.png" className="loginicon" />
                 <p>身分證字號</p>
-                <input value={memberData.idNumber} disabled="disabled"></input>
+                <input value={id} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/tet.png" className="loginicon" />
                 <p>手機號碼</p>
                 <input
+                  type="tel"
                   placeholder="請輸入手機號碼"
-                  value={editedPhoneNumber}
-                  onChange={handlePhoneNumberChange}
-                ></input>
+                  onChange={(e) => setUpPhone(e.target.value)} pattern="^09[0-9]{8}$" required={true} />
               </li>
               <li className="loginli">
                 <img src="/images/icon-4.png" className="loginicon" />
                 <p>信箱</p>
-                <input
-                  type="email"
-                  placeholder="請輸入信箱"
-                  value={editedEmail}
-                  onChange={handleEmailChange}
-                ></input>
+                <input value={email} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/icon-6.png" className="loginicon" />
                 <p>地址</p>
-                <select
-                  value={editedDistrict}
-                  onChange={(e) => setEditedDistrict(e.target.value)}
-                >
-                  {adreessDist.map((item, index) => (
-                    <option value={item.v} key={index}>
-                      {item.dist}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="text"
-                  value={editedAddress}
-                  onChange={handleAddressChange}
-                />
+                <input type="text" defaultValue={city} disabled={true} />
+                <select defaultValue={upRural} required={true} onChange={(e) => setUpRural(e.target.value)} >
+                  {dist.map((dist, index) => {
+                    return (
+                      <option value={dist.dist} key={index}>
+                        {dist.dist}
+                      </option>
+                    );
+                  })}
+                </select> <input type="text" defaultValue={address} onChange={(e) => setUpAddress(e.target.value)} required={true} />
               </li>
             </ul>
-          ) : (
+           : 
             // 顯示會員資料
             <ul>
               <li className="loginli">
                 <img src="/images/nameicon.png" className="loginicon" />
                 <p>姓名</p>
-                <input value={memberData.name} disabled="disabled"></input>
+                <input value={name} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/date.png" className="loginicon" />
                 <p>生日</p>
-                <input value={memberData.birthday} disabled="disabled"></input>
+                <input value={btd} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/idnumber.png" className="loginicon" />
                 <p>身分證字號</p>
-                <input value={memberData.idNumber} disabled="disabled"></input>
+                <input value={id} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/tet.png" className="loginicon" />
                 <p>手機號碼</p>
                 <input
-                  value={memberData.phoneNumber}
+                  value={phone}
                   disabled="disabled"
                 ></input>
               </li>
               <li className="loginli">
                 <img src="/images/icon-4.png" className="loginicon" />
                 <p>信箱</p>
-                <input value={memberData.email} disabled="disabled"></input>
+                <input value={email} disabled="disabled"></input>
               </li>
               <li className="loginli">
                 <img src="/images/icon-6.png" className="loginicon" />
                 <p>地址</p>
                 <input
                   type="text"
-                  value={`${memberData.address.city} ${memberData.address.district}`}
+                  value={city}
                   id="cleaning-city"
                   disabled="disabled"
                 />
                 <input
                   type="text"
-                  value={memberData.address.detail}
+                  value={rural}
+                  id="cleaning-city"
+                  disabled="disabled"
+                />
+                <input
+                  type="text"
+                  value={address}
                   id="detail-address"
                   required
                   disabled="disabled"
                 />
               </li>
             </ul>
-          )}
+          }
 
           <div>
-            {isEditing ? (
+            {edit ? 
               // 顯示儲存和取消按鈕
               <>
-                <button className="cancelbtn" onClick={handleCancelClick}>
+                <button className="cancelbtn" onClick={() => setEdit(!edit)}>
                   取消
                 </button>
-                <button className="signupbtn" onClick={handleSaveClick}>
+                <button className="signupbtn" onClick={handleSendEdit}>
                   確認修改
                 </button>
               </>
-            ) : (
+             : 
               // 顯示編輯按鈕
-              <button className="revisebtn" onClick={handleEditClick}>
+              <button className="revisebtn" onClick={() => setEdit(!edit)}>
                 修改
               </button>
-            )}
+            }
           </div>
         </div>
       </div>

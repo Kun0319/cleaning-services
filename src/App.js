@@ -115,7 +115,10 @@ function App() {
         <Route path="/member/" element={<Member />}>
           <Route index="/member/" element={<Order />} />
           <Route path="/member/:orderNumber" element={<OrderDone />} />
-          <Route path="/member/memberinfo" element={<Memberlogin />} />
+          {/* <Route path="/member/memberinfo" element={<Memberlogin />} /> */}
+          <Route path="/member/memberinfo/:userid"
+          element={<Memberlogin />} 
+          />
           <Route path="/member/changepwd" element={<ChangePwd />} />
         </Route>
       </Routes>
