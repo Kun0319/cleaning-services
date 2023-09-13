@@ -488,9 +488,11 @@
 }
 
 /* Other Style */
-
 .selected {
   background-color: #664d03;
+  color: #ffe69c;
+}
+.selected.react-calendar__tile:enabled{
   color: #ffe69c;
 }
 .not-choose {
@@ -506,7 +508,6 @@
 }
 .react-calendar__tile--now {
   text-decoration: underline;
-  /* background-color: #82643800; */
 }
 
 /* RWD */

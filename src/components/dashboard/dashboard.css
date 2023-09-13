@@ -41,8 +41,7 @@
 }
 
 .aside-input::placeholder,
-.aside-title,
-.aside span {
+.aside-title {
   color: #664d03;
   font-family: Inter;
   font-size: 20px;
@@ -84,6 +83,7 @@
 }
 
 .Link-decoration {
+  color: #664d03;
   text-decoration: none;
 }
 

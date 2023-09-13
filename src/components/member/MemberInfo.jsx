@@ -105,12 +105,12 @@ const MemberInfo = (props) => {
             ? data
               .slice(start, number)
               .map(
-                ({ uid, name, phone, city, rural, address, userid }) => {
+                ({name, phone, city, rural, address, userid }) => {
                   return (
                     <tr
-                      key={uid}
+                      key={userid}
                       onClick={() => {
-                        navigate(`/dashboard/PersonalInfo/${uid}`);
+                        navigate(`/dashboard/PersonalInfo/${userid}`);
                       }}
                     >
                       <td>{userid}</td>
@@ -126,12 +126,12 @@ const MemberInfo = (props) => {
             : orderAPI
               .slice(start, number)
               .map(
-                ({ uid, name, phone, city, rural, address, userid }) => {
+                ({ name, phone, city, rural, address, userid }) => {
                   return (
                     <tr
-                      key={uid}
+                      key={userid}
                       onClick={() => {
-                        navigate(`/dashboard/PersonalInfo/${uid}`);
+                        navigate(`/dashboard/PersonalInfo/${userid}`);
                       }}
                     >
                       <td>{userid}</td>
