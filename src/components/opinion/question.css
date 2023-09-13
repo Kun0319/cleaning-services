@@ -68,7 +68,9 @@
   background: #fff;
   /* box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5); */
   transition: 0.2s;
-  margin: 25px;
+  margin-left: auto;
+  margin-bottom: 24px;
+  margin-right: auto;
 }
 
 .question-card:hover {
