@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import './login.css'
 import "../../components/dashboard/dashboard.css";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 const Memberlogin = () => {
   const { userid } = useParams();
   const [memberData, setMemberData] = useState({});
@@ -45,7 +45,6 @@ const Memberlogin = () => {
           upAddress: upAddress,
         }
       );
-      console.log('handleSendEdit 被调用了');
       window.location.reload();
     } catch (error) {
       console.error("Error updata data:", error);

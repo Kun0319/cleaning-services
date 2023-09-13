@@ -1,35 +1,63 @@
-import React, { useState } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
 import './login.css'
 import "../../components/dashboard/dashboard.css";
-import SidebarMember from "../member/SidebarMember";
-import Navbar from "../navbar";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+
 
 const ChangePwd = () => {
+  const { userid } = useParams();
+  const [PWData, setPWData] = useState({});
   // 定義密碼的狀態變數
-  const [password, setPassword] = useState("");
+  const [uppassword, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
 
-  // 點擊事件
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  //接收資料
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await axios.get(`http://localhost:4107/member/changepwd/${userid}`);
+        if (result.data && result.data.data && result.data.data[0]) {
+          setPWData(result.data.data[0]);
+          setPassword(result.data.data[0].password);
+        }
 
-  // 取消按鈕的點擊事件
-  const handleCancelClick = () => {
-    setIsEditing(false);
-  };
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
+  }, [userid]);
 
   // 儲存按鈕的點擊事件
-  const handleSaveClick = () => {
-    if (password === confirmPassword) {
-      // 密碼驗證通過，執行儲存修改的邏輯，這裡可以將新密碼提交給後端或更新到狀態中
-      // 將新密碼設置到狀態中
-      setPassword(password);
-      setIsEditing(false);
+  const handleSaveClick = async () => {
+    if (uppassword === confirmPassword) {
+      updatePassword();
     } else {
-      // 密碼驗證失敗，顯示錯誤
-      alert("密碼不相符。");
+      alert("密碼請一致");
+    }
+  };
+
+  // 取消按鈕的點擊事件處理函數
+  const handleCancelClick = () => {
+    setPassword("");
+    setConfirmPassword("");
+  };
+
+
+  // 實際更新密碼的函數
+  const updatePassword = async () => {
+    try {
+      await axios.put(
+        `http://localhost:4107/member/changepwd/update/${userid}`,
+        {
+          uppassword: uppassword,
+        }
+      );
+      window.location.reload();
+    } catch (error) {
+      console.error("Error updating password:", error);
     }
   };
 
@@ -37,59 +65,33 @@ const ChangePwd = () => {
     <div className="membercontainer">
       <div className="loginrightbox">
         <div className="loginflex">
-          {isEditing ? (
-            // 編輯模式
-            <ul>
-              <li className="loginli">
-                <p>新密碼</p>
-                <input
-                  type="password"
-                  placeholder="請輸入新密碼"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </li>
-              <li className="loginli">
-                <p>確認密碼</p>
-                <input
-                  type="password"
-                  placeholder="請再次輸入新密碼"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-              </li>
-            </ul>
-          ) : (
-            // 顯示會員資料
-            <ul>
-              <li className="loginli">
-                <p>密碼</p>
-                <input
-                  type="password"
-                  value="********" // 將密碼設置為星號形式
-                  disabled="disabled"
-                />
-              </li>
-            </ul>
-          )}
-
+          <ul>
+            <li className="loginli">
+              <p>新密碼</p>
+              <input
+                type="password"
+                placeholder="請輸入新密碼"
+                value={uppassword}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </li>
+            <li className="loginli">
+              <p>確認密碼</p>
+              <input
+                type="password"
+                placeholder="請再次輸入新密碼"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </li>
+          </ul>
           <div>
-            {isEditing ? (
-              // 顯示儲存和取消按鈕
-              <>
-                <button className="cancelbtn" onClick={handleCancelClick}>
-                  取消
-                </button>
-                <button className="signupbtn" onClick={handleSaveClick}>
-                  確認修改
-                </button>
-              </>
-            ) : (
-              // 顯示編輯按鈕
-              <button className="revisebtn" onClick={handleEditClick}>
-                修改
-              </button>
-            )}
+            <button className="cancelbtn" onClick={handleCancelClick}>
+              取消
+            </button>
+            <button className="signupbtn" onClick={handleSaveClick}>
+              確認修改
+            </button>
           </div>
         </div>
       </div>
