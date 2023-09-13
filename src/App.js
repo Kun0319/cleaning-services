@@ -96,7 +96,7 @@ function App() {
           />
           <Route path="/dashboard/PersonalInfo/" element={<MemberInfo />} />
           <Route
-            path="/dashboard/PersonalInfo/:uid"
+            path="/dashboard/PersonalInfo/:userid"
             element={<PersonalInfo />}
           />
           <Route path="/dashboard/StaffList/" element={<StaffList />} />

@@ -3,14 +3,12 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../components/member/member.css";
 const PersonalInfo = () => {
-  const { uid } = useParams();
-  const [personNumber, setPersonNumber] = useState(parseInt(uid));
+  const { userid } = useParams();
   const [memberData, setMemberData] = useState({});
   const [addBlackList, setAddBlackList] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [why, setWhy] = useState("");
   const [edit, setEdit] = useState(false);
-  const [dataLength, setDatalength] = useState(null);
   const navigate = useNavigate();
   // 編輯變數
   const [upName, setUpName] = useState("")
@@ -24,6 +22,7 @@ const PersonalInfo = () => {
   const [upBirthDay, setUpBirthDay] = useState("")
   const [upRural, setUpRural] = useState("")
   const [dist, setdist] = useState("")
+  const [useridarr, setUserIdArr] = useState("")
 
 
   //接收資料
@@ -31,11 +30,10 @@ const PersonalInfo = () => {
     async function fetchData() {
       try {
         const result = await axios.get(
-          `http://localhost:4107/dashboard/PersonalInfo/${personNumber}`
+          `http://localhost:4107/dashboard/PersonalInfo/${userid}`
         );
+        if(result){
         setMemberData(result.data.data[0]);
-        setDatalength(result.data.length);
-        setPersonNumber(parseInt(uid));
         setWhy(result.data.why[0].why || "");
         setUpName(result.data.data[0].name)
         setUpId(result.data.data[0].id)
@@ -44,30 +42,32 @@ const PersonalInfo = () => {
         setUpEmail(result.data.data[0].email)
         setUpRural(result.data.data[0].rural)
         setUpAdmin(result.data.data[0].admin)
-        setUpPassWord(result.data.data[0].password)
+        setUpPassWord(result.data.newPW)
         setdist(result.data.address)
         setUpBirthDay(new Date(result.data.data[0].birthday).toLocaleDateString('en-CA'))
+        setUserIdArr(()=>{
+          const arr = result.data.len.map((obj) => obj.userid);
+          return arr
+        })
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
     fetchData();
-  }, [personNumber, uid]);
+  }, [userid]);
 
-  //   上一頁
-  function prevPage() {
-    const newPersonNumber =
-      personNumber - 1 > 0 ? personNumber - 1 : personNumber;
-    setPersonNumber(newPersonNumber);
-    navigate(`/dashboard/PersonalInfo/${newPersonNumber}`);
+    //   上一頁
+  const prevPage = () => {
+    const data = useridarr[useridarr.indexOf(userid)-1]
+    const res = data ? data : userid
+    navigate(`/dashboard/PersonalInfo/${res}`)
   }
-
-  //   下一頁
-  function nextPage() {
-    const newPersonNumber =
-      personNumber + 1 <= dataLength ? personNumber + 1 : personNumber;
-    setPersonNumber(newPersonNumber);
-    navigate(`/dashboard/PersonalInfo/${newPersonNumber}`);
+   //   下一頁
+  const nextPage = () => {
+    const data = useridarr[useridarr.indexOf(userid)+1]
+    const res = data ? data : userid
+    navigate(`/dashboard/PersonalInfo/${res}`)
   }
 
   // 加黑名單
@@ -79,7 +79,7 @@ const PersonalInfo = () => {
   function sendBlackList() {
     try {
       axios.put(
-        `http://localhost:4107/dashboard/PersonalInfo/blacklist/${uid}`,
+        `http://localhost:4107/dashboard/PersonalInfo/blacklist/${userid}`,
         { why: inputValue }
       );
       setAddBlackList(!addBlackList);
@@ -95,12 +95,12 @@ const PersonalInfo = () => {
   async function deleteBlackList() {
     try {
       await axios.put(
-        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${uid}`,
-        { uid: uid }
+        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${userid}`,
+        { userid: userid }
       );
       await axios.delete(
-        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${uid}`,
-        { uid: uid }
+        `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${userid}`,
+        { userid: userid }
       );
       alert("成功解除");
       window.location.reload();
@@ -113,7 +113,7 @@ const PersonalInfo = () => {
   async function handleSendEdit() {
     try {
       await axios.put(
-        `http://localhost:4107/dashboard/PersonalInfo/update/${uid}`,
+        `http://localhost:4107/dashboard/PersonalInfo/update/${userid}`,
         {
           upName: upName,
           upId: upId,
@@ -138,87 +138,17 @@ const PersonalInfo = () => {
     if (confirmDelete) {
       try {
         navigate(`/dashboard/PersonalInfo`);
-        await axios.delete(`http://localhost:4107/dashboard/PersonalInfo/delete/${uid}`);
+        await axios.delete(`http://localhost:4107/dashboard/PersonalInfo/delete/${userid}`);
       } catch (error) {
         console.error("Error deleting data:", error);
       }
     }
   }
+  function ChangeDateType(e){
+    const btd = new Date(e.target.value).toLocaleDateString('en-CA')
+    setUpBirthDay(btd)
+  }
 
-  const adreessDist = [
-    {
-      dist: "中區",
-      v: "Central",
-    },
-    {
-      dist: "北區",
-      v: "North",
-    },
-    {
-      dist: "南區",
-      v: "South",
-    },
-    {
-      dist: "西區",
-      v: "West",
-    },
-    {
-      dist: "東區",
-      v: "Eastern",
-    },
-    {
-      dist: "北屯區",
-      v: "Beitun",
-    },
-    {
-      dist: "南屯區",
-      v: "Nantun",
-    },
-    {
-      dist: "西屯區",
-      v: "Xitun",
-    },
-    {
-      dist: "豐原區",
-      v: "Fengyuan",
-    },
-    {
-      dist: "大里區",
-      v: "Dali",
-    },
-    {
-      dist: "太平區",
-      v: "Taiping",
-    },
-    {
-      dist: "烏日區",
-      v: "Uri",
-    },
-    {
-      dist: "大雅區",
-      v: "Daya",
-    },
-    {
-      dist: "潭子區",
-      v: "Tanzi",
-    },
-    {
-      dist: "新社區",
-      v: "Xinshe",
-    },
-    {
-      dist: "神岡區",
-      v: "Shengang",
-    },
-    {
-      dist: "龍井區",
-      v: "Longjing",
-    },
-    {
-      dist: "沙鹿區",
-      v: "Shalu",
-    },
-  ];
 
   const {
     name,
@@ -231,7 +161,6 @@ const PersonalInfo = () => {
     rural,
     address,
     admin,
-    userid,
     blacklist,
   } = memberData;
 
@@ -252,7 +181,7 @@ const PersonalInfo = () => {
               <li>身分證字號:</li>{/* 假驗證 */}
               <li><input type="text" defaultValue={id} onChange={(e) => setUpId(e.target.value)} pattern="^[A-Za-z]\d{9}$" required={true} /></li>
               <li>出生年月日:</li>
-              <li><input type="date" defaultValue={btd} onChange={(e) => setUpBirthDay(e.target.value)} /></li>
+              <li><input type="date" defaultValue={btd} onChange={(e) => ChangeDateType(e)} /></li>
               <li>聯絡方式:</li>
               <li><input type="tel" defaultValue={phone} onChange={(e) => setUpPhone(e.target.value)} pattern="^09[0-9]{8}$" required={true} /></li>
             </ol>
@@ -273,7 +202,7 @@ const PersonalInfo = () => {
               <li>密碼:</li>
               <li>{changePW ?
                 <input type="button" value={"新密碼"} onClick={() => setchangePW(!changePW)} /> :
-                <input type="password" placeholder="數字,大小寫英文,6-12個密碼" defaultValue={upPassWord} onChange={(e) => setUpPassWord(e.target.value)} pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$" required={true} />}</li>
+                <input type="password" placeholder="數字,大小寫英文,6-12個密碼" onChange={(e) => setUpPassWord(e.target.value)} pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$" required={true} />}</li>
               <li>權限:</li>
               <li><select defaultValue={admin} onChange={(e) => setUpAdmin(e.target.value)}>
                 <option value="0">一般會員</option>

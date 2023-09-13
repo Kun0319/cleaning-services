@@ -8,7 +8,6 @@ const StaffListInfo = () => {
   const { employeeid } = useParams();
   const [staffData, setStaffData] = useState({});
   const [staffListData, setStaffListData] = useState({});
-  const [dataLength, setDatalength] = useState(null);
   const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +24,8 @@ const StaffListInfo = () => {
   const [upRural, setUpRural] = useState("")
   const [upAddress, setUpAddress] = useState("")
   const [changePW, setchangePW] = useState(true)//變更密碼
-  const [upCases, setUpCases] = useState("")
+  const [addressAPI, setAddressAPI] = useState("")
+  const [useridarr, setUserIdArr] = useState("")
 
   //接收資料
   useEffect(() => {
@@ -36,18 +36,22 @@ const StaffListInfo = () => {
         );
         setStaffData(result.data.data[0]); //員工資料
         setStaffListData(result.data.list); //訂單紀錄
-        setDatalength(result.data.length[0].length); //員工總數
         setUpName(result.data.data[0].employeename)
         setUpPhone(result.data.data[0].employeephone)
         setUpEmail(result.data.data[0].employeeemail)
         setUpVaccine(result.data.data[0].vaccine)
         setUpGoodid(result.data.data[0].goodid)
         setUpRacheck(result.data.data[0].racheck)
-        setUpPassWord(result.data.data[0].employeepw)
+        setUpPassWord(result.data.newPW)
         setUpIdnumber(result.data.data[0].employeeidnumber)
         setUpBirthday(result.data.data[0].employeebirthday)
         setUpRural(result.data.data[0].emprural)
         setUpAddress(result.data.data[0].empaddress)
+        setAddressAPI(result.data.address)
+        setUserIdArr(()=>{
+          const arr=result.data.useridarr.map((obj)=>obj.employeeid)
+          return arr
+        })
 
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -56,19 +60,18 @@ const StaffListInfo = () => {
     fetchData();
   }, [employeeid]);
 
-  //   上一頁
-  const prevStaffClick = () => {
-    var data = parseInt(employeeid.slice(2))
-    var res = data - 1 > 0 ? data - 1 : data
-    navigate(`/dashboard/StaffList/${"RA" + String(res).padStart(3, 0)}`)
-  }
-
-  //   下一頁
-  const nextStaffClick = () => {
-    var data = parseInt(employeeid.slice(2))
-    var res = data + 1 > dataLength ? data : data + 1
-    navigate(`/dashboard/StaffList/${"RA" + String(res).padStart(3, 0)}`)
-  }
+     //   上一頁
+    const prevStaffClick = () => {
+      const data = useridarr[useridarr.indexOf(employeeid)-1]
+      const res = data ? data : employeeid
+      navigate(`/dashboard/StaffList/${res}`)
+    }
+    //   下一頁
+    const nextStaffClick = () => {
+      const data = useridarr[useridarr.indexOf(employeeid)+1]
+      const res = data ? data : employeeid
+      navigate(`/dashboard/StaffList/${res}`)
+    }
 
   // 資料更新送出
   async function handleSendEdit() {
@@ -86,8 +89,7 @@ const StaffListInfo = () => {
           upIdnumber: upIdnumber,
           upBirthday: upBirthday,
           upRural: upRural,
-          upAddress: upAddress,
-          upCases: upCases
+          upAddress: upAddress
         }
       );
       window.location.reload();
@@ -108,81 +110,6 @@ const StaffListInfo = () => {
       }
     }
   }
-
-  const adreessDist = [
-    {
-      dist: "中區",
-      v: "Central",
-    },
-    {
-      dist: "北區",
-      v: "North",
-    },
-    {
-      dist: "南區",
-      v: "South",
-    },
-    {
-      dist: "西區",
-      v: "West",
-    },
-    {
-      dist: "東區",
-      v: "Eastern",
-    },
-    {
-      dist: "北屯區",
-      v: "Beitun",
-    },
-    {
-      dist: "南屯區",
-      v: "Nantun",
-    },
-    {
-      dist: "西屯區",
-      v: "Xitun",
-    },
-    {
-      dist: "豐原區",
-      v: "Fengyuan",
-    },
-    {
-      dist: "大里區",
-      v: "Dali",
-    },
-    {
-      dist: "太平區",
-      v: "Taiping",
-    },
-    {
-      dist: "烏日區",
-      v: "Uri",
-    },
-    {
-      dist: "大雅區",
-      v: "Daya",
-    },
-    {
-      dist: "潭子區",
-      v: "Tanzi",
-    },
-    {
-      dist: "新社區",
-      v: "Xinshe",
-    },
-    {
-      dist: "神岡區",
-      v: "Shengang",
-    },
-    {
-      dist: "龍井區",
-      v: "Longjing",
-    },
-    {
-      dist: "沙鹿區",
-      v: "Shalu",
-    },
-  ];
 
   const { employeename, employeephone, employeeemail, photo, vaccine, goodid, racheck, cases, employeepw, employeebirthday, empcity, emprural, empaddress, employeeidnumber } =
     staffData;
@@ -231,14 +158,13 @@ const StaffListInfo = () => {
               <li>密碼:</li>
               <li>{changePW ?
                 <input type="button" value={"新密碼"} onClick={() => setchangePW(!changePW)} /> :
-                <input type="password" placeholder="數字,大小寫英文,6-12個密碼" defaultValue={upPassWord} onChange={(e) => setUpPassWord(e.target.value)} pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$" required={true} />}</li>
+                <input type="password" placeholder="數字,大小寫英文,6-12個密碼"  onChange={(e) => setUpPassWord(e.target.value)} pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$" required={true} />}</li>
               <li>聯絡方式:</li>
               <li><input type="tel" defaultValue={employeephone} onChange={(e) => setUpPhone(e.target.value)} pattern="^09[0-9]{8}$" required={true} /></li>
               <li>地址:</li>
-              {/* 無法使用預設資料 */}
               <li><input type="text" defaultValue={empcity} disabled={true} />
-                <select defaultValue={"南區"} required={true} onChange={(e) => setUpRural(e.target.value)} >
-                  {adreessDist.map((item, index) => {
+                <select defaultValue={upRural} required={true} onChange={(e) => setUpRural(e.target.value)} >
+                  {addressAPI.map((item, index) => {
                     return (
                       <option value={item.dist} key={index}>
                         {item.dist}
