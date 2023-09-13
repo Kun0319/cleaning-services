@@ -1,52 +1,74 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
 import axios from "axios";
+import BookContext from "./book-context";
+import Button from "./Button";
 
-const Step3Area = ({ formData, setFormData }) => {
+const Step3Area = () => {
   const navigate = useNavigate();
+  const ctx = useContext(BookContext);
   const checkDataNum = document.querySelectorAll(
     "#clientInfo input:not(#same):not(#notes)"
   );
+  const [dist, setDist] = useState([]);
+  const [infoCheck, setInfoCheck] = useState(false);
 
-  let [dist, setDist] = useState([]);
+  const checkedMember = (event) => {
+    if (event.target.checked) {
+      setInfoCheck(true);
+    } else {
+      setInfoCheck(false);
+    }
+  };
+
   const checkPhone = () => {
     let phone = document.querySelector("#userPhone");
     document.querySelector("#userPhone+span").innerHTML =
       phone.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
-    formData.phone = phone.value;
-    setFormData(formData);
+    ctx.phone = phone.value;
   };
   const checkName = () => {
     let name = document.querySelector("#userName");
     document.querySelector("#userName+span").innerHTML =
       name.validity.patternMismatch === true ? "&#10005;" : "&#10003;";
-    formData.name = name.value;
-    setFormData(formData);
+    ctx.name = name.value;
   };
-  const saveMail = () => {
-    let mail = document.querySelector("#userMail").value;
-    formData.email = mail;
-    setFormData(formData);
-  };
-  const saveDist = () => {
-    let userDist = document.querySelector("#userAddress").value;
-    formData.rural = userDist;
-    setFormData(formData);
-  };
-  const saveAddress = () => {
-    let address = document.querySelector("#detail-address").value;
-    formData.address = address;
-    setFormData(formData);
-  };
-  const saveNote = () => {
-    let note = document.querySelector("#notes").value;
-    formData.note = note;
-    setFormData(formData);
-  };
+
+  useEffect(() => {
+    const phone = document.querySelector("#userPhone");
+    const name = document.querySelector("#userName");
+    const email = document.querySelector("#userMail");
+    const city = document.querySelector("#cleaning-city");
+    const address = document.querySelector("#detail-address");
+    const ruralOptions = document.querySelectorAll("#userAddress>option");
+
+    if (infoCheck) {
+      let { user } = ctx;
+      phone.value = user.phone;
+      ctx.phone = user.phone;
+      name.value = user.name;
+      ctx.name = user.name;
+      email.value = user.email;
+      city.value = user.city;
+      address.value = user.address;
+
+      ruralOptions.forEach((option) => {
+        option.selected = option.value === user.rural ? true : false;
+      });
+    } else {
+      phone.value = "";
+      name.value = "";
+      email.value = "";
+      city.value = "";
+      address.value = "";
+    }
+  }, [infoCheck]);
+
   useEffect(() => {
     axios
-      .get("http://localhost:4107/book/dist")
+      .get("http://localhost:4107/book/dist", {
+        withCredentials: true,
+      })
       .then((res) => {
         setDist(res.data);
       })
@@ -60,6 +82,11 @@ const Step3Area = ({ formData, setFormData }) => {
       return ele.value;
     });
     if (check) {
+      ctx.email = document.querySelector("#userMail").value;
+      ctx.rural = document.querySelector("#userAddress").value;
+      ctx.address = document.querySelector("#detail-address").value;
+      ctx.note = document.querySelector("#notes").value;
+      console.log(ctx);
       navigate("/book/book4");
     } else {
       alert("請完成表單填寫!");
@@ -68,15 +95,16 @@ const Step3Area = ({ formData, setFormData }) => {
 
   return (
     <>
-      <form
-        action=""
-        method="post"
-        className="d-flex flex-column align-items-center container "
-      >
+      <form className="d-flex flex-column align-items-center container ">
         <div className=" book-step3 container">
           <div id="clientInfo">
             <div className="sameMember">
-              <input type="checkbox" name="isSame" id="same" />
+              <input
+                type="checkbox"
+                name="isSame"
+                id="same"
+                onChange={checkedMember}
+              />
               <label htmlFor="same">同會員基本資料</label>
             </div>
             <div>
@@ -90,7 +118,7 @@ const Step3Area = ({ formData, setFormData }) => {
                 pattern=".{2,20}"
                 id="userName"
                 required
-                onInput={checkName}
+                onChange={checkName}
               />
               <span>&nbsp;</span>
             </div>
@@ -105,7 +133,7 @@ const Step3Area = ({ formData, setFormData }) => {
                 placeholder="09********"
                 pattern="^09[0-9]{8}$"
                 required
-                onInput={checkPhone}
+                onChange={checkPhone}
               />
               <span>&nbsp;</span>
             </div>
@@ -118,7 +146,6 @@ const Step3Area = ({ formData, setFormData }) => {
                 id="userMail"
                 type="email"
                 placeholder="abc123@gmail.com"
-                onInput={saveMail}
                 required
               />
             </div>
@@ -130,11 +157,7 @@ const Step3Area = ({ formData, setFormData }) => {
 
               <div className="d-flex align-items-center detail-address ">
                 <input type="text" value="台中市" id="cleaning-city" />
-                <select
-                  name="cleaningAddress"
-                  id="userAddress"
-                  onChange={saveDist}
-                >
+                <select name="cleaningAddress" id="userAddress">
                   {dist.map((item, index) => {
                     return (
                       <option value={item.dist} key={index}>
@@ -148,7 +171,6 @@ const Step3Area = ({ formData, setFormData }) => {
                   type="text"
                   placeholder="請輸入詳細地址"
                   id="detail-address"
-                  onInput={saveAddress}
                   required
                 />
               </div>
@@ -156,7 +178,7 @@ const Step3Area = ({ formData, setFormData }) => {
             <div>
               <img src="/images/info.png" alt="icon" />
               <label htmlFor="notes">訂單備註</label>
-              <input type="text" id="notes" onInput={saveNote} />
+              <input type="text" id="notes" />
             </div>
           </div>
         </div>

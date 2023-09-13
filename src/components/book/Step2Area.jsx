@@ -1,16 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
-import MyCalendar from "./MyCalendar";
 import axios from "axios";
+import BookContext from "./book-context";
+import MyCalendar from "./MyCalendar";
+import Button from "./Button";
 
-const Step2Area = ({ formData, setFormData }) => {
+const Step2Area = () => {
   const navigate = useNavigate();
+  const ctx = useContext(BookContext);
   const [weekMode, setWeekMode] = useState([]);
   const [timeMode, setTimeMode] = useState([1, 1, 1]);
   const [dayMode, setDayMode] = useState([]);
   const checkDataNum = document.getElementsByClassName("selected");
-
   const weeks = [
     "星期日",
     "星期一",
@@ -21,6 +22,7 @@ const Step2Area = ({ formData, setFormData }) => {
     "星期六",
   ];
   const time = ["08:00", "13:00", "18:00"];
+
   const changeClickStyle2 = (e, pElm, tElm, t) => {
     const otherItems = document.querySelectorAll(pElm);
     const clearTime = document.querySelectorAll(t);
@@ -35,12 +37,14 @@ const Step2Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
-    formData.week = e.target.id;
-    setFormData(formData);
-    if (formData.week) {
+    ctx.week = e.target.id;
+    if (ctx.week) {
       axios
         .get(
-          `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}&weekDay=${formData.week}`
+          `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}&weekDay=${ctx.week}`,
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => {
           setTimeMode(res.data);
@@ -60,12 +64,15 @@ const Step2Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
-    formData.time = e.target.id;
-    setFormData(formData);
-    if (formData.week) {
+
+    ctx.time = e.target.id;
+    if (ctx.week) {
       axios
         .get(
-          `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}&weekDay=${formData.week}&timespan=${formData.time}`
+          `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}&weekDay=${ctx.week}&timespan=${ctx.time}`,
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => {
           setDayMode(res.data);
@@ -78,7 +85,10 @@ const Step2Area = ({ formData, setFormData }) => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:4107/book/free-time?employeeid=${formData.employeeid}`
+        `http://localhost:4107/book/free-time?employeeid=${ctx.employeeid}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         setWeekMode(res.data);
@@ -97,82 +107,57 @@ const Step2Area = ({ formData, setFormData }) => {
   };
 
   return (
-    <form
-      action=""
-      method="post"
-      className="container d-flex  justify-content-center align-items-center flex-column"
-    >
+    <form className="container d-flex  justify-content-center align-items-center flex-column">
       <div className="d-flex container justify-content-center align-items-center book-step1">
         <div className="left">
           <div className="step2Top">
             <h5>1. 選擇服務時間</h5>
             <div className="chooseTime">
-              {weekMode.map((week, index) => {
-                if (week) {
-                  return (
-                    <div
-                      className="service-week"
-                      key={index}
-                      id={index}
-                      onClick={(e) => {
-                        changeClickStyle2(
-                          e,
-                          ".service-week",
-                          "service-week",
-                          ".service-time"
-                        );
-                      }}
-                    >
-                      {weeks[index]}
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div className="not-choose" key={index}>
-                      {weeks[index]}
-                    </div>
-                  );
-                }
-              })}
+              {weekMode.map((week, index) => (
+                <div
+                  key={index}
+                  id={index}
+                  className={week ? "service-week" : "not-choose"}
+                  onClick={
+                    week
+                      ? (e) =>
+                          changeClickStyle2(
+                            e,
+                            ".service-week",
+                            "service-week",
+                            ".service-time"
+                          )
+                      : null
+                  }
+                >
+                  {weeks[index]}
+                </div>
+              ))}{" "}
             </div>
           </div>
           <div className="step2Bottom">
             <h5>2. 選擇服務時段</h5>
             <div className="chooseTime">
-              {timeMode.map((t, index) => {
-                if (t) {
-                  return (
-                    <div
-                      className="service-time"
-                      key={index}
-                      id={index}
-                      onClick={(e) => {
-                        changeClickStyle3(e, ".service-time", "service-time");
-                      }}
-                    >
-                      {time[index]}
-                    </div>
-                  );
-                } else {
-                  return (
-                    <div className="not-choose" key={index}>
-                      {time[index]}
-                    </div>
-                  );
-                }
-              })}
+              {timeMode.map((t, index) => (
+                <div
+                  key={index}
+                  id={index}
+                  className={t ? "service-time" : "not-choose"}
+                  onClick={
+                    t
+                      ? (e) =>
+                          changeClickStyle3(e, ".service-time", "service-time")
+                      : null
+                  }
+                >
+                  {time[index]}
+                </div>
+              ))}{" "}
             </div>
           </div>
         </div>
         <div className="right">
-          <MyCalendar
-            formData={formData}
-            setFormData={setFormData}
-            freeDays={dayMode}
-            // setNextBtn={setNextBtn}
-            // nextBtn={nextBtn}
-            checkDataNum={checkDataNum}
-          />
+          <MyCalendar freeDays={dayMode} />
         </div>
       </div>
       <Button pre="/book" next="/book/book3" onClick={checkForm} />

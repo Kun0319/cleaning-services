@@ -1,25 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Calendar from "react-calendar";
 import "../../pages/book/book_style.css";
+import BookContext from "./book-context";
 
-// setNextBtn, nextBtn,
-function MyCalendar({ formData, setFormData, freeDays, checkDataNum }) {
-  // console.log(freeDays);
+
+function MyCalendar({ freeDays}) {
   const [selectedDate, setSelectedDate] = useState(new Date());
-
+  const ctx = useContext(BookContext);
   const weekday = ["日", "一", "二", "三", "四", "五", "六"];
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    formData.date = `${date.getFullYear()}-${(date.getMonth() + 1)
+    ctx.date = `${date.getFullYear()}-${(date.getMonth() + 1)
       .toString()
       .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
-    setFormData(formData);
-    // if (checkDataNum.length === 2) {
-    //   setNextBtn('/book/book3');
-    // } else {
-    //   setNextBtn('#');
-    // }
   };
 
   const tomorrow = new Date();
