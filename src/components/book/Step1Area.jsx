@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Member from "./Member";
-import Button from "./Button";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import axios from "axios";
+import BookContext from "./book-context";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Member from "./Member";
+import Button from "./Button";
 
-const Step1Area = ({ formData, setFormData }) => {
+const Step1Area = () => {
   const navigate = useNavigate();
+  const ctx = useContext(BookContext);
   const [membersData, setMemberData] = useState([]);
   const [weekCount, setWeekCount] = useState(4);
   const [weekPrice, setWeekPrice] = useState(8000);
   const checkDataNum = document.getElementsByClassName("selected");
-
   const areaInfo = [
     {
       area: "客廳",
@@ -40,6 +41,7 @@ const Step1Area = ({ formData, setFormData }) => {
       detail: "地板刷洗、水管擦拭、曬衣桿擦拭",
     },
   ];
+
   const changeClickStyle1 = (e, pElm, tElm) => {
     const otherItems = document.querySelectorAll(pElm);
     otherItems.forEach((item) => {
@@ -50,12 +52,13 @@ const Step1Area = ({ formData, setFormData }) => {
       targetElement = targetElement.parentElement;
     }
     targetElement.classList.toggle("selected");
-    formData.employeeid = targetElement.id;
-    setFormData(formData);
+    ctx.employeeid = targetElement.id;
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:4107/book/price?week=${weekCount}`)
+      .get(`http://localhost:4107/book/price?week=${weekCount}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setWeekPrice(res.data[0].price);
       })
@@ -66,7 +69,9 @@ const Step1Area = ({ formData, setFormData }) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4107/book/employee-info")
+      .get("http://localhost:4107/book/employee-info", {
+        withCredentials: true,
+      })
       .then((response) => {
         setMemberData(response.data);
       })
@@ -77,8 +82,7 @@ const Step1Area = ({ formData, setFormData }) => {
   const getPrice = () => {
     let option = document.querySelector("select").value;
     setWeekCount(Number(option));
-    formData.weeks = Number(option);
-    setFormData(formData);
+    ctx.weeks = Number(option);
   };
   let checkForm = (e) => {
     e.preventDefault();
@@ -89,11 +93,7 @@ const Step1Area = ({ formData, setFormData }) => {
   };
 
   return (
-    <form
-      action=""
-      method="post"
-      className="container d-flex  justify-content-center align-items-center flex-column"
-    >
+    <form className="container d-flex  justify-content-center align-items-center flex-column">
       <div className="d-flex container justify-content-center align-items-center book-step1">
         <div className="left">
           <h5>定期清掃目前僅提供一週一次的清潔頻率</h5>
@@ -186,7 +186,6 @@ const Step1Area = ({ formData, setFormData }) => {
           </div>
         </div>
       </div>
-      {/* next="/book/book2" */}
       <Button class="not-press" next="/book/book2" onClick={checkForm} />
     </form>
   );

@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React, { useState } from "react";
 import Home from "./pages/Home";
 import Book from "./pages/Book";
 import Book1 from "./pages/book/Book1";
@@ -33,21 +32,6 @@ import LoginPage from "./components/login/LoginPage";
 import Memberlogin from "./components/login/Memberlogin";
 import ChangePwd from "./components/login/ChangePwd";
 function App() {
-  const [formData, setFormData] = useState({
-    uid: null,
-    weeks: 4,
-    employeeid: null,
-    week: null,
-    time: null,
-    date: null,
-    name: null,
-    phone: null,
-    email: null,
-    city: "台中市",
-    rural: "中區",
-    address: null,
-    note: null,
-  });
   return (
     <BrowserRouter>
       <Routes>
@@ -57,28 +41,28 @@ function App() {
         <Route path="/case" element={<Case />} />
         <Route path="/question" element={<Question />} />
         <Route path="/loginpage" element={<LoginPage />} />
-        <Route path="/book" element={<Book />}>
-          <Route
-            index="/book/"
-            element={<Book1 formData={formData} setFormData={setFormData} />}
-          />
-          <Route
-            path="/book/book2"
-            element={<Book2 formData={formData} setFormData={setFormData} />}
-          />
-          <Route
-            path="/book/book3"
-            element={<Book3 formData={formData} setFormData={setFormData} />}
-          />
-          <Route
-            path="/book/book4"
-            element={<Book4 formData={formData} setFormData={setFormData} />}
-          />
-          <Route
-            path="/book/book5"
-            element={<Book5 formData={formData} setFormData={setFormData} />}
-          />
-        </Route>
+          <Route path="/book" element={<Book />}>
+            <Route
+              index="/book/"
+              element={<Book1 />}
+            />
+            <Route
+              path="/book/book2"
+              element={<Book2 />}
+            />
+            <Route
+              path="/book/book3"
+              element={<Book3 />}
+            />
+            <Route
+              path="/book/book4"
+              element={<Book4 />}
+            />
+            <Route
+              path="/book/book5"
+              element={<Book5 />}
+            />
+          </Route>
         <Route
           path="/dashboard"
           element={

@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import BookContext from "../../../src/components/book/book-context";
+import axios from "axios";
 import ProgressIcon from "../../components/book/ProgressIcon";
 import ProgressIconactive from "../../components/book/ProgressIconactive";
 import ProgressLine from "../../components/book/ProgressLine";
 import Step1Area from "../../components/book/Step1Area";
 import "./book_style.css";
 
-const Book1 = ({ formData, setFormData }) => {
+const Book1 = () => {
+  const navigate = useNavigate();
+  const ctx = useContext(BookContext);
+  async function checkLogin() {
+    try {
+      let userInfo = await axios.get("http://localhost:4107/user", {
+        withCredentials: true,
+      });
+      ctx.user = userInfo.data.data.user[0];
+      console.log(ctx);
+    } catch (err) {
+      navigate("/loginpage");
+    }
+  }
+  useEffect(() => {
+    checkLogin();
+  }, [navigate]);
+
   return (
     <>
       <div className="bottomArea">
@@ -20,7 +40,7 @@ const Book1 = ({ formData, setFormData }) => {
           <ProgressLine />
           <ProgressIcon text="預約完成" class="bi bi-clipboard-check" />
         </div>
-        <Step1Area formData={formData} setFormData={setFormData} />
+        <Step1Area />
       </div>
     </>
   );

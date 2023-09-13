@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
 import axios from "axios";
+import BookContext from "./book-context";
+import Button from "./Button";
 
-const Step4Area = ({ formData, setFormData }) => {
+const Step4Area = () => {
   const weeks = [
     "星期日",
     "星期一",
@@ -14,9 +15,11 @@ const Step4Area = ({ formData, setFormData }) => {
     "星期六",
   ];
   const navigate = useNavigate();
+  const ctx = useContext(BookContext);
   const time = ["08:00", "13:00", "18:00"];
   const [price, setPrice] = useState("");
-  let checkForm = (e) => {
+
+  let checkForm = async (e) => {
     e.preventDefault();
     const cardNumber = "0000-1111-2222-3333";
     const monthYear = "10/23";
@@ -36,10 +39,45 @@ const Step4Area = ({ formData, setFormData }) => {
       cardInput[5].value === securityCode
     ) {
       if (!agreeCheck.checked) alert("請確實閱讀並勾選服務條款與隱私權政策");
-      setTimeout(() => {
-        alert("付款成功！");
-        navigate("/book/book5");
-      }, 2000);
+      else {
+        const {
+          employeeid,
+          date,
+          time,
+          weeks,
+          phone,
+          email,
+          city,
+          rural,
+          address,
+          name,
+          note,
+        } = ctx;
+        const result = await axios.post(
+          "http://localhost:4107/book/new-order",
+          {
+            uid: ctx.user.userid,
+            employeeid,
+            date,
+            time,
+            weeks,
+            phone,
+            email,
+            city,
+            rural,
+            address,
+            name,
+            note,
+          },
+          {
+            withCredentials: true,
+          }
+        );
+        setTimeout(() => {
+          alert(`付款成功！`);
+          navigate("/book/book5");
+        }, 2000);
+      }
     } else {
       alert("付款失敗!");
     }
@@ -47,7 +85,9 @@ const Step4Area = ({ formData, setFormData }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4107/book/price?week=${formData.weeks}`)
+      .get(`http://localhost:4107/book/price?week=${ctx.weeks}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setPrice(res.data[0].price);
       })
@@ -57,11 +97,7 @@ const Step4Area = ({ formData, setFormData }) => {
   });
   return (
     <>
-      <form
-        action=""
-        method="post"
-        className="container d-flex  justify-content-center align-items-center flex-column"
-      >
+      <form className="container d-flex  justify-content-center align-items-center flex-column">
         <div className="d-flex container justify-content-center align-items-center book-step1">
           <div className="left book4-left">
             <table id="book4-order">
@@ -74,17 +110,17 @@ const Step4Area = ({ formData, setFormData }) => {
               </tr>
               <tr>
                 <td className="fw-bold">清潔週數</td>
-                <td>{formData.weeks} 週</td>
+                <td>{ctx.weeks} 週</td>
               </tr>
               <tr>
                 <td className="fw-bold">服務時間</td>
                 <td>
-                  {weeks[formData.week]}　{time[formData.time]}
+                  {weeks[ctx.week]}　{time[ctx.time]}
                 </td>
               </tr>
               <tr>
                 <td className="fw-bold">開始日期</td>
-                <td>{formData.date}</td>
+                <td>{ctx.date}</td>
               </tr>
               <tr>
                 <td className="fw-bold">訂單金額</td>
@@ -168,7 +204,6 @@ const Step4Area = ({ formData, setFormData }) => {
             <u>服務條款</u> 及 <u>隱私權政策</u>
           </div>
         </div>
-        {/* next="/book/book5" */}
         <Button pre="/book/book3" next="/book/book5" onClick={checkForm} />
       </form>
     </>
