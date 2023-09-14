@@ -89,7 +89,7 @@ ul::-webkit-scrollbar {
   width: 90%;
   margin: 0px auto;
   border-radius: 25px;
-  padding-left: 130px;
+  padding-left: 220px;
 
 }
 
@@ -104,8 +104,9 @@ ul::-webkit-scrollbar {
 }
 
 .dr h1 {
-  line-height: 100px;
+  line-height: 50px;
   color: white;
+  margin: 30px;
 
 }
 
@@ -145,8 +146,7 @@ ul::-webkit-scrollbar {
   border-radius: 25px;
   position: relative;
   top: 135px;
-
-
+  margin-bottom: 200px;
 }
 
 .footer-icon {

@@ -9,7 +9,7 @@ import axios from './axios'
 const SignUp = () => {
 
 
-  const [username, setUserName] = useState("")
+  const [name, setName] = useState("")
   const [birthday, setBirthday] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
@@ -23,7 +23,7 @@ const SignUp = () => {
 
 
   const data = {
-    username,
+    name,
     birthday,
     email,
     phone,
@@ -45,7 +45,7 @@ const SignUp = () => {
         }
       })
       // 成功提交後清空表單
-      setUserName("");
+      setName("");
       setBirthday("");
       setEmail("");
       setPhone("");
@@ -156,8 +156,8 @@ const SignUp = () => {
             <input
               type="text"
               placeholder="請輸入帳號"
-              value={username}
-              onChange={(e) => setUserName(e.target.value)}>
+              value={name}
+              onChange={(e) => setName(e.target.value)}>
             </input>
           </li>
 

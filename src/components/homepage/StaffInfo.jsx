@@ -31,13 +31,13 @@ const StaffInfo = (props) => {
           <img src="images\staffInfo-case.png" alt="case" />
           <span>服務件數</span>
         </div>
-        <span>{props.caseCount}件</span>
+        <span>{props.cases}件</span>
       </div>
-      {/* 服務態度 */}
+      {/* 服務等級 */}
       <div className="staffAbility">
         <div>
           <img src="images\staffInfo-smile.png" alt="smile" />
-          <span>服務態度</span>
+          <span>服務等級</span>
         </div>
         <span>Levle {props.levle}</span>
       </div>
@@ -45,14 +45,14 @@ const StaffInfo = (props) => {
       <div className="staffAbility">
         <div>
           <img src="images\staffInfo-goodguy.png" alt="goodguy" />
-          <span>良民證</span>
+          <span>{props.goodid  ? "良民證" : "無良民證"}</span>
         </div>
       </div>
       {/* 浣熊管家 */}
       <div className="staffAbility">
         <div>
           <img src="images\staffInfo-raccoon.png" alt="raccoon" />
-          <span>浣熊管家認證</span>
+          <span>{props.racheck ? "浣熊管家認證" : "無浣熊管家認證"}</span>
         </div>
       </div>
     </div>
