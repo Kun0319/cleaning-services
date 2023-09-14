@@ -96,7 +96,7 @@ const Step1Area = () => {
     <form className="container d-flex  justify-content-center align-items-center flex-column">
       <div className="d-flex container justify-content-center align-items-center book-step1">
         <div className="left">
-          <h5>定期清掃目前僅提供一週一次的清潔頻率</h5>
+          <h5 className="mb-2">定期清掃目前僅提供一週一次的清潔頻率</h5>
           <div className="serviceItem">
             <div id="itemTitle">
               <h4>每週打掃一次</h4>
@@ -106,9 +106,9 @@ const Step1Area = () => {
               <p>每次派遣一位專員前往打掃</p>
             </div>
           </div>
-          <div id="chooseWeeks">
+          <div id="chooseWeeks" className="mt-4">
             <label htmlFor="serviceWeeks">
-              <h4>選擇服務週數</h4>
+              <h4 className="emphasis">選擇服務週數</h4>
             </label>
             <select name="service_weeks" id="serviceWeeks" onChange={getPrice}>
               {Array.from({ length: 21 }, (v, i) => i).map((item) => {

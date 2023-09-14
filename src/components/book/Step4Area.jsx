@@ -183,6 +183,7 @@ const Step4Area = () => {
                       type="text"
                       placeholder="MM/YY"
                       pattern="(0[1-9]|1[0-2])/(2[3-9]|3[0-9])"
+                      maxLength={5}
                       required
                     />
                     <label htmlFor="securityCode">背面末三碼</label>
@@ -191,6 +192,7 @@ const Step4Area = () => {
                       type="text"
                       placeholder="***"
                       pattern="[0-9]{3}"
+                      maxLength={3}
                       required
                     />
                   </div>
