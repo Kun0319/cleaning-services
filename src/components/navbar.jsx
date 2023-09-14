@@ -46,9 +46,12 @@ class navbar extends Component {
     handleLogout = () => {
         // 在此處執行登出邏輯，並設定 isLoggedIn 狀態為 false
         var cofirmed = window.confirm("確定登出嗎?");
-        if (cofirmed == true) {
+        if (cofirmed === true) {
             document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
             this.setState({ isLoggedIn: false });
+
+            // 登出自動導向首頁
+            window.location.href = "/";
 
 
             // 由後端自動產生的cookie名稱是connect.sid 
@@ -62,17 +65,7 @@ class navbar extends Component {
 
             })
         }
-
-
-
-
-
-
-
     };
-
-
-
 
 
     styles = {
@@ -108,9 +101,9 @@ class navbar extends Component {
                             <Link to="/service" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</Link>
                             <Link to="/case" style={this.atagstyle} className='mx-3   text-decoration-none'>案例分享</Link>
                             <Link to="/question" style={this.atagstyle} className='mx-3   text-decoration-none'>常見問題</Link>
-                            <a href=""> <img src="images/info.png" alt=""
+                            <Link to="/member"> <img src="images/info.png" alt=""
                                 className='m-3'
-                                style={{ width: "2rem" }} /></a>
+                                style={{ width: "2rem" }} /></Link>
 
 
                             {this.state.isLoggedIn ? (<button className=' px-4 mx-3 btn' style={this.btn} onClick={this.handleLogout}>
