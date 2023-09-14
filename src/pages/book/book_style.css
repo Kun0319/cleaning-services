@@ -247,23 +247,23 @@
 }
 
 /* Step2Area*/
-.heading{
+.heading {
   position: relative;
-  padding: 1rem 2rem;
+  padding: 1rem 2.5rem;
   display: inline-block;
 }
-.heading span{
+.heading span {
   position: relative;
   z-index: 2;
 }
-.heading::before{
+.heading::before {
   content: attr(data-number);
   position: absolute;
   top: 0;
   left: 0px;
-  color: #ffc107b6;
+  color: #99740477;
   font-size: 2.5rem;
-  font-weight: 900;
+  font-weight: 800;
   z-index: 1;
 }
 :is(.step2Top, .step2Bottom) h5 {
@@ -511,7 +511,7 @@
   background-color: #664d03;
   color: #ffe69c;
 }
-.selected.react-calendar__tile:enabled{
+.selected.react-calendar__tile:enabled {
   color: #ffe69c;
 }
 .not-choose {
