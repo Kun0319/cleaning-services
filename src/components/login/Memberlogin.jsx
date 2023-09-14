@@ -19,7 +19,10 @@ const Memberlogin = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get(`http://localhost:4107/member/memberinfo/${userid}`);
+        const result = await axios.get(`http://localhost:4107/member/memberinfo/`, {
+          withCredentials: true
+        });
+
         if (result.data && result.data.data && result.data.data[0]) {
           setMemberData(result.data.data[0]);
           setUpPhone(result.data.data[0].phone);
@@ -38,11 +41,14 @@ const Memberlogin = () => {
   async function handleSendEdit() {
     try {
       await axios.put(
-        `http://localhost:4107/member/memberinfo/update/${userid}`,
+        `http://localhost:4107/member/memberinfo/update/`,
         {
           upPhone: upPhone,
           upRural: upRural,
           upAddress: upAddress,
+        },
+        {
+          withCredentials: true
         }
       );
       window.location.reload();
@@ -149,7 +155,7 @@ const Memberlogin = () => {
     <div className="membercontainer">
       <div className="loginrightbox">
         <div className="loginflex">
-          {edit ? 
+          {edit ?
 
             // 編輯模式下的表單
             <ul>
@@ -196,7 +202,7 @@ const Memberlogin = () => {
                 </select> <input type="text" defaultValue={address} onChange={(e) => setUpAddress(e.target.value)} required={true} />
               </li>
             </ul>
-           : 
+            :
             // 顯示會員資料
             <ul>
               <li className="loginli">
@@ -254,7 +260,7 @@ const Memberlogin = () => {
           }
 
           <div>
-            {edit ? 
+            {edit ?
               // 顯示儲存和取消按鈕
               <>
                 <button className="cancelbtn" onClick={() => setEdit(!edit)}>
@@ -264,7 +270,7 @@ const Memberlogin = () => {
                   確認修改
                 </button>
               </>
-             : 
+              :
               // 顯示編輯按鈕
               <button className="revisebtn" onClick={() => setEdit(!edit)}>
                 修改

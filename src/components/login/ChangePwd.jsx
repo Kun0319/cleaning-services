@@ -17,7 +17,9 @@ const ChangePwd = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get(`http://localhost:4107/member/changepwd/${userid}`);
+        const result = await axios.get(`http://localhost:4107/member/changepwd/`, {
+          withCredentials: true
+        });
         if (result.data && result.data.data && result.data.data[0]) {
           setPWData(result.data.data[0]);
           setPassword(result.data.data[0].password);
@@ -50,9 +52,12 @@ const ChangePwd = () => {
   const updatePassword = async () => {
     try {
       await axios.put(
-        `http://localhost:4107/member/changepwd/update/${userid}`,
+        `http://localhost:4107/member/changepwd/update/`,
         {
           uppassword: uppassword,
+        },
+        {
+          withCredentials: true
         }
       );
       window.location.reload();

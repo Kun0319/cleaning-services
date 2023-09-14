@@ -108,14 +108,16 @@
 .people {
     width: 120px;
     height: 120px;
-    margin: 16px;
+    margin: -10px;
+    /* clip-path: circle(50% at 50% 50%); */
 }
 
 .casecomment {
+    align-self:flex-end;
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */ 
     justify-content: space-evenly;
-    margin: 24px;
+    margin:px;
 }
 
 
@@ -210,4 +212,22 @@
 
 
 
+}
+
+.marq-name {
+    font-size: 30px;
+    margin-bottom: 60px;
+    margin-left: 30px;
+    color: #664d03;
+}
+
+.marq-stars {
+    margin-top: 60px;
+    position: relative;
+    right: 90px;
+}
+.commentitem p{
+    font-size: 18px;
+    margin-top: 20px;
+    color: #664d03;
 }

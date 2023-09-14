@@ -6,6 +6,7 @@ import Navbar from "../navbar";
 import Footer from "../Footer";
 import Memberscore from "./memberscore";
 import CardContainer from "./Cardcontainer";
+import Case2 from "./Case2";
 
 
 
@@ -19,17 +20,21 @@ const Case = () => {
   return (
     <>
       <Navbar />
-      <div className="caseTitle">
-        <h2>案例分享</h2>
-      </div>
+      <div className="container">
+        <div className="caseTitle">
+          <h2>案例分享</h2>
+        </div>
 
-      <CardContainer />
+        <CardContainer />
 
-      <div className="casecomment">
-        {commentData.map((comment, index) => (
-          <CommentItem key={index} {...comment} />
-        ))}
-      </div>
+        {/* <div className="casecomment">
+          {commentData.map((comment, index) => (
+            <CommentItem key={index} {...comment} />
+          ))}
+        </div> */}
+        </div>
+        <Case2/>
+      <Footer />
     </>
   );
 }

@@ -16,7 +16,9 @@ const OrderList = (props) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get("http://localhost:4107/orderlist");
+        const result = await axios.get("http://localhost:4107/orderlist",{
+          withCredentials: true
+        });
         setOrderAPI(() => {
           return result.data.sort(function (a, b) {
             return a.state >= b.state ? 1 : -1;
@@ -95,7 +97,7 @@ const OrderList = (props) => {
         <thead className="orderThead">
           <tr id="orderTh">
             <th>訂單編號</th>
-            <th>會員編號</th>
+            <th>員工編號</th>
             <th>訂單日期</th>
             <th>清潔週數</th>
             <th>剩餘次數</th>

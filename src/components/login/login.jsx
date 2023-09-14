@@ -4,15 +4,8 @@ import AuthContext, { AuthProvider } from './AuthContext';
 
 
 import axios from './axios'
-import { Row } from "react-bootstrap";
+
 const LOGIN_URL = '/login';
-
-
-
-
-
-
-
 
 
 
@@ -30,6 +23,7 @@ const Login = () => {
     const [password, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
+    const [cookielogin, setCookielogin] = useState(Boolean);
 
     useEffect(() => {
         userRef.current.focus();
@@ -38,7 +32,6 @@ const Login = () => {
     useEffect(() => {
         setErrMsg('');
     }, [email, password])
-
     const handleSubmit = async (e) => {
 
         e.preventDefault();
@@ -55,6 +48,7 @@ const Login = () => {
 
             );
 
+
             // console.log(JSON.stringify(response?.data))
             // console.log(JSON.stringify(response))
 
@@ -65,7 +59,21 @@ const Login = () => {
             setUseremail('');
             setPwd('');
             setSuccess(true);
-            document.cookie = 'isLoggedIn=true; path=/'
+            // 登入時設定一個cookie用來判斷是否登入狀態
+            document.cookie = 'isLoggedIn=true; path=/;'
+            // 從後端API抓取登入者資料
+            let userInfo = await axios.get("http://localhost:4107/user", {
+                withCredentials: true,
+            });
+
+            console.log(userInfo.data.data.user[0].admin);
+            // 判斷登入的人是否為員工,管理員    如果是自動頁面導向管理訂單 不是則導向首頁
+            if (userInfo.data.data.user[0].admin == 1) {
+                window.location.href = "/dashboard";
+            } else if (userInfo.data.data.user[0].admin == 0 || userInfo.data.data.user[0].admin == null) {
+                window.location.href = "/";
+            }
+
 
         } catch (err) {
             if (!err?.response) {
@@ -80,6 +88,12 @@ const Login = () => {
             errRef.current.focus();
         }
     }
+
+
+
+
+
+
 
 
     return (

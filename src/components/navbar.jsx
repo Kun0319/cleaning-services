@@ -15,6 +15,7 @@ class navbar extends Component {
     }
 
 
+
     componentDidMount() {
         // 檢查是否存在名為 "isLoggedIn" 的 cookie
         const cookieValue = document.cookie
@@ -25,18 +26,35 @@ class navbar extends Component {
         if (cookieValue) {
             this.setState({ isLoggedIn: true });
         }
+
+        // this.cookieCheckInterval = setInterval(() => {
+        //     const cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)isLoggedIn\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        //     if (!cookieValue) {
+        //         // Cookie 已过期，执行重新渲染操作
+        //         this.setState({ isLoggedIn: false });
+        //     }
+        // }, 1);
     }
+
+    // componentWillUnmount() {
+    //     // 在组件卸载时清除定时器，以避免内存泄漏
+    //     clearInterval(this.cookieCheckInterval);
+    // }
+
 
 
     handleLogout = () => {
         // 在此處執行登出邏輯，並設定 isLoggedIn 狀態為 false
         var cofirmed = window.confirm("確定登出嗎?");
-        if (cofirmed == true) {
-            document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        if (cofirmed === true) {
+            document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
             this.setState({ isLoggedIn: false });
 
-            // 由後端自動產生的cookie名稱connect.sid 
+            // 登出自動導向首頁
+            window.location.href = "/";
 
+
+            // 由後端自動產生的cookie名稱是connect.sid 
             axios.get(LOGOUT_URL, {}, {
                 headers: {
                     'Clear-Cookie': "connect.sid",
@@ -47,17 +65,7 @@ class navbar extends Component {
 
             })
         }
-
-
-
-
-
-
-
     };
-
-
-
 
 
     styles = {
@@ -93,9 +101,9 @@ class navbar extends Component {
                             <Link to="/service" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</Link>
                             <Link to="/case" style={this.atagstyle} className='mx-3   text-decoration-none'>案例分享</Link>
                             <Link to="/question" style={this.atagstyle} className='mx-3   text-decoration-none'>常見問題</Link>
-                            <a href=""> <img src="images/info.png" alt=""
+                            <Link to="/member"> <img src="images/info.png" alt=""
                                 className='m-3'
-                                style={{ width: "2rem" }} /></a>
+                                style={{ width: "2rem" }} /></Link>
 
 
                             {this.state.isLoggedIn ? (<button className=' px-4 mx-3 btn' style={this.btn} onClick={this.handleLogout}>
