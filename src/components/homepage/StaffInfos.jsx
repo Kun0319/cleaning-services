@@ -1,56 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Swiper, SwiperSlide } from "swiper/react";
 import StaffInfo from "./StaffInfo";
 import "swiper/css";
-const staffInfos = () => {
-  // 假資料
-  const staffDB = [
-    {
-      name: "林正秉",
-      covid: 0,
-      star: 4.4,
-      number: "A01",
-      caseCount: "123",
-      levle: "2",
-      img: "/images/staffInfo-staff.png",
-    },
-    {
-      name: "林正秉",
-      covid: 0,
-      star: 2.5,
-      number: "A01",
-      caseCount: "123",
-      levle: "2",
-      img: "/images/staffInfo-staff.png",
-    },
-    {
-      name: "林正秉",
-      covid: 0,
-      star: 4.4,
-      number: "A01",
-      caseCount: "123",
-      levle: "2",
-      img: "/images/staffInfo-staff.png",
-    },
-    {
-      name: "林正秉",
-      covid: 0,
-      star: 4.4,
-      number: "A01",
-      caseCount: "123",
-      levle: "2",
-      img: "/images/staffInfo-staff.png",
-    },
-    {
-      name: "林正秉",
-      covid: 0,
-      star: 4.4,
-      number: "A01",
-      caseCount: "123",
-      levle: "2",
-      img: "/images/staffInfo-staff.png",
-    },
-  ];
+
+const StaffInfos = () => {
+  const [card, setcard] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:4107/total/sta')
+      .then((res) => {
+        setcard(res.data);
+      })
+      .catch((err) => {
+        console.error('no', err);
+      });
+  }, []);
+
   return (
     <div className="container">
       <div className="process-top staffInfo-title">
@@ -59,12 +25,9 @@ const staffInfos = () => {
       </div>
       <Swiper
         loop={false}
-        // 物件間距
         spaceBetween={0}
-        // 顯示個數
         slidesPerView={1}
         freeMode={true}
-        // 斷點
         breakpoints={{
           1200: {
             slidesPerView: 4,
@@ -80,24 +43,24 @@ const staffInfos = () => {
           },
         }}
       >
-        {staffDB.map((staffDB) => {
-          return (
-            <SwiperSlide>
-              <StaffInfo
-                name={staffDB.name}
-                covid={staffDB.covid}
-                star={staffDB.star}
-                number={staffDB.number}
-                caseCount={staffDB.caseCount}
-                levle={staffDB.levle}
-                img={staffDB.img}
-              ></StaffInfo>
-            </SwiperSlide>
-          );
-        })}
+        {card.map((employee) => (
+          <SwiperSlide key={employee.employeeid}>
+            <StaffInfo
+              name={employee.employeename}
+              covid={employee.vaccine}
+              star={employee.total_efficiency}
+              number={employee.employeeid}
+              cases={employee.cases}
+              levle={employee.total_ratings}
+              img={employee.photo}
+              goodid={employee.goodid}
+              racheck={employee.racheck}
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
 };
 
-export default staffInfos;
+export default StaffInfos;

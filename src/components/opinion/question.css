@@ -1,10 +1,10 @@
 .question {
-  height: 145px;
+  height: 100px;
   background-image: url(/public/images/question-001.png);
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-  line-height: 150px;
+  line-height: 100px;
   color: #664D03;
   font-size: 30px;
   border-radius: 25px 0px 0px;
@@ -69,7 +69,7 @@
   /* box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.5); */
   transition: 0.2s;
   margin-left: auto;
-  margin-bottom: 24px;
+  margin-bottom: 35px;
   margin-right: auto;
 }
 

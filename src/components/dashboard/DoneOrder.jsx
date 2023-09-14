@@ -93,7 +93,7 @@ const OrderList = (props) => {
         <thead className="orderThead">
           <tr id="orderTh">
             <th>訂單編號</th>
-            <th>會員編號</th>
+            <th>員工編號</th>
             <th>訂單日期</th>
             <th>清潔週數</th>
             <th>剩餘次數</th>

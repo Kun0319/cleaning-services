@@ -100,13 +100,7 @@ function App() {
           <Route index="/member/" element={<Order />} />
           <Route path="/member/:orderNumber" element={<OrderDone />} />
           <Route path="/member/memberinfo" element={<Memberlogin />} />
-          <Route path="/member/memberinfo/:userid"
-          element={<Memberlogin />} 
-          />
           <Route path="/member/changepwd" element={<ChangePwd />} />
-          <Route path="/member/changepwd/:userid" 
-          element={<ChangePwd />} 
-          />
         </Route>
       </Routes>
     </BrowserRouter>
