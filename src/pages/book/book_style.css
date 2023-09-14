@@ -1,5 +1,5 @@
 .custom-tooltip .tooltip-inner {
-  background-color: #ffc107;
+  background-color: #ffe69c;
   color: #664d03;
   /* border: 1px solid #664d03; */
 }
@@ -247,6 +247,25 @@
 }
 
 /* Step2Area*/
+.heading{
+  position: relative;
+  padding: 1rem 2rem;
+  display: inline-block;
+}
+.heading span{
+  position: relative;
+  z-index: 2;
+}
+.heading::before{
+  content: attr(data-number);
+  position: absolute;
+  top: 0;
+  left: 0px;
+  color: #ffc107b6;
+  font-size: 2.5rem;
+  font-weight: 900;
+  z-index: 1;
+}
 :is(.step2Top, .step2Bottom) h5 {
   margin: 1rem 0;
 }

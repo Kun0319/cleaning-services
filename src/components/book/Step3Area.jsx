@@ -14,11 +14,7 @@ const Step3Area = () => {
   const [infoCheck, setInfoCheck] = useState(false);
 
   const checkedMember = (event) => {
-    if (event.target.checked) {
-      setInfoCheck(true);
-    } else {
-      setInfoCheck(false);
-    }
+      setInfoCheck(event.target.checked);
   };
 
   const checkPhone = () => {
@@ -59,7 +55,7 @@ const Step3Area = () => {
       phone.value = "";
       name.value = "";
       email.value = "";
-      city.value = "";
+      city.value = "臺中市";
       address.value = "";
     }
   }, [infoCheck]);
@@ -156,7 +152,7 @@ const Step3Area = () => {
               </label>
 
               <div className="d-flex align-items-center detail-address ">
-                <input type="text" value="台中市" id="cleaning-city" />
+                <input type="text" value="臺中市" id="cleaning-city" />
                 <select name="cleaningAddress" id="userAddress">
                   {dist.map((item, index) => {
                     return (
