@@ -15,6 +15,7 @@ class navbar extends Component {
     }
 
 
+
     componentDidMount() {
         // 檢查是否存在名為 "isLoggedIn" 的 cookie
         const cookieValue = document.cookie
@@ -25,24 +26,32 @@ class navbar extends Component {
         if (cookieValue) {
             this.setState({ isLoggedIn: true });
         }
+
+        // this.cookieCheckInterval = setInterval(() => {
+        //     const cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)isLoggedIn\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        //     if (!cookieValue) {
+        //         // Cookie 已过期，执行重新渲染操作
+        //         this.setState({ isLoggedIn: false });
+        //     }
+        // }, 1);
     }
+
+    // componentWillUnmount() {
+    //     // 在组件卸载时清除定时器，以避免内存泄漏
+    //     clearInterval(this.cookieCheckInterval);
+    // }
+
 
 
     handleLogout = () => {
         // 在此處執行登出邏輯，並設定 isLoggedIn 狀態為 false
         var cofirmed = window.confirm("確定登出嗎?");
         if (cofirmed == true) {
-            document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = 'isLoggedIn=false; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
             this.setState({ isLoggedIn: false });
 
-            // 清除localStorage
-            localStorage.clear();
 
-            // 清除sessionStorage
-            sessionStorage.clear();
-
-            
-            // 由後端自動產生的cookie名稱connect.sid 
+            // 由後端自動產生的cookie名稱是connect.sid 
             axios.get(LOGOUT_URL, {}, {
                 headers: {
                     'Clear-Cookie': "connect.sid",
