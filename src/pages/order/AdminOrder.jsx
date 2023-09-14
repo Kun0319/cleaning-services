@@ -5,21 +5,6 @@ import "../../components/member/member.css";
 const Member = () => {
   const { ornumber } = useParams();
   const [orderData, setOrderData] = useState({});
-  //接收資料
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await axios.get(
-          `http://localhost:4107/AdminOrder/${ornumber}`
-        );
-        setOrderData(result.data[0]);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-    fetchData();
-  }, [ornumber]);
-  console.log(orderData)
   const {
     userid,
     orname,
@@ -44,7 +29,36 @@ const Member = () => {
     employeeemail
   } = orderData;
 
+  async function handleOrderUpdata(data) {
+    try {
+      const result = await axios.put(
+        `http://localhost:4107/AdminOrder/updata/${ornumber}`,
+        { data }
+        );
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+
+  //接收資料
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const result = await axios.get(
+          `http://localhost:4107/AdminOrder/${ornumber}`
+        );
+        setOrderData(result.data[0]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
+  }, [ornumber]);
+  
+
   const handleOrderStatus = (state) => {
+    
     if (state === 0) {
       return "新訂單";
     } else if (state === 1) {
@@ -62,17 +76,7 @@ const Member = () => {
     return "18:00";
   };
 
-  async function handleOrderUpdata() {
-    try {
-      const result = await axios.put(
-        "http://localhost:4107/AdminOrder/updata",
-        { orderData }
-      );
-      console.log(result);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
+  
 
   return (
     <div>
@@ -154,21 +158,26 @@ const Member = () => {
             </tr>
             <tr>
               <td>訂單日期:{new Date(ordertime).toLocaleString('en-CA')}</td>
-              <td>完成時間:{new Date(orderdone).toLocaleString('en-CA')}</td>
+              <td>完成時間:{orderdone?new Date(orderdone).toLocaleString('en-CA'):""}</td>
             </tr>
           </table>
           <h5 className="orderContent">備註:{note ?? "無"}</h5>
         </div>
         {/* 按鈕 */}
-        <div className="btncontain">
+        {state!==2?<div className="btncontain">
           <button
             className={weeks !== donetime ? "notClear" : ""}
             disabled={weeks !== donetime ? true : false}
             onClick={() => {
-              setOrderData((status) => {
-                return { ...status, state: 2 };
-              });
-              handleOrderUpdata();
+              setOrderData(prevStatus => ({
+                ...prevStatus,
+                state: 2,
+                orderdone:new Date(orderdone).toLocaleString('en-CA')
+              }));
+
+              handleOrderUpdata({...orderData,
+                state: 2,
+                orderdone:new Date().toLocaleString('en-CA')});
             }}
           >
             訂單完成
@@ -184,12 +193,13 @@ const Member = () => {
                       : count.donetime,
                 };
               });
-              handleOrderUpdata();
+              handleOrderUpdata({...orderData,
+              donetime:orderData.donetime + 1 <= weeks ? orderData.donetime + 1 : orderData.donetime})
             }}
           >
             打掃完成
           </button>
-        </div>
+        </div>:<h5 className="orderContent">訂單完成</h5>}
       </div>
     </div>
   );

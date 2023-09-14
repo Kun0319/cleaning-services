@@ -36,7 +36,7 @@ function StaffAccordion({ staffListData, active, onClick }) {
 
   // 時間格式化
   const ordt = new Date(ordertime).toLocaleString()
-  const ordd = new Date(orderdone).toLocaleString()
+  const ordd =orderdone? new Date(orderdone).toLocaleString():null
 
   return (
     <div

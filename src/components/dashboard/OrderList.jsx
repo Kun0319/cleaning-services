@@ -16,7 +16,9 @@ const OrderList = (props) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get("http://localhost:4107/orderlist");
+        const result = await axios.get("http://localhost:4107/orderlist",{
+          withCredentials: true
+        });
         setOrderAPI(() => {
           return result.data.sort(function (a, b) {
             return a.state >= b.state ? 1 : -1;

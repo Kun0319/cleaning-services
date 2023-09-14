@@ -19,7 +19,9 @@ const Memberlogin = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get(`http://localhost:4107/member/memberinfo/${userid}`);
+        const result = await axios.get(`http://localhost:4107/member/memberinfo/`,{
+          withCredentials: true
+        });
         if (result.data && result.data.data && result.data.data[0]) {
           setMemberData(result.data.data[0]);
           setUpPhone(result.data.data[0].phone);
