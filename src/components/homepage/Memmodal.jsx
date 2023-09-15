@@ -29,10 +29,10 @@ const Memmodal = () => {
               reply={mod.reply}
               username={mod.orname}
               Level={mod.total_ratings}
-              efficiency={mod.efficiency}
-              clean={mod.clean}
-              careful={mod.careful}
-              manner={mod.manner}
+              efficiency={mod.e1}
+              clean={mod.e2}
+              careful={mod.e3}
+              manner={mod.e4}
               ornumber={mod.ornumber}
               index={index}
             />

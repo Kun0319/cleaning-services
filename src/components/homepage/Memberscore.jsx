@@ -30,7 +30,7 @@ const Memberscore = (props) => {
         <div className="scorebd scoretext">
           <div className="memberlevel">
             <p>{props.name}</p>
-            <p>{props.Level}</p>
+            <p>Level.{props.Level}</p>
           </div>
         </div>
         <div className="scorebd">
