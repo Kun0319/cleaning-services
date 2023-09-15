@@ -1,7 +1,7 @@
 
 import React, { useRef, useState, useEffect } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
-import { validTel, validPassWord, validEmail, validName, validAge, validId } from "../dashboard/RegEx"
+import { validPhone, validPassWord, validEmail, validName, validAge, validId } from "../dashboard/RegEx"
 
 
 import axios from './axios'
@@ -199,7 +199,7 @@ const SignUp = () => {
               placeholder="請輸入手機號碼"
               name='phone'
               autoComplete="off" required onInput={formDataChange}
-              onChange={(e) => setPhone(validTel.test(e.target.value))}
+              onChange={(e) => setPhone(validPhone.test(e.target.value))}
             >
 
             </input>{RexgeValid(upphone)}
