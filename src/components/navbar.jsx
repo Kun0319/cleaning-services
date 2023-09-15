@@ -33,9 +33,9 @@ class navbar extends Component {
             let userInfo = await axios.get("http://localhost:4107/user", {
                 withCredentials: true,
             });
-            if (userInfo.data.data.user[0].admin == true) {
+            if (userInfo.data.data.user[0].admin == false) {
                 window.location.href = "/member";
-            } else if (userInfo.data.data.user[0].admin == false) {
+            } else if (userInfo.data.data.user[0].admin == true) {
                 window.location.href = "/dashboard";
             }
         } else {
