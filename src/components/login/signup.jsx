@@ -1,6 +1,7 @@
 
 import React, { useRef, useState, useEffect } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
+import { validTel, validPassWord, validEmail, validName, validAge, validId } from "../dashboard/RegEx"
 
 
 import axios from './axios'
@@ -9,58 +10,54 @@ import axios from './axios'
 const SignUp = () => {
 
 
-  const [name, setName] = useState("")
-  const [birthday, setBirthday] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [rural, setRural] = useState("")
-  const [id, setId] = useState("") //身分證字號
-  const [address, setAddress] = useState("")
-  const [password, setPassword] = useState("")
+  const [upname, setName] = useState("")
+  const [upbirthday, setBirthday] = useState("")
+  const [upemail, setEmail] = useState("")
+  const [upphone, setPhone] = useState("")
+  const [uprural, setRural] = useState("")
+  const [upid, setId] = useState("") //身分證字號
+  const [upaddress, setAddress] = useState("")
+  const [uppassword, setPassword] = useState("")
+  const [staffDate, setStaffData] = useState({
+    name: "",
+    birthday: "",
+    email: "",
+    phone: "",
+    id: "",
+    address: "",
+    password: "",
+    rural: "中區",
+  })
 
 
-
-
-
-  const data = {
-    name,
-    birthday,
-    email,
-    phone,
-    id,
-    rural,
-    address,
-    password,
-  };
 
   // 送出註冊資料 
   // 處理表單提交
   const handleSubmit = async (e) => {
-    e.preventDefault(); // 阻止默認的表單提交行為
-    try {
-      // 使用 Axios 將使用者資料發送到後端
-      await axios.post('/signup', JSON.stringify(data), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      // 成功提交後清空表單
-      setName("");
-      setBirthday("");
-      setEmail("");
-      setPhone("");
-      setId("");
-      setRural("");
-      setAddress("");
-      setPassword("");
-
-      // 可以在這裡添加處理成功響應的程式碼
-    } catch (error) {
-      // 處理錯誤
-      console.log(JSON.stringify(data));
-      console.error("註冊錯誤：", error);
+    e.preventDefault();
+    // 驗證密碼是否滿足要求
+    if (true) {
+      try {
+        // 使用 Axios 將使用者資料發送到後端
+        await axios.post('/signup', JSON.stringify(staffDate), {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        window.location.href = 'http://localhost:3000/loginpage'
+        // 可以在這裡添加處理成功響應的程式碼
+      } catch (error) {
+        // 處理錯誤
+        console.log(JSON.stringify(staffDate));
+        console.error("註冊錯誤：", error);
+      }
+    } else {
+      // 密碼不符合要求，可以在此處添加相應的錯誤處理邏輯
+      console.log("密碼不符合要求");
     }
-  }
+  };
+
+
 
 
 
@@ -140,7 +137,20 @@ const SignUp = () => {
     },
   ];
 
+  // 表單資料變更
+  async function formDataChange(e) {
+    const { name, value } = e.target;
+    // const inputValue = type === 'checkbox' ? checked : value;
+    setStaffData({
+      ...staffDate,
+      [name]: value
+    })
+  }
 
+  // 正規表達驗證
+  function RexgeValid(name) {
+    return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">Success</i></span> : <span className='text-danger fs-6'><i className="bi bi-x-circle">Failed</i></span>;
+  }
 
 
   return (
@@ -156,9 +166,11 @@ const SignUp = () => {
             <input
               type="text"
               placeholder="請輸入姓名"
-              value={name}
-              onChange={(e) => setName(e.target.value)}>
-            </input>
+              name='name'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setName(validName.test(e.target.value))}
+            >
+            </input>{RexgeValid(upname)}
           </li>
 
 
@@ -168,10 +180,14 @@ const SignUp = () => {
             <input
               type="date"
               placeholder="請輸入密碼"
-              value={birthday}
-              onChange={(e) => setBirthday(e.target.value)}>
-
-            </input>
+              name='birthday'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => {
+                const isAgeValid = validAge(e.target.value);
+                setBirthday(isAgeValid ? e.target.value : "");
+              }}
+            />
+            {RexgeValid(upbirthday)}
           </li>
 
 
@@ -179,13 +195,14 @@ const SignUp = () => {
             <img src="./images/tet.png" className="loginicon" />
             <p>手機號碼</p>
             <input
-              type="number"
+              type="phone"
               placeholder="請輸入手機號碼"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              name='phone'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setPhone(validTel.test(e.target.value))}
             >
 
-            </input>
+            </input>{RexgeValid(upphone)}
           </li>
 
 
@@ -195,10 +212,12 @@ const SignUp = () => {
             <input
               type="email"
               placeholder="請輸入信箱"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}>
+              name='email'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setEmail(validEmail.test(e.target.value))}
+            >
 
-            </input>
+            </input>{RexgeValid(upemail)}
           </li>
 
 
@@ -207,11 +226,12 @@ const SignUp = () => {
             <p>身分證字號</p>
             <input
               placeholder="請輸入身分證字號"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
+              name='id'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setId(validId(e.target.value))}
             >
 
-            </input>
+            </input>{RexgeValid(upid)}
           </li>
 
 
@@ -224,9 +244,10 @@ const SignUp = () => {
               id="cleaning-city" />
 
 
-            <select name="cleaningAddress"
+            <select
+              name="rural"
               id="userAddress"
-              value={rural}
+              autoComplete="off" required onInput={formDataChange}
               onChange={(e) => setRural(e.target.value)}
 
             >
@@ -244,7 +265,9 @@ const SignUp = () => {
               placeholder="請輸入詳細地址"
               id="detail-address"
               required
-              value={address} onChange={(e) => setAddress(e.target.value)}
+              name='address'
+              autoComplete="off" onInput={formDataChange}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </li>
 
@@ -253,9 +276,13 @@ const SignUp = () => {
             <img src="./images/password.png" className="loginicon" />
             <p>密碼</p>
             <input
+              type='password'
               placeholder="請輸入密碼"
-              value={password} onChange={(e) => setPassword(e.target.value)}>
-            </input>
+              name='password'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setPassword(validPassWord.test(e.target.value))}
+            >
+            </input>{RexgeValid(uppassword)}
           </li>
 
 
@@ -266,7 +293,7 @@ const SignUp = () => {
       </form>
 
 
-    </div>
+    </div >
   );
 };
 
