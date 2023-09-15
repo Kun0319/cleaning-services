@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Memmodal from "./Memmodal";
 import "./StaffInfos.css";
 
 const StaffInfo = (props) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className="staffInfo-card">
       {/* 接種疫苗 */}
@@ -57,7 +67,12 @@ const StaffInfo = (props) => {
           <span>{props.racheck ? "浣熊管家認證" : "無浣熊管家認證"}</span>
         </div>
       </div>
-      <Memmodal/>
+      <button className="open-button" onClick={openModal}>查看更多</button>
+      {isModalOpen && (
+        <div className="modal">
+         <button className="modalbutton" onClick={closeModal}><img src="images\modalbutton.png" width={"25"} /></button>
+        </div>
+      )}
     </div>
   );
 };

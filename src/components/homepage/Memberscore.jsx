@@ -15,7 +15,6 @@ const Memberscore = (props) => {
 
   return (
     <div>
-      <button className="open-button" onClick={openModal}>查看更多</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -23,7 +22,7 @@ const Memberscore = (props) => {
         className="memberscoreModal"
         overlayClassName="memberscoreOverlay"
       >
-        <button className="modalbutton" onClick={closeModal}><img src="images\modalbutton.png" width={"25"} /></button>
+  
         <div className="memberscoreTop">
           <u>員工資料</u>
         </div>
