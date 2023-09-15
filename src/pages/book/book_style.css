@@ -1,7 +1,6 @@
 .custom-tooltip .tooltip-inner {
   background-color: #ffe69c;
   color: #664d03;
-  /* border: 1px solid #664d03; */
 }
 
 /* Button */
@@ -63,7 +62,7 @@
 }
 .progressIcon-active i {
   font-size: 3rem;
-  color: #997404;
+  color: #664d03;
   margin-bottom: 24px;
 }
 :is(.progressIcon, .progressIcon-active) p {
@@ -193,7 +192,6 @@
   justify-content: center;
 }
 .book-step1 .right {
-  /* background-color: lightblue; */
   width: 476px;
   max-height: 480px;
   display: flex;
@@ -419,8 +417,6 @@
 
 /* Step4Area*/
 #book-step5 {
-  /* min-width: 365px;
-  min-height: 653px; */
   max-width: 1272px;
   margin-bottom: 5.25rem;
 }
@@ -612,27 +608,27 @@
 }
 
 /* animation */
-@keyframes show{
-  from{
+.smooth {
+  scroll-behavior: smooth;
+}
+@keyframes show {
+  from {
     transform: translateY(5%);
   }
-  to{
+  to {
     transform: translateY(0%);
-
   }
 }
-@keyframes next{
-  from{
+
+@keyframes next {
+  from {
     transform: translateX(0%);
   }
-  to{
+  to {
     transform: translateX(-100%);
   }
 }
 
-.show-form{
-  animation: show 1s ease-out ;
-}
-.next-page{
-  animation: next 1s ease-in-out;
+.show-form {
+  animation: show 1s ease-out;
 }

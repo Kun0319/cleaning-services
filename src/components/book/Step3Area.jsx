@@ -14,7 +14,7 @@ const Step3Area = () => {
   const [infoCheck, setInfoCheck] = useState(false);
 
   const checkedMember = (event) => {
-      setInfoCheck(event.target.checked);
+    setInfoCheck(event.target.checked);
   };
 
   const checkPhone = () => {
@@ -40,6 +40,10 @@ const Step3Area = () => {
 
     if (infoCheck) {
       let { user } = ctx;
+      if (user === null) {
+        alert("發生異常，請重新填寫表單！");
+        return navigate("/book");
+      }
       phone.value = user.phone;
       ctx.phone = user.phone;
       name.value = user.name;
@@ -172,7 +176,9 @@ const Step3Area = () => {
             </div>
             <div>
               <img src="/images/info.png" alt="icon" />
-              <label htmlFor="notes">訂單備註</label>
+              <label htmlFor="notes">
+                訂單備註 <span className="text-white">*</span>
+              </label>
               <input type="text" id="notes" />
             </div>
           </div>

@@ -6,8 +6,10 @@ import BookContext from "./book-context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Member from "./Member";
 import Button from "./Button";
+import { scroll } from "./utils";
 
 const Step1Area = () => {
+  scroll();
   const navigate = useNavigate();
   const ctx = useContext(BookContext);
   const [membersData, setMemberData] = useState([]);
@@ -169,7 +171,9 @@ const Step1Area = () => {
                     <Member
                       onClick={(e) => {
                         changeClickStyle1(e, ".memberItem", "memberItem");
-                        document.querySelector(".not-specify").classList.remove("selected");
+                        document
+                          .querySelector(".not-specify")
+                          .classList.remove("selected");
                       }}
                       score={p.total_efficiency}
                       name={p.employeename}
