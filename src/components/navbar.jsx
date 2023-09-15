@@ -110,11 +110,11 @@ class navbar extends Component {
 
                             {this.state.isLoggedIn ? (<button className=' px-4 mx-3 btn' style={this.btn} onClick={this.handleLogout}>
                                 登出
-                            </button>) : (<button className=' px-4 mx-3 btn' style={this.btn} >
-                                <Link to="/loginpage" style={this.atagstyle} className='  text-decoration-none'>
+                            </button>) : <Link to="/loginpage" className='mx-3 text-decoration-none' style={{ display: 'inline-block' }}>
+                                <button className='btn px-4 me-2' style={this.btn}>
                                     登入
-                                </Link>
-                            </button>)}
+                                </button>
+                            </Link>}
 
 
                         </div>
@@ -137,13 +137,17 @@ class navbar extends Component {
 
 
 
-                                {this.state.isLoggedIn ? (<button className=' btn  px-3 me-2' style={this.btn} onClick={this.handleLogout}>
-                                    登出
-                                </button>) : (<button className=' btn  px-3 me-2' style={this.btn} >
-                                    <Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>
-                                        登入
+                                {this.state.isLoggedIn ? (
+                                    <button className='btn px-3 me-2' style={this.btn} onClick={this.handleLogout}>
+                                        登出
+                                    </button>
+                                ) : (
+                                    <Link to="/loginpage" className='mx-3 text-decoration-none' style={{ display: 'inline-block' }}>
+                                        <button className='btn px-4 me-2' style={this.btn}>
+                                            登入
+                                        </button>
                                     </Link>
-                                </button>)}
+                                )}
 
 
                             </Nav>
