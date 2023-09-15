@@ -26,22 +26,24 @@ class navbar extends Component {
         if (cookieValue) {
             this.setState({ isLoggedIn: true });
         }
-
-        // this.cookieCheckInterval = setInterval(() => {
-        //     const cookieValue = document.cookie.replace(/(?:(?:^|.*;\s*)isLoggedIn\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-        //     if (!cookieValue) {
-        //         // Cookie 已过期，执行重新渲染操作
-        //         this.setState({ isLoggedIn: false });
-        //     }
-        // }, 1);
     }
+    // 檢查是否為會員 員工跳轉後台
+    checkadmin = async (e) => {
+        if (this.state.isLoggedIn == true) {
+            let userInfo = await axios.get("http://localhost:4107/user", {
+                withCredentials: true,
+            });
+            if (userInfo.data.data.user[0].admin == false) {
+                window.location.href = "/member";
+            } else if (userInfo.data.data.user[0].admin == true) {
+                window.location.href = "/dashboard";
+            }
+        } else {
+            window.location.href = "/";
+        }
 
-    // componentWillUnmount() {
-    //     // 在组件卸载时清除定时器，以避免内存泄漏
-    //     clearInterval(this.cookieCheckInterval);
-    // }
 
-
+    }
 
     handleLogout = () => {
         // 在此處執行登出邏輯，並設定 isLoggedIn 狀態為 false
@@ -101,18 +103,18 @@ class navbar extends Component {
                             <Link to="/service" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</Link>
                             <Link to="/case" style={this.atagstyle} className='mx-3   text-decoration-none'>案例分享</Link>
                             <Link to="/question" style={this.atagstyle} className='mx-3   text-decoration-none'>常見問題</Link>
-                            <Link to="/member"> <img src="images/info.png" alt=""
+                            <Link to=""> <img src="images/info.png" alt=""
                                 className='m-3'
-                                style={{ width: "2rem" }} /></Link>
+                                style={{ width: "2rem" }} onClick={this.checkadmin} /></Link>
 
 
                             {this.state.isLoggedIn ? (<button className=' px-4 mx-3 btn' style={this.btn} onClick={this.handleLogout}>
                                 登出
-                            </button>) : (<button className=' px-4 mx-3 btn' style={this.btn} >
-                                <Link to="/loginpage" style={this.atagstyle} className='  text-decoration-none'>
+                            </button>) : <Link to="/loginpage" className='mx-3 text-decoration-none' style={{ display: 'inline-block' }}>
+                                <button className='btn px-4 me-2' style={this.btn}>
                                     登入
-                                </Link>
-                            </button>)}
+                                </button>
+                            </Link>}
 
 
                         </div>
@@ -135,13 +137,17 @@ class navbar extends Component {
 
 
 
-                                {this.state.isLoggedIn ? (<button className=' btn  px-3 me-2' style={this.btn} onClick={this.handleLogout}>
-                                    登出
-                                </button>) : (<button className=' btn  px-3 me-2' style={this.btn} >
-                                    <Link to="/loginpage" style={this.atagstyle} className='mx-3   text-decoration-none'>
-                                        登入
+                                {this.state.isLoggedIn ? (
+                                    <button className='btn px-3 me-2' style={this.btn} onClick={this.handleLogout}>
+                                        登出
+                                    </button>
+                                ) : (
+                                    <Link to="/loginpage" className='mx-3 text-decoration-none' style={{ display: 'inline-block' }}>
+                                        <button className='btn px-4 me-2' style={this.btn}>
+                                            登入
+                                        </button>
                                     </Link>
-                                </button>)}
+                                )}
 
 
                             </Nav>
