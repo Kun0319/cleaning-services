@@ -94,11 +94,6 @@
     align-items: center;
 }
 
-.commentitem {
-    margin: 24px;
-
-}
-
 .caseicon {
     width: 24px;
     height: 24px;
@@ -108,16 +103,20 @@
 .people {
     width: 120px;
     height: 120px;
-    margin: -10px;
-    /* clip-path: circle(50% at 50% 50%); */
+    clip-path: circle(50% at 50% 50%);
+    margin-left: 55px;
 }
 
 .casecomment {
-    align-self:flex-end;
     display: flex;
-    /* flex-wrap: wrap; */ 
+    flex-grow: inherit;
     justify-content: space-evenly;
-    margin:px;
+    margin: 20px;
+}
+
+.commentitem {
+    position: relative;
+    bottom: 40px;
 }
 
 
@@ -215,7 +214,7 @@
 }
 
 .marq-name {
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 60px;
     margin-left: 30px;
     color: #664d03;
@@ -224,10 +223,12 @@
 .marq-stars {
     margin-top: 60px;
     position: relative;
-    right: 90px;
+    right: 75px;
 }
-.commentitem p{
+
+.commentitem p {
     font-size: 18px;
     margin-top: 20px;
     color: #664d03;
+    margin-left: 60px;
 }

@@ -155,7 +155,7 @@ const SignUp = () => {
             <p>姓名</p>
             <input
               type="text"
-              placeholder="請輸入帳號"
+              placeholder="請輸入姓名"
               value={name}
               onChange={(e) => setName(e.target.value)}>
             </input>
@@ -220,7 +220,7 @@ const SignUp = () => {
             <p>地址</p>
             <input
               type="text"
-              value="台中市"
+              value="臺中市"
               id="cleaning-city" />
 
 

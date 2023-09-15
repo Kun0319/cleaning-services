@@ -16,11 +16,14 @@ const Case2 = () => {
       });
   }, []);
 
+   // 評價目前較少 加入array循環
+  const marqueeDuplicated = [...marquee, ...marquee,...marquee,...marquee];
+
   return (
     <div className="marquee-container">
       <div className="marquee-content">
         <div className="casecomment">
-          {marquee.map((marq, index) => (
+          {marqueeDuplicated.map((marq, index) => (
             <div key={index}>
               <CommentItem
                 name={marq.employeename}
