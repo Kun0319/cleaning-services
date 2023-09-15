@@ -1,6 +1,6 @@
 import React from "react";
 import { useRef, useState, useEffect, useContext } from 'react'
-import AuthContext, { AuthProvider } from './AuthContext';
+// import AuthContext from './AuthContext';
 
 
 import axios from './axios'
@@ -14,7 +14,7 @@ const LOGIN_URL = '/login';
 
 
 const Login = () => {
-    const { setAuth } = useContext(AuthContext);
+    // const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -101,7 +101,7 @@ const Login = () => {
             {success ? (
                 <section>
                     <h1>登入成功!!</h1>
-                    <br />
+                    <br/>
                     <p>
                         <a href="/">回首頁</a>
                     </p>
