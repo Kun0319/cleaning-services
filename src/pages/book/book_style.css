@@ -610,3 +610,29 @@
     align-items: center;
   }
 }
+
+/* animation */
+@keyframes show{
+  from{
+    transform: translateY(5%);
+  }
+  to{
+    transform: translateY(0%);
+
+  }
+}
+@keyframes next{
+  from{
+    transform: translateX(0%);
+  }
+  to{
+    transform: translateX(-100%);
+  }
+}
+
+.show-form{
+  animation: show 1s ease-out ;
+}
+.next-page{
+  animation: next 1s ease-in-out;
+}

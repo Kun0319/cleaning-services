@@ -109,7 +109,7 @@ const Step2Area = () => {
   return (
     <form className="container d-flex  justify-content-center align-items-center flex-column">
       <div className="d-flex container justify-content-center align-items-center book-step1">
-        <div className="left">
+        <div className="left show-form">
           <div className="step2Top">
             <h5 className="heading" data-number="01">
               <span>選擇服務時間</span>
@@ -160,7 +160,7 @@ const Step2Area = () => {
             </div>
           </div>
         </div>
-        <div className="right">
+        <div className="right show-form">
           <MyCalendar freeDays={dayMode} />
         </div>
       </div>

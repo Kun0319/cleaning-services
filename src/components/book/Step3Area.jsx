@@ -82,7 +82,6 @@ const Step3Area = () => {
       ctx.rural = document.querySelector("#userAddress").value;
       ctx.address = document.querySelector("#detail-address").value;
       ctx.note = document.querySelector("#notes").value;
-      console.log(ctx);
       navigate("/book/book4");
     } else {
       alert("請完成表單填寫!");
@@ -93,7 +92,7 @@ const Step3Area = () => {
     <>
       <form className="d-flex flex-column align-items-center container ">
         <div className=" book-step3 container">
-          <div id="clientInfo">
+          <div id="clientInfo" className="show-form">
             <div className="sameMember">
               <input
                 type="checkbox"
