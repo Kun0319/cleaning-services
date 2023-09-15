@@ -1,5 +1,7 @@
 import React from "react";
+import Memmodal from "./Memmodal";
 import "./StaffInfos.css";
+
 const StaffInfo = (props) => {
   return (
     <div className="staffInfo-card">
@@ -55,6 +57,7 @@ const StaffInfo = (props) => {
           <span>{props.racheck ? "浣熊管家認證" : "無浣熊管家認證"}</span>
         </div>
       </div>
+      <Memmodal/>
     </div>
   );
 };

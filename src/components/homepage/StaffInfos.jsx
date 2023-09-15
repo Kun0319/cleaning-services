@@ -43,7 +43,7 @@ const StaffInfos = () => {
           },
         }}
       >
-        {card.map((employee) => (
+        {card.map((employee,index) => (
           <SwiperSlide key={employee.employeeid}>
             <StaffInfo
               name={employee.employeename}
@@ -55,6 +55,7 @@ const StaffInfos = () => {
               img={employee.photo}
               goodid={employee.goodid}
               racheck={employee.racheck}
+              index={index}
             />
           </SwiperSlide>
         ))}
