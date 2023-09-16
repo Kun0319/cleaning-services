@@ -72,7 +72,7 @@ function handleTime(time){
       </div>
       <div className="contact-table">
         <table border={1} className="w-100">
-          <thead className="orderThead">
+          <thead className="orderThead tbody_def">
             <tr>
               <th>訂單編號</th>
               <th>清潔地點</th>
@@ -81,7 +81,7 @@ function handleTime(time){
               <th>備註</th>
             </tr>
           </thead>
-          <tbody className="doneTbody orderDn">
+          <tbody className="doneTbody orderDn tbody_def">
             <tr>
               <td>{ornumber}</td>
               <td>{orcity+orrural+oraddress}</td>
@@ -90,11 +90,33 @@ function handleTime(time){
               <td>{note||"無備註"}</td>
             </tr>
           </tbody>
+          <thead className="orderThead orderDn tbody_RWD">
+            <tr>
+              <td>訂單編號:</td>
+              <td>{ornumber}</td>
+            </tr>
+            <tr>
+              <td>清潔地點:</td>
+              <td>{orcity+orrural+oraddress}</td>
+            </tr>
+            <tr>
+              <td>成立時間:</td>
+              <td>{new Date(ordertime).toLocaleDateString("en-CA")}</td>
+            </tr>
+            <tr>
+              <td>打掃時段:</td>
+              <td>{handleTime(time)}</td>
+            </tr>
+            <tr>
+              <td>備註:</td>
+              <td>{note||"無備註"}</td>
+            </tr>
+          </thead>
         </table>
       </div>
       <div className="contact-table">
         <table border={1} className="w-100">
-          <thead className="orderThead">
+          <thead className="orderThead tbody_def">
             <tr>
               <th>服務次數</th>
               <th>訂單金額</th>
@@ -103,7 +125,7 @@ function handleTime(time){
               <th>完成時間</th>
             </tr>
           </thead>
-          <tbody className="doneTbody orderDn">
+          <tbody className="doneTbody orderDn tbody_def">
                 <tr>
                   <td><span className="text-danger">{donetime}</span>{`/${weeks}次`}</td>
                   <td>{money}元</td>  
@@ -112,16 +134,36 @@ function handleTime(time){
                   <td>{orderdone?new Date(orderdone).toLocaleDateString("en-CA"):"尚未完成"}</td>
                 </tr>
           </tbody>
+          <thead className="orderThead orderDn tbody_RWD">
+            <tr>
+              <td>訂單金額:</td>
+              <td><span className="text-danger">{donetime}</span>{`/${weeks}次`}</td>
+            </tr>
+            <tr>
+              <td>付款方式:</td>
+              <td>{money}元</td>
+            </tr>
+            <tr>
+              <td>完成狀態:</td>
+              <td>{pay?"信用卡":"其他"}</td>
+            </tr>
+            <tr>
+              <td>服務次數:</td>
+              <td>{state===2?<span className="text-success fw-bold">已完成</span>:<span className="text-danger fw-bold">進行中</span>}</td>
+            </tr>
+            <tr>
+              <td>完成時間:</td>
+              <td>{orderdone?new Date(orderdone).toLocaleDateString("en-CA"):"尚未完成"}</td>
+            </tr>
+          </thead>
         </table>
       </div>
-      <OrderStaff 
-      staffAPI={staffAPI}
-      evaluateAPI={evaluateAPI} />
-      {!isClose && state === 2 ? (
-        <button onClick={() => { setModal(true) }} className="orderBtn">
-    給辛苦的專員評價吧
-  </button>
-):<h3 className="contact-table">訂單評論:{isClose}</h3>}
+        <OrderStaff 
+        staffAPI={staffAPI}
+        evaluateAPI={evaluateAPI} />
+      <div className="contact-table">
+        {!isClose && state === 2 ? (<button onClick={() => { setModal(true) }} className="orderBtn">給辛苦的專員評價吧</button>):<h3 className="contact-table">訂單評論:{isClose||"訂單尚未完成"}</h3>}
+      </div>
     </div>
   );
 };

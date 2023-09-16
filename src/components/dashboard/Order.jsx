@@ -19,7 +19,11 @@ const Order = () => {
           withCredentials: true
         });
         if (Array.isArray(result.data)) {
-          setOrderAPI(result.data);
+          setOrderAPI(() => {
+            return result.data.sort(function (a, b) {
+              return a.state >= b.state ? 1 : -1;
+            });
+          });
         } else {
           console.error("Received non-array data from the API.");
         }
@@ -117,7 +121,7 @@ const Order = () => {
                     <td>{employeeid}</td>
                     <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                     <td>{weeks}週</td>
-                    <td>{donetime}次</td>
+                    <td>{weeks-donetime}次</td>
                     <td>{money}</td>
                     <td>{handleOrderStatus(state)}</td>
                   </tr>

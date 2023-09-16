@@ -35,6 +35,10 @@
   cursor: auto;
 }
 
+.orderDn tr td{
+  border: 1px solid #664d03;
+} 
+
 .orderDnbtn {
   background-color: #FFC107;
   border-radius: 30px;
@@ -65,7 +69,7 @@
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
-  text-align: center;
+  text-align: center  ;
 }
 
 .contact-table {
@@ -83,7 +87,7 @@
   border: none;
 }
 
-.contact-table td {
+.contact-table  td {
   color: #664d03;
   font-size: 16px;
   padding: 8px;
@@ -185,6 +189,10 @@
   font-weight: bold;
 }
 
+.tbody_RWD{
+  display: none;
+}
+
 @keyframes myAnimation_order {
   0% { transform: scale(1); }
   50% { transform: scale(1.2); }
@@ -238,4 +246,31 @@
 
   .animated-check {
     animation: myAnimation_check 2s linear infinite;
+  }
+
+  @media screen and (max-width: 997px) {
+    .aside-main>h3{
+      display: none;
+    }
+    .orderInfo{
+      display: none;
+    }
+    .contact-table{
+      border-radius: 0;
+      height: auto;
+      padding: 0;
+    }
+    table{
+      border: none;
+      background-color: #FFF8E1;
+    }
+    .tbody_RWD{
+      display: contents;
+    }
+    .tbody_RWD tr{
+      border: #664d03 1px solid;
+    }
+    .tbody_def{
+      display: none;
+    }
   }
