@@ -46,56 +46,58 @@ const Question = () => {
   ];
 
   return (
-    <div className="d-flex align-items-center justify-content-center flex-column">
+    <>
       <Navbar />
-      <div className="container d-flex align-items-center justify-content-center flex-column">
-        <div className="question">常見問題</div>
+      <div className="d-flex align-items-center justify-content-center flex-column">
+        <div className="container d-flex align-items-center justify-content-center flex-column">
+          <div className="question">常見問題</div>
 
-        <div className="question-row d-flex align-items-center justify-content-center">
-          {qubook.map((book, index) => (
-            <Questionbook key={index} {...book} />
-          ))}
-        </div>
-
-        <div className="question-line">
-          <div className=" d-flex  justify-content-center flex-column lines">
-            <p>還有想了解的嗎 ?</p>
-            <p>歡迎加入我們官方Line與我們聯繫 !</p>
-            <div className=" d-flex align-items-center ">
-              <img
-                className="line-img"
-                src="images/question-002.png"
-                width="150px"
-              />
-              <ul className="question-icon">
-                <li>
-                  <a href="#">
-                    <img src="images/question-003.png" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/question-004.png" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/question-005.png" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <img src="images/question-006.png" />
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <div className="question-row d-flex align-items-center justify-content-center">
+            {qubook.map((book, index) => (
+              <Questionbook key={index} {...book} />
+            ))}
           </div>
-          <img className="Raccoon" src="images/question-007.png" />
+
+          <div className="question-line">
+            <div className=" d-flex  justify-content-center flex-column lines">
+              <p>還有想了解的嗎 ?</p>
+              <p>歡迎加入我們官方Line與我們聯繫 !</p>
+              <div className=" d-flex align-items-center ">
+                <img
+                  className="line-img"
+                  src="images/question-002.png"
+                  width="150px"
+                />
+                <ul className="question-icon">
+                  <li>
+                    <a href="#">
+                      <img src="images/question-003.png" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img src="images/question-004.png" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img src="images/question-005.png" />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <img src="images/question-006.png" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <img className="Raccoon" src="images/question-007.png" />
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 };
 export default Question;
