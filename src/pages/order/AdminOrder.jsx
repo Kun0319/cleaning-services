@@ -199,6 +199,7 @@ const Member = () => {
                       count.donetime + 1 <= weeks
                         ? count.donetime + 1
                         : count.donetime,
+                    state:count.state=1
                   };
                 });
                 handleOrderUpdata({
@@ -207,6 +208,7 @@ const Member = () => {
                     orderData.donetime + 1 <= weeks
                       ? orderData.donetime + 1
                       : orderData.donetime,
+                      state:orderData.state=1
                 });
               }}
             >
