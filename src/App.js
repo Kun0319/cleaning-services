@@ -66,7 +66,9 @@ function App() {
         <Route
           path="/dashboard"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute
+            admin="staffAdmin"
+            >
               <Dashboard />
             </ProtectedRoute>
           }
@@ -96,7 +98,13 @@ function App() {
           <Route path="/dashboard/addstaff" element={<AddStaff />} />
         </Route>
         <Route path="*" element={<Error />} />
-        <Route path="/member/" element={<Member />}>
+        <Route path="/member/" element={
+            <ProtectedRoute
+            admin="memberAdmin"
+            >
+              <Member />
+            </ProtectedRoute>
+          }>
           <Route index="/member/" element={<Order />} />
           <Route path="/member/:orderNumber" element={<OrderDone />} />
           <Route path="/member/memberinfo" element={<Memberlogin />} />

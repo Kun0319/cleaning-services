@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import './login.css'
 import "../../components/dashboard/dashboard.css";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 
 
 const ChangePwd = () => {
@@ -12,6 +12,7 @@ const ChangePwd = () => {
   // 定義密碼的狀態變數
   const [uppassword, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   //接收資料
   useEffect(() => {
@@ -45,6 +46,7 @@ const ChangePwd = () => {
   const handleCancelClick = () => {
     setPassword("");
     setConfirmPassword("");
+    navigate(-1)
   };
 
 
@@ -60,7 +62,7 @@ const ChangePwd = () => {
           withCredentials: true
         }
       );
-      window.location.reload();
+      navigate(-1)
     } catch (error) {
       console.error("Error updating password:", error);
     }

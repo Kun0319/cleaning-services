@@ -57,7 +57,7 @@ const OrderList = (props) => {
     if (state === 0) {
       return "新訂單";
     } else if (state === 1) {
-      return "未完成";
+      return "進行中";
     }
     return "已完成";
   };

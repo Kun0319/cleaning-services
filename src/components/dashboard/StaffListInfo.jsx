@@ -42,7 +42,7 @@ const StaffListInfo = () => {
         setUpVaccine(result.data.data[0].vaccine);
         setUpGoodid(result.data.data[0].goodid);
         setUpRacheck(result.data.data[0].racheck);
-        setUpPassWord(result.data.newPW);
+        // setUpPassWord(result.data.data[0].employeepw);
         setUpIdnumber(result.data.data[0].employeeidnumber);
         setUpBirthday(
           new Date(result.data.data[0].employeebirthday).toLocaleDateString(
@@ -62,7 +62,7 @@ const StaffListInfo = () => {
     }
     fetchData();
   }, [employeeid]);
-
+  
   //   上一頁
   const prevStaffClick = () => {
     const data = useridarr[useridarr.indexOf(employeeid) - 1];

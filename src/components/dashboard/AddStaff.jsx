@@ -10,12 +10,15 @@ const AddStaff = () => {
     const [orderAPI, setOrderAPI] = useState([]);
     const [imageData, setImageData] = useState("");
     const [showAlert,setShowAlert]=useState(false)
+    
     const [nameReg, setNameReg] = useState(false);
     const [emailReg, setEmailReg] = useState(false);
     const [phoneReg, setPhoneReg] = useState(false);
     const [passWordReg, setPassWordReg] = useState(false);
     const [IDReg, setIDReg] = useState(false);
+
     const [success, setSuccess] = useState("");
+
     const [staffDate,setStaffData]=useState({
         employeeId:"",
         empLength:"",
@@ -55,22 +58,24 @@ const AddStaff = () => {
     //    送出註冊資料
    async function handleSignUp(e) {
         e.preventDefault();
-        const jsonString = JSON.stringify(staffDate)//formData.append()不能直接加入物件要轉換JSON字串
-        const formData = new FormData();
-        formData.append("data",jsonString)
-        formData.append('photo', imageData)
-        try {
-           const res= await axios.post(`http://localhost:4107/dashboard/addstaff/upload`,formData)
-
-           if (res.data.message === "failed") {
-               setSuccess("failed")
-               console.log(success)
-            }else if(res.data.message === "success"){
-                setSuccess("success")
-                console.log(success)
+        if(nameReg && emailReg && phoneReg && passWordReg && IDReg){
+            const jsonString = JSON.stringify(staffDate)//formData.append()不能直接加入物件要轉換JSON字串
+            const formData = new FormData();
+            formData.append("data",jsonString)
+            formData.append('photo', imageData)
+            try {
+               const res= await axios.post(`http://localhost:4107/dashboard/addstaff/upload`,formData)
+    
+               if (res.data.message === "failed") {
+                   setSuccess("failed")
+                }else if(res.data.message === "success"){
+                    setSuccess("success")
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
             }
-        } catch (error) {
-            console.error("Error fetching data:", error);
+        } else {
+            setSuccess("failed")
         }
     }
 

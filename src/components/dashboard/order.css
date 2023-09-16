@@ -69,14 +69,14 @@
 }
 
 .contact-table {
-  width: 426px;
+  width: 100%;
   height: 152px;
   border-radius: 30px;
   background-color: #FFF8E1;
   display: flex;
   align-items: center;
   padding: 24px 48px 24px 48px;
-  text-align: center;
+  text-align: start;
   margin: 0 auto;
   gap: 33px;
   border-collapse: collapse;
@@ -85,7 +85,7 @@
 
 .contact-table td {
   color: #664d03;
-  font-size: 14px;
+  font-size: 16px;
   padding: 8px;
   border: 1px solid #ccc;
   border: none;

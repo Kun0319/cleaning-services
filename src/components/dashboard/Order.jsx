@@ -38,7 +38,7 @@ const Order = () => {
     if (state === 0) {
       return "新訂單";
     } else if (state === 1) {
-      return "未完成";
+      return "進行中";
     }
     return "已完成";
   };
@@ -55,7 +55,7 @@ const Order = () => {
 
   return (
     <div className="dashOrder">
-      <div className="orderInfo">
+      {/* <div className="orderInfo">
         <span className="orderCard">
           <img src="/images/order.png" alt="" />
           <p className="orderText ">訂單成立</p>
@@ -80,7 +80,7 @@ const Order = () => {
           <img src="/images/orderDone.png" alt="" />
           <p className="orderText ">完成訂單</p>
         </span>
-      </div>
+      </div> */}
       <table>
         <thead className="orderThead">
           <tr>
