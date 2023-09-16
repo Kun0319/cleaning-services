@@ -4,7 +4,7 @@ import './case.css';
 import CommentItem from "./CommentItem";
 import Navbar from "../navbar";
 import Footer from "../Footer";
-import Memberscore from "./memberscore";
+
 import CardContainer from "./Cardcontainer";
 import Case2 from "./Case2";
 
@@ -19,9 +19,7 @@ const Case = () => {
         <div className="caseTitle">
           <h2>案例分享</h2>
         </div>
-
         <CardContainer />
-
         </div>
         <Case2/>
       <Footer />
