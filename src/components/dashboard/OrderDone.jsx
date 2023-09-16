@@ -46,27 +46,27 @@ function handleTime(time){
       {modal && <Score setModal={setModal} orderAPI={orderAPI} evaluateAPI={evaluateAPI} staffAPI={staffAPI} />}
       <div className="orderInfo">
         <span className="orderCard">
-          <img src="/images/order.png" alt="" />
+          <img src="/images/order.png" alt=""  className="animated-image"/>
           <p className="orderText ">預約快速</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderGoing.png" alt="" />
+          <img src="/images/orderGoing.png" alt="" className="animated-car"/>
           <p className="orderText ">使命必達</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderCleaning.png" alt="" />
+          <img src="/images/orderCleaning.png" alt=""className="animated-clear" />
           <p className="orderText ">專業清掃</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderCleaned.png" alt="" />
+          <img src="/images/orderCleaned.png" alt="" className="animated-price" />
           <p className="orderText ">價格實惠</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderDone.png" alt="" />
+          <img src="/images/orderDone.png" alt="" className="animated-check"/>
           <p className="orderText ">嚴格把關</p>
         </span>
       </div>

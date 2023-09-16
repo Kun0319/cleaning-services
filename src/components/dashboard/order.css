@@ -184,3 +184,58 @@
   font-size: 20px;
   font-weight: bold;
 }
+
+@keyframes myAnimation_order {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.animated-image {
+  animation: myAnimation_order  2s linear infinite; 
+}
+
+@keyframes myAnimation_car {
+  0% { transform: translate(-30px,0); }
+  25% { transform: translate(-15px,0); }
+  50% { transform: translate(0px,0); }
+  75% { transform: translate(15px,0); }
+  100% { transform: translate(30px,0); }
+}
+
+.animated-car {
+  animation: myAnimation_car 2s linear infinite; 
+}
+@keyframes myAnimation_clear {
+  0% { transform: translate(-30px,0)scaleX(1);}
+  25% { transform: translate(-15px,0)scaleX(-1); }
+  50% { transform: translate(0,0)scaleX(1); }
+  75% { transform: translate(15px,0)scaleX(-1); }
+  100% { transform: translate(30px,0)scaleX(1); }
+}
+
+.animated-clear {
+  animation: myAnimation_clear 2s linear infinite;
+}
+  @keyframes myAnimation_price {
+    0% { transform: translate(0,10px); }
+    25% { transform: translate(0,0); }
+    50% { transform: translate(0,-10px); }
+    75% { transform: translate(0,0); }
+    100% { transform: translate(0,10px); }
+  }
+
+  .animated-price {
+    animation: myAnimation_price 2s linear infinite;
+  }
+  @keyframes myAnimation_check {
+    0% { transform: rotate(-10deg); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(-10deg); }
+    75% { transform: rotate(10deg); }
+    100% { transform: rotate(-10deg); }
+  }
+
+  .animated-check {
+    animation: myAnimation_check 2s linear infinite;
+  }
