@@ -242,8 +242,9 @@
     
   }
   .modalbutton{
-    position:absolute;
+     position:absolute; 
     left:530px;
+    top:0px;
     background-color: #fff8e100;
   }
   .open-button{
