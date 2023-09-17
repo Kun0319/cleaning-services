@@ -102,7 +102,7 @@ const StaffInfo = (props) => {
           <div className="scorebd scoretext">
             <div className="memberlevel">
               <p>{props.name}</p>
-              <p>Level.{props.Level}</p>
+              <p>Level.{props.levle}</p>
             </div>
           </div>
           <div className="scorebd">
@@ -143,7 +143,8 @@ const StaffInfo = (props) => {
             </div>
           </div>
           <div className="scorecomment">
-            <div className="customername">{props.username}</div>
+            <div className="customername"><h5>{props.orname}</h5> </div>
+            <hr />
             <div className="customercomment">{props.reply}</div>
           </div>
           <button className="modalbutton" onClick={closeModal}><img src="images\modalbutton.png" width={"25"} /></button>
