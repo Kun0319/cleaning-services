@@ -2,6 +2,17 @@
 import React, { useRef, useState, useEffect } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
 import { validPhone, validPassWord, validEmail, validName, validAge, validId } from "../dashboard/RegEx"
+// 日期選擇套件跟CSS樣式
+import DatePicker from 'react-date-picker';
+import './DatePicker.css';
+import './Calendar.css';
+
+// 設定日期選擇器語言
+
+// import dateFns from "date-fns";
+// import TW from 'date-fns/locale/zh-TW';
+
+
 
 
 import axios from './axios'
@@ -10,58 +21,70 @@ import axios from './axios'
 const SignUp = () => {
 
 
-  const [name, setName] = useState("")
-  const [birthday, setBirthday] = useState("")
-  const [email, setEmail] = useState("")
-  const [phone, setPhone] = useState("")
-  const [rural, setRural] = useState("")
-  const [id, setId] = useState("") //身分證字號
-  const [address, setAddress] = useState("")
-  const [password, setPassword] = useState("")
+  const [upname, setName] = useState("")
+  const [upbirthday, setBirthday] = useState("");
+  const [upemail, setEmail] = useState("")
+  const [upphone, setPhone] = useState("")
+  const [uprural, setRural] = useState("")
+  const [upid, setId] = useState("") //身分證字號
+  const [upaddress, setAddress] = useState("")
+  const [uppassword, setPassword] = useState("")
+  const [staffDate, setStaffData] = useState({
+    name: "",
+    birthday: "",
+    email: "",
+    phone: "",
+    id: "",
+    address: "",
+    password: "",
+    rural: "中區",
+  })
 
 
-
-
-
-  const data = {
-    name,
-    birthday,
-    email,
-    phone,
-    id,
-    rural,
-    address,
-    password,
-  };
 
   // 送出註冊資料 
   // 處理表單提交
   const handleSubmit = async (e) => {
-    e.preventDefault(); // 阻止默認的表單提交行為
-    try {
-      // 使用 Axios 將使用者資料發送到後端
-      await axios.post('/signup', JSON.stringify(data), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      // 成功提交後清空表單
-      setName("");
-      setBirthday("");
-      setEmail("");
-      setPhone("");
-      setId("");
-      setRural("");
-      setAddress("");
-      setPassword("");
-
-      // 可以在這裡添加處理成功響應的程式碼
-    } catch (error) {
-      // 處理錯誤
-      console.log(JSON.stringify(data));
-      console.error("註冊錯誤：", error);
+    e.preventDefault();
+    // 驗證密碼是否滿足要求
+    if (true) {
+      try {
+        // 使用 Axios 將使用者資料發送到後端
+        await axios.post('/signup', JSON.stringify(staffDate), {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        window.location.href = 'http://localhost:3000/loginpage'
+        // 可以在這裡添加處理成功響應的程式碼
+      } catch (error) {
+        // 處理錯誤
+        console.log(JSON.stringify(staffDate));
+        console.error("註冊錯誤：", error);
+      }
+    } else {
+      // 密碼不符合要求，可以在此處添加相應的錯誤處理邏輯
+      console.log("密碼不符合要求");
     }
+  };
+
+  // 轉換日期
+  function formatDate(e) {
+    const originalDate = new Date(e);
+
+    if (isNaN(originalDate.getTime())) {
+      // 檢查是否解析日期成功
+      return "無效的日期";
+    }
+
+    const year = originalDate.getFullYear();
+    const month = (originalDate.getMonth() + 1).toString().padStart(2, '0'); // 月份從0開始，所以要加1，並補0
+    const day = originalDate.getDate().toString().padStart(2, '0'); // 補零
+
+    return `${year}-${month}-${day}`;
   }
+
+
 
 
 
@@ -150,109 +173,20 @@ const SignUp = () => {
       [name]: value
     })
   }
-  // 用於計算指定年份和月份的最大日期
 
-
-
-
-
-  // 年份選擇
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
-  const yearsToSubtract = 17;
-
-  // 生成年份選項
-  const generateYearOptions = () => {
-    const currentYear = new Date().getFullYear();
-    const yearOptions = [];
-
-    for (let i = currentYear - yearsToSubtract; i >= currentYear - 60; i--) {
-      yearOptions.push(
-        <option key={i} value={i}>
-          {i}
-        </option>
-      );
-    }
-
-    return yearOptions;
-  };
-
-  // 處理選擇變化事件
-  const handleYearChange = (event) => {
-    const selectedYear = parseInt(event.target.value);
-    const currentYear = new Date().getFullYear();
-    console.log(typeof event.target.value);
-    setSelectedYear(selectedYear);
-  };
-  // 年份
-
-
-
-
-
-
-  // 月份
-  const [selectedmonth, setSelectedmonth] = useState(new Date().getMonth() + 1)
-  const generatemonthOptions = () => {
-    const monthOptions = []
-    for (let i = 1; i <= 12; i++) {
-      monthOptions.push(
-        <option key={i} value={i}>
-          {i}
-        </option>
-      );
-    }
-    return monthOptions;
+  async function birthdayDataChange(e) {
+    const { name, value } = formatDate(e);
+    setStaffData({
+      birthday: formatDate(e)
+    })
   }
 
-  const handleMonthChange = (event) => {
-    const selectedmonth = parseInt(event.target.value);
 
-
-    setSelectedmonth(selectedmonth);
-  };
-  // 月份
+  const maxDate = new Date()
 
 
 
 
-  const calculateMaxDay = (year, month) => {
-    return new Date(year, month, 0).getDate();
-  };
-
-  // 當選擇的年份或月份改變時，更新所選日期以確保在有效範圍內
-  useEffect(() => {
-    const maxDay = calculateMaxDay(selectedYear, selectedmonth);
-    if (selectedday > maxDay) {
-      setSelectedday(maxDay);
-    }
-  }, [selectedYear, selectedmonth]);
-
-
-
-
-  // 日期
-  const [selectedday, setSelectedday] = useState(new Date().getDay());
-
-  const generateDayOptions = () => {
-    const dayOptions = []
-    for (let i = 1; i <= 30; i++) {
-
-      dayOptions.push(
-        <option key={i} value={i}>
-          {i}
-        </option>
-      );
-    }
-    return dayOptions;
-  }
-  const handleDayChange = (event) => {
-    const selectedday = parseInt(event.target.value);
-    setSelectedday(selectedday);
-  };
-  // 日期
-
-
-  const birthday = `${selectedYear}-${String(selectedmonth).padStart(2, '0')}-${String(selectedday).padStart(2, '0')}`;
 
 
 
@@ -276,78 +210,59 @@ const SignUp = () => {
             <p>姓名</p>
             <input
               type="text"
-              placeholder="請輸入帳號"
-              value={name}
-              onChange={(e) => setName(e.target.value)}>
+              placeholder="請輸入姓名"
+              name='name'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => {
+                const newName = e.target.value;
+                setName(newName);
+                setStaffData(() => ({
+                  ...staffDate,
+                  name: e.target.value
+                }));
+              }}
+            >
             </input>
+            {RexgeValid(upname)}
           </li>
 
 
           <li className="loginli">
             <img src="./images/date.png" className="loginicon" />
             <p>生日</p>
-            <label htmlFor="">年份</label>
+            <div>
+              {/* 當選取滿18歲的年紀時 再換選取未滿18的日期時會跳錯誤 */}
+              {/* 原因可能為正規表示法的規則? */}
+              <DatePicker
+                name='birthday'
+                maxDate={maxDate}
+                value={upbirthday}
+                clearIcon={null}
+                onChange={(e) => {
+                  const isAgeValid = validAge(formatDate(e));
+                  setStaffData(() => ({
+                    ...staffDate,
+                    birthday: formatDate(e)
+                  }));
 
-            <select name="years"
-              id="yearSelect"
-              value={selectedYear}
-              onChange={handleYearChange}>
-              {generateYearOptions()}
-            </select>
-
-
-            <label htmlFor="">月份</label>
-            <select
-              name="month"
-              id='monthOptions'
-              value={selectedmonth}
-              onChange={handleMonthChange}
-            >
-              {generatemonthOptions()}
-            </select>
-
-
-            <label htmlFor="">日期</label>
-            <select name="day"
-              id='DayOptions'
-              value={selectedday}
-              onChange={handleDayChange}
-            >
-              {generateDayOptions()}
-            </select>
-
-            {/* <input
-              type="date"
-              placeholder="請輸入密碼"
-              name='birthday'
-              autoComplete="off"
-              required
-              onInput={formDataChange}
-              onChange={(e) => {
-                const isAgeValid = validAge(e.target.value);
-                setBirthday(isAgeValid ? e.target.value : "",
-                console.log(typeof e.target.value)
-                );
-              }}
-            /> */}
+                  console.log(staffDate);
+                  setBirthday(isAgeValid ? formatDate(e) : alert("很抱歉,必須年滿18歲"));
+                }} />
+            </div>
             {RexgeValid(upbirthday)}
           </li>
-
-
-
 
           <li className="loginli">
             <img src="./images/tet.png" className="loginicon" />
             <p>手機號碼</p>
             <input
-              type="number"
+              type="phone"
               placeholder="請輸入手機號碼"
               name='phone'
               autoComplete="off" required onInput={formDataChange}
-              onChange={(e) => setPhone(validPhone.test(e.target.value))}
+              onChange={(e) => setPhone(validPhone.test(e.target.value), console.log(staffDate))}
             >
-
-            </input>
+            </input>{RexgeValid(upphone)}
           </li>
 
 
@@ -357,10 +272,12 @@ const SignUp = () => {
             <input
               type="email"
               placeholder="請輸入信箱"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}>
+              name='email'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setEmail(validEmail.test(e.target.value))}
+            >
 
-            </input>
+            </input>{RexgeValid(upemail)}
           </li>
 
 
@@ -369,11 +286,12 @@ const SignUp = () => {
             <p>身分證字號</p>
             <input
               placeholder="請輸入身分證字號"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
+              name='id'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setId(validId(e.target.value))}
             >
 
-            </input>
+            </input>{RexgeValid(upid)}
           </li>
 
 
@@ -382,15 +300,15 @@ const SignUp = () => {
             <p>地址</p>
             <input
               type="text"
-              value="台中市"
+              value="臺中市"
               id="cleaning-city" />
 
 
-            <select name="cleaningAddress"
+            <select
+              name="rural"
               id="userAddress"
-              value={rural}
+              autoComplete="off" required onInput={formDataChange}
               onChange={(e) => setRural(e.target.value)}
-
             >
               {adreessDist.map((item, index) => {
                 return (
@@ -406,7 +324,9 @@ const SignUp = () => {
               placeholder="請輸入詳細地址"
               id="detail-address"
               required
-              value={address} onChange={(e) => setAddress(e.target.value)}
+              name='address'
+              autoComplete="off" onInput={formDataChange}
+              onChange={(e) => setAddress(e.target.value)}
             />
           </li>
 
@@ -415,9 +335,13 @@ const SignUp = () => {
             <img src="./images/password.png" className="loginicon" />
             <p>密碼</p>
             <input
+              type='password'
               placeholder="請輸入密碼"
-              value={password} onChange={(e) => setPassword(e.target.value)}>
-            </input>
+              name='password'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setPassword(validPassWord.test(e.target.value), console.log(staffDate))}
+            >
+            </input>{RexgeValid(uppassword)}
           </li>
 
 
@@ -428,7 +352,7 @@ const SignUp = () => {
       </form>
 
 
-    </div>
+    </div >
   );
 };
 
