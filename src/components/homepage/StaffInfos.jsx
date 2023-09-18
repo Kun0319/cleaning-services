@@ -16,12 +16,12 @@ const StaffInfos = () => {
         const cardData = responses[0].data; //第一個API
         const modalData = responses[1].data;  //第二個API
 
-        const combined = cardData.map((employee, index) => {
-          const modalItem = modalData[index] || {};  //兩者合併
-      
+        const combined = cardData.map((employee) => {
+          // 在 modalData 中尋找相同的 employeeid
+          const modalItem = modalData.find((modalEmployee) => modalEmployee.employeename === employee.employeename) || {};
+        
           return {
             ...employee,
-            ...modalItem,
             modalData: modalItem
           };
         });
@@ -29,7 +29,7 @@ const StaffInfos = () => {
         setCombinedData(combined); //合併後的資料
       })
       .catch((err) => {
-        console.error('请求失败', err);
+        console.error('no', err);
       });
   }, []);
 
@@ -77,6 +77,9 @@ const StaffInfos = () => {
               efficiency={employee.modalData.e1} //modal 效率技能
               careful={employee.modalData.e3} //modal 細心技能
               manner={employee.modalData.e4}  ////modal 態度技能
+              modalphoto={employee.modalData.photo}
+              modalname={employee.modalData.employeename}
+              
             />
           </SwiperSlide>
         ))}
