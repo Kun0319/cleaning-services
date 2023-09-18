@@ -166,7 +166,7 @@ const Member = () => {
               </td>
             </tr>
           </table>
-          <h5 className="orderContent">備註:{note ?? "無"}</h5>
+          <div className="orderContent">備註:{note ?? "無"}</div>
         </div>
         {/* 按鈕 */}
         {state !== 2 ? (
@@ -216,7 +216,7 @@ const Member = () => {
             </button>
           </div>
         ) : (
-          <h5 className="orderContent">訂單完成</h5>
+          <div className="orderContent">訂單完成</div>
         )}
       </div>
     </div>

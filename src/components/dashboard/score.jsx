@@ -4,10 +4,11 @@ import "./order.css";
 import Fraction from "./Fraction";
 import axios from "axios";
 
-const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI }) => {
+const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => {
   const [counters, setCounters] = useState([]);
   const [comment, setComment] = useState("無評論內容");
   const { orderNumber } = useParams();
+  {!comment && setComment("沒有評論")}
   useEffect(() => {
     const data = [
       { id: 1, name: "打掃點數：", value: 5 },
@@ -19,15 +20,20 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI }) => {
       return data;
     });
   }, []);
-  console.log(orderAPI, staffAPI, evaluateAPI)
   
   async function handleScoreUpdata() {
-    try {
+    try{
       await axios.put(
         `http://localhost:4107/member/updata/${orderNumber}`,
         { data: counters, comment: comment,orderAPI:orderAPI }
       );
       setModal(false);
+      setUpdataScore(true)
+      setTimeout(() => {
+      setUpdataScore(false)
+      window.scrollTo(0, 0)
+      window.location.reload()
+      }, 3000);
     } catch (error) {
       console.error("Error updata data:", error);
     }
@@ -38,7 +44,6 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI }) => {
     return aa
  }, 0)
   
-  console.log(staffStar)
 
   return (
     <dialog open className="scoreOP">
@@ -55,7 +60,7 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI }) => {
         />
       </div>
       <div className="scoreBody scoretext">
-        <span>({staffStar}星){staffAPI.employeename}</span>
+        <span>({staffStar.toFixed(1)}星){staffAPI.employeename}</span>
       </div>
       <div className="scoreBody scoretext">
         {counters.map((counter, index) => (

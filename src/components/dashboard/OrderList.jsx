@@ -20,9 +20,10 @@ const OrderList = (props) => {
           withCredentials: true
         });
         setOrderAPI(() => {
-          return result.data.sort(function (a, b) {
-            return a.state >= b.state ? 1 : -1;
-          });
+          return result.data.filter((data) => data.state === 0)
+          // return result.data.sort(function (a, b) {
+          //   return a.state >= b.state ? 1 : -1;
+          // });
         });
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -104,15 +105,15 @@ const OrderList = (props) => {
             <th>訂單金額</th>
             <th>訂單狀態</th>
           </tr>
-          <tr id="orderTh_RWD">
-            <th>No.</th>
-            <th>ID</th>
-            <th>Date</th>
-            <th>WoT</th>
-            <th>WoA</th>
-            <th>Price</th>
-            <th>status</th>
-          </tr>
+          {/* <tr id="orderTh_RWD">
+            <th>Order No.</th>
+            <th>員工編號</th>
+            <th>訂單日期</th>
+            <th>清潔週數</th>
+            <th>剩餘次數</th>
+            <th>訂單金額</th>
+            <th>訂單狀態</th>
+          </tr> */}
         </thead>
         <tbody className="orderTbody">
           {searchInput.length > 1

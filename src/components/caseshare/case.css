@@ -130,19 +130,17 @@
 }
 
 .memberscoreTop {
-    width:580px;
     height: 80px;
-    padding: 0px 52px 0px 52px;
+    /* padding: 0px 52px 0px 52px; */
     background-color: #FFF8E1;
     color: #EAAC00;
     font-size: 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     text-align: center;
     line-height: 80px;
-
 }
 
 
@@ -233,7 +231,7 @@
     left: 50%;
     height: 700px;
     transform: translate(-50%, -50%);
-    width: auto;
+    width:590px;
     overflow-y:auto;
     background-color: #ffffff; 
     z-index: 999;
@@ -242,9 +240,9 @@
     
   }
   .modalbutton{
-     position:absolute; 
-    left:530px;
-    top:0px;
+    position:fixed;
+    left:525px;
+    top:5px;
     background-color: #fff8e100;
   }
   .open-button{
@@ -254,3 +252,26 @@
     margin-bottom:-30px;
     font-size: 14px;
   }
+
+@media (max-width: 757px) {
+    .memberscoreModal {
+        width: 90%; 
+        height: auto; 
+        max-height: 90%;
+    }
+    .modalbutton{
+        position:fixed;
+        left:px;
+        top:5px;
+        background-color: #fff8e100;
+      }
+}
+/* 
+@media (max-width: px) {
+    .modalbutton{
+        position:absolute;
+        left:400px;
+        top:5px;
+        background-color: #fff8e100;
+      }
+} */

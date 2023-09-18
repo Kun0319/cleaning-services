@@ -35,6 +35,10 @@
   cursor: auto;
 }
 
+.orderDn tr td{
+  border: 1px solid #664d03;
+} 
+
 .orderDnbtn {
   background-color: #FFC107;
   border-radius: 30px;
@@ -65,12 +69,12 @@
   font-size: 18px;
   font-weight: 400;
   line-height: normal;
-  text-align: center;
+  text-align: center  ;
 }
 
 .contact-table {
   width: 100%;
-  height: 152px;
+  height: auto;
   border-radius: 30px;
   background-color: #FFF8E1;
   display: flex;
@@ -83,7 +87,7 @@
   border: none;
 }
 
-.contact-table td {
+.contact-table  td {
   color: #664d03;
   font-size: 16px;
   padding: 8px;
@@ -185,6 +189,35 @@
   font-weight: bold;
 }
 
+.tbody_RWD{
+  display: none;
+}
+
+.updataScore {
+  width: 445px;
+  border-radius: 30px;
+  position: absolute;
+  top: 0;
+  z-index: 1399;
+}
+.updataScoreTOP{
+  width: 443px;
+  height: 80px;
+  border-radius: 30px;
+  gap: 20px;
+  border: #664d03 1px solid;
+  padding: 0px 52px 0px 52px;
+  background-color: #FFF8E1;
+  color: #EAAC00;
+  font-size: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 80px
+}
+
 @keyframes myAnimation_order {
   0% { transform: scale(1); }
   50% { transform: scale(1.2); }
@@ -238,4 +271,63 @@
 
   .animated-check {
     animation: myAnimation_check 2s linear infinite;
+  }
+
+  @media screen and (max-width: 997px) {
+    .aside-main>h3{
+      display: none;
+    }
+    .orderInfo{
+      display: none;
+    }
+    .contact-table{
+      border-radius: 0;
+      padding: 10px;
+      height: auto;
+    }
+    .tbody_RWD{
+      display: contents;
+    }
+    .tbody_RWD tr{
+      border: #664d03 1px solid;
+    }
+    .tbody_def{
+      display: none;
+    }
+    .orderTbody tr td{
+      padding: 5px;
+    }
+    .dashOrder{
+      border-radius: 0;
+    }
+    .scoreOP{
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .updataScore {
+      width: 445px;
+      z-index: 1399;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .updataScoreTOP{
+      width: 443px;
+      height: 80px;
+      border-radius: 30px;
+      gap: 20px;
+      border: #664d03 1px solid;
+      padding: 0px 52px 0px 52px;
+      background-color: #FFF8E1;
+      color: #EAAC00;
+      font-size: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 80px
+    }
   }
