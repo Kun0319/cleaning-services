@@ -141,7 +141,7 @@ const StaffListInfo = () => {
         <h3 className="orderh3">員工資料</h3>
         <div className="orderContainer">
           {edit ? (
-            <h5 className="orderContent">
+            <div className="orderContent">
               <ol>
                 <img src={photo} alt="asd" style={{ width: "130px" }} />
                 <li>員工編號:</li>
@@ -285,9 +285,9 @@ const StaffListInfo = () => {
                   />
                 </li>
               </ol>
-            </h5>
+            </div>
           ) : (
-            <h5 className="orderContent">
+            <div className="orderContent">
               <ol>
                 <img src={photo} alt="asd" style={{ width: "130px" }} />
                 <li>員工編號:</li>
@@ -317,7 +317,7 @@ const StaffListInfo = () => {
                 <li>出生年月日:</li>
                 <li>{btd}</li>
               </ol>
-            </h5>
+            </div>
           )}
           {/* 視窗開關 */}
           {edit ? (

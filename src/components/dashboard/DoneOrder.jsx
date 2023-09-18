@@ -100,15 +100,6 @@ const OrderList = (props) => {
             <th>訂單金額</th>
             <th>訂單狀態</th>
           </tr>
-          <tr id="orderTh_RWD">
-            <th>No.</th>
-            <th>ID</th>
-            <th>Date</th>
-            <th>WoT</th>
-            <th>WoA</th>
-            <th>Price</th>
-            <th>status</th>
-          </tr>
         </thead>
         <tbody className="orderTbody">
           {searchInput.length > 1

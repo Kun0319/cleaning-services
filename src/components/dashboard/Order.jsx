@@ -59,33 +59,33 @@ const Order = () => {
 
   return (
     <div className="dashOrder">
-      {/* <div className="orderInfo">
+      <div className="orderInfo">
         <span className="orderCard">
-          <img src="/images/order.png" alt="" />
-          <p className="orderText ">訂單成立</p>
+          <img src="/images/order.png" alt=""  className="animated-image"/>
+          <p className="orderText ">預約快速</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderGoing.png" alt="" />
-          <p className="orderText ">已送達</p>
+          <img src="/images/orderGoing.png" alt="" className="animated-car"/>
+          <p className="orderText ">使命必達</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderCleaning.png" alt="" />
-          <p className="orderText ">清掃中</p>
+          <img src="/images/orderCleaning.png" alt=""className="animated-clear" />
+          <p className="orderText ">專業清掃</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderCleaned.png" alt="" />
-          <p className="orderText ">完成清潔</p>
+          <img src="/images/orderCleaned.png" alt="" className="animated-price" />
+          <p className="orderText ">價格實惠</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderDone.png" alt="" />
-          <p className="orderText ">完成訂單</p>
+          <img src="/images/orderDone.png" alt="" className="animated-check"/>
+          <p className="orderText ">嚴格把關</p>
         </span>
-      </div> */}
-      <table>
+      </div>
+      <table className="tbody_def">
         <thead className="orderThead">
           <tr>
             <th>訂單編號</th>
@@ -125,6 +125,32 @@ const Order = () => {
                     <td>{money}</td>
                     <td>{handleOrderStatus(state)}</td>
                   </tr>
+                );
+              })}
+        </tbody>
+      </table>
+      <table className="tbody_RWD">
+        <tbody className="orderTbody">
+          {orderAPI
+            .slice(start, number)
+            .map(
+              ({
+                ornumber,
+                employeeid,
+                ordertime,
+                weeks,
+                donetime,
+                money,
+                state,
+              }) => {
+                return (
+                  <tr key={ornumber} onClick={() => { navigate(`/member/${ornumber}`) }}>
+                    <tr>
+                      <td>訂單編號:{ornumber}</td>
+                      <td>訂單日期:{new Date(ordertime).toLocaleDateString('en-CA')}</td>
+                      <td>訂單狀態:{handleOrderStatus(state)}</td>
+                    </tr>
+                </tr>
                 );
               })}
         </tbody>

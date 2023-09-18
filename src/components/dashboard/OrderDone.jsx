@@ -15,6 +15,7 @@ const OrderDone = () => {
   const [staffAPI, setStaffAPI] = useState('')
   const [evaluateAPI, setEvaluateAPI] = useState({})
   const [isClose, setIsclose] = useState(false)
+  const [updataScore, setUpdataScore] = useState(false);
   const {orderNumber}=useParams()
   useEffect(() => {
     async function fetchData() {
@@ -43,7 +44,11 @@ function handleTime(time){
 
   return (
     <div className="dashOrder">
-      {modal && <Score setModal={setModal} orderAPI={orderAPI} evaluateAPI={evaluateAPI} staffAPI={staffAPI} />}
+       {updataScore && <div className="updataScore">
+        <div className="updataScoreTOP">評價完成!!</div>
+      </div>}
+      {modal && <Score  
+        setUpdataScore={setUpdataScore} setModal={setModal} orderAPI={orderAPI} evaluateAPI={evaluateAPI} staffAPI={staffAPI} />}
       <div className="orderInfo">
         <span className="orderCard">
           <img src="/images/order.png" alt=""  className="animated-image"/>
@@ -77,7 +82,7 @@ function handleTime(time){
               <th>訂單編號</th>
               <th>清潔地點</th>
               <th>成立時間</th>
-              <th>打掃時段</th>
+              <th>時段</th>
               <th>備註</th>
             </tr>
           </thead>
@@ -104,7 +109,7 @@ function handleTime(time){
               <td>{new Date(ordertime).toLocaleDateString("en-CA")}</td>
             </tr>
             <tr>
-              <td>打掃時段:</td>
+              <td>時段:</td>
               <td>{handleTime(time)}</td>
             </tr>
             <tr>
@@ -121,7 +126,7 @@ function handleTime(time){
               <th>服務次數</th>
               <th>訂單金額</th>
               <th>付款方式</th>
-              <th>完成狀態</th>
+              <th>訂單狀態</th>
               <th>完成時間</th>
             </tr>
           </thead>
@@ -130,26 +135,26 @@ function handleTime(time){
                   <td><span className="text-danger">{donetime}</span>{`/${weeks}次`}</td>
                   <td>{money}元</td>  
                   <td>{pay?"信用卡":"其他"}</td>
-                  <td>{state===2?<span className="text-success fw-bold">已完成</span>:<span className="text-danger fw-bold">進行中</span>}</td>
+                  <td>{state === 2 && isClose ? <span className="text-success fw-bold">已完成</span> :(!isClose && state === 2?<button onClick={() => { setModal(true) }} className="orderBtn p-0 ps-2 pe-2">給評價</button>:<span className="text-danger fw-bold">進行中</span>)}</td>
                   <td>{orderdone?new Date(orderdone).toLocaleDateString("en-CA"):"尚未完成"}</td>
                 </tr>
           </tbody>
           <thead className="orderThead orderDn tbody_RWD">
             <tr>
               <td>訂單金額:</td>
-              <td><span className="text-danger">{donetime}</span>{`/${weeks}次`}</td>
-            </tr>
-            <tr>
-              <td>付款方式:</td>
               <td>{money}元</td>
             </tr>
             <tr>
-              <td>完成狀態:</td>
+              <td>付款方式:</td>
               <td>{pay?"信用卡":"其他"}</td>
             </tr>
             <tr>
+              <td>完成狀態:</td>
+              <td>{state === 2 && isClose ? <span className="text-success fw-bold">已完成</span> :(!isClose && state === 2?<button onClick={() => { setModal(true) }} className="orderBtn p-0 ps-2 pe-2">給評價</button>:<span className="text-danger fw-bold">進行中</span>)}</td>
+            </tr>
+            <tr>
               <td>服務次數:</td>
-              <td>{state===2?<span className="text-success fw-bold">已完成</span>:<span className="text-danger fw-bold">進行中</span>}</td>
+              <td><span className="text-danger">{donetime}</span>{`/${weeks}次`}</td>
             </tr>
             <tr>
               <td>完成時間:</td>
@@ -158,12 +163,13 @@ function handleTime(time){
           </thead>
         </table>
       </div>
-        <OrderStaff 
+      <OrderStaff
         staffAPI={staffAPI}
         evaluateAPI={evaluateAPI} />
-      <div className="contact-table">
-        {!isClose && state === 2 ? (<button onClick={() => { setModal(true) }} className="orderBtn">給辛苦的專員評價吧</button>):<h3 className="contact-table">訂單評論:{isClose||"訂單尚未完成"}</h3>}
-      </div>
+      {isClose && state === 2 &&
+        <div className="contact-table">
+          <h3 className="contact-table">訂單評論:{isClose || "訂單尚未完成"}</h3>
+        </div>}
     </div>
   );
 };

@@ -40,7 +40,7 @@ const SidebarMember = () => {
             onClick={(e) => {
               changeStyle(e);
             }}
-            to={"/member/orderlist/handle"}
+            to={"/member"}
             className="Link-decoration"
           >
             <span>處理中</span>
@@ -49,7 +49,7 @@ const SidebarMember = () => {
             onClick={(e) => {
               changeStyle(e);
             }}
-            to={"/member/orderlist/done"}
+            to={"/member"}
             className="Link-decoration"
           >
             <span>歷史訂單</span>

@@ -107,7 +107,7 @@ const AddStaff = () => {
             </div>
         <form onSubmit={handleSignUp}>
             <div className="orderContainer">
-                <h5 className="orderContent">
+                <div className="orderContent">
                     <ol>
                         {/* 姓名 */}
                         <li>員工姓名:{RexgeValid(nameReg)}</li>
@@ -172,7 +172,7 @@ const AddStaff = () => {
                         <li>上傳頭像</li>
                         <li><input type="file" name='photo' accept='image/*' required  onChange={(e) => handleImagePut(e)} /></li>
                     </ol>
-                </h5>
+                </div>
                 <div
                     style={{ position: "relative", width: "100%", textAlign: "center" }}
                     >

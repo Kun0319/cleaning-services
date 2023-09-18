@@ -208,11 +208,11 @@
 }
 
 #orderTh_RWD {
-  transform: scale(0);
+  display: none;
 }
 
 #orderTh {
-  transform: scale(1);
+  display: contents;
 }
 
 .sideBarBtnToggle {
@@ -371,11 +371,11 @@
   }
 
   #orderTh {
-    transform: scale(0);
+    display: none;
   }
 
   #orderTh_RWD {
-    transform: scale(1);
+    display: contents;
   }
 
   .orderThead,
@@ -385,7 +385,7 @@
     font-family: Inter;
     font-size: 14px;
     font-weight: 400;
-    line-height: normal;
+    line-height: 5;
     text-align: center;
   }
 

@@ -104,15 +104,15 @@ const OrderList = (props) => {
             <th>訂單金額</th>
             <th>訂單狀態</th>
           </tr>
-          <tr id="orderTh_RWD">
-            <th>No.</th>
-            <th>ID</th>
-            <th>Date</th>
-            <th>WoT</th>
-            <th>WoA</th>
-            <th>Price</th>
-            <th>status</th>
-          </tr>
+          {/* <tr id="orderTh_RWD">
+            <th>Order No.</th>
+            <th>員工編號</th>
+            <th>訂單日期</th>
+            <th>清潔週數</th>
+            <th>剩餘次數</th>
+            <th>訂單金額</th>
+            <th>訂單狀態</th>
+          </tr> */}
         </thead>
         <tbody className="orderTbody">
           {searchInput.length > 1
@@ -135,13 +135,19 @@ const OrderList = (props) => {
                         navigate(`/dashboard/AdminOrder/${ornumber}`);
                       }}
                     >
-                      <td>{ornumber}</td>
-                      <td>{employeeid}</td>
-                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
-                      <td>{weeks}週</td>
-                      <td>{`${weeks-donetime}次`}</td>
-                      <td>{money}</td>
-                      <td>{handleOrderStatus(state)}</td>
+                      <div className="row">
+                        <div className="col">
+                          <td>{ornumber}</td>
+                          <td>{employeeid}</td>
+                          <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
+                        </div>
+                        <div className="col">
+                          <td>{weeks}週</td>
+                          <td>{`${weeks-donetime}次`}</td>
+                          <td>{money}</td>
+                          <td>{handleOrderStatus(state)}</td>
+                        </div>
+                      </div>
                     </tr>
                   );
                 }

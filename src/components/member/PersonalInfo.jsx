@@ -174,7 +174,7 @@ const PersonalInfo = () => {
         <h3 className="orderh3">會員資料</h3>
         <div className="orderContainer">
           {edit ? (
-            <h5 className="orderContent">
+            <div className="orderContent">
               <ol>
                 <li>會員姓名:</li>
                 <li>
@@ -291,9 +291,9 @@ const PersonalInfo = () => {
                   )}
                 </li>
               </ol>
-            </h5>
+            </div>
           ) : (
-            <h5 className="orderContent">
+            <div className="orderContent">
               <ol>
                 <li>會員姓名:</li>
                 <li>{name}</li>
@@ -324,7 +324,7 @@ const PersonalInfo = () => {
                   )}
                 </li>
               </ol>
-            </h5>
+            </div>
           )}
           {edit ? (
             // 編輯按鈕
