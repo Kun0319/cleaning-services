@@ -20,46 +20,31 @@ const ChangePwd = () => {
   });
 
 
-  //接收資料
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const result = await axios.get(`http://localhost:4107/member/changepwd/`, {
-          withCredentials: true
-        });
-        if (result.data && result.data.data && result.data.data[0]) {
-          setPWData(result.data.data[0]);
-          setPassword(result.data.data[0].password);
-        }
-
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-    fetchData();
-  }, [userid]);
-
   // 儲存按鈕的點擊事件
   const handleSaveClick = async (e) => {
     e.preventDefault();
 
     if (newPassword === confirmPassword) {
-
+      if (uppassword) {
       try {
         const res = await axios.post(`http://localhost:4107/member/changepwd/update/`,
           {
-            uppassword: confirmPassword, 
+            uppassword: confirmPassword,
           }, {
           withCredentials: true
         });
-        navigate(-1)
+        navigate(-1);
       } catch (error) {
         console.error("Error updating data:", error);
+      }}else{
+        alert("密碼格式錯誤");
       }
     } else {
       alert("密碼請一致");
     }
   };
+
+
 
 
   // 取消按鈕的點擊事件處理函數
