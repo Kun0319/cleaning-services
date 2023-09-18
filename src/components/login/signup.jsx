@@ -1,6 +1,7 @@
 
 import React, { useRef, useState, useEffect } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
+import { validPhone, validPassWord, validEmail, validName, validAge, validId } from "../dashboard/RegEx"
 
 
 import axios from './axios'
@@ -140,7 +141,127 @@ const SignUp = () => {
     },
   ];
 
+  // 表單資料變更
+  async function formDataChange(e) {
+    const { name, value } = e.target;
+    // const inputValue = type === 'checkbox' ? checked : value;
+    setStaffData({
+      ...staffDate,
+      [name]: value
+    })
+  }
+  // 用於計算指定年份和月份的最大日期
 
+
+
+
+
+  // 年份選擇
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const yearsToSubtract = 17;
+
+  // 生成年份選項
+  const generateYearOptions = () => {
+    const currentYear = new Date().getFullYear();
+    const yearOptions = [];
+
+    for (let i = currentYear - yearsToSubtract; i >= currentYear - 60; i--) {
+      yearOptions.push(
+        <option key={i} value={i}>
+          {i}
+        </option>
+      );
+    }
+
+    return yearOptions;
+  };
+
+  // 處理選擇變化事件
+  const handleYearChange = (event) => {
+    const selectedYear = parseInt(event.target.value);
+    const currentYear = new Date().getFullYear();
+    console.log(typeof event.target.value);
+    setSelectedYear(selectedYear);
+  };
+  // 年份
+
+
+
+
+
+
+  // 月份
+  const [selectedmonth, setSelectedmonth] = useState(new Date().getMonth() + 1)
+  const generatemonthOptions = () => {
+    const monthOptions = []
+    for (let i = 1; i <= 12; i++) {
+      monthOptions.push(
+        <option key={i} value={i}>
+          {i}
+        </option>
+      );
+    }
+    return monthOptions;
+  }
+
+  const handleMonthChange = (event) => {
+    const selectedmonth = parseInt(event.target.value);
+
+
+    setSelectedmonth(selectedmonth);
+  };
+  // 月份
+
+
+
+
+  const calculateMaxDay = (year, month) => {
+    return new Date(year, month, 0).getDate();
+  };
+
+  // 當選擇的年份或月份改變時，更新所選日期以確保在有效範圍內
+  useEffect(() => {
+    const maxDay = calculateMaxDay(selectedYear, selectedmonth);
+    if (selectedday > maxDay) {
+      setSelectedday(maxDay);
+    }
+  }, [selectedYear, selectedmonth]);
+
+
+
+
+  // 日期
+  const [selectedday, setSelectedday] = useState(new Date().getDay());
+
+  const generateDayOptions = () => {
+    const dayOptions = []
+    for (let i = 1; i <= 30; i++) {
+
+      dayOptions.push(
+        <option key={i} value={i}>
+          {i}
+        </option>
+      );
+    }
+    return dayOptions;
+  }
+  const handleDayChange = (event) => {
+    const selectedday = parseInt(event.target.value);
+    setSelectedday(selectedday);
+  };
+  // 日期
+
+
+  const birthday = `${selectedYear}-${String(selectedmonth).padStart(2, '0')}-${String(selectedday).padStart(2, '0')}`;
+
+
+
+
+
+  // 正規表達驗證
+  function RexgeValid(name) {
+    return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">Success</i></span> : <span className='text-danger fs-6'><i className="bi bi-x-circle">Failed</i></span>;
+  }
 
 
   return (
@@ -165,14 +286,54 @@ const SignUp = () => {
           <li className="loginli">
             <img src="./images/date.png" className="loginicon" />
             <p>生日</p>
-            <input
+            <label htmlFor="">年份</label>
+
+            <select name="years"
+              id="yearSelect"
+              value={selectedYear}
+              onChange={handleYearChange}>
+              {generateYearOptions()}
+            </select>
+
+
+            <label htmlFor="">月份</label>
+            <select
+              name="month"
+              id='monthOptions'
+              value={selectedmonth}
+              onChange={handleMonthChange}
+            >
+              {generatemonthOptions()}
+            </select>
+
+
+            <label htmlFor="">日期</label>
+            <select name="day"
+              id='DayOptions'
+              value={selectedday}
+              onChange={handleDayChange}
+            >
+              {generateDayOptions()}
+            </select>
+
+            {/* <input
               type="date"
               placeholder="請輸入密碼"
-              value={birthday}
-              onChange={(e) => setBirthday(e.target.value)}>
-
-            </input>
+              name='birthday'
+              autoComplete="off"
+              required
+              onInput={formDataChange}
+              onChange={(e) => {
+                const isAgeValid = validAge(e.target.value);
+                setBirthday(isAgeValid ? e.target.value : "",
+                console.log(typeof e.target.value)
+                );
+              }}
+            /> */}
+            {RexgeValid(upbirthday)}
           </li>
+
+
 
 
           <li className="loginli">
@@ -181,8 +342,9 @@ const SignUp = () => {
             <input
               type="number"
               placeholder="請輸入手機號碼"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              name='phone'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setPhone(validPhone.test(e.target.value))}
             >
 
             </input>

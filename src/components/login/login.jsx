@@ -66,12 +66,19 @@ const Login = () => {
                 withCredentials: true,
             });
 
-            console.log(userInfo.data.data.user[0].admin);
+
             // 判斷登入的人是否為員工,管理員    如果是自動頁面導向管理訂單 不是則導向首頁
             if (userInfo.data.data.user[0].admin == 1) {
                 window.location.href = "/dashboard";
             } else if (userInfo.data.data.user[0].admin == 0 || userInfo.data.data.user[0].admin == null) {
                 window.location.href = "/";
+
+                
+                // } else if (userInfo.data.data.user[0].blacklist == 1) {
+                //     alert("對不起我們無法為您服務")
+
+
+
             }
 
 
@@ -101,7 +108,7 @@ const Login = () => {
             {success ? (
                 <section>
                     <h1>登入成功!!</h1>
-                    <br/>
+                    <br />
                     <p>
                         <a href="/">回首頁</a>
                     </p>
