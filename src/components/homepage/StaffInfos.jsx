@@ -5,15 +5,30 @@ import StaffInfo from "./StaffInfo";
 import "swiper/css";
 
 const StaffInfos = () => {
-  const [card, setcard] = useState([]);
+  const [combinedData, setCombinedData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4107/total/sta')
-      .then((res) => {
-        setcard(res.data);
+    Promise.all([
+      axios.get('http://localhost:4107/total/sta'),
+      axios.get('http://localhost:4107/total/modal')
+    ])
+      .then((responses) => {
+        const cardData = responses[0].data; //第一個API
+        const modalData = responses[1].data;  //第二個API
+
+        const combined = cardData.map((employee, index) => {
+          const modalItem = modalData[index] || {};  //兩者合併
+      
+          return {
+            ...employee,
+            modalData: modalItem
+          };
+        });
+
+        setCombinedData(combined); //合併後的資料
       })
       .catch((err) => {
-        console.error('no', err);
+        console.error('请求失败', err);
       });
   }, []);
 
@@ -43,23 +58,30 @@ const StaffInfos = () => {
           },
         }}
       >
-        {card.map((employee,index) => (
+        {combinedData.map((employee) => (
           <SwiperSlide key={employee.employeeid}>
             <StaffInfo
-              name={employee.employeename}
-              covid={employee.vaccine}
-              star={employee.total_efficiency}
-              number={employee.employeeid}
-              cases={employee.cases}
-              levle={employee.total_ratings}
-              img={employee.photo}
-              goodid={employee.goodid}
-              racheck={employee.racheck}
-              index={index}
+              name={employee.employeename}  //卡片名字
+              covid={employee.vaccine}      //卡片疫苗
+              star={employee.total_efficiency}  //卡片星星數
+              number={employee.employeeid} //卡片員工編號
+              cases={employee.cases} //卡片服務件數
+              levle={employee.total_ratings} //卡片服務等級
+              img={employee.photo} 
+              goodid={employee.goodid}  //卡片良民證
+              racheck={employee.racheck} //卡片認證
+              reply={employee.modalData.reply} //modal 評價
+              orname={employee.modalData.orname} //modal 顧客名字
+              clean={employee.modalData.e2} //modal 打掃技能
+              efficiency={employee.modalData.e1} //modal 效率技能
+              careful={employee.modalData.e3} //modal 細心技能
+              manner={employee.modalData.e4}  ////modal 態度技能
             />
           </SwiperSlide>
         ))}
       </Swiper>
+
+
     </div>
   );
 };
