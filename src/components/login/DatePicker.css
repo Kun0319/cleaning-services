@@ -25,14 +25,16 @@
   background-color: white;
   border-radius: 3px;
   height: 2.5em;
-  width: 17em;
+  width: 13em; 
+  margin-inline:0.8em ;
 }
 
 .react-date-picker__inputGroup {
   min-width: calc((4px * 3) + 0.54em * 8 + 0.217em * 2);
-  flex-grow: 1;
+  flex-grow: 0;
   padding: 0;
   box-sizing: content-box;
+ 
 }
 
 .react-date-picker__inputGroup__divider {
