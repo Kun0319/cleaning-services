@@ -136,19 +136,13 @@ const OrderList = (props) => {
                         navigate(`/dashboard/AdminOrder/${ornumber}`);
                       }}
                     >
-                      <div className="row">
-                        <div className="col">
-                          <td>{ornumber}</td>
-                          <td>{employeeid}</td>
-                          <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
-                        </div>
-                        <div className="col">
-                          <td>{weeks}週</td>
-                          <td>{`${weeks-donetime}次`}</td>
-                          <td>{money}</td>
-                          <td>{handleOrderStatus(state)}</td>
-                        </div>
-                      </div>
+                      <td>{ornumber}</td>
+                      <td>{employeeid}</td>
+                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
+                      <td>{weeks}週</td>
+                      <td>{`${weeks-donetime}次`}</td>
+                      <td>{money}</td>
+                      <td>{handleOrderStatus(state)}</td>
                     </tr>
                   );
                 }
