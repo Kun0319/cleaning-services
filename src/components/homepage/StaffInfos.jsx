@@ -21,6 +21,7 @@ const StaffInfos = () => {
       
           return {
             ...employee,
+            ...modalItem,
             modalData: modalItem
           };
         });
