@@ -20,9 +20,10 @@ const OrderList = (props) => {
           withCredentials: true
         });
         setOrderAPI(() => {
-          return result.data.sort(function (a, b) {
-            return a.state >= b.state ? 1 : -1;
-          });
+          return result.data.filter((data) => data.state === 0)
+          // return result.data.sort(function (a, b) {
+          //   return a.state >= b.state ? 1 : -1;
+          // });
         });
       } catch (error) {
         console.error("Error fetching data:", error);

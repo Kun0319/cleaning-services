@@ -14,7 +14,7 @@ const OrderDone = () => {
   const [orderAPI, setOrderAPI] = useState('')
   const [staffAPI, setStaffAPI] = useState('')
   const [evaluateAPI, setEvaluateAPI] = useState({})
-  const [isClose, setIsclose] = useState(false)
+  const [isClose, setIsclose] = useState("")
   const [updataScore, setUpdataScore] = useState(false);
   const {orderNumber}=useParams()
   useEffect(() => {
@@ -43,7 +43,10 @@ function handleTime(time){
 }
 
   return (
+    <>
+    <h3 className="m-0 h3_DEF">會員訂單</h3>
     <div className="dashOrder">
+      <h3 className="m-0 h3_RWD">會員訂單</h3>
        {updataScore && <div className="updataScore">
         <div className="updataScoreTOP">評價完成!!</div>
       </div>}
@@ -135,7 +138,7 @@ function handleTime(time){
                   <td><span className="text-danger">{donetime}</span>{`/${weeks}次`}</td>
                   <td>{money}元</td>  
                   <td>{pay?"信用卡":"其他"}</td>
-                  <td>{state === 2 && isClose ? <span className="text-success fw-bold">已完成</span> :(!isClose && state === 2?<button onClick={() => { setModal(true) }} className="orderBtn p-0 ps-2 pe-2">給評價</button>:<span className="text-danger fw-bold">進行中</span>)}</td>
+                  <td>{state === 2 && isClose ? <span className="text-success fw-bold">已完成</span> :!isClose && state === 2?<button onClick={() => { setModal(true) }} className="orderBtn p-0 ps-2 pe-2">給評價</button>:<span className="text-danger fw-bold">進行中</span>}</td>
                   <td>{orderdone?new Date(orderdone).toLocaleDateString("en-CA"):"尚未完成"}</td>
                 </tr>
           </tbody>
@@ -171,7 +174,7 @@ function handleTime(time){
           <h3 className="contact-table">訂單評論:{isClose || "訂單尚未完成"}</h3>
         </div>}
     </div>
-  );
+ </> );
 };
 
 export default OrderDone;

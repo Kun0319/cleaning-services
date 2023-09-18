@@ -74,7 +74,7 @@
 
 .contact-table {
   width: 100%;
-  height: 152px;
+  height: auto;
   border-radius: 30px;
   background-color: #FFF8E1;
   display: flex;
