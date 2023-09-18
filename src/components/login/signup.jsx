@@ -2,6 +2,17 @@
 import React, { useRef, useState, useEffect } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
 import { validPhone, validPassWord, validEmail, validName, validAge, validId } from "../dashboard/RegEx"
+// 日期選擇套件跟CSS樣式
+import DatePicker from 'react-date-picker';
+import './DatePicker.css';
+import './Calendar.css';
+
+// 設定日期選擇器語言
+
+// import dateFns from "date-fns";
+// import TW from 'date-fns/locale/zh-TW';
+
+
 
 
 import axios from './axios'
@@ -11,7 +22,7 @@ const SignUp = () => {
 
 
   const [upname, setName] = useState("")
-  const [upbirthday, setBirthday] = useState("")
+  const [upbirthday, setBirthday] = useState("");
   const [upemail, setEmail] = useState("")
   const [upphone, setPhone] = useState("")
   const [uprural, setRural] = useState("")
@@ -56,6 +67,22 @@ const SignUp = () => {
       console.log("密碼不符合要求");
     }
   };
+
+  // 轉換日期
+  function formatDate(e) {
+    const originalDate = new Date(e);
+
+    if (isNaN(originalDate.getTime())) {
+      // 檢查是否解析日期成功
+      return "無效的日期";
+    }
+
+    const year = originalDate.getFullYear();
+    const month = (originalDate.getMonth() + 1).toString().padStart(2, '0'); // 月份從0開始，所以要加1，並補0
+    const day = originalDate.getDate().toString().padStart(2, '0'); // 補零
+
+    return `${year}-${month}-${day}`;
+  }
 
 
 
@@ -147,6 +174,24 @@ const SignUp = () => {
     })
   }
 
+  async function birthdayDataChange(e) {
+    const { name, value } = formatDate(e);
+    setStaffData({
+      birthday: formatDate(e)
+    })
+  }
+
+
+  const maxDate = new Date()
+
+
+
+
+
+
+
+
+
   // 正規表達驗證
   function RexgeValid(name) {
     return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">Success</i></span> : <span className='text-danger fs-6'><i className="bi bi-x-circle">Failed</i></span>;
@@ -168,28 +213,44 @@ const SignUp = () => {
               placeholder="請輸入姓名"
               name='name'
               autoComplete="off" required onInput={formDataChange}
-              onChange={(e) => setName(validName.test(e.target.value))}
+              onChange={(e) => {
+                const newName = e.target.value;
+                setName(newName);
+                setStaffData(() => ({
+                  ...staffDate,
+                  name: e.target.value
+                }));
+              }}
             >
-            </input>{RexgeValid(upname)}
+            </input>
+            {RexgeValid(upname)}
           </li>
 
 
           <li className="loginli">
             <img src="./images/date.png" className="loginicon" />
             <p>生日</p>
-            <input
-              type="date"
-              placeholder="請輸入密碼"
-              name='birthday'
-              autoComplete="off" required onInput={formDataChange}
-              onChange={(e) => {
-                const isAgeValid = validAge(e.target.value);
-                setBirthday(isAgeValid ? e.target.value : "");
-              }}
-            />
+            <div>
+              {/* 當選取滿18歲的年紀時 再換選取未滿18的日期時會跳錯誤 */}
+              {/* 原因可能為正規表示法的規則? */}
+              <DatePicker
+                name='birthday'
+                maxDate={maxDate}
+                value={upbirthday}
+                clearIcon={null}
+                onChange={(e) => {
+                  const isAgeValid = validAge(formatDate(e));
+                  setStaffData(() => ({
+                    ...staffDate,
+                    birthday: formatDate(e)
+                  }));
+
+                  console.log(staffDate);
+                  setBirthday(isAgeValid ? formatDate(e) : alert("很抱歉,必須年滿18歲"));
+                }} />
+            </div>
             {RexgeValid(upbirthday)}
           </li>
-
 
           <li className="loginli">
             <img src="./images/tet.png" className="loginicon" />
@@ -249,7 +310,6 @@ const SignUp = () => {
               id="userAddress"
               autoComplete="off" required onInput={formDataChange}
               onChange={(e) => setRural(e.target.value)}
-
             >
               {adreessDist.map((item, index) => {
                 return (

@@ -101,12 +101,12 @@ const StaffInfo = (props) => {
           </div>
           <div className="scorebd scoretext">
             <div className="memberlevel">
-              <p>{props.name}</p>
+              <p>{props.modalname}</p>
               <p>Level.{props.levle}</p>
             </div>
           </div>
           <div className="scorebd">
-            <img className="memberimg" src={props.img} alt="" />
+            <img className="memberimg" src={props.modalphoto} alt="" />
             <div>
               <div className="scorepoint">
                 <p>打掃技能</p>
