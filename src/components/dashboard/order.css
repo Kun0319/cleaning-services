@@ -197,12 +197,16 @@
   width: 445px;
   border-radius: 30px;
   position: absolute;
-  top: 0;
+  width: 445px;
   z-index: 1399;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .updataScoreTOP {
   width: 443px;
-  height: 80px;
+  height: 330px;
   border-radius: 30px;
   gap: 20px;
   border: #664d03 1px solid;

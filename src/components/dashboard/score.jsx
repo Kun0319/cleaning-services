@@ -33,7 +33,7 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
       setUpdataScore(false)
       window.scrollTo(0, 0)
       window.location.reload()
-      }, 3000);
+      }, 2500);
     } catch (error) {
       console.error("Error updata data:", error);
     }
