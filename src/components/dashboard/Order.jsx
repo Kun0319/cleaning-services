@@ -20,7 +20,7 @@ const Order = () => {
         });
         if (Array.isArray(result.data)) {
           setOrderAPI(() => {
-            return result.data.filter((data) => data.state === 0)
+            return result.data.filter((data) => data.state !== 2)
             // return result.data.sort(function (a, b) {
             //   return a.state >= b.state ? 1 : -1;
             // });
@@ -29,9 +29,6 @@ const Order = () => {
         } else {
           console.error("Received non-array data from the API.");
         }
-        setOrderAPI(() => {
-          return result.data;
-        });
       } catch (error) {
         console.error("Error fetching data:", error);
       }
