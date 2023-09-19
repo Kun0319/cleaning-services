@@ -88,6 +88,11 @@ const Step1Area = () => {
   };
   let checkForm = (e) => {
     e.preventDefault();
+    let { user } = ctx;
+    if (user === null) {
+      alert("發生異常，請重新填寫表單！");
+      return navigate("/book");
+    }
     if (checkDataNum.length === 1) navigate("/book/book2");
     else {
       alert("請完成表單填寫!");
