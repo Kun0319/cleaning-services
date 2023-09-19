@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../components/member/member.css";
+import DashBoardAlert from "../dashboard/DashBoardAlert"
 const PersonalInfo = () => {
   const { userid } = useParams();
   const [memberData, setMemberData] = useState({});
@@ -9,6 +10,9 @@ const PersonalInfo = () => {
   const [inputValue, setInputValue] = useState("");
   const [why, setWhy] = useState("");
   const [edit, setEdit] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [banInfo, setBanInfo] = useState({success:"",falied:""})
   const navigate = useNavigate();
   // 編輯變數
   const [upName, setUpName] = useState("");
@@ -85,8 +89,9 @@ const PersonalInfo = () => {
       );
       setAddBlackList(!addBlackList);
       setInputValue("");
-      alert("成功送出");
-      window.location.reload();
+      setBanInfo({success:"黑名單成功",falied:"黑名單失敗"})
+      setSuccess("success")
+      setShowAlert(true)
     } catch (error) {
       console.error("Error updata data:", error);
     }
@@ -103,8 +108,9 @@ const PersonalInfo = () => {
         `http://localhost:4107/dashboard/PersonalInfo/removeblacklist/${userid}`,
         { userid: userid }
       );
-      alert("成功解除");
-      window.location.reload();
+      setBanInfo({success:"解除成功",falied:"解除失敗"})
+      setSuccess("success")
+      setShowAlert(true)
     } catch (error) {
       console.error("Error updata data:", error);
     }
@@ -413,6 +419,7 @@ const PersonalInfo = () => {
           <button onClick={nextPage}>下一頁</button>
         </div>
       </div>
+      {showAlert && <DashBoardAlert checkout={banInfo.success}  Cancel={banInfo.falied} message={success} onClose={()=>{navigate("/dashboard/stafflist",{ replace: true })}}/>}
     </div>
   );
 };

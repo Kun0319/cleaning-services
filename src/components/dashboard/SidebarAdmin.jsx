@@ -32,7 +32,7 @@ const SidebarAdmin = () => {
               changeStyle(e);
             }}
           >
-            <span>未完成訂單</span>
+            <span>進行中訂單</span>
           </Link>
           <Link
             to={"/dashboard/DoneOrder"}

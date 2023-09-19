@@ -184,7 +184,7 @@ const AddStaff = () => {
                     <button className="btn btn-primary ms-0" type="submit">送出</button>
                     <button className="btn btn-danger ms-0" onClick={()=>{navigate("/dashboard/stafflist",{ replace: true })}}>取消</button>
                 </div>
-                        {showAlert&&<DashBoardAlert message={success} onClose={()=>{navigate("/dashboard/stafflist",{ replace: true })}}/>}
+                    {showAlert && <DashBoardAlert Cancel={"註冊失敗"} checkout={"註冊成功"} message={success} onClose={()=>{navigate("/dashboard/stafflist",{ replace: true })}}/>}
             </div>
         </form>
         </div>)
