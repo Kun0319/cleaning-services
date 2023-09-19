@@ -5,10 +5,10 @@ import { validPhone, validPassWord, validEmail, validName, validAge, validId } f
 // 日期選擇套件跟CSS樣式
 import DatePicker from 'react-date-picker';
 import './DatePicker.css';
-import './Calendar.css';
+import  './Calendar.css';
 
 // 設定日期選擇器語言
-
+import { addDays } from 'date-fns';
 // import dateFns from "date-fns";
 // import TW from 'date-fns/locale/zh-TW';
 
@@ -29,7 +29,7 @@ const SignUp = () => {
   const [upid, setId] = useState("") //身分證字號
   const [upaddress, setAddress] = useState("")
   const [uppassword, setPassword] = useState("")
-  const [staffDate, setStaffData] = useState({
+  const [staffData, setStaffData] = useState({
     name: "",
     birthday: "",
     email: "",
@@ -42,6 +42,12 @@ const SignUp = () => {
 
 
 
+  const [maxDate, setMaxDate] = useState(() => {
+    const tomorrow = addDays(new Date(), 1);
+    return tomorrow;
+  });
+
+
   // 送出註冊資料 
   // 處理表單提交
   const handleSubmit = async (e) => {
@@ -50,7 +56,7 @@ const SignUp = () => {
     if (true) {
       try {
         // 使用 Axios 將使用者資料發送到後端
-        await axios.post('/signup', JSON.stringify(staffDate), {
+        await axios.post('/signup', JSON.stringify(staffData), {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -59,7 +65,7 @@ const SignUp = () => {
         // 可以在這裡添加處理成功響應的程式碼
       } catch (error) {
         // 處理錯誤
-        console.log(JSON.stringify(staffDate));
+        console.log(JSON.stringify(staffData));
         console.error("註冊錯誤：", error);
       }
     } else {
@@ -67,6 +73,8 @@ const SignUp = () => {
       console.log("密碼不符合要求");
     }
   };
+
+
 
   // 轉換日期
   function formatDate(e) {
@@ -169,20 +177,16 @@ const SignUp = () => {
     const { name, value } = e.target;
     // const inputValue = type === 'checkbox' ? checked : value;
     setStaffData({
-      ...staffDate,
+      ...staffData,
       [name]: value
     })
   }
 
-  async function birthdayDataChange(e) {
-    const { name, value } = formatDate(e);
-    setStaffData({
-      birthday: formatDate(e)
-    })
-  }
 
 
-  const maxDate = new Date()
+
+
+
 
 
 
@@ -199,7 +203,7 @@ const SignUp = () => {
 
 
   return (
-    <div className="loginflex">
+    <div className="loginflex  signupCalendar" >
       <form
         style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
         onSubmit={handleSubmit}
@@ -217,7 +221,7 @@ const SignUp = () => {
                 const newName = e.target.value;
                 setName(newName);
                 setStaffData(() => ({
-                  ...staffDate,
+                  ...staffData,
                   name: e.target.value
                 }));
               }}
@@ -227,25 +231,28 @@ const SignUp = () => {
           </li>
 
 
-          <li className="loginli">
+          <li className="loginli ">
             <img src="./images/date.png" className="loginicon" />
             <p>生日</p>
-            <div>
-              {/* 當選取滿18歲的年紀時 再換選取未滿18的日期時會跳錯誤 */}
-              {/* 原因可能為正規表示法的規則? */}
+            <div className='signup'>
+              {/* 點當天日期加一以上都會爆掉??? 原因可能正規表達式？ */}
+              {/* 也不能點選9月以上 */}
+              {/* 9/19解決 原因是RegEx裡的age命名方式 */}
               <DatePicker
+                calendarClassName='signup'
+
                 name='birthday'
                 maxDate={maxDate}
                 value={upbirthday}
                 clearIcon={null}
                 onChange={(e) => {
                   const isAgeValid = validAge(formatDate(e));
+                  console.log(formatDate(e));
                   setStaffData(() => ({
-                    ...staffDate,
+                    ...staffData,
                     birthday: formatDate(e)
                   }));
-
-                  console.log(staffDate);
+                  console.log(staffData);
                   setBirthday(isAgeValid ? formatDate(e) : alert("很抱歉,必須年滿18歲"));
                 }} />
             </div>

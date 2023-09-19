@@ -53,9 +53,12 @@ export const validId = function (id) {
 export const validAge = function (birthdate) {
   const today = new Date();
   const birthDate = new Date(birthdate);
-  const age = today.getFullYear() - birthDate.getFullYear();
+  // 修正age命名時使用const賦予時會變成不可變動
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  const dayDiff = today.getDate() - birthDate.getDate();
 
-  if (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate())) {
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
     age--;
   }
 
