@@ -8,18 +8,19 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
   const [counters, setCounters] = useState([]);
   const [comment, setComment] = useState("無評論內容");
   const { orderNumber } = useParams();
-  {!comment && setComment("沒有評論")}
+  
   useEffect(() => {
     const data = [
-      { id: 1, name: "打掃點數：", value: 5 },
-      { id: 2, name: "效率點數：", value: 5 },
-      { id: 3, name: "態度點數：", value: 5 },
-      { id: 4, name: "細心點數：", value: 5 },
+      { id: 1, name: "打掃分數：", value: 5 },
+      { id: 2, name: "效率分數：", value: 5 },
+      { id: 3, name: "態度分數：", value: 5 },
+      { id: 4, name: "細心分數：", value: 5 },
     ];
     setCounters(() => {
       return data;
     });
-  }, []);
+    !comment && setComment("沒有評論")
+  }, [comment]);
   
   async function handleScoreUpdata() {
     try{
@@ -33,7 +34,7 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
       setUpdataScore(false)
       window.scrollTo(0, 0)
       window.location.reload()
-      }, 3000);
+      }, 2500);
     } catch (error) {
       console.error("Error updata data:", error);
     }
@@ -51,6 +52,9 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
       <div className="scoreBody">
         <img className="orderStaff" src={staffAPI.photo} alt="" />
       </div>
+      <div className="scoreBody scoretext">
+        <span>{staffAPI.employeeid}-{staffAPI.employeename}</span>
+      </div>
       <div className="scoreBody ">
         <img
           className="scoreStart"
@@ -58,9 +62,6 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
           alt="star"
           style={{ clipPath: `inset(0 ${100 - staffStar * 20}% 0 0)` }}
         />
-      </div>
-      <div className="scoreBody scoretext">
-        <span>({staffStar.toFixed(1)}星){staffAPI.employeename}</span>
       </div>
       <div className="scoreBody scoretext">
         {counters.map((counter, index) => (

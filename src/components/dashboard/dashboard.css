@@ -312,6 +312,15 @@
 .h3_DEF {
   display: none;
 }
+.dataNumber {
+  width: 4px;
+  background-color: rgb(255, 79, 79);
+  color: #ffffff;
+  padding: 1px;
+  margin-left: 5px;
+  font-size: 1rem;
+  font-family: "Times New Roman", Times, serif;
+}
 
 @media screen and (max-width: 997px) {
   .aside {

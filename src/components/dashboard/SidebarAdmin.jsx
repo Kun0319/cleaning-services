@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./dashboard.css";
+import { useOrderLength } from "./useOrderLength";
 
 const SidebarAdmin = () => {
+  const {dataLength }=useOrderLength("orderlist")
+
   const changeStyle = (e) => {
     const otherItems = document.querySelectorAll("span");
     otherItems.forEach((item) => {
@@ -23,7 +26,7 @@ const SidebarAdmin = () => {
               changeStyle(e);
             }}
           >
-            <span>新訂單</span>
+            <span>新訂單<i className="dataNumber">{dataLength}</i></span>
           </Link>
           <Link
             to={"/dashboard/UndoneOrder"}
@@ -32,7 +35,7 @@ const SidebarAdmin = () => {
               changeStyle(e);
             }}
           >
-            <span>未完成訂單</span>
+            <span>進行中訂單</span>
           </Link>
           <Link
             to={"/dashboard/DoneOrder"}
