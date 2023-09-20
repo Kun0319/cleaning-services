@@ -60,7 +60,7 @@ const Memberlogin = () => {
         console.error("Error updating data:", error);
       }
     } else {
-      setSuccess("failed");
+      alert("電話格式錯誤");
     }
   }
 
