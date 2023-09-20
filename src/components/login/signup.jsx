@@ -2,6 +2,7 @@
 import React, { useRef, useState, useEffect } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
 import { validPhone, validPassWord, validEmail, validName, validAge, validId } from "../dashboard/RegEx"
+import {sendVeriCode} from '../book/utils'; 
 // 日期選擇套件跟CSS樣式
 import DatePicker from 'react-date-picker';
 import './DatePicker.css';
@@ -253,36 +254,6 @@ const SignUp = () => {
           </li>
 
           <li className="loginli">
-            <img src="./images/tet.png" className="loginicon" />
-            <p>手機號碼</p>
-            <input
-              type="phone"
-              placeholder="請輸入手機號碼"
-              name='phone'
-              autoComplete="off" required onInput={formDataChange}
-              onChange={(e) => setPhone(validPhone.test(e.target.value))}
-            >
-
-            </input>{RexgeValid(upphone)}
-          </li>
-
-
-          <li className="loginli">
-            <img src="./images/icon-4.png" className="loginicon" />
-            <p>信箱</p>
-            <input
-              type="email"
-              placeholder="請輸入信箱"
-              name='email'
-              autoComplete="off" required onInput={formDataChange}
-              onChange={(e) => setEmail(validEmail.test(e.target.value))}
-            >
-
-            </input>{RexgeValid(upemail)}
-          </li>
-
-
-          <li className="loginli">
             <img src="./images/idnumber.png" className="loginicon" />
             <p>身分證字號</p>
             <input
@@ -295,6 +266,19 @@ const SignUp = () => {
             </input>{RexgeValid(upid)}
           </li>
 
+          <li className="loginli">
+            <img src="./images/tet.png" className="loginicon" />
+            <p>手機號碼</p>
+            <input
+              type="phone"
+              placeholder="請輸入手機號碼"
+              name='phone'
+              autoComplete="off" required onInput={formDataChange}
+              onChange={(e) => setPhone(validPhone.test(e.target.value))}
+            >
+
+            </input>{RexgeValid(upphone)}
+          </li>
 
           <li className="loginli">
             <img src="./images/icon-6.png" className="loginicon" />
@@ -331,6 +315,27 @@ const SignUp = () => {
             />
           </li>
 
+          <li className="loginli">
+            <img src="./images/icon-4.png" className="loginicon" />
+            <p>電子信箱</p>
+            <input
+              type="email"
+              placeholder="請輸入信箱"
+              name='email'
+              autoComplete="off" required onInput={formDataChange}
+            // onChange={(e) => setEmail(validEmail.test(e.target.value))}
+            >
+            </input>
+            <input type="button" value="發送驗證碼" id='checkUserEmail' onClick={sendVeriCode} ></input>
+            <span>秒</span>
+          </li>
+
+          <li className="loginli">
+            <i className="bi bi-envelope-paper myLoginIcon"></i>
+            <label htmlFor="veriCode" className='myLoginLabel'>信箱驗證碼</label>
+            <input type="text" id='veriCode'/>
+            {RexgeValid(upemail)}
+          </li>
 
           <li className="loginli">
             <img src="./images/password.png" className="loginicon" />
@@ -344,8 +349,6 @@ const SignUp = () => {
             >
             </input>{RexgeValid(uppassword)}
           </li>
-
-
 
         </ul>
 

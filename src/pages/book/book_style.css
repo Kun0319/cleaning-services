@@ -513,7 +513,7 @@
   margin: 0 10px;
 }
 
-/* Step4Area*/
+/* Step5Area*/
 #book-step5 {
   max-width: 1272px;
   margin-bottom: 5.25rem;
@@ -529,10 +529,12 @@
 #book5-top h5 {
   font-size: 2rem;
 }
-
+#book-bottom{
+  position: relative;
+}
 #book5-bottom img {
-  min-width: 300px;
   width: 40%;
+  min-width: 300px;
 }
 
 /* Calendar */
@@ -688,6 +690,7 @@
   .book-step3 {
     margin-top: 3rem;
   }
+
 }
 
 @media screen and (max-width: 500px) {

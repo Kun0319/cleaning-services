@@ -1,7 +1,9 @@
-import { React, useContext } from "react";
+import { React, useContext,useEffect } from "react";
 import BookContext from "./book-context";
+import { scroll } from "./utils";
 
 const Step5Area = () => {
+  useEffect(()=>scroll());
   const ctx = useContext(BookContext);
   const weeks = [
     "星期日",
@@ -27,7 +29,7 @@ const Step5Area = () => {
         我們會將訂單詳細內容寄至您的電子信箱
       </p>
       <div id="book5-bottom">
-        <img src="/images/question-007.png" alt="raccoon" />
+        <img src="/images/raccoon.gif" alt="raccoon" />
       </div>
     </div>
   );

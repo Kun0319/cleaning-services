@@ -1,4 +1,3 @@
-
 ol,
 ul {
     list-style: none;
@@ -16,6 +15,7 @@ ul {
     align-items: center;
 
 }
+
 /* 
 .loginrightbox {
     border-radius: 30px;
@@ -39,6 +39,7 @@ ul {
     justify-content: flex-start;
 
 }
+
 .loginrightbox select {
     margin: 0px 12px 0px 12px;
 
@@ -53,7 +54,6 @@ ul {
     height: 36px;
     margin-right: 12px;
 }
-
 
 
 .loginli {
@@ -141,7 +141,7 @@ button {
     width: 100%;
 }
 
-.membercontainer{
+.membercontainer {
     border-radius: 30px;
     padding: 48px;
     background-color: #FFFEF9;
@@ -170,8 +170,19 @@ button {
         display: flex;
         flex-direction: row;
         align-items: center;
-    
+
     }
 
 
-  }
+}
+
+/* Other person's css */
+.myLoginIcon {
+    font-size: 36px;
+    margin-right: 12px;
+    color: #FFC107;
+}
+
+.myLoginLabel {
+    margin-left: 12px;
+}

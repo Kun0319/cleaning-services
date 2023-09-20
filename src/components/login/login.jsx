@@ -127,8 +127,8 @@ const Login = () => {
                         <ul>
                             <li className="loginli">
                                 <img src="./images/nameicon.png" className="loginicon" />
-                                <p>帳號</p>
-                                <input placeholder="請輸入帳號"
+                                <p>信箱</p>
+                                <input placeholder="請輸入E-mail"
                                     type="text"
                                     ref={userRef}
                                     id="mail"
