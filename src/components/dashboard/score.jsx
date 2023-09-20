@@ -55,13 +55,18 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
       <div className="scoreBody scoretext">
         <span>{staffAPI.employeeid}-{staffAPI.employeename}</span>
       </div>
-      <div className="scoreBody ">
+      <div className="scoreStart">
+        <div className="scoreStart" style={{position:"relative"}}>
         <img
-          className="scoreStart"
-          src="/images/staffInfo-star.png"
-          alt="star"
-          style={{ clipPath: `inset(0 ${100 - staffStar * 20}% 0 0)` }}
-        />
+            src="/images/staffInfo-star.png"
+            alt="star-y"
+            style={{ clipPath: `inset(0 ${100 - staffStar * 20}% 0 0)`}}
+          />
+        <img
+          src="/images/staffInfo-star2.png"
+            alt="star-g"
+            />
+        </div>
       </div>
       <div className="scoreBody scoretext">
         {counters.map((counter, index) => (

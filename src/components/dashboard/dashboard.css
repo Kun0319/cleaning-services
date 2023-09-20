@@ -255,7 +255,7 @@
   border-radius: 10px;
   background-color: #fff8e1;
   /* position: absolute; */
-  z-index: 1388;
+  z-index: 1;
 }
 
 .staff-listBtn {
@@ -279,7 +279,7 @@
   background-color: #fff8e1;
   padding: 10px;
   position: absolute;
-  z-index: 1388;
+  z-index: 1;
 }
 
 .DashBoardAlert {
@@ -316,10 +316,15 @@
   width: 4px;
   background-color: rgb(255, 79, 79);
   color: #ffffff;
-  padding: 1px;
+  padding: 2px;
   margin-left: 5px;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  border-radius: 3px;
   font-family: "Times New Roman", Times, serif;
+}
+
+.staff-content p {
+  margin-bottom: 25px;
 }
 
 @media screen and (max-width: 997px) {
