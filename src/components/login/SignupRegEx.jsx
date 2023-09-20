@@ -19,7 +19,7 @@ export const validPassWord = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$
 export const validEmail = new RegExp(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/)
 
 // 中文名稱
-export const validName = new RegExp(/^[\u4e00-\u9fa5a-zA-Z0-9]{2,15}$/)
+export const validName = new RegExp(/^[\u4E00-\u9FA5]{2,4}$/)
 
 // 台灣身分證驗證
 export const validId = function (id) {
@@ -53,9 +53,12 @@ export const validId = function (id) {
 export const validAge = function (birthdate) {
   const today = new Date();
   const birthDate = new Date(birthdate);
-  const age = today.getFullYear() - birthDate.getFullYear();
+  // 修正age命名時使用const賦予時會變成不可變動
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  const dayDiff = today.getDate() - birthDate.getDate();
 
-  if (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate())) {
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
     age--;
   }
 
