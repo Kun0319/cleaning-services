@@ -81,7 +81,7 @@ const Login = () => {
                     // } else if (userInfo.data.data.user[0].blacklist == 1) {
                     //     alert("對不起我們無法為您服務")
                 }
-            }, 100000);
+            }, 1000);
 
         } catch (err) {
             if (!err?.response) {
