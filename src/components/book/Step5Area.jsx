@@ -23,10 +23,9 @@ const Step5Area = () => {
         <i className="bi bi-check-circle me-2"></i>
         <h5>預約完成！</h5>
       </div>
-      {/* <p className="mt-2 fs-5">
-        我們將於 {ctx.date} {weeks[ctx.week]} {time[ctx.time]}
-        開始為您服務!
-      </p> */}
+      <p className="mt-2 fs-5">
+        我們會將訂單詳細內容寄至您的電子信箱
+      </p>
       <div id="book5-bottom">
         <img src="/images/question-007.png" alt="raccoon" />
       </div>
