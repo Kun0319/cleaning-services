@@ -60,9 +60,9 @@ const OrderMemberDone = () => {
   
   return (
     <>
-    <h3 className="m-0 h3_DEF">歷史訂單</h3>
+    <h3 className="m-0 h3_DEF">已完成訂單</h3>
     <div className="dashOrder">
-      <h3 className="m-0 h3_RWD">歷史訂單</h3>
+      <h3 className="m-0 h3_RWD">已完成訂單</h3>
       <div className="orderInfo">
         <span className="orderCard">
           <img src="/images/order.png" alt=""  className="animated-image"/>

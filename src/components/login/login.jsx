@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useContext } from 'react'
 
 
 import axios from './axios'
+import { Link } from "react-router-dom";
 
 const LOGIN_URL = '/login';
 
@@ -68,19 +69,19 @@ const Login = () => {
 
 
             // 判斷登入的人是否為員工,管理員    如果是自動頁面導向管理訂單 不是則導向首頁
-            if (userInfo.data.data.user[0].admin == 1) {
-                window.location.href = "/dashboard";
-            } else if (userInfo.data.data.user[0].admin == 0 || userInfo.data.data.user[0].admin == null) {
-                window.location.href = "/";
-
-                
-                // } else if (userInfo.data.data.user[0].blacklist == 1) {
-                //     alert("對不起我們無法為您服務")
+            // settimer
+            setTimeout(() => {
 
 
-
-            }
-
+                if (userInfo.data.data.user[0].admin == 1) {
+                    // 如果是管理員自動跳轉至訂單管理系統
+                    window.location.href = "/dashboard";
+                } else if (userInfo.data.data.user[0].admin == 0 || userInfo.data.data.user[0].admin == null) {
+                    window.location.href = "/";
+                    // } else if (userInfo.data.data.user[0].blacklist == 1) {
+                    //     alert("對不起我們無法為您服務")
+                }
+            }, 1000);
 
         } catch (err) {
             if (!err?.response) {
@@ -107,11 +108,13 @@ const Login = () => {
         <>
             {success ? (
                 <section>
-                    <h1>登入成功!!</h1>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                        <h1 className=" ">登入成功!!</h1>
+                    </div>
                     <br />
-                    <p>
-                        <a href="/">回首頁</a>
-                    </p>
+                    <h5>將自動返回首頁,如果沒有請點連結
+                        <Link to="/">回首頁</Link>
+                    </h5>
                 </section>
             ) : (
                 <div className="loginflex">
