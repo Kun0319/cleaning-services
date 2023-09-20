@@ -88,7 +88,7 @@
 }
 
 /* #################################member-style */
-.aside-main > h3 {
+.aside-main>h3 {
   color: #eaac00;
   font-family: Inter;
   font-size: 28px;
@@ -309,6 +309,7 @@
   width: 100cqmax;
   height: 100cqmax;
 }
+
 .h3_DEF {
   display: none;
 }
@@ -382,7 +383,7 @@
     gap: 0px;
   }
 
-  .dashOrder > h3 {
+  .dashOrder>h3 {
     margin: 0;
     line-height: 0.5;
   }
@@ -410,6 +411,7 @@
     font-size: 14px;
     padding: 4px 10px;
   }
+
   .DashBoardAlert {
     display: flex;
     flex-direction: column;
@@ -427,9 +429,11 @@
     padding: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
   }
+
   .h3_RWD {
     display: none;
   }
+
   .h3_DEF {
     display: block;
     color: #eaac00;

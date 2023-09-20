@@ -1,16 +1,17 @@
 
 import React, { useRef, useState, useEffect } from 'react'
 import AuthContext, { AuthProvider } from './AuthContext';
-import { validPhone, validPassWord, validEmail, validName, validAge, validId } from "../dashboard/RegEx"
+import { validPhone, validPassWord, validEmail, validName, validAge, validId } from "./SignupRegEx"
 // 日期選擇套件跟CSS樣式
 import DatePicker from 'react-date-picker';
 import './DatePicker.css';
 import './Calendar.css';
 
 // 設定日期選擇器語言
+import { addDays } from 'date-fns';
+import SuccessAlert from './SuccessAlert'
+import ErrorAlert from './ErrorAlert'
 
-// import dateFns from "date-fns";
-// import TW from 'date-fns/locale/zh-TW';
 
 
 
@@ -29,7 +30,13 @@ const SignUp = () => {
   const [upid, setId] = useState("") //身分證字號
   const [upaddress, setAddress] = useState("")
   const [uppassword, setPassword] = useState("")
-  const [staffDate, setStaffData] = useState({
+
+
+  const [showErrorAlert, setErrorAlert] = useState(false)
+  const [showSuccessAlert, setSuccessAlert] = useState(false)
+
+
+  const [staffData, setStaffData] = useState({
     name: "",
     birthday: "",
     email: "",
@@ -42,6 +49,12 @@ const SignUp = () => {
 
 
 
+  const [maxDate, setMaxDate] = useState(() => {
+    const tomorrow = addDays(new Date(), 1);
+    return tomorrow;
+  });
+
+
   // 送出註冊資料 
   // 處理表單提交
   const handleSubmit = async (e) => {
@@ -50,23 +63,42 @@ const SignUp = () => {
     if (true) {
       try {
         // 使用 Axios 將使用者資料發送到後端
-        await axios.post('/signup', JSON.stringify(staffDate), {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-        window.location.href = 'http://localhost:3000/loginpage'
+        // 如果驗證都通過才可以送出註冊
+        if (upname && upbirthday && upphone && upemail && upid && uppassword) {
+          await axios.post('/signup', JSON.stringify(staffData), {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          });
+          // 9/19設定跳出註冊成功的視窗
+          setTimeout(() => {
+            window.location.href = 'http://localhost:3000/loginpage'
+          }, 1500);
+          setSuccessAlert(true);
+          console.log(showSuccessAlert);
+
+
+        } else if (showErrorAlert == false) {
+          setErrorAlert(true);
+          console.log(showErrorAlert);
+          // alert("註冊錯誤")
+        } else if (showErrorAlert == true) {
+          setErrorAlert(false);
+          console.log(showErrorAlert);
+        }
+
+
         // 可以在這裡添加處理成功響應的程式碼
       } catch (error) {
         // 處理錯誤
-        console.log(JSON.stringify(staffDate));
+        setErrorAlert(false);
+        console.log(JSON.stringify(staffData));
         console.error("註冊錯誤：", error);
       }
-    } else {
-      // 密碼不符合要求，可以在此處添加相應的錯誤處理邏輯
-      console.log("密碼不符合要求");
     }
   };
+
+
 
   // 轉換日期
   function formatDate(e) {
@@ -169,23 +201,10 @@ const SignUp = () => {
     const { name, value } = e.target;
     // const inputValue = type === 'checkbox' ? checked : value;
     setStaffData({
-      ...staffDate,
+      ...staffData,
       [name]: value
     })
   }
-
-  async function birthdayDataChange(e) {
-    const { name, value } = formatDate(e);
-    setStaffData({
-      birthday: formatDate(e)
-    })
-  }
-
-
-  const maxDate = new Date()
-
-
-
 
 
 
@@ -193,13 +212,16 @@ const SignUp = () => {
 
 
   // 正規表達驗證
-  function RexgeValid(name) {
-    return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">Success</i></span> : <span className='text-danger fs-6'><i className="bi bi-x-circle">Failed</i></span>;
+
+  function RexgeValid(name, text) {
+    return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">Success</i></span> : <span className='text-danger fs-6'><i className="bi bi-x-circle">{text}</i></span>;
   }
 
 
   return (
-    <div className="loginflex">
+    <div className="loginflex  signupCalendar" >
+
+
       <form
         style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
         onSubmit={handleSubmit}
@@ -215,41 +237,45 @@ const SignUp = () => {
               autoComplete="off" required onInput={formDataChange}
               onChange={(e) => {
                 const newName = e.target.value;
-                setName(newName);
+                setName(validName.test(e.target.value));
                 setStaffData(() => ({
-                  ...staffDate,
+                  ...staffData,
                   name: e.target.value
                 }));
+
               }}
             >
             </input>
-            {RexgeValid(upname)}
+            {RexgeValid(upname, "請輸入姓名")}
           </li>
 
 
-          <li className="loginli">
+          <li className="loginli ">
             <img src="./images/date.png" className="loginicon" />
             <p>生日</p>
-            <div>
-              {/* 當選取滿18歲的年紀時 再換選取未滿18的日期時會跳錯誤 */}
-              {/* 原因可能為正規表示法的規則? */}
+            <div className='signup'>
+              {/* 點當天日期加一以上都會爆掉??? 原因可能正規表達式？ */}
+              {/* 也不能點選9月以上 */}
+              {/* 9/19解決 原因是RegEx裡的age命名方式 */}
               <DatePicker
+                calendarClassName='signup'
+
                 name='birthday'
                 maxDate={maxDate}
                 value={upbirthday}
                 clearIcon={null}
                 onChange={(e) => {
                   const isAgeValid = validAge(formatDate(e));
+                  console.log(formatDate(e));
                   setStaffData(() => ({
-                    ...staffDate,
+                    ...staffData,
                     birthday: formatDate(e)
                   }));
-
-                  console.log(staffDate);
+                  console.log(upbirthday);
                   setBirthday(isAgeValid ? formatDate(e) : alert("很抱歉,必須年滿18歲"));
                 }} />
             </div>
-            {RexgeValid(upbirthday)}
+            {RexgeValid(upbirthday, "請選擇生日日期")}
           </li>
 
           <li className="loginli">
@@ -263,7 +289,7 @@ const SignUp = () => {
               onChange={(e) => setPhone(validPhone.test(e.target.value))}
             >
 
-            </input>{RexgeValid(upphone)}
+            </input>{RexgeValid(upphone, "請輸入正確手機號碼")}
           </li>
 
 
@@ -278,7 +304,7 @@ const SignUp = () => {
               onChange={(e) => setEmail(validEmail.test(e.target.value))}
             >
 
-            </input>{RexgeValid(upemail)}
+            </input>{RexgeValid(upemail, "請輸入正確信箱")}
           </li>
 
 
@@ -292,7 +318,7 @@ const SignUp = () => {
               onChange={(e) => setId(validId(e.target.value))}
             >
 
-            </input>{RexgeValid(upid)}
+            </input>{RexgeValid(upid, "請輸入正確身分證字號")}
           </li>
 
 
@@ -342,7 +368,8 @@ const SignUp = () => {
               autoComplete="off" required onInput={formDataChange}
               onChange={(e) => setPassword(validPassWord.test(e.target.value))}
             >
-            </input>{RexgeValid(uppassword)}
+            </input>
+            {RexgeValid(uppassword, "至少6個英數字包含 1 個大寫英文與小寫英文")}
           </li>
 
 
@@ -350,8 +377,9 @@ const SignUp = () => {
         </ul>
 
         <button className="signupbtn">註冊</button>
+      {showSuccessAlert ? <SuccessAlert></SuccessAlert> : false}
+      {showErrorAlert ? <ErrorAlert isOpen={showErrorAlert} onClose={() => setErrorAlert(false)} /> : false}
       </form>
-
 
     </div >
   );
