@@ -10,7 +10,7 @@ import './Calendar.css';
 // 設定日期選擇器語言
 import { addDays } from 'date-fns';
 import SuccessAlert from './SuccessAlert'
-import ErrorAlert from './ErrorAlert'
+import ErrorAlert from './ErrorSignAlert'
 
 
 
@@ -377,8 +377,8 @@ const SignUp = () => {
         </ul>
 
         <button className="signupbtn">註冊</button>
-      {showSuccessAlert ? <SuccessAlert></SuccessAlert> : false}
-      {showErrorAlert ? <ErrorAlert isOpen={showErrorAlert} onClose={() => setErrorAlert(false)} /> : false}
+        {showSuccessAlert ? <SuccessAlert></SuccessAlert> : false}
+        {showErrorAlert ? <ErrorAlert isOpen={showErrorAlert} onClose={() => setErrorAlert(false)} /> : false}
       </form>
 
     </div >
