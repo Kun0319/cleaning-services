@@ -6,5 +6,10 @@ export const scroll = () => {
 };
 
 export const sendVeriCode = () => {
-  axios.get('http://localhost:4107/book/send-vericode').then().catch((err) => console.log(err))
-}
+  axios
+    .post("http://localhost:4107/book/send-vericode") // mail參數
+    .then(() => {}) // 倒數秒數
+    .catch((err) => {
+      console.log(err);
+    }); // 發信失敗提示
+};

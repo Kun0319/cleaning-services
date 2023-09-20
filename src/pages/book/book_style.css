@@ -10,7 +10,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #9974042a;
+  background-color: #efe5c923;
   width: 100cqmax;
   height: 100cqmax;
 }
@@ -27,8 +27,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #664d03;
-  color: #ffe69c;
+  background-color: #664d03e6;
+  color: #fff3cd;
   font-weight: bolder;
   font-size: 1.2rem;
   border: 3px solid #997404;
@@ -44,8 +44,8 @@
   padding: 0.3rem 0.5rem;
   border: none;
   border-radius: 10px;
-  background-color: #ffe69c;
-  opacity: 0.8;
+  background-color: #ffc107;
+  opacity: 0.7;
   transition: 0.3s;
 }
 
@@ -58,7 +58,7 @@
   margin: 2rem 1rem 3rem 1rem;
 }
 
-.bookbtns>a {
+.bookbtns > a {
   text-decoration: none;
   font-size: 1rem;
   color: white;
@@ -69,7 +69,7 @@
   transition: 0.4s;
 }
 
-.bookbtns>a:hover {
+.bookbtns > a:hover {
   color: #664d03;
   background: #ffe69c;
   transition: 0.4s;
@@ -111,7 +111,7 @@
   text-align: center;
 }
 
-.progressIcon>i {
+.progressIcon > i {
   font-size: 3rem;
   color: #ffc107;
   margin-bottom: 24px;
@@ -132,7 +132,7 @@
 }
 
 .progressIcon-active {
-  text-shadow: 0 3px 3px #ffe69c;
+  text-shadow: 0 3px 2px #ffc107;
 }
 
 .progress-line {
@@ -529,7 +529,7 @@
 #book5-top h5 {
   font-size: 2rem;
 }
-#book-bottom{
+#book-bottom {
   position: relative;
 }
 #book5-bottom img {
@@ -645,7 +645,7 @@
   margin: 0.8rem;
 }
 
-.step2Top>.chooseTime div:first-child {
+.step2Top > .chooseTime div:first-child {
   display: none;
 }
 
@@ -690,7 +690,6 @@
   .book-step3 {
     margin-top: 3rem;
   }
-
 }
 
 @media screen and (max-width: 500px) {
@@ -720,7 +719,6 @@
 }
 
 @media screen and (max-width: 440px) {
-
   .book-step1 h5,
   .book-step1 h4 {
     font-size: 1.1rem;
