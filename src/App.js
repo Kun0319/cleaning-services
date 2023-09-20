@@ -31,6 +31,7 @@ import OrderDone from "./components/dashboard/OrderDone";
 import LoginPage from "./components/login/LoginPage";
 import Memberlogin from "./components/login/Memberlogin";
 import ChangePwd from "./components/login/ChangePwd";
+import OrderMemberDone from "./components/dashboard/OrderMemberDone"
 function App() {
   return (
     <BrowserRouter>
@@ -106,6 +107,7 @@ function App() {
             </ProtectedRoute>
           }>
           <Route index="/member/" element={<Order />} />
+          <Route path="/member/orderdone" element={<OrderMemberDone />} />
           <Route path="/member/:orderNumber" element={<OrderDone />} />
           <Route path="/member/memberinfo" element={<Memberlogin />} />
           <Route path="/member/changepwd" element={<ChangePwd />} />

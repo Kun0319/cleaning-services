@@ -8,6 +8,7 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
   const [counters, setCounters] = useState([]);
   const [comment, setComment] = useState("無評論內容");
   const { orderNumber } = useParams();
+  {!comment && setComment("沒有評論")}
   useEffect(() => {
     const data = [
       { id: 1, name: "打掃點數：", value: 5 },
@@ -21,7 +22,7 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
   }, []);
   
   async function handleScoreUpdata() {
-    try {
+    try{
       await axios.put(
         `http://localhost:4107/member/updata/${orderNumber}`,
         { data: counters, comment: comment,orderAPI:orderAPI }

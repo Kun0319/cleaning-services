@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const Topic = () => {
   //員工總數
@@ -25,18 +26,41 @@ const Topic = () => {
   return (
 
     <div className="Topic-team">
-      <div className="dr">
-        <div className="row">
-          <div className="col-md-4 col-lg-2"> <b>{ornumber}
-          </b><p>完成案件<br/>Customers</p></div>
-          <div className="col-md-2 col-lg-2"><h1>|</h1></div>
-          <div className="col-md-4 col-lg-2"><b>{employeeid}</b><p>團隊成員<br/>Team Members</p></div>
-          <div className="col-md-2 col-lg-2"><h1>|</h1></div>
-          <div className="col col-lg-2"><b>{reply}</b><p>評價<br />Assess</p></div>
-          <div className="col-2"></div>
-        </div>
-      </div>
 
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={1}
+        freeMode={true}
+        breakpoints={{
+          1200: {
+            slidesPerView: 3,
+          },
+          992: {
+            slidesPerView: 3,
+          },
+          768: {
+            slidesPerView: 2,
+          },
+          576: {
+            slidesPerView: 1,
+          },
+        }}
+        className="swiper mySwiper swiper-wrapper dr container"
+      >
+        <div>
+          <SwiperSlide className="introduceCard swiper-slide">
+            <div><b>{ornumber}
+            </b><p>完成案件<br />Customers</p></div>
+          </SwiperSlide>
+          <SwiperSlide className="introduceCard swiper-slide">
+            <div><b>{employeeid}</b><p>團隊成員<br />Team Members</p></div>
+          </SwiperSlide>
+          <SwiperSlide className="introduceCard swiper-slide">
+            <div><b>{reply}</b><p>評價<br />Assess</p></div>
+          </SwiperSlide>
+        </div>
+      </Swiper>
+      
       <div className="reserve container">
         <p>立即了解預約</p>
         心動不如馬上行動，趕快讓浣熊管家陪伴您有個乾淨的家 !

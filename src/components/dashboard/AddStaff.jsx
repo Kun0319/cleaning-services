@@ -96,8 +96,8 @@ const AddStaff = () => {
     }
     
 // 正規表達驗證
-    function RexgeValid(name) {
-        return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">Success</i></span>:<span className='text-danger fs-6'><i className="bi bi-x-circle">Failed</i></span>;
+    function RexgeValid(name,text="輸入格式有誤") {
+        return name ? <span className='text-success' style={{ fontSize: "0.5rem" }}><i className="bi bi-check-circle">Success</i></span>:<span className='text-danger' style={{ fontSize: "0.5rem" }}><i className="bi bi-x-circle">{text}</i></span>;
     }
 
     return (
@@ -110,28 +110,33 @@ const AddStaff = () => {
                 <div className="orderContent">
                     <ol>
                         {/* 姓名 */}
-                        <li>員工姓名:{RexgeValid(nameReg)}</li>
+                        <li>員工姓名:</li>
                         <li><input type="text" name='employeeName' autoComplete="off" required onInput={formDataChange}
-                        onChange={(e)=>setNameReg(validName.test(e.target.value))}/></li>
+                                onChange={(e) => setNameReg(validName.test(e.target.value))} /></li>
+                            {RexgeValid(nameReg,"請輸入6 ~ 10 字中英文組成")}
                         {/* 身分證字號 */}
-                        <li>身分證字號:{RexgeValid(IDReg)}</li>
+                        <li>身分證字號:</li>
                         <li><input type="text" name='employeeIdNumber' autoComplete="off" required onInput={formDataChange}
-                        onChange={(e)=>setIDReg(validId(e.target.value))} /></li>
+                                onChange={(e) => setIDReg(validId(e.target.value))} /></li>
+                            {RexgeValid(IDReg,"身分證格式錯誤")}
                         {/* 電話 */}
-                        <li>聯絡方式:{RexgeValid(phoneReg)}</li>
+                        <li>聯絡方式:</li>
                         <li><input type="tel" name='employeePhone' autoComplete="off" required onInput={formDataChange}
-                        onChange={(e)=>setPhoneReg(validTel.test(e.target.value))} /></li>
+                                onChange={(e) => setPhoneReg(validTel.test(e.target.value))} /></li>
+                            {RexgeValid(phoneReg,"請輸入手機或家用電話")}
                         {/* 生日 */}
                         <li>出生年月日:</li>
                         <li><input type="date" name='employeeBirthDay' autoComplete="off" required onChange={formDataChange} /></li>
                         {/* 信箱 */}
-                        <li>E-mail:{RexgeValid(emailReg)}</li>
+                        <li>E-mail:</li>
                         <li><input type="email" name='employeeMail' autoComplete="off" required onInput={formDataChange}
-                        onChange={(e)=>setEmailReg(validEmail.test(e.target.value))} /></li>
+                                onChange={(e) => setEmailReg(validEmail.test(e.target.value))} /></li>
+                            {RexgeValid(emailReg,"請輸入正確的信箱格式")}
                         {/* 密碼 */}
-                        <li>密碼:{RexgeValid(passWordReg)}</li>
+                        <li>密碼:</li>
                         <li><input type="password" name='employeePW' autoComplete="off" required onInput={formDataChange}
-                        onChange={(e)=>setPassWordReg(validPassWord.test(e.target.value))} /></li>
+                                onChange={(e) => setPassWordReg(validPassWord.test(e.target.value))} /></li>
+                            {RexgeValid(passWordReg,"請輸入6 ~ 16 字中英文組成")}
                     </ol>
                     <ol>
                         <li>疫苗接種:</li>
