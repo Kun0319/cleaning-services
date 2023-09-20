@@ -100,6 +100,11 @@ const Step2Area = () => {
 
   const checkForm = (e) => {
     e.preventDefault();
+    let { user } = ctx;
+    if (user === null) {
+      alert("發生異常，請重新填寫表單！");
+      return navigate("/book");
+    }
     if (checkDataNum.length === 3) navigate("/book/book3");
     else {
       alert("請完成表單填寫!");

@@ -21,6 +21,11 @@ const Step4Area = () => {
 
   let checkForm = async (e) => {
     e.preventDefault();
+    let { user } = ctx;
+    if (user === null) {
+      alert("發生異常，請重新填寫表單！");
+      return navigate("/book");
+    }
     const cardNumber = "0000-1111-2222-3333";
     const monthYear = "10/23";
     const securityCode = "357";
@@ -75,7 +80,7 @@ const Step4Area = () => {
         );
         setTimeout(() => {
           alert(`付款成功！`);
-          navigate("/book/book5");
+          window.location="/book/book5";
         }, 2000);
       }
     } else {
