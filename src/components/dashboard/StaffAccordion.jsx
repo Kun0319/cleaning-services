@@ -50,16 +50,18 @@ function StaffAccordion({ staffListData, active, onClick }) {
       {active && (
         <div className="staff-content">
           <ol>
-            <li>員工編號:{employeeid}</li>
             <li>訂單編號:{ornumber}</li>
+            <li>員工編號:{employeeid}</li>
+            <li>訂單狀態:{handleOrderStatus(state)}</li>
+            <li>訂單日期:{ordt}</li>
+            <li>完成時間:{ordd}</li>
+          </ol>
+          <ol>
+            <li>會員姓名:{uid}.{orname}</li>
+            <li>會員信箱:{oremail}</li>
             <li>會員手機:{orphone}</li>
             <li>訂單金額:{money}</li>
             <li>付款方式:{pay ? "信用卡" : "其他"}</li>
-            <li>會員信箱:{oremail}</li>
-            <li>訂單狀態:{handleOrderStatus(state)}</li>
-            <li>
-              訂單會員:{uid}.{orname}
-            </li>
             <li>
               服務地址:{orcity}
               {orrural}
@@ -67,42 +69,64 @@ function StaffAccordion({ staffListData, active, onClick }) {
             </li>
           </ol>
           <ol>
-            <li>
-              效率:{efficiency}
-              <img
-                src="/images/staffInfo-star.png"
-                alt="start"
-                style={{ clipPath: `inset(0 ${100 - efficiency * 20}% 0 0)` }}
-              />
-            </li>
-            <li>
-              清潔:{clean}
-              <img
-                src="/images/staffInfo-star.png"
-                alt="start"
-                style={{ clipPath: `inset(0 ${100 - clean * 20}% 0 0)` }}
-              />
-            </li>
-            <li>
-              細心:{careful}
-              <img
-                src="/images/staffInfo-star.png"
-                alt="start"
-                style={{ clipPath: `inset(0 ${100 - careful * 20}% 0 0)` }}
-              />
-            </li>
-            <li>
-              態度:{manner}
-              <img
-                src="/images/staffInfo-star.png"
-                alt="start"
-                style={{ clipPath: `inset(0 ${100 - manner * 20}% 0 0)` }}
-              />
-            </li>
-            <li>訂單日期:{ordt}</li>
-            <li>完成時間:{ordd}</li>
+            <p>效率:({(efficiency + 0.0).toFixed(1)})
+              <li className="staff-li-star">
+                  <img
+                    src="/images/staffInfo-star.png"
+                    alt="star-y"
+                    style={{ clipPath: `inset(0 ${100 - efficiency * 20}% 0 0)` }}
+                  />
+                <img
+                  src="/images/staffInfo-star2.png"
+                  alt="star-g"
+                  style={{position:"absolute"}}
+                />
+              </li>
+            </p>
+            <p>清潔:({(clean + 0.0).toFixed(1)})
+              <li className="staff-li-star">
+                  <img
+                    src="/images/staffInfo-star.png"
+                    alt="star-y"
+                    style={{ clipPath: `inset(0 ${100 - clean * 20}% 0 0)` }}
+                  />
+                <img
+                  src="/images/staffInfo-star2.png"
+                  alt="star-g"
+                  style={{position:"absolute"}}
+                />
+              </li>
+            </p>
+            <p>細心:({(careful + 0.0).toFixed(1)})
+              <li className="staff-li-star">
+                  <img
+                    src="/images/staffInfo-star.png"
+                    alt="star-y"
+                    style={{ clipPath: `inset(0 ${100 - careful * 20}% 0 0)` }}
+                  />
+                <img
+                  src="/images/staffInfo-star2.png"
+                  alt="star-g"
+                  style={{position:"absolute"}}
+                />
+              </li>
+            </p>
+            <p>態度:({(manner + 0.0).toFixed(1)})
+              <li className="staff-li-star">
+                <img
+                  src="/images/staffInfo-star.png"
+                  alt="star-y"
+                  style={{ clipPath: `inset(0 ${100 - manner * 20}% 0 0)` }}
+                />
+                <img
+                  src="/images/staffInfo-star2.png"
+                  alt="star-g"
+                  style={{position:"absolute"}}
+                />
+              </li>
+            </p>
           </ol>
-          <h3>評論:{reply}</h3>
+          <h6 style={{ overflowWrap: "break-word" }}>顧客評論:<span className="fs-6">{reply}</span></h6>
         </div>
       )}
     </div>

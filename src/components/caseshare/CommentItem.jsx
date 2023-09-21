@@ -10,8 +10,8 @@ const CommentItem = (props) => {
           <b className='marq-name'>{props.name}</b>
           <div className='marq-stars'><img
             src="images\staffInfo-star.png"
-            alt="start"
-            style={{ clipPath: `inset(0 ${100 - props.stars * 20}% 0 0)` }}
+            alt="star"
+            style={{ clipPath: `inset(0 ${100 - props.stars * 20}% 0 0)`, maxWidth: "120px" }}
           /></div>
         </div>
         <p>{props.content}</p>

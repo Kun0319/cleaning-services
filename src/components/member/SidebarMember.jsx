@@ -52,7 +52,7 @@ const SidebarMember = () => {
             to={"/member/orderdone"}
             className="Link-decoration"
           >
-            <span>歷史訂單</span>
+            <span>已完成訂單</span>
           </Link>
         </div>
       </div>

@@ -1,19 +1,17 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import './login.css'
 import "../../components/dashboard/dashboard.css";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { validPassWord } from "../dashboard/RegEx"
 
 
 const ChangePwd = () => {
-  const { userid } = useParams();
   // 定義密碼的狀態變數
   const [uppassword, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
   const [PWData, setPWData] = useState({
     password: "",
@@ -71,8 +69,8 @@ const ChangePwd = () => {
   }
 
   // 正規表達驗證
-  function RexgeValid(name) {
-    return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">Success</i></span> : <span className='text-danger fs-6'><i className="bi bi-x-circle">Failed</i></span>;
+  function RexgeValid(name, text) {
+    return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">OK</i></span> : <span className='text-danger fs-6'><i className="bi bi-x-circle">{text}</i></span>;
   }
 
   return (
@@ -90,7 +88,7 @@ const ChangePwd = () => {
                 required onInput={formDataChange}
                 onChange={(e) => setPassword(validPassWord.test(e.target.value))}
               />
-              {RexgeValid(uppassword)}
+              {RexgeValid(uppassword, "至少6個英數字包含 1 個大寫英文與小寫英文")}
             </li>
             <li className="loginli">
               <p>確認密碼</p>

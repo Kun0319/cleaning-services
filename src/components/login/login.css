@@ -176,6 +176,7 @@ button {
 
 }
 
+
 /* Other person's css */
 .myLoginIcon {
     font-size: 36px;
@@ -185,4 +186,21 @@ button {
 
 .myLoginLabel {
     margin-left: 12px;
+}
+
+
+/* 跳出視窗的style */
+
+.successSignup,
+.errorSignup {
+    background-color: #FFFDF2;
+    border: 1px solid black;
+    width: 15em;
+    height: 6em;
+    position: fixed;
+    top: 50%;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }

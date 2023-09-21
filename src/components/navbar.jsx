@@ -39,6 +39,7 @@ class navbar extends Component {
                 window.location.href = "/dashboard";
             }
         } else {
+
             window.location.href = "/";
         }
 
@@ -103,7 +104,7 @@ class navbar extends Component {
                             <Link to="/service" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</Link>
                             <Link to="/case" style={this.atagstyle} className='mx-3   text-decoration-none'>案例分享</Link>
                             <Link to="/question" style={this.atagstyle} className='mx-3   text-decoration-none'>常見問題</Link>
-                            <Link to=""> <img src="images/info.png" alt=""
+                            <Link to="/"> <img src="images/info.png" alt=""
                                 className='m-3'
                                 style={{ width: "2rem" }} onClick={this.checkadmin} /></Link>
 
@@ -134,7 +135,7 @@ class navbar extends Component {
                                 <Nav.Link href="/service" style={this.atagstyle}>服務項目</Nav.Link>
                                 <Nav.Link href="/case" style={this.atagstyle}>案例分享</Nav.Link>
                                 <Nav.Link href="/question" style={this.atagstyle}>常見問題</Nav.Link>
-
+                                <Link to="" onClick={this.checkadmin} style={this.atagstyle} className='text-decoration-none my-2'> 會員專區/查看訂單 </Link>
 
 
                                 {this.state.isLoggedIn ? (
@@ -142,8 +143,8 @@ class navbar extends Component {
                                         登出
                                     </button>
                                 ) : (
-                                    <Link to="/loginpage" className='mx-3 text-decoration-none' style={{ display: 'inline-block' }}>
-                                        <button className='btn px-4 me-2' style={this.btn}>
+                                    <Link to="/loginpage" className=' text-decoration-none' style={{ display: 'inline-block' }}>
+                                        <button className='btn px-4 ' style={this.btn}>
                                             登入
                                         </button>
                                     </Link>

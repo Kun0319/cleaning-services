@@ -49,7 +49,7 @@ function handleTime(time){
       <h3 className="m-0 h3_RWD">會員訂單</h3>
        {updataScore && <div className="updataScore">
         <div className="updataScoreTOP">感謝您的評價!! <br />
-        <img src="/images/loginimg.png" alt="" />
+        <img src="/images/sraccoon-salute.gif" alt="" />
         </div>
       </div>}
       {modal && <Score  
