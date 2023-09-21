@@ -9,6 +9,8 @@ import './Calendar.css';
 
 // 設定日期選擇器語言
 import { addDays } from 'date-fns';
+
+
 import SuccessAlert from './SuccessAlert'
 import ErrorAlert from './ErrorSignAlert'
 
@@ -75,16 +77,13 @@ const SignUp = () => {
             window.location.href = 'http://localhost:3000/loginpage'
           }, 1500);
           setSuccessAlert(true);
-          console.log(showSuccessAlert);
 
 
         } else if (showErrorAlert == false) {
           setErrorAlert(true);
-          console.log(showErrorAlert);
           // alert("註冊錯誤")
         } else if (showErrorAlert == true) {
           setErrorAlert(false);
-          console.log(showErrorAlert);
         }
 
 

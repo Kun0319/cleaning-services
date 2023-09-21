@@ -74,7 +74,8 @@ class navbar extends Component {
     styles = {
 
         height: "6em",
-    };
+
+    }
 
     btn = {
         backgroundColor: "#ffc107",
@@ -96,11 +97,11 @@ class navbar extends Component {
             <div>
                 {/* 導覽列 */}
                 <div className='container  d-md-none d-none d-lg-block '>
-                    <nav style={this.styles} className='d-flex'>
+                    <Navbar style={this.styles} className='d-flex' sticky='top'>
                         {/* logo */}
-                        <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "10em", height: "6em" }} alt="" className='img-fluid' /></Navbar.Brand>
+                        <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "8em", height: "5em" }} alt="" className='img-fluid' /></Navbar.Brand>
                         <div className='ms-auto d-flex align-items-center' >
-                            <Link to="/about" style={this.atagstyle} className=' mx-3  text-decoration-none '>關於我們</Link>
+                            <Link href="/about" style={this.atagstyle} className=' mx-3  text-decoration-none '>關於我們</Link>
                             <Link to="/service" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</Link>
                             <Link to="/case" style={this.atagstyle} className='mx-3   text-decoration-none'>案例分享</Link>
                             <Link to="/question" style={this.atagstyle} className='mx-3   text-decoration-none'>常見問題</Link>
@@ -119,13 +120,13 @@ class navbar extends Component {
 
 
                         </div>
-                    </nav >
+                    </Navbar>
                 </div>
                 {/* ///////////////////////// */}
                 {/* RWD Navbar */}
                 <div className=' container d-md-block  d-lg-none   '>
 
-                    <Navbar expand="lg">
+                    <Navbar expand="lg" sticky='top'>
                         <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "8em", height: "5em" }} alt="" className='img-fluid' /></Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarCollapse" />
                         <Navbar.Collapse id="navbarCollapse">
@@ -135,7 +136,7 @@ class navbar extends Component {
                                 <Nav.Link href="/service" style={this.atagstyle}>服務項目</Nav.Link>
                                 <Nav.Link href="/case" style={this.atagstyle}>案例分享</Nav.Link>
                                 <Nav.Link href="/question" style={this.atagstyle}>常見問題</Nav.Link>
-                                <Link to="" onClick={this.checkadmin} style={this.atagstyle} className='text-decoration-none my-2'> 會員專區/查看訂單 </Link>
+                                <Link to="/" onClick={this.checkadmin} style={this.atagstyle} className='text-decoration-none my-2'> 會員專區/查看訂單 </Link>
 
 
                                 {this.state.isLoggedIn ? (
