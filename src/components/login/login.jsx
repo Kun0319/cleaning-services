@@ -76,7 +76,9 @@ const Login = () => {
                 if (userInfo.data.data.user[0].admin == 1) {
                     // 如果是管理員自動跳轉至訂單管理系統
                     window.location.href = "/dashboard";
-                } else if (userInfo.data.data.user[0].admin == 0 || userInfo.data.data.user[0].admin == null) {
+                } else if (userInfo.data.data.user[0].admin == 2){
+                    window.location.href = "/employee";
+                }else if(userInfo.data.data.user[0].admin == 0 || userInfo.data.data.user[0].admin == null) {
                     window.location.href = "/";
                     // } else if (userInfo.data.data.user[0].blacklist == 1) {
                     //     alert("對不起我們無法為您服務")

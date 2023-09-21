@@ -149,7 +149,7 @@ const OrderList = (props) => {
                                         <tr
                                             key={ornumber}
                                             onClick={() => {
-                                                navigate(`/dashboard/AdminOrder/${ornumber}`);
+                                                navigate(`/employee/employeeDone/${ornumber}`);
                                             }}
                                         >
                                             <td>{ornumber}</td>
@@ -177,7 +177,7 @@ const OrderList = (props) => {
                                         <tr
                                             key={ornumber}
                                             onClick={() => {
-                                                navigate(`/dashboard/AdminOrder/${ornumber}`);
+                                                navigate(`/employee/employeeDone/${ornumber}`);
                                             }}
                                         >
                                             <td>{ornumber}</td>
