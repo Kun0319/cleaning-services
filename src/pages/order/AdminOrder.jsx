@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import "../../components/member/member.css";
 import DashBoardAlert from "../../components/dashboard/DashBoardAlert";
-import { useClearTime } from "../../components/dashboard/useClearTime";
+import { useAttendance } from "../../components/dashboard/useAttendance";
 const Member = () => {
   const { ornumber } = useParams();
   const [orderData, setOrderData] = useState({});

@@ -269,6 +269,9 @@
 .ControllAccordion::-webkit-scrollbar {
   display: none;
 }
+.ControllAccordion {
+  height: 200px;
+}
 
 .blacklist-content {
   color: #664d03;
