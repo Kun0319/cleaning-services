@@ -56,6 +56,9 @@ const SidebarMember = () => {
           </Link>
         </div>
       </div>
+      <br /><br /><br /><br /><br />
+      <br />
+        <img src="/images/sraccoon.gif" alt="" />
     </div>
   );
 };
