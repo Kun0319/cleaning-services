@@ -9,7 +9,7 @@ class indexbg extends Component {
     width: "15em",
     color: "#664D03",
     top: "15%",
-    left: "10%" 
+    left: "10%"
   };
 
 
@@ -34,7 +34,7 @@ class indexbg extends Component {
           <h1 className="h2" style={{ color: "#3F3350", textAlign: "center" }}>
             浣熊管家<br />讓你有個乾淨的家
           </h1>
-           <Link to="/book" style={{justifyContent:"center",display:"flex",textDecoration:"none"}}>
+          <Link to="/book" style={{ justifyContent: "center", display: "flex", textDecoration: "none" }}>
             <button className='btn'
               style={this.btn}>
               立即預約
@@ -44,7 +44,7 @@ class indexbg extends Component {
         </div>
 
         {/* 圓形圖片 */}
-        <div className="position-absolute d-none d-xxl-block"
+        <div className="position-absolute d-none d-xl-block"
           style={{ top: '0%', right: "40%" }}>
           <img
             src="images/circleImage1.webp"
@@ -55,8 +55,8 @@ class indexbg extends Component {
 
 
 
-        <div className="position-absolute d-none d-xxl-block"
-          style={{ right: "19%", top: "15%" }}>
+        <div className="position-absolute d-none d-xl-block"
+          style={{ right: "20%", top: "15%" }}>
           <img
             src="images/circleImage2.webp"
             alt=""
