@@ -28,7 +28,7 @@ const Step5Area = () => {
         開始為您服務!
       </p> */}
       <div id="book5-bottom">
-        <img src="/images/question-007.png" alt="raccoon" />
+        <img src="/images/raccoon-salute.gif" alt="raccoon" />
       </div>
     </div>
   );

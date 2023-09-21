@@ -130,8 +130,8 @@ const Login = () => {
                         <ul>
                             <li className="loginli">
                                 <img src="./images/nameicon.png" className="loginicon" />
-                                <p>帳號</p>
-                                <input placeholder="請輸入帳號"
+                                <p>信箱:</p>
+                                <input placeholder="請輸入信箱"
                                     type="text"
                                     ref={userRef}
                                     id="mail"
@@ -142,7 +142,7 @@ const Login = () => {
                             </li>
                             <li className="loginli">
                                 <img src="./images/password.png" className="loginicon" />
-                                <p>密碼</p>
+                                <p>密碼:</p>
                                 <input placeholder="請輸入密碼"
                                     type="password"
                                     id="password"
