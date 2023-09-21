@@ -238,15 +238,12 @@ const SignUp = () => {
     if (upemail) {
       setUserEmail(e.target.previousSibling.value);
       setWorkMode(true);
-      console.log(e.target.previousSibling.value);
     } else {
-      // email can't be null message
-      alert("請輸入正確email!");
+      return <ErrorAlert />;
     }
   }
 
   useEffect(() => {
-    console.log("usermail: " + userEmail);
     sendVeriCode(userEmail);
   }, [userEmail]);
 
