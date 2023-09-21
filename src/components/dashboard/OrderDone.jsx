@@ -163,8 +163,21 @@ function handleTime(time){
             </tr>
             <tr>
               <td>完成時間:</td>
-              <td>{orderdone?new Date(orderdone).toLocaleDateString("en-CA"):"尚未完成"}</td>
+              <td>{state === 2 &&orderdone?new Date(orderdone).toLocaleDateString("en-CA"):"尚未完成"}</td>
             </tr>
+          </thead>
+        </table>
+        </div>
+        <div className="contact-table">
+        <table border={1} className="w-100">
+          <thead className="orderThead tbody_def">
+            
+          </thead>
+          <tbody className="doneTbody orderDn tbody_def">
+               
+          </tbody>
+          <thead className="orderThead orderDn tbody_RWD">
+            
           </thead>
         </table>
       </div>

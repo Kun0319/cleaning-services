@@ -127,13 +127,13 @@ const OrderList = (props) => {
       <table>
         <thead className="orderThead">
           <tr id="orderTh">
-             <th id="ornumber" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單編號</th>
-            <th id="employeeid" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>員工編號</th>
-            <th id="ordertime" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單日期</th>
-            <th id="weeks" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>清潔週數</th>
-            <th id="donetime" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>剩餘次數</th>
-            <th id="money" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單金額</th>
-            <th id="state" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單狀態</th>
+            <th id="ornumber" className={toggle?"arrup":"arrdown"} onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單編號</th>
+            <th id="employeeid" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>員工編號</th>
+            <th id="ordertime" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單日期</th>
+            <th id="weeks" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>清潔週數</th>
+            <th id="donetime" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>剩餘次數</th>
+            <th id="money" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單金額</th>
+            <th id="state" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單狀態</th>
           </tr>
           {/* <tr id="orderTh_RWD">
             <th>Order No.</th>
@@ -170,7 +170,7 @@ const OrderList = (props) => {
                       <td>{employeeid}</td>
                       <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
-                      <td>{`${weeks-donetime}次`}</td>
+                      <td>{`${weeks-donetime}/${weeks}次`}</td>
                       <td>{money}</td>
                       <td>{handleOrderStatus(state)}</td>
                     </tr>
@@ -200,7 +200,7 @@ const OrderList = (props) => {
                       <td>{employeeid}</td>
                       <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
-                      <td>{`${weeks-donetime}次`}</td>
+                      <td>{`${weeks-donetime}/${weeks}次`}</td>
                       <td>{money}</td>
                       <td>{handleOrderStatus(state)}</td>
                     </tr>

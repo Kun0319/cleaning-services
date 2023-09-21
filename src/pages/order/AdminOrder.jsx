@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import "../../components/member/member.css";
+import DashBoardAlert from "../../components/dashboard/DashBoardAlert";
+import { useClearTime } from "../../components/dashboard/useClearTime";
 const Member = () => {
   const { ornumber } = useParams();
   const [orderData, setOrderData] = useState({});
+  const [success, setSuccess] = useState("");
+  const [showAlert, setShowAlert] = useState(false)
   const {
     userid,
     orname,
@@ -52,7 +56,12 @@ const Member = () => {
       }
     }
     fetchData();
-  }, [ornumber]);
+    if (success) {
+      setTimeout(() => {
+        setShowAlert(true)
+      }, 2000);
+  }
+  }, [ornumber,state]);
 
   const handleOrderStatus = (state) => {
     if (state === 0) {
@@ -71,6 +80,12 @@ const Member = () => {
     }
     return "18:00";
   };
+  const getDateTime=()=>{ 
+    const Y=new Date().getFullYear()
+    const M=new Date().getMonth()+1
+    const D = new Date().getDate()
+    return `${Y}-${M}-${D}`
+  }
 
   return (
     <div>
@@ -79,8 +94,14 @@ const Member = () => {
         <div
           className={`orderContainer bgdone ${state === 2 ? "complete" : ""}`}
         >
-          <div className="orderContent">
-            <table border={1}>
+          <div className="orderContent row">
+            <div className="col" style={{
+              fontSize: "30px"}}>
+              <span style={{ color: "red"}}>{donetime}/</span>
+              <span>{weeks}</span>
+              <p>{handleOrderStatus(state)}</p>
+            </div>
+            <table border={1} className="col">
               <tr>
                 <th style={{ fontWeight: "600" }}>
                   <Link
@@ -104,7 +125,7 @@ const Member = () => {
                 <td>Email:{oremail}</td>
               </tr>
             </table>
-            <table border={1}>
+            <table border={1} className="col">
               <tr>
                 <th style={{ fontWeight: "600" }}>
                   <Link
@@ -140,23 +161,16 @@ const Member = () => {
               <td>服務日期:{new Date(date).toLocaleDateString("en-CA")}</td>
             </tr>
             <tr>
-              <td>訂單狀態:{handleOrderStatus(state)}</td>
               <td>服務時段:{handleTime(time)}</td>
-            </tr>
-            <tr>
-              <td>付款方式:{pay ? "信用卡" : "無"}</td>
               <td>服務週數:{weeks}</td>
             </tr>
             <tr>
+              <td>付款方式:{pay ? "信用卡" : "無"}</td>
               <td>訂單金額:{money}元</td>
-              <td>服務次數:{donetime}</td>
             </tr>
             <tr>
+              <td>服務次數:{donetime}</td>
               <td>清潔地址:{orcity + orrural + oraddress}</td>
-              <td>
-                完成次數:<span style={{ color: "red" }}>{donetime}</span>/
-                {weeks}
-              </td>
             </tr>
             <tr>
               <td>訂單日期:{new Date(ordertime).toLocaleString("en-CA")}</td>
@@ -178,14 +192,15 @@ const Member = () => {
                 setOrderData((prevStatus) => ({
                   ...prevStatus,
                   state: 2,
-                  orderdone: new Date(orderdone).toLocaleString("en-CA"),
+                  orderdone:getDateTime(),
                 }));
 
                 handleOrderUpdata({
                   ...orderData,
                   state: 2,
-                  orderdone: new Date().toLocaleString("en-CA"),
+                  orderdone:getDateTime(),
                 });
+                setSuccess("success")
               }}
             >
               訂單完成
@@ -210,6 +225,7 @@ const Member = () => {
                       : orderData.donetime,
                       state:orderData.state=1
                 });
+                
               }}
             >
               打掃完成
@@ -219,6 +235,7 @@ const Member = () => {
           <div className="orderContent">訂單完成</div>
         )}
       </div>
+      {showAlert && <DashBoardAlert Cancel={"發生錯誤"} checkout={"打掃完成"} message={success} onClose={() => { window.location.reload() }} />}
     </div>
   );
 };

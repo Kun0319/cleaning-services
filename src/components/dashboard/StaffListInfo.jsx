@@ -132,9 +132,10 @@ const StaffListInfo = () => {
     empaddress,
     employeeidnumber,
   } = staffData;
+  
 
   const btd = new Date(employeebirthday).toLocaleDateString("en-CA");
-  console.log(upBirthday);
+  
   return (
     <div>
       <div className="Container">
@@ -143,7 +144,7 @@ const StaffListInfo = () => {
           {edit ? (
             <div className="orderContent">
               <ol>
-                <img src={photo} alt="asd" style={{ width: "130px" }} />
+                <img src={String(photo).split(",")[0]} alt="asd" style={{ width: "130px" }} />
                 <li>員工編號:</li>
                 <li>
                   <input
@@ -289,7 +290,7 @@ const StaffListInfo = () => {
           ) : (
             <div className="orderContent">
               <ol>
-                <img src={photo} alt="asd" style={{ width: "130px" }} />
+                <img src={String(photo).split(",")[0]} alt="asd" style={{ width: "130px" }} />
                 <li>員工編號:</li>
                 <li>{employeeid}</li>
                 <li>疫苗接種:</li>

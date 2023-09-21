@@ -127,12 +127,13 @@
 }
 
 .orderContent {
+  width: 100%;
   color: #664d03;
   display: flex;
   justify-content: space-around;
   font-weight: 400;
   line-height: 1.5;
-  gap: 24px;
+  gap: 10px;
 }
 
 .orderContainer table tr td {
@@ -179,11 +180,11 @@
   padding-top: 20px;
 }
 
-.btncontain>.notClear {
+.btncontain > .notClear {
   background: rgba(130, 100, 56, 0.46);
 }
 
-.btncontain>button {
+.btncontain > button {
   color: white;
   width: 94px;
   height: 42px;
@@ -224,7 +225,7 @@
   text-align: center;
 }
 
-.memtbody>tr:nth-child(1) {
+.memtbody > tr:nth-child(1) {
   border: 1px solid #fff8e1;
   background: #fff8e1;
   border-radius: 30px;
