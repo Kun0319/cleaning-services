@@ -7,7 +7,7 @@ import Process from "../components/homepage/Process";
 import StaffInfos from "../components/homepage/StaffInfos";
 import Topic from "../components/homepage/Topic";
 import Footer from "../components/Footer";
-import "./Home.css"; // 這裡替換為你的 CSS 文件路徑
+import "./Home.css"; 
 
 const Home = () => {
   const [showGIF, setShowGIF] = useState(true);
@@ -16,9 +16,9 @@ const Home = () => {
     const timer = setTimeout(() => {
       setShowGIF(false);
 
-    }, 3000); // 設定3秒的計時器
+    }, 3000); 
 
-    return () => clearTimeout(timer); // 清除計時器以防止內存洩漏
+    return () => clearTimeout(timer); 
   }, []);
 
 
