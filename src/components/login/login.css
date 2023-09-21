@@ -56,7 +56,6 @@ ul {
 }
 
 
-
 .loginli {
     display: flex;
     flex-wrap: wrap;
@@ -175,6 +174,18 @@ button {
     }
 
 
+}
+
+
+/* Other person's css */
+.myLoginIcon {
+    font-size: 36px;
+    margin-right: 12px;
+    color: #FFC107;
+}
+
+.myLoginLabel {
+    margin-left: 12px;
 }
 
 
