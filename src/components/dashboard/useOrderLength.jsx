@@ -6,9 +6,9 @@ export const useOrderLength = (dataUrl) => {
 
     const fetchData= async ()=> {
           const result = await axios.get(`/${dataUrl}`)
-        
-        if (result && result.data) setDataLength(result.data.length);
-        
+          if (result && result.data) {
+              const res= result.data.filter((data) => data.state === 0)
+              return  setDataLength(res.length)}
       }
 
 
