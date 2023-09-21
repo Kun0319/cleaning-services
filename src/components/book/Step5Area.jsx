@@ -12,7 +12,7 @@ const Step5Area = ({ formData, setFormData }) => {
       </div>
       <p className="mt-2 fs-5">我們將於 2023/8/23 星期三 13:00 開始為您服務!</p>
       <div id="book5-bottom">
-        <img src="/images/question-007.png" alt="raccoon" />
+        <img src="/images/raccoon-salute.gif" alt="raccoon" />
       </div>
     </div>
   );
