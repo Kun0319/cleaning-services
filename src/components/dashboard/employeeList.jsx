@@ -20,7 +20,7 @@ const OrderList = (props) => {
             try {
                 const result = await axios.get("http://localhost:4107/orderlist");
                 setOrderAPI(() => {
-                    return result.data.filter((data) => data.state === 2)
+                    return result.data.filter((data) => data.state === 0 || data.state === 1)
                 });
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -117,6 +117,7 @@ const OrderList = (props) => {
                         <th id="ornumber" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>訂單編號</th>
                         <th id="ordertime" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>訂單日期</th>
                         <th id="weeks" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>清潔週數</th>
+                        <th id="donetime" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>剩餘次數</th>
                         <th id="money" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>訂單金額</th>
                         <th id="state" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>訂單狀態</th>
                     </tr>
@@ -130,6 +131,7 @@ const OrderList = (props) => {
                                     ornumber,
                                     ordertime,
                                     weeks,
+                                    donetime,
                                     money,
                                     state,
                                 }) => {
@@ -143,6 +145,7 @@ const OrderList = (props) => {
                                             <td>{ornumber}</td>
                                             <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                                             <td>{weeks}週</td>
+                                            <td>{`${weeks - donetime}次`}</td>
                                             <td>{money}</td>
                                             <td>{handleOrderStatus(state)}</td>
                                         </tr>
@@ -156,6 +159,7 @@ const OrderList = (props) => {
                                     ornumber,
                                     ordertime,
                                     weeks,
+                                    donetime,
                                     money,
                                     state,
                                 }) => {
@@ -169,6 +173,7 @@ const OrderList = (props) => {
                                             <td>{ornumber}</td>
                                             <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                                             <td>{weeks}週</td>
+                                            <td>{`${weeks - donetime}次`}</td>
                                             <td>{money}</td>
                                             <td>{handleOrderStatus(state)}</td>
                                         </tr>
