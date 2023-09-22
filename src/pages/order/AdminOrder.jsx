@@ -3,12 +3,16 @@ import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import "../../components/member/member.css";
 import DashBoardAlert from "../../components/dashboard/DashBoardAlert";
+import MemberDone from "../../components/dashboard/MemberDone";
 import { useAttendance } from "../../components/dashboard/useAttendance";
+import ControllAccordion from "../../components/dashboard/ControllAccordion";
+
 const Member = () => {
   const { ornumber } = useParams();
   const [orderData, setOrderData] = useState({});
   const [success, setSuccess] = useState("");
   const [showAlert, setShowAlert] = useState(false)
+  const { attdata } = useAttendance({ ornumber:ornumber})
   const {
     userid,
     orname,
@@ -181,6 +185,9 @@ const Member = () => {
             </tr>
           </table>
           <div className="orderContent">備註:{note ?? "無"}</div>
+          {attdata.length !== 0 && <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
+                <ControllAccordion items={attdata} Accordion={MemberDone}  />
+            </div> }
         </div>
         {/* 按鈕 */}
         {state !== 2 ? (

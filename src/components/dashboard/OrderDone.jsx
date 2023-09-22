@@ -179,62 +179,24 @@ function handleTime(time){
           </thead>
           </table>
       </div>
-      <div className="contact-table">
-        <table border={1} className="w-100">
-          <thead className="orderThead tbody_def">
-            <tr>
-              <th>服務次數</th>
-              <th>訂單金額</th>
-              <th>付款方式</th>
-              <th>訂單狀態</th>
-              <th>完成時間</th>
-            </tr>
-          </thead>
-          <tbody className="doneTbody orderDn tbody_def">
-                <tr>
-                  <td><span className="text-danger">{donetime}</span>{`/${weeks}次`}</td>
-                  <td>{money}元</td>  
-                  <td>{pay?"信用卡":"其他"}</td>
-                  <td>{state === 2 && isClose ? <span className="text-success fw-bold">已完成</span> :!isClose && state === 2?<button onClick={() => { setModal(true) }} className="orderBtn p-0 ps-2 pe-2">給評價</button>:<span className="text-danger fw-bold">進行中</span>}</td>
-                  <td>{orderdone?new Date(orderdone).toLocaleDateString("en-CA"):"尚未完成"}</td>
-                </tr>
-          </tbody>  
-          <thead className="orderThead orderDn tbody_RWD">
-            <tr>
-              <td>訂單金額:</td>
-              <td>{money}元</td>
-            </tr>
-            <tr>
-              <td>付款方式:</td>
-              <td>{pay?"信用卡":"其他"}</td>
-            </tr>
-            <tr>
-              <td>完成狀態:</td>
-              <td>{state === 2 && isClose ? <span className="text-success fw-bold">已完成</span> :(!isClose && state === 2?<button onClick={() => { setModal(true) }} className="orderBtn p-0 ps-2 pe-2">給評價</button>:<span className="text-danger fw-bold">進行中</span>)}</td>
-            </tr>
-            <tr>
-              <td>服務次數:</td>
-              <td><span className="text-danger">{donetime}</span>{`/${weeks}次`}</td>
-            </tr>
-            <tr>
-              <td>完成時間:</td>
-              <td>{state === 2 &&orderdone?new Date(orderdone).toLocaleDateString("en-CA"):"尚未完成"}</td>
-            </tr>
-          </thead>
-        </table>
-        </div>
-        <div className="contact-table">
-        <div className="ControllAccordion" style={{ overflow: "auto" }}>
+      <div className="contact-table row">
+            <div className="col-12" style={{
+              fontSize: "30px"}}>
+              <span style={{ color: "red"}}>{donetime}/</span>
+            <span>{weeks}</span>
+            <span>清潔完成</span>
+          </div>
+          <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
                 <ControllAccordion items={attdata} Accordion={MemberDone}  />
-              </div>
-        </div>
-      <OrderStaff
-        staffAPI={staffAPI}
-        evaluateAPI={evaluateAPI} />
-      {isClose && state === 2 &&
+            </div>
+      </div>
+          {isClose && state === 2 &&
         <div className="contact-table">
           <h3 className="contact-table">訂單評論:{isClose || "訂單尚未完成"}</h3>
         </div>}
+      <OrderStaff
+        staffAPI={staffAPI}
+        evaluateAPI={evaluateAPI} />
     </div>
  </> );
 };

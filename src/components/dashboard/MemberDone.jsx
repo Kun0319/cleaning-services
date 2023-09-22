@@ -18,7 +18,7 @@ function MemberDone({ item, active, onClick }) {
       case 6:
         return "六";
       case 7:
-        return "七";
+        return "日";
       default:
         return "未知";
     }
@@ -32,15 +32,14 @@ function MemberDone({ item, active, onClick }) {
   const getFormatDay = () => new Date(item.date).toLocaleDateString("en-CA");
   
   return (
-    <>
-    <div
+    <>{ item &&<div
       className={`staff-accordion ${active ? "active" : ""}`}
       onClick={onClick}
     >
       <div className="staff-header">
         {getFormatDay()}{`-星期${getOrderDay()}${item.donetime}`}
       </div>
-    </div>
+    </div>}
       {active && <h1>{getOrderDay()}{getFormatDay()}{orderImages && orderImages.map((data) =>
     <img src={data} className="orderImages" alt="orderImages" />
   )}</h1>}

@@ -233,6 +233,7 @@
   margin-top: 5px;
   /* position: relative; */
   cursor: pointer;
+  line-height: 2;
 }
 
 .staff-header {
@@ -472,7 +473,7 @@
     margin-left: auto;
   }
   .ControllAccordion {
-    height: 400px;
+    height: 350px;
     width: 100%;
   }
 }
