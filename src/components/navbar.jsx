@@ -27,7 +27,7 @@ class navbar extends Component {
             this.setState({ isLoggedIn: true });
         }
     }
-    // 檢查是否為會員 員工跳轉後台
+    // 檢查是否為會員   管理員跳轉後台
     checkadmin = async (e) => {
         if (this.state.isLoggedIn == true) {
             let userInfo = await axios.get("http://localhost:4107/user", {
@@ -35,8 +35,10 @@ class navbar extends Component {
             });
             if (userInfo.data.data.user[0].admin == false) {
                 window.location.href = "/member";
-            } else if (userInfo.data.data.user[0].admin == true) {
-                window.location.href = "/dashboard";
+            } else if (userInfo.data.data.user[0].admin == 1) {
+                window.location.href = "/dashboard"; 
+            } else if (userInfo.data.data.user[0].admin == 2) {
+                window.location.href = "/employee/"
             }
         } else {
 
