@@ -271,6 +271,7 @@
 }
 .ControllAccordion {
   height: 200px;
+  width: 100%;
 }
 
 .blacklist-content {
@@ -469,5 +470,9 @@
     line-height: normal;
     text-align: center;
     margin-left: auto;
+  }
+  .ControllAccordion {
+    height: 400px;
+    width: 100%;
   }
 }

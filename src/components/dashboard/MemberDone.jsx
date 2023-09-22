@@ -38,7 +38,7 @@ function MemberDone({ item, active, onClick }) {
       onClick={onClick}
     >
       <div className="staff-header">
-        {getFormatDay()}{`-星期${getOrderDay()}`}
+        {getFormatDay()}{`-星期${getOrderDay()}${item.donetime}`}
       </div>
     </div>
       {active && <h1>{getOrderDay()}{getFormatDay()}{orderImages && orderImages.map((data) =>
