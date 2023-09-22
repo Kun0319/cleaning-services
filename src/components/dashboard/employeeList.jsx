@@ -18,10 +18,16 @@ const OrderList = (props) => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const result = await axios.get("http://localhost:4107/orderlist");
-                setOrderAPI(() => {
-                    return result.data.filter((data) => data.state === 0 || data.state === 1)
+                const result = await axios.get("http://localhost:4107/employeelist", {
+                    withCredentials: true
                 });
+                if (Array.isArray(result.data)) {
+                    setOrderAPI(() => {
+                        return result.data.filter((data) => data.state === 0 || data.state === 1)
+                    });
+                } else {
+                    console.error("Received non-array data from the API.");
+                }
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
