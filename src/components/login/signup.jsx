@@ -1,42 +1,43 @@
-
-import React, { useRef, useState, useEffect } from 'react'
-import AuthContext, { AuthProvider } from './AuthContext';
-import { validPhone, validPassWord, validEmail, validName, validAge, validId } from "./SignupRegEx"
+import React, { useRef, useState, useEffect } from "react";
+import AuthContext, { AuthProvider } from "./AuthContext";
+import {
+  validPhone,
+  validPassWord,
+  validEmail,
+  validName,
+  validAge,
+  validId,
+} from "./SignupRegEx";
+import { sendVeriCode, checkVeriCode } from "../book/utils";
 // 日期選擇套件跟CSS樣式
-import DatePicker from 'react-date-picker';
-import './DatePicker.css';
-import './Calendar.css';
+import DatePicker from "react-date-picker";
+import "./DatePicker.css";
+import "./Calendar.css";
 
 // 設定日期選擇器語言
-import { addDays } from 'date-fns';
 
+import { addDays } from "date-fns";
 
-import SuccessAlert from './SuccessAlert'
-import ErrorAlert from './ErrorSignAlert'
+import SuccessAlert from "./SuccessAlert";
+import ErrorAlert from "./ErrorSignAlert";
 
+import axios from "./axios";
 
-
-
-
-import axios from './axios'
-
+import { isDisabled } from "@testing-library/user-event/dist/utils";
 
 const SignUp = () => {
-
-
-  const [upname, setName] = useState("")
+  const [upname, setName] = useState("");
   const [upbirthday, setBirthday] = useState("");
-  const [upemail, setEmail] = useState("")
-  const [upphone, setPhone] = useState("")
-  const [uprural, setRural] = useState("")
-  const [upid, setId] = useState("") //身分證字號
-  const [upaddress, setAddress] = useState("")
-  const [uppassword, setPassword] = useState("")
+  const [upemail, setEmail] = useState("");
+  const [userEmail, setUserEmail] = useState("");
+  const [upphone, setPhone] = useState("");
+  const [uprural, setRural] = useState("");
+  const [upid, setId] = useState(""); //身分證字號
+  const [upaddress, setAddress] = useState("");
+  const [uppassword, setPassword] = useState("");
 
-
-  const [showErrorAlert, setErrorAlert] = useState(false)
-  const [showSuccessAlert, setSuccessAlert] = useState(false)
-
+  const [showErrorAlert, setErrorAlert] = useState(false);
+  const [showSuccessAlert, setSuccessAlert] = useState(false);
 
   const [staffData, setStaffData] = useState({
     name: "",
@@ -47,17 +48,14 @@ const SignUp = () => {
     address: "",
     password: "",
     rural: "中區",
-  })
-
-
+  });
 
   const [maxDate, setMaxDate] = useState(() => {
     const tomorrow = addDays(new Date(), 1);
     return tomorrow;
   });
 
-
-  // 送出註冊資料 
+  // 送出註冊資料
   // 處理表單提交
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,26 +64,31 @@ const SignUp = () => {
       try {
         // 使用 Axios 將使用者資料發送到後端
         // 如果驗證都通過才可以送出註冊
-        if (upname && upbirthday && upphone && upemail && upid && uppassword) {
-          await axios.post('/signup', JSON.stringify(staffData), {
+        if (
+          upname &&
+          upbirthday &&
+          upphone &&
+          checkCode &&
+          upid &&
+          uppassword
+        ) {
+          await axios.post("/signup", JSON.stringify(staffData), {
             headers: {
-              'Content-Type': 'application/json'
-            }
+              "Content-Type": "application/json",
+            },
           });
           // 9/19設定跳出註冊成功的視窗
           setTimeout(() => {
-            window.location.href = 'http://localhost:3000/loginpage'
+            window.location.href = "http://localhost:3000/loginpage";
           }, 1500);
           setSuccessAlert(true);
-
-
+          console.log(showSuccessAlert);
         } else if (showErrorAlert == false) {
           setErrorAlert(true);
           // alert("註冊錯誤")
         } else if (showErrorAlert == true) {
           setErrorAlert(false);
         }
-
 
         // 可以在這裡添加處理成功響應的程式碼
       } catch (error) {
@@ -97,8 +100,6 @@ const SignUp = () => {
     }
   };
 
-
-
   // 轉換日期
   function formatDate(e) {
     const originalDate = new Date(e);
@@ -109,16 +110,11 @@ const SignUp = () => {
     }
 
     const year = originalDate.getFullYear();
-    const month = (originalDate.getMonth() + 1).toString().padStart(2, '0'); // 月份從0開始，所以要加1，並補0
-    const day = originalDate.getDate().toString().padStart(2, '0'); // 補零
+    const month = (originalDate.getMonth() + 1).toString().padStart(2, "0"); // 月份從0開始，所以要加1，並補0
+    const day = originalDate.getDate().toString().padStart(2, "0"); // 補零
 
     return `${year}-${month}-${day}`;
   }
-
-
-
-
-
 
   const adreessDist = [
     {
@@ -201,28 +197,65 @@ const SignUp = () => {
     // const inputValue = type === 'checkbox' ? checked : value;
     setStaffData({
       ...staffData,
-      [name]: value
-    })
+      [name]: value,
+    });
   }
-
-
-
-
-
 
   // 正規表達驗證
 
   function RexgeValid(name, text) {
-    return name ? <span className='text-success fs-6'><i className="bi bi-check-circle">Success</i></span> : <span className='text-danger fs-6'><i className="bi bi-x-circle">{text}</i></span>;
+    return name ? (
+      <span className="text-success fs-6">
+        <i className="bi bi-check-circle">Success</i>
+      </span>
+    ) : (
+      <span className="text-danger fs-6">
+        <i className="bi bi-x-circle">{text}</i>
+      </span>
+    );
   }
 
+  // 倒數
+  const [checkCode, setCheckCode] = useState(false);
+  const [userCode, setUserCode] = useState(null);
+  const [workMode, setWorkMode] = useState(false);
+  const [seconds, setSeconds] = useState(60);
+  useEffect(() => {
+    let interval;
+    if (workMode && seconds > 0) {
+      interval = setInterval(() => {
+        setSeconds(seconds - 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+      setWorkMode(false);
+      setSeconds(60);
+    }
+
+    return () => clearInterval(interval);
+  }, [workMode, seconds]);
+
+  function startCountdown(e) {
+    if (upemail) {
+      setUserEmail(e.target.previousSibling.value);
+      setWorkMode(true);
+    } else {
+      return <ErrorAlert />;
+    }
+  }
+
+  useEffect(() => {
+    sendVeriCode(userEmail);
+  }, [userEmail]);
 
   return (
-    <div className="loginflex  signupCalendar" >
-
-
+    <div className="loginflex  signupCalendar">
       <form
-        style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
         onSubmit={handleSubmit}
       >
         <ul>
@@ -232,34 +265,32 @@ const SignUp = () => {
             <input
               type="text"
               placeholder="請輸入姓名"
-              name='name'
-              autoComplete="off" required onInput={formDataChange}
+              name="name"
+              autoComplete="off"
+              required
+              onInput={formDataChange}
               onChange={(e) => {
                 const newName = e.target.value;
                 setName(validName.test(e.target.value));
                 setStaffData(() => ({
                   ...staffData,
-                  name: e.target.value
+                  name: e.target.value,
                 }));
-
               }}
-            >
-            </input>
+            ></input>
             {RexgeValid(upname, "請輸入姓名")}
           </li>
-
 
           <li className="loginli ">
             <img src="./images/date.png" className="loginicon" />
             <p>生日</p>
-            <div className='signup'>
+            <div className="signup">
               {/* 點當天日期加一以上都會爆掉??? 原因可能正規表達式？ */}
               {/* 也不能點選9月以上 */}
               {/* 9/19解決 原因是RegEx裡的age命名方式 */}
               <DatePicker
-                calendarClassName='signup'
-
-                name='birthday'
+                calendarClassName="signup"
+                name="birthday"
                 maxDate={maxDate}
                 value={upbirthday}
                 clearIcon={null}
@@ -268,13 +299,30 @@ const SignUp = () => {
                   console.log(formatDate(e));
                   setStaffData(() => ({
                     ...staffData,
-                    birthday: formatDate(e)
+                    birthday: formatDate(e),
                   }));
                   console.log(upbirthday);
-                  setBirthday(isAgeValid ? formatDate(e) : alert("很抱歉,必須年滿18歲"));
-                }} />
+                  setBirthday(
+                    isAgeValid ? formatDate(e) : alert("很抱歉,必須年滿18歲")
+                  );
+                }}
+              />
             </div>
             {RexgeValid(upbirthday, "請選擇生日日期")}
+          </li>
+
+          <li className="loginli">
+            <img src="./images/idnumber.png" className="loginicon" />
+            <p>身分證字號</p>
+            <input
+              placeholder="請輸入身分證字號"
+              name="id"
+              autoComplete="off"
+              required
+              onInput={formDataChange}
+              onChange={(e) => setId(validId(e.target.value))}
+            ></input>
+            {RexgeValid(upid, "請輸入正確身分證字號")}
           </li>
 
           <li className="loginli">
@@ -283,62 +331,31 @@ const SignUp = () => {
             <input
               type="phone"
               placeholder="請輸入手機號碼"
-              name='phone'
-              autoComplete="off" required onInput={formDataChange}
+              name="phone"
+              autoComplete="off"
+              required
+              onInput={formDataChange}
               onChange={(e) => setPhone(validPhone.test(e.target.value))}
-            >
-
-            </input>{RexgeValid(upphone, "請輸入正確手機號碼")}
+            ></input>
+            {RexgeValid(upphone)}
           </li>
-
-
-          <li className="loginli">
-            <img src="./images/icon-4.png" className="loginicon" />
-            <p>信箱</p>
-            <input
-              type="email"
-              placeholder="請輸入信箱"
-              name='email'
-              autoComplete="off" required onInput={formDataChange}
-              onChange={(e) => setEmail(validEmail.test(e.target.value))}
-            >
-
-            </input>{RexgeValid(upemail, "請輸入正確信箱")}
-          </li>
-
-
-          <li className="loginli">
-            <img src="./images/idnumber.png" className="loginicon" />
-            <p>身分證字號</p>
-            <input
-              placeholder="請輸入身分證字號"
-              name='id'
-              autoComplete="off" required onInput={formDataChange}
-              onChange={(e) => setId(validId(e.target.value))}
-            >
-
-            </input>{RexgeValid(upid, "請輸入正確身分證字號")}
-          </li>
-
 
           <li className="loginli">
             <img src="./images/icon-6.png" className="loginicon" />
             <p>地址</p>
-            <input
-              type="text"
-              value="臺中市"
-              id="cleaning-city" />
-
+            <input type="text" value="臺中市" id="cleaning-city" />
 
             <select
               name="rural"
               id="userAddress"
-              autoComplete="off" required onInput={formDataChange}
+              autoComplete="off"
+              required
+              onInput={formDataChange}
               onChange={(e) => setRural(e.target.value)}
             >
               {adreessDist.map((item, index) => {
                 return (
-                  <option value={item.value} key={index} >
+                  <option value={item.value} key={index}>
                     {item.dist}
                   </option>
                 );
@@ -350,39 +367,81 @@ const SignUp = () => {
               placeholder="請輸入詳細地址"
               id="detail-address"
               required
-              name='address'
-              autoComplete="off" onInput={formDataChange}
+              name="address"
+              autoComplete="off"
+              onInput={formDataChange}
               onChange={(e) => setAddress(e.target.value)}
             />
           </li>
 
+          <li className="loginli">
+            <img src="./images/icon-4.png" className="loginicon" />
+            <p>電子信箱</p>
+            <input
+              type="email"
+              placeholder="請輸入信箱"
+              name="email"
+              autoComplete="off"
+              required
+              onInput={formDataChange}
+              onChange={(e) => setEmail(validEmail.test(e.target.value))}
+            ></input>
+            <input
+              type="button"
+              value="發送驗證碼"
+              id="checkUserEmail"
+              disabled={workMode}
+              onClick={startCountdown}
+            ></input>
+            {workMode ? <span>{seconds} 秒</span> : null}
+          </li>
+
+          <li className="loginli">
+            <i className="bi bi-envelope-paper myLoginIcon"></i>
+            <label htmlFor="veriCode" className="myLoginLabel">
+              驗證碼
+            </label>
+            <input
+              type="text"
+              id="veriCode"
+              onInput={(e) => setUserCode(e.target.value)}
+              onBlur={async () => {
+                let checkResult = await checkVeriCode(userCode, userEmail);
+                setCheckCode(checkResult);
+              }}
+            />
+            {RexgeValid(checkCode)}
+          </li>
 
           <li className="loginli">
             <img src="./images/password.png" className="loginicon" />
             <p>密碼</p>
             <input
-              type='password'
+              type="password"
               placeholder="請輸入密碼"
-              name='password'
-              autoComplete="off" required onInput={formDataChange}
+              name="password"
+              autoComplete="off"
+              required
+              onInput={formDataChange}
               onChange={(e) => setPassword(validPassWord.test(e.target.value))}
-            >
-            </input>
+            ></input>
             {RexgeValid(uppassword, "至少6個英數字包含 1 個大寫英文與小寫英文")}
           </li>
-
-
-
         </ul>
 
         <button className="signupbtn">註冊</button>
         {showSuccessAlert ? <SuccessAlert></SuccessAlert> : false}
-        {showErrorAlert ? <ErrorAlert isOpen={showErrorAlert} onClose={() => setErrorAlert(false)} /> : false}
+        {showErrorAlert ? (
+          <ErrorAlert
+            isOpen={showErrorAlert}
+            onClose={() => setErrorAlert(false)}
+          />
+        ) : (
+          false
+        )}
       </form>
-
-    </div >
+    </div>
   );
 };
 
 export default SignUp;
-
