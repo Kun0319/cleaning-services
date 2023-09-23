@@ -241,6 +241,25 @@ img[alt="star-g"] {
   z-index: 2;
 }
 
+.clearImgDiv {
+  margin-top: 2px;
+  margin-left: 2px;
+  border: 1px solid black;
+  border-right: 0px;
+  display: block;
+  padding: 5px;
+  width: 100px;
+}
+.clearImgDiv2 {
+  margin-top: 2px;
+  margin-right: 2px;
+  border: 1px solid black;
+  border-left: 0px;
+  display: block;
+  padding: 5px;
+  width: 100px;
+}
+
 @keyframes myAnimation_order {
   0% {
     transform: skew() scale(1);

@@ -40,10 +40,10 @@ const Score = ({ setModal, orderAPI, staffAPI, evaluateAPI, setUpdataScore}) => 
     }
   }
 
- const staffStar= Object.values(evaluateAPI).reduce((aa,bb) => { 
-    aa+= bb/ 4
+  const staffStar = evaluateAPI ? Object.values(evaluateAPI).reduce((aa, bb) => {
+    aa += bb / 4
     return aa
- }, 0)
+  }, 0) : 0;
   
 
   return (

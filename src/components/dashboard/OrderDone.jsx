@@ -20,7 +20,7 @@ const OrderDone = () => {
   const [isClose, setIsclose] = useState("")
   const [updataScore, setUpdataScore] = useState(false);
   const { orderNumber } = useParams()
-  const { attdata } = useAttendance({ orderNumber:orderNumber})
+  const { attdata } = useAttendance({ ornumber:orderNumber})
   
 
   useEffect(() => {
@@ -70,7 +70,6 @@ function handleTime(time){
 
   }
   
-
   return (
     <>
     <h3 className="m-0 h3_DEF">會員訂單</h3>

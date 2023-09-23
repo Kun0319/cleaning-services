@@ -184,13 +184,13 @@ const Member = () => {
               </td>
             </tr>
           </table>
-          <div className="orderContent">備註:{note ?? "無"}</div>
+          <div className="orderContent">備註:{note == '' && "無"}</div>
           {attdata?.length !== 0 && <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
                 <ControllAccordion items={attdata} Accordion={MemberDone}  />
             </div> }
         </div>
         {/* 按鈕 */}
-        {state !== 2 ? (
+        {/* {state !== 2 ? (
           <div className="btncontain">
             <button
               className={weeks !== donetime ? "notClear" : ""}
@@ -240,7 +240,7 @@ const Member = () => {
           </div>
         ) : (
           <div className="orderContent">訂單完成</div>
-        )}
+        )} */}
       </div>
       {showAlert && <DashBoardAlert Cancel={"發生錯誤"} checkout={"打掃完成"} message={success} onClose={() => { window.location.reload() }} />}
     </div>
