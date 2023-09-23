@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import axios from '../login/axios'
 
-export function UploadClearImg(){ 
+const UploadClearImg=()=>{ 
     const [imageData, setImageData] = useState([]);
     const [imagesUp, setImagesUp] = useState({});
 
@@ -57,3 +57,4 @@ export function UploadClearImg(){
             </>
 )    
 }
+export default UploadClearImg

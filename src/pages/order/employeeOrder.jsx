@@ -3,6 +3,11 @@ import "../../components/dashboard/order.css";
 import Score from "../../components/dashboard/score";
 import axios from "../../components/login/axios";
 import { useParams } from "react-router-dom";
+import UploadClearImg from "../../components/dashboard/UploadClearImg";
+import ControllAccordion from "../../components/dashboard/ControllAccordion";
+import MemberDone from "../../components/dashboard/MemberDone";
+import { useAttendance } from "../../components/dashboard/useAttendance";
+
 
 
 
@@ -14,6 +19,7 @@ const StaffOrderDone = () => {
   // const [isClose, setIsclose] = useState("")
   const [updataScore, setUpdataScore] = useState(false);
   const { ornumber } = useParams()
+  const { attdata } = useAttendance({ ornumber:ornumber})
 
 
   useEffect(() => {
@@ -168,24 +174,15 @@ const StaffOrderDone = () => {
             </thead>
           </table>
         </div>
-
-
-
-
         {/*上傳圖片 */}
         <div className="contact-table">
-          <form action="">
-            <input
-              className="btn"
-              type="file"
-              id="file-uploader"
-              data-target="file-uploader"
-              accept=".png, .jpg, .jpeg"
-              multiple="multiple"
-              style={{ color: "#664d03", }}
-            />
-          </form>
+        <UploadClearImg/>
         </div>
+          {attdata?.length !== 0 && <div className="contact-table">
+            <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
+                <ControllAccordion items={attdata} Accordion={MemberDone}  />
+            </div> 
+          </div>}
       </div >
     </>);
 };

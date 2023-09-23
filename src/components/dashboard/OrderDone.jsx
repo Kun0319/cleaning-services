@@ -184,11 +184,11 @@ function handleTime(time){
               fontSize: "30px"}}>
               <span style={{ color: "red"}}>{donetime}/</span>
             <span>{weeks}</span>
-            <span>清潔完成</span>
+            <span>清潔紀錄</span>
           </div>
-          <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
+          {attdata?.length !== 0 && <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
                 <ControllAccordion items={attdata} Accordion={MemberDone}  />
-            </div>
+            </div> }
       </div>
           {isClose && state === 2 &&
         <div className="contact-table">

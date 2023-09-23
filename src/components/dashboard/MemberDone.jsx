@@ -37,12 +37,14 @@ function MemberDone({ item, active, onClick }) {
       onClick={onClick}
     >
       <div className="staff-header">
-        {getFormatDay()}{`-星期${getOrderDay()}${item.donetime}`}
+        完成時間:{getFormatDay()}{`-星期${getOrderDay()}${item.donetime || ""}`}
       </div>
     </div>}
-      {active && <h1>{getOrderDay()}{getFormatDay()}{orderImages && orderImages.map((data) =>
-    <img src={data} className="orderImages" alt="orderImages" />
-  )}</h1>}
+      {active && <div className="staff-content animated-accordion">
+        {orderImages && orderImages.map((data, index) => (index+1)%2 !==0 ?<div key={index} style={{marginTop:"2px" ,marginLeft:"2px",border:"1px solid black",borderRight:"0px",display:"block",padding:"5px", width:"100px"}}><span>清掃前</span><img src={data} className="orderImages w-100" alt="orderImages" /></div>
+        :<div key={index} style={{marginTop:"2px" ,marginRight:"2px" ,borderLeft:"0px" ,border:"1px solid black",display:"block",padding:"5px", width:"100px"}}><span>清掃後</span><img src={data} className="orderImages w-100" alt="orderImages" /></div>
+        )}
+      </div>}
     </>);
 }
 

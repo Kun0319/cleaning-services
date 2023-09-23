@@ -185,7 +185,7 @@ const Member = () => {
             </tr>
           </table>
           <div className="orderContent">備註:{note ?? "無"}</div>
-          {attdata.length !== 0 && <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
+          {attdata?.length !== 0 && <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
                 <ControllAccordion items={attdata} Accordion={MemberDone}  />
             </div> }
         </div>
