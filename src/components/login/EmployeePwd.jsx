@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './login.css'
 import "../../components/dashboard/dashboard.css";
 import axios from "axios";
@@ -14,27 +14,33 @@ const ChangePwd = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const navigate = useNavigate();
   const [PWData, setPWData] = useState({
-    password: "",
+    employeepw: "",
   });
 
+  useEffect(() => {
+    console.log("newPassword changed:", newPassword);
+  }, [newPassword]);
 
   // 儲存按鈕的點擊事件
   const handleSaveClick = async (e) => {
     e.preventDefault();
 
     if (newPassword === confirmPassword) {
+      console.log(newPassword);
+      console.log(confirmPassword);
       if (uppassword) {
-      try {
-        const res = await axios.post(`http://localhost:4107/member/changepwd/update/`,
-          {
-            uppassword: confirmPassword,
-          }, {
-          withCredentials: true
-        });
-        navigate(-1);
-      } catch (error) {
-        console.error("Error updating data:", error);
-      }}else{
+        try {
+          const res = await axios.post(`http://localhost:4107/employeelist/employeepwd/update/`,
+            {
+              uppassword: confirmPassword,
+            }, {
+            withCredentials: true
+          });
+          navigate(-1);
+        } catch (error) {
+          console.error("Error updating data:", error);
+        }
+      } else {
         alert("密碼格式錯誤");
       }
     } else {
@@ -63,7 +69,7 @@ const ChangePwd = () => {
       [name]: value
     });
 
-    if (name === "password") {
+    if (name === "employeepw") {
       setNewPassword(value);
     }
   }
@@ -84,18 +90,18 @@ const ChangePwd = () => {
                 type="password"
                 placeholder="請輸入新密碼"
                 defaultValue={uppassword}
-                name="password"
+                name="employeepw"
                 required onInput={formDataChange}
                 onChange={(e) => setPassword(validPassWord.test(e.target.value))}
-                />
+              />
             </li>
-                {RexgeValid(uppassword, "至少6個英數字包含 1 個大寫英文與小寫英文")}
+              {RexgeValid(uppassword, "至少6個英數字包含 1 個大寫英文與小寫英文")}
             <li className="loginli">
               <p>確認密碼</p>
               <input
                 type="password"
                 placeholder="請再次輸入新密碼"
-                name="password"
+                name="employeepw"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
             </li>

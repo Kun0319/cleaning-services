@@ -261,7 +261,7 @@ const SignUp = () => {
         <ul>
           <li className="loginli">
             <img src="./images/nameicon.png" className="loginicon" />
-            <p>姓名</p>
+            <p>會員姓名</p>
             <input
               type="text"
               placeholder="請輸入姓名"
@@ -283,7 +283,7 @@ const SignUp = () => {
 
           <li className="loginli ">
             <img src="./images/date.png" className="loginicon" />
-            <p>生日</p>
+            <p>出生日期</p>
             <div className="signup">
               {/* 點當天日期加一以上都會爆掉??? 原因可能正規表達式？ */}
               {/* 也不能點選9月以上 */}
@@ -313,7 +313,7 @@ const SignUp = () => {
 
           <li className="loginli">
             <img src="./images/idnumber.png" className="loginicon" />
-            <p>身分證字號</p>
+            <p>身分證號</p>
             <input
               placeholder="請輸入身分證字號"
               name="id"
@@ -342,7 +342,7 @@ const SignUp = () => {
 
           <li className="loginli">
             <img src="./images/icon-6.png" className="loginicon" />
-            <p>地址</p>
+            <p>居住地址</p>
             <input type="text" value="臺中市" id="cleaning-city" />
 
             <select
@@ -399,7 +399,7 @@ const SignUp = () => {
           <li className="loginli">
             <i className="bi bi-envelope-paper myLoginIcon"></i>
             <label htmlFor="veriCode" className="myLoginLabel">
-              驗證碼
+              驗證號碼&nbsp;&nbsp;
             </label>
             <input
               type="text"
@@ -415,7 +415,7 @@ const SignUp = () => {
 
           <li className="loginli">
             <img src="./images/password.png" className="loginicon" />
-            <p>密碼</p>
+            <p>密碼&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
             <input
               type="password"
               placeholder="請輸入密碼"

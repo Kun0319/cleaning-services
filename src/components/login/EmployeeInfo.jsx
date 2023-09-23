@@ -6,7 +6,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { validPhone } from "../dashboard/RegEx"
 const Memberlogin = () => {
-  const { userid } = useParams();
+  const { employeeid } = useParams();
   const [memberData, setMemberData] = useState({});
   const [edit, setEdit] = useState(false);
   // 編輯變數
@@ -22,7 +22,7 @@ const Memberlogin = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get(`http://localhost:4107/member/memberinfo/`, {
+        const result = await axios.get(`http://localhost:4107/employeelist/employeeinfo/`, {
           withCredentials: true
         });
 
@@ -38,7 +38,7 @@ const Memberlogin = () => {
       }
     }
     fetchData();
-  }, [userid]);
+  }, [employeeid]);
 
   // 資料更新送出
   async function handleSendEdit(e) {
@@ -46,7 +46,7 @@ const Memberlogin = () => {
 
     if (upPhone) {
       try {
-        const res = await axios.post(`http://localhost:4107/member/memberinfo/update/`, memberData, {
+        const res = await axios.post(`http://localhost:4107/employeelist/employeeinfo/update/`, memberData, {
           withCredentials: true
         });
 
@@ -76,18 +76,19 @@ const Memberlogin = () => {
     })
   }
 
+
   const {
-    name,
-    birthday,
-    phone,
-    email,
-    id,
-    city,
-    rural,
-    address
+    employeename,
+    employeebirthday,
+    employeeidnumber,
+    employeephone,
+    employeeemail,
+    empcity,
+    emprural,
+    empaddress
   } = memberData;
 
-  const btd = new Date(birthday).toLocaleDateString('en-CA')
+  const btd = new Date(employeebirthday).toLocaleDateString('en-CA')
 
   // 正規表達驗證
   function RexgeValid(name) {
@@ -106,8 +107,8 @@ const Memberlogin = () => {
             <ul>
               <li className="loginli">
                 <img src="/images/nameicon.png" className="loginicon" />
-                <p>會員姓名</p>
-                <input value={name} disabled="disabled" />
+                <p>浣熊姓名</p>
+                <input value={employeename} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/date.png" className="loginicon" />
@@ -117,15 +118,15 @@ const Memberlogin = () => {
               <li className="loginli">
                 <img src="/images/idnumber.png" className="loginicon" />
                 <p>身份證號</p>
-                <input value={id} disabled="disabled" />
+                <input value={employeeidnumber} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/tet.png" className="loginicon" />
                 <p>手機號碼</p>
                 <input
                   type="tel"
-                  name='phone'
-                  defaultValue={phone}
+                  name='employeephone'
+                  defaultValue={employeephone}
                   autoComplete="off" required onInput={formDataChange}
                   onChange={(e) => setUpPhone(validPhone.test(e.target.value))}
                 />
@@ -134,13 +135,13 @@ const Memberlogin = () => {
               <li className="loginli">
                 <img src="/images/icon-4.png" className="loginicon" />
                 <p>電子信箱</p>
-                <input value={email} disabled="disabled" />
+                <input value={employeeemail} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/icon-6.png" className="loginicon" />
                 <p>居住地址</p>
-                <input type="text" defaultValue={city} disabled={true} />
-                <select name="rural" defaultValue={rural} required onInput={formDataChange} onChange={(e) => setUpRural(e.target.value)} >
+                <input type="text" defaultValue={empcity} disabled={true} />
+                <select name="emprural" defaultValue={emprural} required onInput={formDataChange} onChange={(e) => setUpRural(e.target.value)} >
                   {dist.map((dist, index) => {
                     return (
                       <option value={dist.dist} key={index}>
@@ -148,7 +149,7 @@ const Memberlogin = () => {
                       </option>
                     );
                   })}
-                </select> <input name="address" type="text" defaultValue={address} required onInput={formDataChange} onChange={(e) => setUpAddress(e.target.value)} />
+                </select> <input name="empaddress" type="text" defaultValue={empaddress} required onInput={formDataChange} onChange={(e) => setUpAddress(e.target.value)} />
               </li>
             </ul>
             :
@@ -156,8 +157,8 @@ const Memberlogin = () => {
             <ul>
               <li className="loginli">
                 <img src="/images/nameicon.png" className="loginicon" />
-                <p>會員姓名</p>
-                <input value={name} disabled="disabled" />
+                <p>浣熊姓名</p>
+                <input value={employeename} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/date.png" className="loginicon" />
@@ -167,39 +168,39 @@ const Memberlogin = () => {
               <li className="loginli">
                 <img src="/images/idnumber.png" className="loginicon" />
                 <p>身份證號</p>
-                <input value={id} disabled="disabled" />
+                <input value={employeeidnumber} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/tet.png" className="loginicon" />
                 <p>手機號碼</p>
                 <input
-                  value={phone}
+                  value={employeephone}
                   disabled="disabled"
                 ></input>
               </li>
               <li className="loginli">
                 <img src="/images/icon-4.png" className="loginicon" />
                 <p>電子信箱</p>
-                <input value={email} disabled="disabled"></input>
+                <input value={employeeemail} disabled="disabled"></input>
               </li>
               <li className="loginli">
                 <img src="/images/icon-6.png" className="loginicon" />
                 <p>居住地址</p>
                 <input
                   type="text"
-                  value={city}
+                  value={empcity}
                   id="cleaning-city"
                   disabled="disabled"
                 />
                 <input
                   type="text"
-                  value={rural}
+                  value={emprural}
                   id="cleaning-city"
                   disabled="disabled"
                 />
                 <input
                   type="text"
-                  value={address}
+                  value={empaddress}
                   id="detail-address"
                   required
                   disabled="disabled"
