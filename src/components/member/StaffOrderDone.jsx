@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "../../components/dashboard/order.css";
-import Score from "../../components/dashboard/score";
-import axios from "../../components/login/axios";
+import "../dashboard/order.css";
+import Score from "../dashboard/score";
+import axios from "../login/axios";
 import { useParams } from "react-router-dom";
 
 
@@ -11,37 +11,28 @@ const StaffOrderDone = () => {
   const [orderAPI, setOrderAPI] = useState('')
   const [staffAPI, setStaffAPI] = useState('')
   const [evaluateAPI, setEvaluateAPI] = useState({})
-  // const [isClose, setIsclose] = useState("")
+  const [isClose, setIsclose] = useState("")
   const [updataScore, setUpdataScore] = useState(false);
-  const { ornumber } = useParams()
-
-
+  const { orderNumber } = useParams()
   useEffect(() => {
     async function fetchData() {
       try {
         const result = await axios.get(
-          `http://localhost:4107/member/${ornumber}`
-
+          `/member/${orderNumber}`
         );
         setOrderAPI(() => result.data.results1[0]);//訂單資料
-
-        setOrderAPI(() => result.data.results1[0]);//訂單資料
-
         setStaffAPI(() => result.data.results2[0])//員工資料
-
         setEvaluateAPI(() => result.data.results3[0])//評價
-
-
-
-
+        setIsclose(() => result.data.results4[0]?.reply)//評價
+        console.log(orderAPI);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
     fetchData();
-  }, [ornumber]);
-  // ornumber,
-  const { note, time, donetime, weeks, orcity, orrural, oraddress, money, state, orderdone, ordertime, pay, orname, orphone, oremail } = orderAPI
+  }, [orderNumber]);
+
+  const { note, time, donetime, weeks, ornumber, orcity, orrural, oraddress, money, state, orderdone, ordertime, pay, orname, orphone, oremail } = orderAPI
 
   function handleTime(time) {
     if (time === 0) return "08:00"
@@ -106,6 +97,7 @@ const StaffOrderDone = () => {
             </thead>
 
 
+
             <thead className="orderThead tbody_def">
               <tr>
                 {/* <th>服務次數</th> */}
@@ -115,7 +107,7 @@ const StaffOrderDone = () => {
             </thead>
             <tbody className="doneTbody orderDn tbody_def">
               <tr>
-                <td colSpan={2}>{state === 2 ? <span className="text-success fw-bold">已完成</span> : <span className="text-danger fw-bold">進行中</span>}</td>
+                <td colSpan={2}>{state === 2 && isClose ? <span className="text-success fw-bold">已完成</span> : !isClose && state === 2 ? <button onClick={() => { setModal(true) }} className="orderBtn p-0 ps-2 pe-2">給評價</button> : <span className="text-danger fw-bold">進行中</span>}</td>
                 {/* <td>{orderdone ? new Date(orderdone).toLocaleDateString("en-CA") : "尚未完成"}</td> */}
                 <td colSpan={3}>{state === 2 && orderdone ? new Date(orderdone).toLocaleDateString("en-CA") : "尚未完成"}</td>
               </tr>
@@ -124,7 +116,7 @@ const StaffOrderDone = () => {
             <thead className="orderThead orderDn tbody_RWD">
               <tr>
                 <td>完成狀態:</td>
-                <td>{state === 2 ? <span className="text-success fw-bold">已完成</span> : <span className="text-danger fw-bold">進行中</span>}</td>
+                <td>{state === 2 && isClose ? <span className="text-success fw-bold">已完成</span> : (!isClose && state === 2 ? <button onClick={() => { setModal(true) }} className="orderBtn p-0 ps-2 pe-2">給評價</button> : <span className="text-danger fw-bold">進行中</span>)}</td>
               </tr>
 
               <tr>

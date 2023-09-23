@@ -1,9 +1,9 @@
-import "./dashboard.css";
+import "../dashboard/dashboard.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const OrderList = (props) => {
+const StaffOrderList = (props) => {
     const limitCount = 8; //顯示幾筆
     const [number, setNumber] = useState(limitCount);
     const [start, setStart] = useState(0); //從哪開始
@@ -13,22 +13,19 @@ const OrderList = (props) => {
     const [orderAPI, setOrderAPI] = useState([]); //API變數
     const [toggle, setToggle] = useState(true)
 
-
-
     // 訂單API
     useEffect(() => {
         async function fetchData() {
             try {
-                const result = await axios.get("http://localhost:4107/employeelist", {
+                const result = await axios.get("http://localhost:4107/orderlist", {
                     withCredentials: true
                 });
-                if (Array.isArray(result.data)) {
-                    setOrderAPI(() => {
-                        return result.data.filter((data) => data.state === 0 || data.state === 1)
-                    });
-                } else {
-                    console.error("Received non-array data from the API.");
-                }
+                setOrderAPI(() => {
+                    return result.data.filter((data) => data.state === 0)
+                    // return result.data.sort(function (a, b) {
+                    //   return a.state >= b.state ? 1 : -1;
+                    // });
+                });
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -77,7 +74,7 @@ const OrderList = (props) => {
         setStart(start + limitCount < data.length ? start + limitCount : start);
     };
 
-    
+    //排序
     function handleSort(data, e, toggle) {
         let aa = e.target.id;
         const sortInfo = (data, aa, toggle) => {
@@ -85,10 +82,18 @@ const OrderList = (props) => {
                 if (typeof a[aa] === 'string' && typeof b[aa] === "string") {
                     const aaa = a[aa]
                     const bbb = b[aa]
-                    return toggle ? aaa.localeCompare(bbb) : bbb.localeCompare(aaa);
+                    if (toggle) {
+                        return aaa.localeCompare(bbb);
+                    } else {
+                        return bbb.localeCompare(aaa);
+                    }
                 } else {
-                    return toggle ? a[aa] - b[aa] : b[aa] - a[aa];
-                };
+                    if (toggle) {
+                        return a[aa] - b[aa];
+                    } else {
+                        return b[aa] - a[aa];
+                    }
+                }
             });
         };
 
@@ -101,7 +106,7 @@ const OrderList = (props) => {
     return (
         <div className="dashOrder">
             <div className="orderHead">
-                <h3>歷史訂單</h3>
+                <h3>訂單管理</h3>
                 <div style={{ position: "relative" }}>
                     <img
                         src="/images/search.png"
@@ -126,9 +131,18 @@ const OrderList = (props) => {
                         <th id="ordertime" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>訂單日期</th>
                         <th id="weeks" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>清潔週數</th>
                         <th id="donetime" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>剩餘次數</th>
-                        <th id="money" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>訂單金額</th>
-                        <th id="state" onClick={(e) => { handleSort(orderAPI, e, toggle) }}>訂單狀態</th>
+                        <th id="state" className={toggle ? "arrup" : "arrdown"} onClick={(e) => { handleSort(orderAPI, e, toggle) }}>訂單狀態</th>
+
                     </tr>
+                    {/* <tr id="orderTh_RWD">
+            <th>Order No.</th>
+            <th>員工編號</th>
+            <th>訂單日期</th>
+            <th>清潔週數</th>
+            <th>剩餘次數</th>
+            <th>訂單金額</th>
+            <th>訂單狀態</th>
+          </tr> */}
                 </thead>
                 <tbody className="orderTbody">
                     {searchInput.length > 1
@@ -140,21 +154,19 @@ const OrderList = (props) => {
                                     ordertime,
                                     weeks,
                                     donetime,
-                                    money,
                                     state,
                                 }) => {
                                     return (
                                         <tr
                                             key={ornumber}
                                             onClick={() => {
-                                                navigate(`/employee/employeeDone/${ornumber}`);
+                                                navigate(`/dashboard/AdminOrder/${ornumber}`);
                                             }}
                                         >
                                             <td>{ornumber}</td>
                                             <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                                             <td>{weeks}週</td>
                                             <td>{`${weeks - donetime}次`}</td>
-                                            <td>{money}</td>
                                             <td>{handleOrderStatus(state)}</td>
                                         </tr>
                                     );
@@ -165,6 +177,7 @@ const OrderList = (props) => {
                             .map(
                                 ({
                                     ornumber,
+                                    employeeid,
                                     ordertime,
                                     weeks,
                                     donetime,
@@ -175,14 +188,13 @@ const OrderList = (props) => {
                                         <tr
                                             key={ornumber}
                                             onClick={() => {
-                                                navigate(`/employee/employeeDone/${ornumber}`);
+                                                navigate(`/staff/orderdone`);
                                             }}
                                         >
                                             <td>{ornumber}</td>
                                             <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                                             <td>{weeks}週</td>
                                             <td>{`${weeks - donetime}次`}</td>
-                                            <td>{money}</td>
                                             <td>{handleOrderStatus(state)}</td>
                                         </tr>
                                     );
@@ -201,4 +213,4 @@ const OrderList = (props) => {
         </div>
     );
 };
-export default OrderList;
+export default StaffOrderList;
