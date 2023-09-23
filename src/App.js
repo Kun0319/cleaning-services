@@ -33,8 +33,11 @@ import LoginPage from "./components/login/LoginPage";
 import Memberlogin from "./components/login/Memberlogin";
 import ChangePwd from "./components/login/ChangePwd";
 import OrderMemberDone from "./components/dashboard/OrderMemberDone"
-import EmployeeDone from "./components/dashboard/employeeDone";
-
+import {
+  EmployeeList,
+  EmployeeDone,
+} from "./components/dashboard/employeeSet";
+import EmployeeOrder from "./pages/order/employeeOrder";
 function App() {
   return (
     <BrowserRouter>
@@ -115,15 +118,19 @@ function App() {
           <Route path="/member/memberinfo" element={<Memberlogin />} />
           <Route path="/member/changepwd" element={<ChangePwd />} />
         </Route>
-        <Route path="/employee" element={
+        <Route path="/employee/" element={
           <ProtectedRoute
             admin="employeeAdmin"
           >
             <Employee />
           </ProtectedRoute>
         }>
-          <Route index="/employee/" element={<EmployeeDone />} />
-          <Route index="/employee/employeeDone" element={<EmployeeDone />} />
+          <Route path="/employee/" element={<EmployeeList />} />
+          <Route path="/employee/employeeDone" element={<EmployeeDone />} />
+          <Route
+            path="/employee/employeeDone/:ornumber"
+            element={<EmployeeOrder />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

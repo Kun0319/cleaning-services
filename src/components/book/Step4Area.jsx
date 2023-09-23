@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BookContext from "./book-context";
 import Button from "./Button";
+import AlertMsg from "./AlertMsg";
 
 const Step4Area = () => {
   const weeks = [
@@ -18,13 +19,14 @@ const Step4Area = () => {
   const ctx = useContext(BookContext);
   const time = ["08:00", "13:00", "18:00"];
   const [price, setPrice] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [showAlertErr, setShowAlertErr] = useState(false);
 
   let checkForm = async (e) => {
     e.preventDefault();
     let { user } = ctx;
     if (user === null) {
-      alert("發生異常，請重新填寫表單！");
-      return navigate("/book");
+      return setShowAlertErr(true);
     }
     const cardNumber = "0000-1111-2222-3333";
     const monthYear = "10/23";
@@ -43,7 +45,7 @@ const Step4Area = () => {
       cardInput[4].value === monthYear &&
       cardInput[5].value === securityCode
     ) {
-      if (!agreeCheck.checked) alert("請確實閱讀並勾選服務條款與隱私權政策");
+      if (!agreeCheck.checked) setShowAlert(true);
       else {
         const {
           employeeid,
@@ -80,7 +82,7 @@ const Step4Area = () => {
         );
         setTimeout(() => {
           alert(`付款成功！`);
-          window.location="/book/book5";
+          window.location.replace("/book/book5");
         }, 2000);
       }
     } else {
@@ -210,6 +212,11 @@ const Step4Area = () => {
             我已閱讀 <u>非清潔服務範圍</u>、<u>取消或更改服務政策</u>、
             <u>服務條款</u> 及 <u>隱私權政策</u>
           </div>
+          {showAlert && <AlertMsg msg={"請確實閱讀並勾選服務條款與隱私權政策!"} close={() => setShowAlert(false)} />}
+          {showAlertErr && <AlertMsg msg={"發生了點小問題，請重新填寫表單！"} close={() => {
+            setShowAlertErr(false);
+            navigate('/book');
+          }} />}
         </div>
         <Button pre="/book/book3" next="/book/book5" onClick={checkForm} />
       </form>

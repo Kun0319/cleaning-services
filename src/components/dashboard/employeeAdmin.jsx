@@ -18,7 +18,7 @@ const SidebarAdmin = () => {
         <div>
           <h5 className="aside-title">訂單狀態</h5>
           <Link
-            to={"/member/employeeDone"}
+            to={"/employee/"}
             className="Link-decoration"
             onClick={(e) => {
               changeStyle(e);
@@ -27,7 +27,7 @@ const SidebarAdmin = () => {
             <span>進行中訂單</span>
           </Link>
           <Link
-            to={"/member/employeeDone"}
+            to={"/employee/employeeDone"}
             className="Link-decoration"
             onClick={(e) => {
               changeStyle(e);
