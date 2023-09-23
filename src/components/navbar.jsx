@@ -38,7 +38,7 @@ class navbar extends Component {
             } else if (userInfo.data.data.user[0].admin == 1) {
                 window.location.href = "/dashboard"; 
             } else if (userInfo.data.data.user[0].admin == 2) {
-                window.location.href = "/employee/"
+                window.location.href = "/employee"
             }
         } else {
 

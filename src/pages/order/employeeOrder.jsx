@@ -1,153 +1,193 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useParams, Link } from "react-router-dom";
-import "../../components/member/member.css";
-import DashBoardAlert from "../../components/dashboard/DashBoardAlert";
-const Member = () => {
-  const { ornumber } = useParams();
-  const [orderData, setOrderData] = useState({});
-  const [success, setSuccess] = useState("");
-  const [showAlert, setShowAlert] = useState(false)
-  const {
-    userid,
-    orname,
-    oremail,
-    orphone,
-    orcity,
-    orrural,
-    oraddress,
-    money,
-    pay,
-    ordertime,
-    orderdone,
-    state,
-    note,
-    employeeid,
-    date,
-    time,
-    weeks,
-    donetime,
-    employeename,
-    employeephone,
-    employeeemail,
-  } = orderData;
+import React, { useState, useEffect } from "react";
+import "../../components/dashboard/order.css";
+import Score from "../../components/dashboard/score";
+import axios from "../../components/login/axios";
+import { useParams } from "react-router-dom";
 
-  //接收資料
+
+
+const StaffOrderDone = () => {
+  const [modal, setModal] = useState(false)
+  const [orderAPI, setOrderAPI] = useState('')
+  const [staffAPI, setStaffAPI] = useState('')
+  const [evaluateAPI, setEvaluateAPI] = useState({})
+  // const [isClose, setIsclose] = useState("")
+  const [updataScore, setUpdataScore] = useState(false);
+  const { ornumber } = useParams()
+
+
   useEffect(() => {
     async function fetchData() {
       try {
         const result = await axios.get(
-          `http://localhost:4107/AdminOrder/${ornumber}`
+          `http://localhost:4107/member/${ornumber}`
+
         );
-        setOrderData(result.data[0]);
+        setOrderAPI(() => result.data.results1[0]);//訂單資料
+
+        setOrderAPI(() => result.data.results1[0]);//訂單資料
+
+        setStaffAPI(() => result.data.results2[0])//員工資料
+
+        setEvaluateAPI(() => result.data.results3[0])//評價
+
+
+
+
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     }
     fetchData();
-    if (success) {
-      setTimeout(() => {
-        setShowAlert(true)
-      }, 2000);
-    }
-  }, [ornumber, state]);
+  }, [ornumber]);
+  // ornumber,
+  const { note, time, donetime, weeks, orcity, orrural, oraddress, money, state, orderdone, ordertime, pay, orname, orphone, oremail } = orderAPI
 
-  const handleOrderStatus = (state) => {
-    if (state === 0) {
-      return "新訂單";
-    } else if (state === 1) {
-      return "進行中";
-    }
-    return "已完成";
-  };
-
-  const handleTime = (time) => {
-    if (time === 0) {
-      return "08:00";
-    } else if (time === 1) {
-      return "13:00";
-    }
-    return "18:00";
-  };
+  function handleTime(time) {
+    if (time === 0) return "08:00"
+    if (time === 1) return "13:00"
+    if (time === 2) return "18:00"
+  }
 
   return (
-    <div>
-      <div className="Container">
-        <h3 className="orderh3">管理訂單</h3>
-        <div
-          className={`orderContainer bgdone ${state === 2 ? "complete" : ""}`}
-        >
-          <div className="orderContent row">
-            <div className="col" style={{
-              fontSize: "30px"
-            }}>
-              <span style={{ color: "red" }}>{donetime}/</span>
-              <span>{weeks}</span>
-              <p>{handleOrderStatus(state)}</p>
-            </div>
-            <table border={1} className="col">
+    <>
+      <h3 className="m-0 h3_DEF">會員訂單</h3>
+      <div className="dashOrder">
+        <h3 className="m-0 h3_RWD">會員訂單</h3>
+        {updataScore && <div className="updataScore">
+        </div>}
+        {modal && <Score
+          setUpdataScore={setUpdataScore} setModal={setModal} orderAPI={orderAPI} evaluateAPI={evaluateAPI} staffAPI={staffAPI} />}
+
+        <div >剩餘次數：<h1 class="text-danger" style={{ display: "inline" }}>{donetime}</h1><h1 style={{ display: "inline" }} >/{weeks}次</h1></div>
+
+
+        <div className="contact-table">
+          <table border={1} className="w-100">
+            <thead className="orderThead tbody_def">
               <tr>
-                <th style={{ fontWeight: "600" }}>
-                    訂購人資料
-                </th>
+                <th>訂單編號</th>
+                <th>清潔地點</th>
+                <th>成立時間</th>
+                <th>時段</th>
+                <th>備註</th>
+              </tr>
+            </thead>
+            <tbody className="doneTbody orderDn tbody_def">
+              <tr>
+                <td>{ornumber}</td>
+                <td>{orcity + orrural + oraddress}</td>
+                <td>{new Date(ordertime).toLocaleDateString("en-CA")}</td>
+                <td>{handleTime(time)}</td>
+                <td>{note || "無備註"}</td>
+              </tr>
+            </tbody>
+            <thead className="orderThead orderDn tbody_RWD">
+              <tr>
+                <td>訂單編號:</td>
+                <td>{ornumber}</td>
               </tr>
               <tr>
-                <td>會員編號:{userid}</td>
+                <td>清潔地點:</td>
+                <td>{orcity + orrural + oraddress}</td>
               </tr>
               <tr>
-                <td>訂購人姓名:{orname}</td>
+                <td>成立時間:</td>
+                <td>{new Date(ordertime).toLocaleDateString("en-CA")}</td>
               </tr>
               <tr>
-                <td>聯絡方式:{orphone}</td>
+                <td>時段:</td>
+                <td>{handleTime(time)}</td>
               </tr>
               <tr>
-                <td>Email:{oremail}</td>
+                <td>備註:</td>
+                <td>{note || "無備註"}</td>
               </tr>
-            </table>
-          </div>
-          {/* 訂單資訊 */}
-          <table border={1}>
-            <tr>
-              <th style={{ fontWeight: "600" }}>訂單資料</th>
-              <th></th>
-            </tr>
-            <tr>
-              <td>訂單編號:{ornumber}</td>
-              <td>服務日期:{new Date(date).toLocaleDateString("en-CA")}</td>
-            </tr>
-            <tr>
-              <td>服務時段:{handleTime(time)}</td>
-              <td>服務週數:{weeks}</td>
-            </tr>
-            <tr>
-              <td>付款方式:{pay ? "信用卡" : "無"}</td>
-              <td>訂單金額:{money}元</td>
-            </tr>
-            <tr>
-              <td>服務次數:{donetime}</td>
-              <td>清潔地址:{orcity + orrural + oraddress}</td>
-            </tr>
-            <tr>
-              <td>訂單日期:{new Date(ordertime).toLocaleString("en-CA")}</td>
-              <td>
-                完成時間:
-                {orderdone ? new Date(orderdone).toLocaleString("en-CA") : ""}
-              </td>
-            </tr>
+            </thead>
+
+
+            <thead className="orderThead tbody_def">
+              <tr>
+                {/* <th>服務次數</th> */}
+                <th colSpan={2}>訂單狀態</th>
+                <th colSpan={3}>完成時間</th>
+              </tr>
+            </thead>
+            <tbody className="doneTbody orderDn tbody_def">
+              <tr>
+                <td colSpan={2}>{state === 2 ? <span className="text-success fw-bold">已完成</span> : <span className="text-danger fw-bold">進行中</span>}</td>
+                {/* <td>{orderdone ? new Date(orderdone).toLocaleDateString("en-CA") : "尚未完成"}</td> */}
+                <td colSpan={3}>{state === 2 && orderdone ? new Date(orderdone).toLocaleDateString("en-CA") : "尚未完成"}</td>
+              </tr>
+            </tbody>
+
+            <thead className="orderThead orderDn tbody_RWD">
+              <tr>
+                <td>完成狀態:</td>
+                <td>{state === 2 ? <span className="text-success fw-bold">已完成</span> : <span className="text-danger fw-bold">進行中</span>}</td>
+              </tr>
+
+              <tr>
+                <td>完成時間:</td>
+                <td>{state === 2 && orderdone ? new Date(orderdone).toLocaleDateString("en-CA") : "尚未完成"}</td>
+              </tr>
+            </thead>
           </table>
-          <div className="orderContent">備註:{note ?? "無"}</div>
         </div>
-        {/* 按鈕 */}
-        {state !== 2 ? (
-          <div>
-          </div>
-        ) : (
-          <div className="orderContent">訂單完成</div>
-        )}
-      </div>
-      {showAlert && <DashBoardAlert Cancel={"發生錯誤"} checkout={"打掃完成"} message={success} onClose={() => { window.location.reload() }} />}
-    </div>
-  );
+
+        <div className="contact-table">
+          <table border={1} className="w-100">
+            <thead className="orderThead tbody_def">
+              <tr>
+                {/* <th>服務次數</th> */}
+                <th>客戶姓名:</th>
+                <th>客戶電話:</th>
+                <th>客戶信箱:</th>
+              </tr>
+            </thead>
+            <tbody className="doneTbody orderDn tbody_def">
+              <tr>
+                <td>{orname}</td>
+                <td>{orphone}</td>
+                <td>{oremail}</td>
+              </tr>
+            </tbody>
+
+            <thead className="orderThead orderDn tbody_RWD">
+              <tr>
+                <td>客戶姓名:</td>
+                <td>{orname}</td>              </tr>
+              <tr>
+                <td>客戶電話:</td>
+                <td>{orphone}</td>
+              </tr>
+              <tr>
+                <td>客戶信箱:</td>
+                <td>{oremail}</td>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
+
+
+
+        {/*上傳圖片 */}
+        <div className="contact-table">
+          <form action="">
+            <input
+              className="btn"
+              type="file"
+              id="file-uploader"
+              data-target="file-uploader"
+              accept=".png, .jpg, .jpeg"
+              multiple="multiple"
+              style={{ color: "#664d03", }}
+            />
+          </form>
+        </div>
+      </div >
+    </>);
 };
 
-export default Member;
+export default StaffOrderDone;

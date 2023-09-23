@@ -14,6 +14,7 @@ const OrderList = (props) => {
     const [toggle, setToggle] = useState(true)
 
 
+
     // 訂單API
     useEffect(() => {
         async function fetchData() {
@@ -76,6 +77,7 @@ const OrderList = (props) => {
         setStart(start + limitCount < data.length ? start + limitCount : start);
     };
 
+    
     function handleSort(data, e, toggle) {
         let aa = e.target.id;
         const sortInfo = (data, aa, toggle) => {
