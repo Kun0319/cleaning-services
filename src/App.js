@@ -38,6 +38,8 @@ import {
   EmployeeDone,
 } from "./components/dashboard/employeeSet";
 import EmployeeOrder from "./pages/order/employeeOrder";
+import EmployeeInfo from "./components/login/EmployeeInfo";
+import EmployeePwd from "./components/login/EmployeePwd";
 
 function App() {
   return (
@@ -128,6 +130,8 @@ function App() {
         }>
           <Route path="/employee/" element={<EmployeeList />} />
           <Route path="/employee/employeeDone" element={<EmployeeDone />} />
+          <Route path="/employee/memberinfo" element={<EmployeeInfo />} />
+          <Route path="/employee/EmployeePwd" element={<EmployeePwd />} />
           <Route
             path="/employee/employeeDone/:ornumber"
             element={<EmployeeOrder />}
