@@ -390,7 +390,10 @@ const SignUp = () => {
               autoComplete="off"
               required
               onInput={formDataChange}
-              onChange={(e) => setEmail(validEmail.test(e.target.value))}
+              onChange={(e) => {
+                setEmail(validEmail.test(e.target.value));
+                setUserEmail(e.target.value);
+              }}
             ></input>
             <input
               type="button"
