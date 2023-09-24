@@ -5,7 +5,6 @@ import BookContext from "./book-context";
 import Button from "./Button";
 import AlertMsg from "./AlertMsg";
 
-
 const Step3Area = () => {
   const navigate = useNavigate();
   const ctx = useContext(BookContext);
@@ -185,11 +184,23 @@ const Step3Area = () => {
               <input type="text" id="notes" />
             </div>
           </div>
-          {showAlert && <AlertMsg msg={"請完成表單填寫!"} close={() => setShowAlert(false)} />}
-          {showAlertErr && <AlertMsg msg={"發生了點小問題，請重新填寫表單！"} close={() => {
-            setShowAlertErr(false);
-            navigate('/book');
-          }} />}
+          {showAlert && (
+            <AlertMsg
+              msg={"請完成表單填寫!"}
+              close={() => setShowAlert(false)}
+              showAlert={showAlert}
+              setShowAlert={setShowAlert}
+            />
+          )}
+          {showAlertErr && (
+            <AlertMsg
+              msg={"發生了點小問題，請重新填寫表單！"}
+              close={() => {
+                setShowAlertErr(false);
+                navigate("/book");
+              }}
+            />
+          )}
         </div>
         <Button pre="/book/book2" next="/book/book4" onClick={checkForm} />
       </form>

@@ -31,6 +31,7 @@
   color: #fff3cd;
   font-weight: bolder;
   font-size: 1.2rem;
+  text-align: center;
   border: 3px solid #997404;
   border-radius: 12px;
   padding: 1.2rem;
@@ -51,6 +52,32 @@
 
 .bookAlertBtn:hover {
   opacity: 1;
+}
+
+:is(.bookAlert, .forgetAlert) input {
+  border-radius: 10px;
+  border: 2px solid #997404;
+}
+.forgetAlert {
+  width: 30vw;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff3cd;
+  color: #664d03;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border: 3px solid #997404;
+  border-radius: 12px;
+  padding: 2rem 1.2rem;
+  box-shadow: 0px 0px 5px #664d03b2;
 }
 
 /* Button */
@@ -132,7 +159,7 @@
 }
 
 .progressIcon-active {
-  text-shadow: 0 3px 2px #ffc107;
+  text-shadow: 0 3px 2px #ffe69c;
 }
 
 .progress-line {
@@ -768,4 +795,64 @@
 
 .show-form {
   animation: show 1s ease-out;
+}
+@keyframes color {
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
+/* RenewPwd */
+.renewTitle {
+  height: 100vh;
+}
+.renewTitle > h2 {
+  color: #997404;
+  margin: 2rem;
+}
+.setPwd {
+  background-color: white;
+  color: #664d03;
+  width: 30vw;
+  min-width: 300px;
+  padding: 5rem 2rem;
+  border: 3px solid #fff3cd;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url("../../../public/images/bookbg.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+.renewPwd_input {
+  width: 100%;
+  font-size: 1rem;
+  color: #664d03;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  background-color: white;
+  padding: 0.2rem;
+  margin-right: 10px;
+}
+.renewPwd_label {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+#renewPwdBtn {
+  font-size: 1rem;
+  font-weight: bold;
+  width: 30%;
+  padding: 0.3rem 0.5rem;
+  border: none;
+  border-radius: 10px;
+  background-color: #ffc107;
+  opacity: 0.7;
+  transition: 0.3s;
+}
+#renewPwdBtn:hover {
+  opacity: 1;
+}
+.setNewPwd {
+  width: 80%;
 }

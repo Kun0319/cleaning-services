@@ -194,11 +194,23 @@ const Step1Area = () => {
             </div>
           </div>
         </div>
-        {showAlert && <AlertMsg msg={"請完成表單填寫!"} close={() => setShowAlert(false)} />}
-        {showAlertErr && <AlertMsg msg={"發生了點小問題，請重新填寫表單！"} close={() => {
-          setShowAlertErr(false);
-          navigate('/book');
-          }} />}
+        {showAlert && (
+          <AlertMsg
+            msg={"請完成表單填寫!"}
+            close={() => setShowAlert(false)}
+            showAlert={showAlert}
+            setShowAlert={setShowAlert}
+          />
+        )}
+        {showAlertErr && (
+          <AlertMsg
+            msg={"發生了點小問題，請重新填寫表單！"}
+            close={() => {
+              setShowAlertErr(false);
+              navigate("/book");
+            }}
+          />
+        )}
       </div>
       <Button class="not-press" next="/book/book2" onClick={checkForm} />
     </form>
