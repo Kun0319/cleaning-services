@@ -53,18 +53,10 @@ ul {
 }
 
 .loginli {
-<<<<<<< HEAD
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    margin-top: 24px;
-
-=======
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-bottom: 24px;
->>>>>>> hong
+  margin-top: 24px;
 }
 
 .loginContainer p {
