@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import "../../components/member/member.css";
-import DashBoardAlert from "../../components/dashboard/DashBoardAlert";
 import MemberDone from "../../components/dashboard/MemberDone";
 import { useAttendance } from "../../components/dashboard/useAttendance";
 import ControllAccordion from "../../components/dashboard/ControllAccordion";
@@ -10,8 +9,6 @@ import ControllAccordion from "../../components/dashboard/ControllAccordion";
 const Member = () => {
   const { ornumber } = useParams();
   const [orderData, setOrderData] = useState({});
-  const [success, setSuccess] = useState("");
-  const [showAlert, setShowAlert] = useState(false)
   const { attdata } = useAttendance({ ornumber:ornumber})
   const {
     userid,
@@ -37,15 +34,7 @@ const Member = () => {
     employeeemail,
   } = orderData;
 
-  async function handleOrderUpdata(data) {
-    try {
-      await axios.put(`http://localhost:4107/AdminOrder/updata/${ornumber}`, {
-        data,
-      });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
+  
 
   //接收資料
   useEffect(() => {
@@ -60,11 +49,6 @@ const Member = () => {
       }
     }
     fetchData();
-    if (success) {
-      setTimeout(() => {
-        setShowAlert(true)
-      }, 2000);
-  }
   }, [ornumber,state]);
 
   const handleOrderStatus = (state) => {
@@ -84,12 +68,6 @@ const Member = () => {
     }
     return "18:00";
   };
-  const getDateTime=()=>{ 
-    const Y=new Date().getFullYear()
-    const M=new Date().getMonth()+1
-    const D = new Date().getDate()
-    return `${Y}-${M}-${D}`
-  }
 
   return (
     <div>
@@ -184,65 +162,12 @@ const Member = () => {
               </td>
             </tr>
           </table>
-          <div className="orderContent">備註:{note == '' && "無"}</div>
+          <div className="orderContent">備註:{note || "無"}</div>
           {attdata?.length !== 0 && <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
                 <ControllAccordion items={attdata} Accordion={MemberDone}  />
             </div> }
         </div>
-        {/* 按鈕 */}
-        {/* {state !== 2 ? (
-          <div className="btncontain">
-            <button
-              className={weeks !== donetime ? "notClear" : ""}
-              disabled={weeks !== donetime ? true : false}
-              onClick={() => {
-                setOrderData((prevStatus) => ({
-                  ...prevStatus,
-                  state: 2,
-                  orderdone:getDateTime(),
-                }));
-
-                handleOrderUpdata({
-                  ...orderData,
-                  state: 2,
-                  orderdone:getDateTime(),
-                });
-                setSuccess("success")
-              }}
-            >
-              訂單完成
-            </button>
-            <button
-              onClick={() => {
-                setOrderData((count) => {
-                  return {
-                    ...count,
-                    donetime:
-                      count.donetime + 1 <= weeks
-                        ? count.donetime + 1
-                        : count.donetime,
-                    state:count.state=1
-                  };
-                });
-                handleOrderUpdata({
-                  ...orderData,
-                  donetime:
-                    orderData.donetime + 1 <= weeks
-                      ? orderData.donetime + 1
-                      : orderData.donetime,
-                      state:orderData.state=1
-                });
-                
-              }}
-            >
-              打掃完成
-            </button>
-          </div>
-        ) : (
-          <div className="orderContent">訂單完成</div>
-        )} */}
       </div>
-      {showAlert && <DashBoardAlert Cancel={"發生錯誤"} checkout={"打掃完成"} message={success} onClose={() => { window.location.reload() }} />}
     </div>
   );
 };

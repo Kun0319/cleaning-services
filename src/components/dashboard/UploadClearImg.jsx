@@ -1,26 +1,39 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect} from 'react'
 import axios from '../login/axios'
+import DashBoardAlert from './DashBoardAlert';
 
-const UploadClearImg = ({ empClearData })=>{ 
+const UploadClearImg = ({ empClearData }) => {
     const [imageData, setImageData] = useState([]);
     const [imagesUp, setImagesUp] = useState({});
     const [dateTime, setDateTime] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const [imgSrc, setImgSrc] = useState('');
+    const [showAlert, setShowAlert] = useState(false)
+    const [success, setSuccess] = useState("");
 
-    const handleImagesUp = () => { 
+    const handleImagesUp = () => {
         const formData = new FormData();
         
         const jsonString = JSON.stringify(empClearData)
-        formData.append('data',jsonString )
+        formData.append('data', jsonString)
         for (const item of imagesUp) {
             formData.append('photo', item)
         }
         
-        if (true) {
-            axios.put("/updata/orderdoneimages",formData)
+        if (imageData) {
+            axios.put("/updata/orderdoneimages", formData)
+            setSuccess("success")
+        } else {
+            setSuccess("failed")
         }
     }
+
+    useEffect(() => { 
+        if (success) {
+            setShowAlert(true)
+        }
+    },[success,showAlert])
+    
 
     const handleImagePut=(e)=> {
         const images = [...e.target.files].map((file) => {
@@ -55,6 +68,7 @@ const UploadClearImg = ({ empClearData })=>{
 
     return (
         <form>
+            {showAlert && <DashBoardAlert Cancel={"檔案有誤"} checkout={"打掃完成!!"} message={success} onClose={() => { window.location.reload() }} />}
             {isOpen && imgDiv(imgSrc) }
                 <label className='orderBtn' htmlFor="lable">
                 <input
