@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useContext } from "react";
 
 import axios from "./axios";
 import { Link } from "react-router-dom";
+import ForgetPwd from "../book/ForgetPwd";
 
 const LOGIN_URL = "/login";
 
@@ -87,6 +88,8 @@ const Login = () => {
     }
   };
 
+  const [isForget, setIsForget] = useState(false);
+
   return (
     <>
       {success ? (
@@ -138,7 +141,7 @@ const Login = () => {
               </li>
               <li className="loginli">
                 <img src="./images/password.png" className="loginicon" />
-                <p>密碼:</p>
+                <p>密碼</p>
                 <input
                   placeholder="請輸入密碼"
                   type="password"
@@ -150,9 +153,17 @@ const Login = () => {
                 ></input>
               </li>
             </ul>
-            <button className="signupbtn" style={{}}>
-              登入
-            </button>
+            <div className="d-flex align-items-center justify-content-center w-100">
+              <button className="signupbtn" style={{}}>
+                登入
+              </button>
+              <span id="forgetPwd" onClick={() => setIsForget(true)}>
+                忘記密碼?
+              </span>
+              {isForget && (
+                <ForgetPwd setIsForget={setIsForget} isForget={isForget} />
+              )}
+            </div>
           </form>
         </div>
       )}

@@ -9,6 +9,7 @@ import {
   validId,
 } from "./SignupRegEx";
 import { sendVeriCode, checkVeriCode } from "../book/utils";
+import AlertMsg from "../book/AlertMsg";
 // 日期選擇套件跟CSS樣式
 import DatePicker from "react-date-picker";
 import "./DatePicker.css";
@@ -29,7 +30,6 @@ const SignUp = () => {
   const [upname, setName] = useState("");
   const [upbirthday, setBirthday] = useState("");
   const [upemail, setEmail] = useState("");
-  const [userEmail, setUserEmail] = useState("");
   const [upphone, setPhone] = useState("");
   const [uprural, setRural] = useState("");
   const [upid, setId] = useState(""); //身分證字號
@@ -220,6 +220,10 @@ const SignUp = () => {
   const [userCode, setUserCode] = useState(null);
   const [workMode, setWorkMode] = useState(false);
   const [seconds, setSeconds] = useState(60);
+  const [userEmail, setUserEmail] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [msg, setMsg] = useState("");
+
   useEffect(() => {
     let interval;
     if (workMode && seconds > 0) {
@@ -235,18 +239,20 @@ const SignUp = () => {
     return () => clearInterval(interval);
   }, [workMode, seconds]);
 
-  function startCountdown(e) {
-    if (upemail) {
-      setUserEmail(e.target.previousSibling.value);
-      setWorkMode(true);
+  async function startCountdown(e) {
+    setUserEmail(e.target.previousSibling.value);
+    if (userEmail) {
+      let result = await sendVeriCode(userEmail);
+      if (result) {
+        setWorkMode(true);
+        setMsg("驗證郵件已寄送至您的信箱！");
+        setShowAlert(true);
+      }
     } else {
-      return <ErrorAlert />;
+      setMsg("信箱填寫錯誤或已被註冊！");
+      setShowAlert(true);
     }
   }
-
-  useEffect(() => {
-    sendVeriCode(userEmail);
-  }, [userEmail]);
 
   return (
     <div className="loginflex  signupCalendar">
@@ -412,6 +418,16 @@ const SignUp = () => {
             />
             {RexgeValid(checkCode)}
           </li>
+          {showAlert && (
+            <AlertMsg
+              msg={msg}
+              close={() => {
+                setShowAlert(false);
+              }}
+              showAlert={showAlert}
+              setShowAlert={setShowAlert}
+            />
+          )}
 
           <li className="loginli">
             <img src="./images/password.png" className="loginicon" />
