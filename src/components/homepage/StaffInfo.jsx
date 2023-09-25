@@ -162,16 +162,16 @@ const StaffInfo = (props) => {
             </div>
           </div>
           <div className="scorecomment">
-            <div className="customername"><h5>{formatOrName(props.orname)}     <span className="staffAbility" style={{ position: "relative" }}>
+            <div className="customername"><h5>{formatOrName(props.orname)} <span className="staffAbility" style={{ position: "relative" }}>
               <img
                 src="images\staffInfo-star.png"
                 alt="star-y"
                 style={{ clipPath: `inset(0 ${100 - props.stars * 20}% 0 0)` }}
               />
-              <img
+              {/* <img
                 src="images\staffInfo-star2.png"
                 alt="star-g"
-              />
+              /> */}
             </span></h5></div>
             <hr />
             <div className="customercomment">{props.reply}</div>
