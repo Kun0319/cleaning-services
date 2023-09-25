@@ -276,7 +276,7 @@ const OrderDone = () => {
             <div>
               <h5 style={{ display: "flex" }}>
                 顧客評分:
-                <div style={{ position: "relative" }}>
+                <div style={{ position: "relative", zIndex: 1 }}>
                   <img
                     src="/images/staffInfo-star.png"
                     alt="star-y"

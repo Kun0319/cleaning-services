@@ -313,6 +313,7 @@
   background-color: #fff8e1a0;
   width: 100cqmax;
   height: 100cqmax;
+  z-index: 10;
 }
 
 .h3_DEF {

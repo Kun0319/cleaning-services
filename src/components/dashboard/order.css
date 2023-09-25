@@ -272,7 +272,7 @@ img[alt="star-g"] {
   }
 }
 
-.animated-image {
+/* .animated-image {
   animation: myAnimation_order 2s linear infinite;
 }
 @keyframes myAnimation_Accordion {
@@ -282,7 +282,7 @@ img[alt="star-g"] {
   100% {
     transform: scaleY(1);
   }
-}
+} */
 
 .animated-accordion {
   animation: myAnimation_Accordion 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
