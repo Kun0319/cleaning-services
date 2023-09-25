@@ -19,15 +19,28 @@ const StaffInfo = (props) => {
   const [modal, setmodal] = useState([]);
 
   useEffect(() => {
-      axios.get('http://localhost:4107/total/modal')
-          .then((res) => {
-              setmodal(res.data);
-              console.log(res)
-          })
-          .catch((err) => {
-              console.error('no', err);
-          });
+    axios.get('http://localhost:4107/total/modal')
+      .then((res) => {
+        setmodal(res.data);
+        console.log(res)
+      })
+      .catch((err) => {
+        console.error('no', err);
+      });
   }, []);
+
+
+  const formatOrName = (name) => {
+    if (name.length < 2) {
+      return name;
+    }
+
+    const firstName = name.charAt(0);
+    const lastName = name.charAt(name.length - 1);
+    const middleX = 'x'.repeat(name.length - 2);
+
+    return `${firstName}${middleX}${lastName}`;
+  };
 
   return (
     <div>
@@ -49,7 +62,7 @@ const StaffInfo = (props) => {
           員工姓名: <span>{props.name}</span>
         </span>
         {/* 評分 */}
-        <div className="staffAbility" style={{position:"relative"}}>
+        <div className="staffAbility" style={{ position: "relative" }}>
           <img
             src="images\staffInfo-star.png"
             alt="star-y"
@@ -58,8 +71,8 @@ const StaffInfo = (props) => {
           <img
             src="images\staffInfo-star2.png"
             alt="star-g"
-            />
-          </div>
+          />
+        </div>
         {/* 員工案件數 */}
         <div className="staffAbility">
           <div>
@@ -119,7 +132,7 @@ const StaffInfo = (props) => {
                 <img
                   src="images\staffInfo-star.png"
                   alt="star"
-                  style={{ clipPath: `inset(0 ${100 - props.clean * 20}% 0 0)`,maxWidth: "120px" }}
+                  style={{ clipPath: `inset(0 ${100 - props.clean * 20}% 0 0)`, maxWidth: "120px" }}
                 />
               </div>
               <div className="scorepoint">
@@ -127,7 +140,7 @@ const StaffInfo = (props) => {
                 <img
                   src="images\staffInfo-star.png"
                   alt="star"
-                  style={{ clipPath: `inset(0 ${100 - props.efficiency * 20}% 0 0)`,maxWidth: "120px" }}
+                  style={{ clipPath: `inset(0 ${100 - props.efficiency * 20}% 0 0)`, maxWidth: "120px" }}
                 />
               </div>
               <div className="scorepoint">
@@ -135,7 +148,7 @@ const StaffInfo = (props) => {
                 <img
                   src="images\staffInfo-star.png"
                   alt="star"
-                  style={{ clipPath: `inset(0 ${100 - props.careful * 20}% 0 0)`,maxWidth: "120px" }}
+                  style={{ clipPath: `inset(0 ${100 - props.careful * 20}% 0 0)`, maxWidth: "120px" }}
                 />
               </div>
               <div className="scorepoint">
@@ -143,13 +156,23 @@ const StaffInfo = (props) => {
                 <img
                   src="images\staffInfo-star.png"
                   alt="star"
-                  style={{ clipPath: `inset(0 ${100 - props.manner * 20}% 0 0)`,maxWidth: "120px" }}
+                  style={{ clipPath: `inset(0 ${100 - props.manner * 20}% 0 0)`, maxWidth: "120px" }}
                 />
               </div>
             </div>
           </div>
           <div className="scorecomment">
-            <div className="customername"><h5>{props.orname}</h5> </div>
+            <div className="customername"><h5>{formatOrName(props.orname)} <span className="staffAbility" style={{ position: "relative" }}>
+              <img
+                src="images\staffInfo-star.png"
+                alt="star-y"
+                style={{ clipPath: `inset(0 ${100 - props.stars * 20}% 0 0)` }}
+              />
+              {/* <img
+                src="images\staffInfo-star2.png"
+                alt="star-g"
+              /> */}
+            </span></h5></div>
             <hr />
             <div className="customercomment">{props.reply}</div>
           </div>

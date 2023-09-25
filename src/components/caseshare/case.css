@@ -186,7 +186,6 @@
 }
 
 
-
 @media (max-width: 992px) {
     .commentitem {
         display: flex;
@@ -239,6 +238,20 @@
     border: 1px solid #FFC107;
     
   }
+
+  .memberscoreOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .modalbutton{
     position:fixed;
     left:525px;
@@ -266,12 +279,3 @@
         background-color: #fff8e100;
       }
 }
-/* 
-@media (max-width: px) {
-    .modalbutton{
-        position:absolute;
-        left:400px;
-        top:5px;
-        background-color: #fff8e100;
-      }
-} */

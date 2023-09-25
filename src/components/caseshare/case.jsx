@@ -1,7 +1,5 @@
 import React from "react";
-import { useState } from "react";
 import './case.css';
-import CommentItem from "./CommentItem";
 import Navbar from "../navbar";
 import Footer from "../Footer";
 
