@@ -16,7 +16,7 @@ const Home = () => {
     const timer = setTimeout(() => {
       setShowGIF(false);
 
-    }, 3000); 
+    }, 1000); 
 
     return () => clearTimeout(timer); 
   }, []);
