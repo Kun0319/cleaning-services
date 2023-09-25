@@ -36,7 +36,7 @@ class navbar extends Component {
             if (userInfo.data.data.user[0].admin == false) {
                 window.location.href = "/member";
             } else if (userInfo.data.data.user[0].admin == 1) {
-                window.location.href = "/dashboard"; 
+                window.location.href = "/dashboard";
             } else if (userInfo.data.data.user[0].admin == 2) {
                 window.location.href = "/employee"
             }
@@ -119,7 +119,6 @@ class navbar extends Component {
                                     登入
                                 </button>
                             </Link>}
-
 
                         </div>
                     </Navbar>
