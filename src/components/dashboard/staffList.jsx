@@ -2,6 +2,7 @@ import "../dashboard/dashboard.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useSortableData from "../dashboard/useSortInfo";
 
 const StaffList = (props) => {
   const limitCount = 8; //顯示幾筆
@@ -11,6 +12,7 @@ const StaffList = (props) => {
   const [data, setData] = useState([]); //資料變數
   const [searchInput, setSearchInput] = useState(""); //搜尋變數
   const [orderAPI, setOrderAPI] = useState([]); //API變數
+  const { sortedData, handleSort } = useSortableData(orderAPI);
 
   // 會員資料API
   useEffect(() => {
@@ -84,16 +86,16 @@ const StaffList = (props) => {
       <table>
         <thead className="orderThead">
           <tr id="orderTh">
-            <th>員工編號</th>
-            <th>姓名</th>
-            <th>連絡電話</th>
-            <th>Email</th>
-            <th>服務件數</th>
-            <th>良民證</th>
-            <th>浣熊認證</th>
+            <th onClick={() => {setOrderAPI(handleSort("employeeid"))}}>員工編號</th>
+            <th onClick={() => {setOrderAPI(handleSort("employeename"))}}>姓名</th>
+            <th onClick={() => {setOrderAPI(handleSort("employeephone"))}}>連絡電話</th>
+            <th onClick={() => {setOrderAPI(handleSort("employeeemail"))}}>Email</th>
+            <th onClick={() => {setOrderAPI(handleSort("cases"))}}>服務件數</th>
+            <th onClick={() => {setOrderAPI(handleSort("goodid"))}}>良民證</th>
+            <th onClick={() => {setOrderAPI(handleSort("racheck"))}}>浣熊認證</th>
           </tr>
         </thead>
-        <tbody className="orderTbody">
+        <tbody className="orderTbody">  
           {searchInput.length > 1
             ? data
               .slice(start, number)

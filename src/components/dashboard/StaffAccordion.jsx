@@ -1,6 +1,6 @@
 import "./dashboard.css";
 
-function StaffAccordion({ staffListData, active, onClick }) {
+function StaffAccordion({ item, active, onClick }) {
   const {
     ornumber,
     employeeid,
@@ -21,7 +21,7 @@ function StaffAccordion({ staffListData, active, onClick }) {
     ordertime,
     orderdone,
     state
-  } = staffListData;
+  } = item;
 
   // 判斷訂單狀態
   const handleOrderStatus = (state) => {

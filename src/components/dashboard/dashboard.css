@@ -88,7 +88,7 @@
 }
 
 /* #################################member-style */
-.aside-main>h3 {
+.aside-main > h3 {
   color: #eaac00;
   font-family: Inter;
   font-size: 28px;
@@ -233,6 +233,7 @@
   margin-top: 5px;
   /* position: relative; */
   cursor: pointer;
+  line-height: 2;
 }
 
 .staff-header {
@@ -268,6 +269,10 @@
 
 .ControllAccordion::-webkit-scrollbar {
   display: none;
+}
+.ControllAccordion {
+  height: 200px;
+  width: 100%;
 }
 
 .blacklist-content {
@@ -328,6 +333,29 @@
   margin-bottom: 25px;
 }
 
+#orderTh th {
+  cursor: pointer;
+}
+
+#orderTh .arrup::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  transform: translateY(5px);
+  background-image: url("/public/images/arrup.png");
+  background-repeat: no-repeat;
+}
+#orderTh .arrdown::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  transform: translateY(5px);
+  background-image: url("/public/images/arrdown.png");
+  background-repeat: no-repeat;
+}
+
 @media screen and (max-width: 997px) {
   .aside {
     min-height: 120px;
@@ -383,7 +411,7 @@
     gap: 0px;
   }
 
-  .dashOrder>h3 {
+  .dashOrder > h3 {
     margin: 0;
     line-height: 0.5;
   }
@@ -415,6 +443,7 @@
   .DashBoardAlert {
     display: flex;
     flex-direction: column;
+    text-align: center;
     justify-content: space-around;
     width: 12em;
     height: 6em;
@@ -443,5 +472,9 @@
     line-height: normal;
     text-align: center;
     margin-left: auto;
+  }
+  .ControllAccordion {
+    height: 350px;
+    width: 100%;
   }
 }

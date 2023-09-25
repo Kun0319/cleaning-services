@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BookContext from "./book-context";
 import Button from "./Button";
+import AlertMsg from "./AlertMsg";
 
 const Step3Area = () => {
   const navigate = useNavigate();
@@ -10,6 +11,8 @@ const Step3Area = () => {
   const checkDataNum = document.querySelectorAll(
     "#clientInfo input:not(#same):not(#notes)"
   );
+  const [showAlert, setShowAlert] = useState(false);
+  const [showAlertErr, setShowAlertErr] = useState(false);
   const [dist, setDist] = useState([]);
   const [infoCheck, setInfoCheck] = useState(false);
 
@@ -41,8 +44,7 @@ const Step3Area = () => {
     if (infoCheck) {
       let { user } = ctx;
       if (user === null) {
-        alert("發生異常，請重新填寫表單！");
-        return navigate("/book");
+        return setShowAlertErr(true);
       }
       phone.value = user.phone;
       ctx.phone = user.phone;
@@ -88,7 +90,7 @@ const Step3Area = () => {
       ctx.note = document.querySelector("#notes").value;
       navigate("/book/book4");
     } else {
-      alert("請完成表單填寫!");
+      setShowAlert(true);
     }
   };
 
@@ -182,6 +184,23 @@ const Step3Area = () => {
               <input type="text" id="notes" />
             </div>
           </div>
+          {showAlert && (
+            <AlertMsg
+              msg={"請完成表單填寫!"}
+              close={() => setShowAlert(false)}
+              showAlert={showAlert}
+              setShowAlert={setShowAlert}
+            />
+          )}
+          {showAlertErr && (
+            <AlertMsg
+              msg={"發生了點小問題，請重新填寫表單！"}
+              close={() => {
+                setShowAlertErr(false);
+                navigate("/book");
+              }}
+            />
+          )}
         </div>
         <Button pre="/book/book2" next="/book/book4" onClick={checkForm} />
       </form>

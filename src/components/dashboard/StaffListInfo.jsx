@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 import "../../components/member/member.css";
 import { useNavigate } from "react-router-dom";
 import ControllAccordion from "./ControllAccordion";
+import StaffAccordion from "./StaffAccordion";
+
 const StaffListInfo = () => {
   const { employeeid } = useParams();
   const [staffData, setStaffData] = useState({});
-  const [staffListData, setStaffListData] = useState({});
+  const [items, setItems] = useState({});
   const [edit, setEdit] = useState(false);
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -35,7 +37,7 @@ const StaffListInfo = () => {
           `http://localhost:4107/dashboard/StaffList/${employeeid}`
         );
         setStaffData(result.data.data[0]); //員工資料
-        setStaffListData(result.data.list); //訂單紀錄
+        setItems(result.data.list); //訂單紀錄
         setUpName(result.data.data[0].employeename);
         setUpPhone(result.data.data[0].employeephone);
         setUpEmail(result.data.data[0].employeeemail);
@@ -132,9 +134,8 @@ const StaffListInfo = () => {
     empaddress,
     employeeidnumber,
   } = staffData;
-
+  
   const btd = new Date(employeebirthday).toLocaleDateString("en-CA");
-  console.log(upBirthday);
   return (
     <div>
       <div className="Container">
@@ -143,7 +144,7 @@ const StaffListInfo = () => {
           {edit ? (
             <div className="orderContent">
               <ol>
-                <img src={photo} alt="asd" style={{ width: "130px" }} />
+                <img src={String(photo).split(",")[0]} alt="asd" style={{ width: "130px" }} />
                 <li>員工編號:</li>
                 <li>
                   <input
@@ -289,7 +290,7 @@ const StaffListInfo = () => {
           ) : (
             <div className="orderContent">
               <ol>
-                <img src={photo} alt="asd" style={{ width: "130px" }} />
+                <img src={String(photo).split(",")[0]} alt="asd" style={{ width: "130px" }} />
                 <li>員工編號:</li>
                 <li>{employeeid}</li>
                 <li>疫苗接種:</li>
@@ -368,7 +369,7 @@ const StaffListInfo = () => {
                 歷史訂單
               </h3>
               <div className="ControllAccordion" style={{ overflow: "auto" }}>
-                <ControllAccordion items={staffListData} />
+                <ControllAccordion items={items} Accordion={StaffAccordion} />
               </div>
               <button
                 className="btn btn-danger staff-listBtn"

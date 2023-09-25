@@ -2,6 +2,7 @@ import "../dashboard/dashboard.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useSortableData from "../dashboard/useSortInfo";
 
 const MemberInfo = (props) => {
   const limitCount = 8; //顯示幾筆
@@ -11,6 +12,7 @@ const MemberInfo = (props) => {
   const [data, setData] = useState([]); //資料變數
   const [searchInput, setSearchInput] = useState(""); //搜尋變數
   const [orderAPI, setOrderAPI] = useState([]); //API變數
+  const { sortedData, handleSort } = useSortableData(orderAPI);
 
   // 會員資料API
   useEffect(() => {
@@ -84,12 +86,12 @@ const MemberInfo = (props) => {
       <table>
         <thead className="orderThead">
           <tr id="orderTh">
-            <th>會員編號</th>
-            <th>姓名</th>
-            <th>連絡電話</th>
-            <th>縣市</th>
-            <th>地區</th>
-            <th>地址</th>
+            <th onClick={() => {setOrderAPI(handleSort("userid"))}}>會員編號</th>
+            <th onClick={() => {setOrderAPI(handleSort("name"))}}>姓名</th>
+            <th onClick={() => {setOrderAPI(handleSort("phone"))}}>連絡電話</th>
+            <th onClick={() => {setOrderAPI(handleSort("city"))}}>縣市</th>
+            <th onClick={() => {setOrderAPI(handleSort("rural"))}}>地區</th>
+            <th onClick={() => {setOrderAPI(handleSort("address"))}}>地址</th>
           </tr>
         </thead>
         <tbody className="orderTbody">

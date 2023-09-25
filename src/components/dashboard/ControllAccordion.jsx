@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import StaffAccordion from "./StaffAccordion";
 
-function ControllAccordion({ items }) {
+
+function ControllAccordion({ items,Accordion }) {
   const [activeIndex, setActiveIndex] = useState(null); //控制變數
 
   // 渲染時active={index(數字) === activeIndex(null)}(false)全部關閉，
@@ -22,10 +22,10 @@ function ControllAccordion({ items }) {
 
   return (
     <div>
-      {items.map((item, index) => (
-        <StaffAccordion
+      {items && items.map((item, index) => (
+        <Accordion
           key={index} //物件序列
-          staffListData={item} //資料
+          item={item} //資料
           active={index === activeIndex} //控制變數
           onClick={() => handleAccordionClick(index)} //控制函式(點擊帶入自身元件序列參數)
         />

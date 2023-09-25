@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import "../../components/member/member.css";
+import MemberDone from "../../components/dashboard/MemberDone";
+import { useAttendance } from "../../components/dashboard/useAttendance";
+import ControllAccordion from "../../components/dashboard/ControllAccordion";
+
 const Member = () => {
   const { ornumber } = useParams();
   const [orderData, setOrderData] = useState({});
+  const { attdata } = useAttendance({ ornumber:ornumber})
   const {
     userid,
     orname,
@@ -29,15 +34,7 @@ const Member = () => {
     employeeemail,
   } = orderData;
 
-  async function handleOrderUpdata(data) {
-    try {
-      await axios.put(`http://localhost:4107/AdminOrder/updata/${ornumber}`, {
-        data,
-      });
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
+  
 
   //接收資料
   useEffect(() => {
@@ -52,7 +49,7 @@ const Member = () => {
       }
     }
     fetchData();
-  }, [ornumber]);
+  }, [ornumber,state]);
 
   const handleOrderStatus = (state) => {
     if (state === 0) {
@@ -79,8 +76,14 @@ const Member = () => {
         <div
           className={`orderContainer bgdone ${state === 2 ? "complete" : ""}`}
         >
-          <div className="orderContent">
-            <table border={1}>
+          <div className="orderContent row">
+            <div className="col" style={{
+              fontSize: "30px"}}>
+              <span style={{ color: "red"}}>{donetime}/</span>
+              <span>{weeks}</span>
+              <p>{handleOrderStatus(state)}</p>
+            </div>
+            <table border={1} className="col">
               <tr>
                 <th style={{ fontWeight: "600" }}>
                   <Link
@@ -104,7 +107,7 @@ const Member = () => {
                 <td>Email:{oremail}</td>
               </tr>
             </table>
-            <table border={1}>
+            <table border={1} className="col">
               <tr>
                 <th style={{ fontWeight: "600" }}>
                   <Link
@@ -140,23 +143,16 @@ const Member = () => {
               <td>服務日期:{new Date(date).toLocaleDateString("en-CA")}</td>
             </tr>
             <tr>
-              <td>訂單狀態:{handleOrderStatus(state)}</td>
               <td>服務時段:{handleTime(time)}</td>
-            </tr>
-            <tr>
-              <td>付款方式:{pay ? "信用卡" : "無"}</td>
               <td>服務週數:{weeks}</td>
             </tr>
             <tr>
+              <td>付款方式:{pay ? "信用卡" : "無"}</td>
               <td>訂單金額:{money}元</td>
-              <td>服務次數:{donetime}</td>
             </tr>
             <tr>
+              <td>服務次數:{donetime}</td>
               <td>清潔地址:{orcity + orrural + oraddress}</td>
-              <td>
-                完成次數:<span style={{ color: "red" }}>{donetime}</span>/
-                {weeks}
-              </td>
             </tr>
             <tr>
               <td>訂單日期:{new Date(ordertime).toLocaleString("en-CA")}</td>
@@ -166,58 +162,11 @@ const Member = () => {
               </td>
             </tr>
           </table>
-          <div className="orderContent">備註:{note ?? "無"}</div>
+          <div className="orderContent">備註:{note || "無"}</div>
+          {attdata?.length !== 0 && <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
+                <ControllAccordion items={attdata} Accordion={MemberDone}  />
+            </div> }
         </div>
-        {/* 按鈕 */}
-        {state !== 2 ? (
-          <div className="btncontain">
-            <button
-              className={weeks !== donetime ? "notClear" : ""}
-              disabled={weeks !== donetime ? true : false}
-              onClick={() => {
-                setOrderData((prevStatus) => ({
-                  ...prevStatus,
-                  state: 2,
-                  orderdone: new Date(orderdone).toLocaleString("en-CA"),
-                }));
-
-                handleOrderUpdata({
-                  ...orderData,
-                  state: 2,
-                  orderdone: new Date().toLocaleString("en-CA"),
-                });
-              }}
-            >
-              訂單完成
-            </button>
-            <button
-              onClick={() => {
-                setOrderData((count) => {
-                  return {
-                    ...count,
-                    donetime:
-                      count.donetime + 1 <= weeks
-                        ? count.donetime + 1
-                        : count.donetime,
-                    state:count.state=1
-                  };
-                });
-                handleOrderUpdata({
-                  ...orderData,
-                  donetime:
-                    orderData.donetime + 1 <= weeks
-                      ? orderData.donetime + 1
-                      : orderData.donetime,
-                      state:orderData.state=1
-                });
-              }}
-            >
-              打掃完成
-            </button>
-          </div>
-        ) : (
-          <div className="orderContent">訂單完成</div>
-        )}
       </div>
     </div>
   );

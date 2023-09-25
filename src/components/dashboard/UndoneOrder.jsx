@@ -11,6 +11,7 @@ const UndoneOrder = (props) => {
   const [data, setData] = useState([]); //資料變數
   const [searchInput, setSearchInput] = useState(""); //搜尋變數
   const [orderAPI, setOrderAPI] = useState([]); //API變數
+  const [toggle, setToggle] = useState(true)
 
   // 訂單API
   useEffect(() => {
@@ -65,6 +66,35 @@ const UndoneOrder = (props) => {
     setNumber(start + limitCount < data.length ? number + limitCount : number);
     setStart(start + limitCount < data.length ? start + limitCount : start);
   };
+
+  function handleSort(data, e, toggle) {
+    let aa = e.target.id;
+    const sortInfo = (data, aa, toggle) => {
+      return data.slice().sort((a, b) => {
+        if (typeof a[aa] === 'string' && typeof b[aa] === "string") {
+          const aaa = a[aa]
+          const bbb = b[aa]
+          if (toggle) {
+            return aaa.localeCompare(bbb);
+          } else {
+            return bbb.localeCompare(aaa);
+          }
+        } else {
+          if (toggle) {
+            return a[aa] - b[aa];
+        } else {
+            return b[aa] - a[aa];
+        }
+         }
+      });
+    };
+    
+    const sortedData = sortInfo(data, aa, toggle);
+
+    setOrderAPI(sortedData);
+    setToggle(!toggle);
+}
+
   return (
     <div className="dashOrder">
       <div className="orderHead">
@@ -89,13 +119,13 @@ const UndoneOrder = (props) => {
       <table>
         <thead className="orderThead">
           <tr id="orderTh">
-            <th>訂單編號</th>
-            <th>員工編號</th>
-            <th>訂單日期</th>
-            <th>清潔週數</th>
-            <th>剩餘次數</th>
-            <th>訂單金額</th>
-            <th>訂單狀態</th>
+            <th id="ornumber" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單編號</th>
+            <th id="employeeid" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>員工編號</th>
+            <th id="ordertime" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單日期</th>
+            <th id="weeks" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>清潔週數</th>
+            <th id="donetime" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>剩餘次數</th>
+            <th id="money" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單金額</th>
+            <th id="state" onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單狀態</th>
           </tr>
         </thead>
         <tbody className="orderTbody">
@@ -123,7 +153,7 @@ const UndoneOrder = (props) => {
                       <td>{employeeid}</td>
                       <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
-                      <td>{donetime}次</td>
+                      <td>{`${weeks-donetime}/${weeks}次`}</td>
                       <td>{money}</td>
                       <td>{handleOrderStatus(state)}</td>
                     </tr>
@@ -153,7 +183,7 @@ const UndoneOrder = (props) => {
                       <td>{employeeid}</td>
                       <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
                       <td>{weeks}週</td>
-                      <td>{donetime}週</td>
+                      <td>{`${weeks-donetime}/${weeks}次`}</td>
                       <td>{money}</td>
                       <td>{handleOrderStatus(state)}</td>
                     </tr>
