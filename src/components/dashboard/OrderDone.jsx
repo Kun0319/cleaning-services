@@ -17,7 +17,7 @@ const OrderDone = () => {
   const [updataScore, setUpdataScore] = useState(false);
   const [orderScore, setOrderScore] = useState({});
   const { orderNumber } = useParams();
-  const { attdata } = useAttendance({ ornumber: orderNumber });
+  const { attdata, dayTime } = useAttendance({ ornumber: orderNumber });
   useEffect(() => {
     async function fetchData() {
       try {
@@ -64,7 +64,8 @@ const OrderDone = () => {
     if (time === 2) return "18:00";
   }
   const getOrderDay = () => {
-    const day = new Date().getDay(ordertime) + 1;
+    const day = new Date(dayTime[0].date).getDay();
+
     switch (day) {
       case 1:
         return "一";
@@ -78,13 +79,13 @@ const OrderDone = () => {
         return "五";
       case 6:
         return "六";
-      case 7:
-        return "七";
+      case 0:
+        return "日";
       default:
         return "未知";
     }
   };
-  console.log(orderScore);
+
   return (
     <>
       <h3 className="m-0 h3_DEF">會員訂單</h3>
