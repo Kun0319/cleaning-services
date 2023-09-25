@@ -6,7 +6,7 @@ import Questionbook from "./Questionbook";
 const Question = () => {
   const qubook = [
     {
-      imgSrc: "images/q-001.png",
+      imgSrc: "images/Q-001.png",
       content: "付款方式目前採用信用卡支付。",
     },
     {
