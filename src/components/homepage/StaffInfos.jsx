@@ -10,19 +10,23 @@ const StaffInfos = () => {
   useEffect(() => {
     Promise.all([
       axios.get('http://localhost:4107/total/sta'),
-      axios.get('http://localhost:4107/total/modal')
+      axios.get('http://localhost:4107/total/modal'),
+      axios.get('http://localhost:4107/total/stars'),
     ])
       .then((responses) => {
         const cardData = responses[0].data; //第一個API
         const modalData = responses[1].data;  //第二個API
+        const starsData = responses[2].data;  //第三個API
 
         const combined = cardData.map((employee) => {
           // 在 modalData 中尋找相同的 employeeid
           const modalItem = modalData.find((modalEmployee) => modalEmployee.employeename === employee.employeename) || {};
-        
+          const starsItem = starsData.find((starsEmployee) => starsEmployee.employeeid === employee.employeeid) || {};
+
           return {
             ...employee,
-            modalData: modalItem
+            modalData: modalItem,
+            total_efficiency: starsItem.total_stars
           };
         });
 
@@ -76,10 +80,10 @@ const StaffInfos = () => {
               clean={employee.modalData.e2} //modal 打掃技能
               efficiency={employee.modalData.e1} //modal 效率技能
               careful={employee.modalData.e3} //modal 細心技能
-              manner={employee.modalData.e4}  ////modal 態度技能
+              manner={employee.modalData.e4}  //modal 態度技能
               modalphoto={employee.modalData.photo}
               modalname={employee.modalData.employeename}
-              
+              stars={employee.total_efficiency} //modal顧客評價總星星
             />
           </SwiperSlide>
         ))}
