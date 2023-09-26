@@ -64,7 +64,7 @@ const StaffListInfo = () => {
     }
     fetchData();
   }, [employeeid]);
-  
+
   //   上一頁
   const prevStaffClick = () => {
     const data = useridarr[useridarr.indexOf(employeeid) - 1];
@@ -134,7 +134,7 @@ const StaffListInfo = () => {
     empaddress,
     employeeidnumber,
   } = staffData;
-  
+
   const btd = new Date(employeebirthday).toLocaleDateString("en-CA");
   return (
     <div>
@@ -144,7 +144,11 @@ const StaffListInfo = () => {
           {edit ? (
             <div className="orderContent">
               <ol>
-                <img src={String(photo).split(",")[0]} alt="asd" style={{ width: "130px" }} />
+                <img
+                  src={String(photo).split(",")[0]}
+                  alt="asd"
+                  className="orderStaff"
+                />
                 <li>員工編號:</li>
                 <li>
                   <input
@@ -290,7 +294,11 @@ const StaffListInfo = () => {
           ) : (
             <div className="orderContent">
               <ol>
-                <img src={String(photo).split(",")[0]} alt="asd" style={{ width: "130px" }} />
+                <img
+                  src={String(photo).split(",")[0]}
+                  alt="asd"
+                  className="orderStaff"
+                />
                 <li>員工編號:</li>
                 <li>{employeeid}</li>
                 <li>疫苗接種:</li>

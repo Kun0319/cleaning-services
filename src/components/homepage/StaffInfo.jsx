@@ -1,8 +1,8 @@
-import Modal from 'react-modal';
-import '../caseshare/case';
+import Modal from "react-modal";
+import "../caseshare/case";
 import "./StaffInfos.css";
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const StaffInfo = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -15,20 +15,19 @@ const StaffInfo = (props) => {
     setIsModalOpen(false);
   };
 
-
   const [modal, setmodal] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4107/total/modal')
+    axios
+      .get("http://localhost:4107/total/modal")
       .then((res) => {
         setmodal(res.data);
-        console.log(res)
+        console.log(res);
       })
       .catch((err) => {
-        console.error('no', err);
+        console.error("no", err);
       });
   }, []);
-
 
   const formatOrName = (name) => {
     if (name.length < 2) {
@@ -37,7 +36,7 @@ const StaffInfo = (props) => {
 
     const firstName = name.charAt(0);
     const lastName = name.charAt(name.length - 1);
-    const middleX = 'x'.repeat(name.length - 2);
+    const middleX = "x".repeat(name.length - 2);
 
     return `${firstName}${middleX}${lastName}`;
   };
@@ -68,10 +67,7 @@ const StaffInfo = (props) => {
             alt="star-y"
             style={{ clipPath: `inset(0 ${100 - props.star * 20}% 0 0)` }}
           />
-          <img
-            src="images\staffInfo-star2.png"
-            alt="star-g"
-          />
+          <img src="images\staffInfo-star2.png" alt="star-g" />
         </div>
         {/* 員工案件數 */}
         <div className="staffAbility">
@@ -103,7 +99,9 @@ const StaffInfo = (props) => {
             <span>{props.racheck ? "浣熊管家認證" : "無浣熊管家認證"}</span>
           </div>
         </div>
-        <button className="open-button" onClick={openModal}>查看更多</button>
+        <button className="open-button" onClick={openModal}>
+          查看更多
+        </button>
       </div>
 
       <div>
@@ -114,7 +112,6 @@ const StaffInfo = (props) => {
           className="memberscoreModal"
           overlayClassName="memberscoreOverlay"
         >
-
           <div className="memberscoreTop">
             <u>員工資料</u>
           </div>
@@ -132,7 +129,10 @@ const StaffInfo = (props) => {
                 <img
                   src="images\staffInfo-star.png"
                   alt="star"
-                  style={{ clipPath: `inset(0 ${100 - props.clean * 20}% 0 0)`, maxWidth: "120px" }}
+                  style={{
+                    clipPath: `inset(0 ${100 - props.clean * 20}% 0 0)`,
+                    maxWidth: "120px",
+                  }}
                 />
               </div>
               <div className="scorepoint">
@@ -140,7 +140,10 @@ const StaffInfo = (props) => {
                 <img
                   src="images\staffInfo-star.png"
                   alt="star"
-                  style={{ clipPath: `inset(0 ${100 - props.efficiency * 20}% 0 0)`, maxWidth: "120px" }}
+                  style={{
+                    clipPath: `inset(0 ${100 - props.efficiency * 20}% 0 0)`,
+                    maxWidth: "120px",
+                  }}
                 />
               </div>
               <div className="scorepoint">
@@ -148,7 +151,10 @@ const StaffInfo = (props) => {
                 <img
                   src="images\staffInfo-star.png"
                   alt="star"
-                  style={{ clipPath: `inset(0 ${100 - props.careful * 20}% 0 0)`, maxWidth: "120px" }}
+                  style={{
+                    clipPath: `inset(0 ${100 - props.careful * 20}% 0 0)`,
+                    maxWidth: "120px",
+                  }}
                 />
               </div>
               <div className="scorepoint">
@@ -156,29 +162,42 @@ const StaffInfo = (props) => {
                 <img
                   src="images\staffInfo-star.png"
                   alt="star"
-                  style={{ clipPath: `inset(0 ${100 - props.manner * 20}% 0 0)`, maxWidth: "120px" }}
+                  style={{
+                    clipPath: `inset(0 ${100 - props.manner * 20}% 0 0)`,
+                    maxWidth: "120px",
+                  }}
                 />
               </div>
             </div>
           </div>
           <div className="scorecomment">
-            <div className="customername"><h5>{formatOrName(props.orname)} <span className="staffAbility" style={{ position: "relative" }}>
-              <img
-                src="images\staffInfo-star.png"
-                alt="star-y"
-                style={{ clipPath: `inset(0 ${100 - props.stars * 20}% 0 0)` }}
-              />
-              {/* <img
+            <div className="customername">
+              <h5>
+                {formatOrName(props.orname)}{" "}
+                <span className="staffAbility" style={{ position: "relative" }}>
+                  <img
+                    src="images\staffInfo-star.png"
+                    alt="star-y"
+                    style={{
+                      clipPath: `inset(0 ${100 - props.stars * 20}% 0 0)`,
+                    }}
+                  />
+                  {/* <img
                 src="images\staffInfo-star2.png"
                 alt="star-g"
               /> */}
-            </span></h5></div>
+                </span>
+              </h5>
+            </div>
             <hr />
             <div className="customercomment">{props.reply}</div>
           </div>
-          <button className="modalbutton" onClick={closeModal}><img src="images\modalbutton.png" width={"25"} /></button>
+          <button className="modalbutton" onClick={closeModal}>
+            <img src="images\modalbutton.png" width={"25"} />
+          </button>
         </Modal>
-      </div></div>
+      </div>
+    </div>
   );
 };
 
