@@ -179,14 +179,14 @@ class navbar extends Component {
                                     >
                                         <DialogContent >
                                             <DialogContentText id="alert-dialog-description" className=''>
-                                                <i class="bi bi-exclamation-circle-fill"></i>確定登出嗎？
+                                                <i class="bi bi-exclamation-circle-fill h4"></i>確定登出嗎？
                                             </DialogContentText>
                                         </DialogContent>
                                         <DialogActions>
-                                            <Button onClick={this.handleClose} style={this.btn}>取消</Button>
                                             <Button onClick={this.handleLogout} style={this.btn} autoFocus>
                                                 確定
                                             </Button>
+                                            <Button onClick={this.handleClose} style={this.btn}>取消</Button>
                                         </DialogActions>
                                     </Dialog>
                                 </div>) :
