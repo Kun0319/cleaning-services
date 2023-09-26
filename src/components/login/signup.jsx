@@ -21,6 +21,7 @@ import { addDays } from "date-fns";
 
 import SuccessAlert from "./SuccessAlert";
 import ErrorAlert from "./ErrorSignAlert";
+import ErrorBirthdayAlert from "./ErrorBirthdayAlert"
 
 import axios from "./axios";
 
@@ -38,6 +39,7 @@ const SignUp = () => {
 
   const [showErrorAlert, setErrorAlert] = useState(false);
   const [showSuccessAlert, setSuccessAlert] = useState(false);
+  const [showBirthdayAlert, setBirthdayAlert] = useState(false);
 
   const [staffData, setStaffData] = useState({
     name: "",
@@ -50,10 +52,8 @@ const SignUp = () => {
     rural: "中區",
   });
 
-  const [maxDate, setMaxDate] = useState(() => {
-    const tomorrow = addDays(new Date(), 1);
-    return tomorrow;
-  });
+  const maxDate=new Date()
+ 
 
   // 送出註冊資料
   // 處理表單提交
@@ -309,10 +309,13 @@ const SignUp = () => {
                   }));
                   console.log(upbirthday);
                   setBirthday(
-                    isAgeValid ? formatDate(e) : alert("很抱歉,必須年滿18歲")
+                    isAgeValid ? formatDate(e) : setBirthdayAlert(true)
                   );
                 }}
               />
+              {showBirthdayAlert ? <ErrorBirthdayAlert
+                isOpen={showBirthdayAlert}
+                onClose={() => setBirthdayAlert(false)} /> : ""}
             </div>
             {RexgeValid(upbirthday, "請選擇生日日期")}
           </li>

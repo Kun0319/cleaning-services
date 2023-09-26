@@ -13,7 +13,7 @@ const ErrorAlert = ({ isOpen, onClose }) => {
     return (
         <div className='errorSignup'>
             <div className="errorSignupContent">
-                <h5 className=''><i className="bi bi-exclamation-triangle">資料有誤!</i></h5>
+                <h5 className=''><i className="bi bi-exclamation-triangle"></i>資料有誤!</h5>
                 <button className='btn border-black' onClick={handleCloseClick}>Close</button>
             </div>
         </div>

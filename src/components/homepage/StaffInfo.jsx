@@ -30,8 +30,12 @@ const StaffInfo = (props) => {
   }, []);
 
   const formatOrName = (name) => {
+    if (name === null || name === undefined) {
+        return ""; // 或者其他處理方式，視情況而定
+    }
+
     if (name.length < 2) {
-      return name;
+        return 'x';
     }
 
     const firstName = name.charAt(0);
@@ -39,7 +43,8 @@ const StaffInfo = (props) => {
     const middleX = "x".repeat(name.length - 2);
 
     return `${firstName}${middleX}${lastName}`;
-  };
+};
+
 
   return (
     <div>
