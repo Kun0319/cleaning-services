@@ -130,18 +130,18 @@ const Step2Area = () => {
                   onClick={
                     week
                       ? (e) =>
-                        changeClickStyle2(
-                          e,
-                          ".service-week",
-                          "service-week",
-                          ".service-time"
-                        )
+                          changeClickStyle2(
+                            e,
+                            ".service-week",
+                            "service-week",
+                            ".service-time"
+                          )
                       : null
                   }
                 >
                   {weeks[index]}
                 </div>
-              ))}{" "}
+              ))}
             </div>
           </div>
           <div className="step2Bottom">
@@ -157,7 +157,7 @@ const Step2Area = () => {
                   onClick={
                     t
                       ? (e) =>
-                        changeClickStyle3(e, ".service-time", "service-time")
+                          changeClickStyle3(e, ".service-time", "service-time")
                       : null
                   }
                 >
@@ -170,11 +170,23 @@ const Step2Area = () => {
         <div className="right show-form">
           <MyCalendar freeDays={dayMode} />
         </div>
-        {showAlert && <AlertMsg msg={"請完成表單填寫!"} close={() => setShowAlert(false)} />}
-        {showAlertErr && <AlertMsg msg={"發生了點小問題，請重新填寫表單！"} close={() => {
-          setShowAlertErr(false);
-          navigate('/book');
-        }} />}
+        {showAlert && (
+          <AlertMsg
+            msg={"請完成表單填寫!"}
+            close={() => setShowAlert(false)}
+            showAlert={showAlert}
+            setShowAlert={setShowAlert}
+          />
+        )}
+        {showAlertErr && (
+          <AlertMsg
+            msg={"發生了點小問題，請重新填寫表單！"}
+            close={() => {
+              setShowAlertErr(false);
+              navigate("/book");
+            }}
+          />
+        )}
       </div>
       <Button pre="/book" next="/book/book3" onClick={checkForm} />
     </form>

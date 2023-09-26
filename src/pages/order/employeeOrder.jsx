@@ -3,10 +3,15 @@ import "../../components/dashboard/order.css";
 import Score from "../../components/dashboard/score";
 import axios from "../../components/login/axios";
 import { useParams } from "react-router-dom";
+import UploadClearImg from "../../components/dashboard/UploadClearImg";
+import ControllAccordion from "../../components/dashboard/ControllAccordion";
+import MemberDone from "../../components/dashboard/MemberDone";
+import { useAttendance } from "../../components/dashboard/useAttendance";
 
 
 
-const StaffOrderDone = () => {
+
+const EmployeeOrder = () => {
   const [modal, setModal] = useState(false)
   const [orderAPI, setOrderAPI] = useState('')
   const [staffAPI, setStaffAPI] = useState('')
@@ -14,7 +19,7 @@ const StaffOrderDone = () => {
   // const [isClose, setIsclose] = useState("")
   const [updataScore, setUpdataScore] = useState(false);
   const { ornumber } = useParams()
-
+  const { attdata } = useAttendance({ ornumber:ornumber})
 
   useEffect(() => {
     async function fetchData() {
@@ -41,8 +46,8 @@ const StaffOrderDone = () => {
     fetchData();
   }, [ornumber]);
   // ornumber,
-  const { note, time, donetime, weeks, orcity, orrural, oraddress, money, state, orderdone, ordertime, pay, orname, orphone, oremail } = orderAPI
-
+  const { note, time, donetime, weeks, orcity,userid, orrural, oraddress, state, orderdone, ordertime, orname, orphone, oremail,employeeid } = orderAPI
+  const empClearData = {date:new Date().toLocaleString("en-CA"),weeks:weeks,ornumber:ornumber,donetime:donetime,employeeid:employeeid}
   function handleTime(time) {
     if (time === 0) return "08:00"
     if (time === 1) return "13:00"
@@ -51,15 +56,15 @@ const StaffOrderDone = () => {
 
   return (
     <>
-      <h3 className="m-0 h3_DEF">會員訂單</h3>
+      <h3 className="m-0 h3_DEF">浣熊訂單</h3>
       <div className="dashOrder">
-        <h3 className="m-0 h3_RWD">會員訂單</h3>
+        <h3 className="m-0 h3_RWD">浣熊訂單</h3>
         {updataScore && <div className="updataScore">
         </div>}
         {modal && <Score
           setUpdataScore={setUpdataScore} setModal={setModal} orderAPI={orderAPI} evaluateAPI={evaluateAPI} staffAPI={staffAPI} />}
 
-        <div >剩餘次數：<h1 class="text-danger" style={{ display: "inline" }}>{donetime}</h1><h1 style={{ display: "inline" }} >/{weeks}次</h1></div>
+        <div > 清潔次數：<h1 class="text-danger" style={{ display: "inline" }}>{donetime}</h1><h1 style={{ display: "inline" }} >/{weeks}次</h1></div>
 
 
         <div className="contact-table">
@@ -168,26 +173,17 @@ const StaffOrderDone = () => {
             </thead>
           </table>
         </div>
-
-
-
-
         {/*上傳圖片 */}
-        <div className="contact-table">
-          <form action="">
-            <input
-              className="btn"
-              type="file"
-              id="file-uploader"
-              data-target="file-uploader"
-              accept=".png, .jpg, .jpeg"
-              multiple="multiple"
-              style={{ color: "#664d03", }}
-            />
-          </form>
-        </div>
+        {state !== 2 ? <div className="contact-table">
+          <UploadClearImg empClearData={empClearData}/>
+        </div>:"" }
+        {attdata?.length !== 0 && <div className="contact-table">
+            <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
+                <ControllAccordion items={attdata} Accordion={MemberDone}  />
+            </div> 
+          </div>}
       </div >
     </>);
 };
 
-export default StaffOrderDone;
+export default EmployeeOrder;

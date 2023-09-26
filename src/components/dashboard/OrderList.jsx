@@ -11,17 +11,18 @@ const OrderList = (props) => {
   const [data, setData] = useState([]); //資料變數
   const [searchInput, setSearchInput] = useState(""); //搜尋變數
   const [orderAPI, setOrderAPI] = useState([]); //API變數
-  const [toggle, setToggle] = useState(true)
+  const [toggle, setToggle] = useState(true);
 
   // 訂單API
   useEffect(() => {
     async function fetchData() {
       try {
-        const result = await axios.get("http://localhost:4107/orderlist",{
-          withCredentials: true
+        const result = await axios.get("http://localhost:4107/orderlist", {
+          withCredentials: true,
         });
+        console.log(result);
         setOrderAPI(() => {
-          return result.data.filter((data) => data.state === 0)
+          return result.data.filter((data) => data.state === 0);
           // return result.data.sort(function (a, b) {
           //   return a.state >= b.state ? 1 : -1;
           // });
@@ -79,9 +80,9 @@ const OrderList = (props) => {
     let aa = e.target.id;
     const sortInfo = (data, aa, toggle) => {
       return data.slice().sort((a, b) => {
-        if (typeof a[aa] === 'string' && typeof b[aa] === "string") {
-          const aaa = a[aa]
-          const bbb = b[aa]
+        if (typeof a[aa] === "string" && typeof b[aa] === "string") {
+          const aaa = a[aa];
+          const bbb = b[aa];
           if (toggle) {
             return aaa.localeCompare(bbb);
           } else {
@@ -90,20 +91,19 @@ const OrderList = (props) => {
         } else {
           if (toggle) {
             return a[aa] - b[aa];
-        } else {
+          } else {
             return b[aa] - a[aa];
+          }
         }
-         }
       });
     };
-    
+
     const sortedData = sortInfo(data, aa, toggle);
 
     setOrderAPI(sortedData);
     setToggle(!toggle);
-}
-    
-   return (
+  }
+  return (
     <div className="dashOrder">
       <div className="orderHead">
         <h3>訂單管理</h3>
@@ -127,13 +127,69 @@ const OrderList = (props) => {
       <table>
         <thead className="orderThead">
           <tr id="orderTh">
-            <th id="ornumber" className={toggle?"arrup":"arrdown"} onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單編號</th>
-            <th id="employeeid" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>員工編號</th>
-            <th id="ordertime" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單日期</th>
-            <th id="weeks" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>清潔週數</th>
-            <th id="donetime" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>剩餘次數</th>
-            <th id="money" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單金額</th>
-            <th id="state" className={toggle?"arrup":"arrdown" } onClick={(e) => {handleSort(orderAPI,e,toggle)}}>訂單狀態</th>
+            <th
+              id="ornumber"
+              className={toggle ? "arrup" : "arrdown"}
+              onClick={(e) => {
+                handleSort(orderAPI, e, toggle);
+              }}
+            >
+              訂單編號
+            </th>
+            <th
+              id="employeeid"
+              className={toggle ? "arrup" : "arrdown"}
+              onClick={(e) => {
+                handleSort(orderAPI, e, toggle);
+              }}
+            >
+              員工編號
+            </th>
+            <th
+              id="ordertime"
+              className={toggle ? "arrup" : "arrdown"}
+              onClick={(e) => {
+                handleSort(orderAPI, e, toggle);
+              }}
+            >
+              訂單日期
+            </th>
+            <th
+              id="weeks"
+              className={toggle ? "arrup" : "arrdown"}
+              onClick={(e) => {
+                handleSort(orderAPI, e, toggle);
+              }}
+            >
+              清潔週數
+            </th>
+            <th
+              id="donetime"
+              className={toggle ? "arrup" : "arrdown"}
+              onClick={(e) => {
+                handleSort(orderAPI, e, toggle);
+              }}
+            >
+              剩餘次數
+            </th>
+            <th
+              id="money"
+              className={toggle ? "arrup" : "arrdown"}
+              onClick={(e) => {
+                handleSort(orderAPI, e, toggle);
+              }}
+            >
+              訂單金額
+            </th>
+            <th
+              id="state"
+              className={toggle ? "arrup" : "arrdown"}
+              onClick={(e) => {
+                handleSort(orderAPI, e, toggle);
+              }}
+            >
+              訂單狀態
+            </th>
           </tr>
           {/* <tr id="orderTh_RWD">
             <th>Order No.</th>
@@ -148,65 +204,69 @@ const OrderList = (props) => {
         <tbody className="orderTbody">
           {searchInput.length > 1
             ? data
-              .slice(start, number)
-              .map(
-                ({
-                  ornumber,
-                  employeeid,
-                  ordertime,
-                  weeks,
-                  donetime,
-                  money,
-                  state,
-                }) => {
-                  return (
-                    <tr
-                      key={ornumber}
-                      onClick={() => {
-                        navigate(`/dashboard/AdminOrder/${ornumber}`);
-                      }}
-                    >
-                      <td>{ornumber}</td>
-                      <td>{employeeid}</td>
-                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
-                      <td>{weeks}週</td>
-                      <td>{`${weeks-donetime}/${weeks}次`}</td>
-                      <td>{money}</td>
-                      <td>{handleOrderStatus(state)}</td>
-                    </tr>
-                  );
-                }
-              )
+                .slice(start, number)
+                .map(
+                  ({
+                    ornumber,
+                    employeeid,
+                    ordertime,
+                    weeks,
+                    donetime,
+                    money,
+                    state,
+                  }) => {
+                    return (
+                      <tr
+                        key={ornumber}
+                        onClick={() => {
+                          navigate(`/dashboard/AdminOrder/${ornumber}`);
+                        }}
+                      >
+                        <td>{ornumber}</td>
+                        <td>{employeeid}</td>
+                        <td>
+                          {new Date(ordertime).toLocaleDateString("en-CA")}
+                        </td>
+                        <td>{weeks}週</td>
+                        <td>{`${weeks - donetime}/${weeks}次`}</td>
+                        <td>{money}</td>
+                        <td>{handleOrderStatus(state)}</td>
+                      </tr>
+                    );
+                  }
+                )
             : orderAPI
-              .slice(start, number)
-              .map(
-                ({
-                  ornumber,
-                  employeeid,
-                  ordertime,
-                  weeks,
-                  donetime,
-                  money,
-                  state,
-                }) => {
-                  return (
-                    <tr
-                      key={ornumber}
-                      onClick={() => {
-                        navigate(`/dashboard/AdminOrder/${ornumber}`);
-                      }}
-                    >
-                      <td>{ornumber}</td>
-                      <td>{employeeid}</td>
-                      <td>{new Date(ordertime).toLocaleDateString('en-CA')}</td>
-                      <td>{weeks}週</td>
-                      <td>{`${weeks-donetime}/${weeks}次`}</td>
-                      <td>{money}</td>
-                      <td>{handleOrderStatus(state)}</td>
-                    </tr>
-                  );
-                }
-              )}
+                .slice(start, number)
+                .map(
+                  ({
+                    ornumber,
+                    employeeid,
+                    ordertime,
+                    weeks,
+                    donetime,
+                    money,
+                    state,
+                  }) => {
+                    return (
+                      <tr
+                        key={ornumber}
+                        onClick={() => {
+                          navigate(`/dashboard/AdminOrder/${ornumber}`);
+                        }}
+                      >
+                        <td>{ornumber}</td>
+                        <td>{employeeid}</td>
+                        <td>
+                          {new Date(ordertime).toLocaleDateString("en-CA")}
+                        </td>
+                        <td>{weeks}週</td>
+                        <td>{`${weeks - donetime}/${weeks}次`}</td>
+                        <td>{money}</td>
+                        <td>{handleOrderStatus(state)}</td>
+                      </tr>
+                    );
+                  }
+                )}
         </tbody>
       </table>
       <div className="orderBtn-group">

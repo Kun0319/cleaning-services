@@ -3,7 +3,7 @@ import "./order.css";
 function ContactCard({staffAPI,evaluateAPI}) {  
 
 const {employeeid,employeename,photo,employeephone,employeeemail}=staffAPI
-
+console.log(evaluateAPI)
   return (
     <div style={{ backgroundColor: "#FFF8E1" }}>
       <div className="contact-table grid gap-0 row-gap-3 d-flex row">

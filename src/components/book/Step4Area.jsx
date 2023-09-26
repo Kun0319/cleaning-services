@@ -21,12 +21,17 @@ const Step4Area = () => {
   const [price, setPrice] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [showAlertErr, setShowAlertErr] = useState(false);
+  const [msg, setMsg] = useState("");
+  const [url, setUrl] = useState("");
 
   let checkForm = async (e) => {
     e.preventDefault();
     let { user } = ctx;
     if (user === null) {
-      return setShowAlertErr(true);
+      setMsg("發生了點小問題，請重新填寫表單！");
+      setUrl("/book");
+      setShowAlertErr(true);
+      return;
     }
     const cardNumber = "0000-1111-2222-3333";
     const monthYear = "10/23";
@@ -45,8 +50,10 @@ const Step4Area = () => {
       cardInput[4].value === monthYear &&
       cardInput[5].value === securityCode
     ) {
-      if (!agreeCheck.checked) setShowAlert(true);
-      else {
+      if (!agreeCheck.checked) {
+        setMsg("請確實閱讀並勾選服務條款與隱私權政策!");
+        setShowAlert(true);
+      } else {
         const {
           employeeid,
           date,
@@ -81,12 +88,17 @@ const Step4Area = () => {
           }
         );
         setTimeout(() => {
-          alert(`付款成功！`);
-          window.location.replace("/book/book5");
+          setMsg("付款成功！");
+          setUrl("/book/book5");
+          setShowAlertErr(true);
+          // alert(`付款成功！`);
+          // window.location.replace("/book/book5");
         }, 2000);
       }
     } else {
-      alert("付款失敗!");
+      setMsg("付款失敗!");
+      setShowAlert(true);
+      // alert("付款失敗!");
     }
   };
 
@@ -212,11 +224,23 @@ const Step4Area = () => {
             我已閱讀 <u>非清潔服務範圍</u>、<u>取消或更改服務政策</u>、
             <u>服務條款</u> 及 <u>隱私權政策</u>
           </div>
-          {showAlert && <AlertMsg msg={"請確實閱讀並勾選服務條款與隱私權政策!"} close={() => setShowAlert(false)} />}
-          {showAlertErr && <AlertMsg msg={"發生了點小問題，請重新填寫表單！"} close={() => {
-            setShowAlertErr(false);
-            navigate('/book');
-          }} />}
+          {showAlert && (
+            <AlertMsg
+              msg={msg}
+              close={() => setShowAlert(false)}
+              showAlert={showAlert}
+              setShowAlert={setShowAlert}
+            />
+          )}
+          {showAlertErr && (
+            <AlertMsg
+              msg={msg}
+              close={() => {
+                setShowAlertErr(false);
+                navigate(url);
+              }}
+            />
+          )}
         </div>
         <Button pre="/book/book3" next="/book/book5" onClick={checkForm} />
       </form>

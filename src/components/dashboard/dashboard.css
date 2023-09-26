@@ -313,6 +313,7 @@
   background-color: #fff8e1a0;
   width: 100cqmax;
   height: 100cqmax;
+  z-index: 10;
 }
 
 .h3_DEF {
@@ -443,6 +444,7 @@
   .DashBoardAlert {
     display: flex;
     flex-direction: column;
+    text-align: center;
     justify-content: space-around;
     width: 12em;
     height: 6em;

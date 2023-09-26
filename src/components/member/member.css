@@ -232,6 +232,7 @@
 }
 
 .orderImages {
+  z-index: 1400;
   width: 100px;
 }
 

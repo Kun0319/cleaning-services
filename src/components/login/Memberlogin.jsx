@@ -76,84 +76,6 @@ const Memberlogin = () => {
     })
   }
 
-
-  const adreessDist = [
-    {
-      dist: "中區",
-      v: "Central",
-    },
-    {
-      dist: "北區",
-      v: "North",
-    },
-    {
-      dist: "南區",
-      v: "South",
-    },
-    {
-      dist: "西區",
-      v: "West",
-    },
-    {
-      dist: "東區",
-      v: "Eastern",
-    },
-    {
-      dist: "北屯區",
-      v: "Beitun",
-    },
-    {
-      dist: "南屯區",
-      v: "Nantun",
-    },
-    {
-      dist: "西屯區",
-      v: "Xitun",
-    },
-    {
-      dist: "豐原區",
-      v: "Fengyuan",
-    },
-    {
-      dist: "大里區",
-      v: "Dali",
-    },
-    {
-      dist: "太平區",
-      v: "Taiping",
-    },
-    {
-      dist: "烏日區",
-      v: "Uri",
-    },
-    {
-      dist: "大雅區",
-      v: "Daya",
-    },
-    {
-      dist: "潭子區",
-      v: "Tanzi",
-    },
-    {
-      dist: "新社區",
-      v: "Xinshe",
-    },
-    {
-      dist: "神岡區",
-      v: "Shengang",
-    },
-    {
-      dist: "龍井區",
-      v: "Longjing",
-    },
-    {
-      dist: "沙鹿區",
-      v: "Shalu",
-    },
-  ];
-
-
-
   const {
     name,
     birthday,
@@ -184,17 +106,17 @@ const Memberlogin = () => {
             <ul>
               <li className="loginli">
                 <img src="/images/nameicon.png" className="loginicon" />
-                <p>姓名</p>
+                <p>會員姓名</p>
                 <input value={name} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/date.png" className="loginicon" />
-                <p>生日</p>
+                <p>出生日期</p>
                 <input value={btd} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/idnumber.png" className="loginicon" />
-                <p>身分證字號</p>
+                <p>身份證號</p>
                 <input value={id} disabled="disabled" />
               </li>
               <li className="loginli">
@@ -211,12 +133,12 @@ const Memberlogin = () => {
               </li>
               <li className="loginli">
                 <img src="/images/icon-4.png" className="loginicon" />
-                <p>信箱</p>
+                <p>電子信箱</p>
                 <input value={email} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/icon-6.png" className="loginicon" />
-                <p>地址</p>
+                <p>居住地址</p>
                 <input type="text" defaultValue={city} disabled={true} />
                 <select name="rural" defaultValue={rural} required onInput={formDataChange} onChange={(e) => setUpRural(e.target.value)} >
                   {dist.map((dist, index) => {
@@ -234,17 +156,17 @@ const Memberlogin = () => {
             <ul>
               <li className="loginli">
                 <img src="/images/nameicon.png" className="loginicon" />
-                <p>姓名</p>
+                <p>會員姓名</p>
                 <input value={name} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/date.png" className="loginicon" />
-                <p>生日</p>
+                <p>出生日期</p>
                 <input value={btd} disabled="disabled" />
               </li>
               <li className="loginli">
                 <img src="/images/idnumber.png" className="loginicon" />
-                <p>身分證字號</p>
+                <p>身份證號</p>
                 <input value={id} disabled="disabled" />
               </li>
               <li className="loginli">
@@ -257,12 +179,12 @@ const Memberlogin = () => {
               </li>
               <li className="loginli">
                 <img src="/images/icon-4.png" className="loginicon" />
-                <p>信箱</p>
+                <p>電子信箱</p>
                 <input value={email} disabled="disabled"></input>
               </li>
               <li className="loginli">
                 <img src="/images/icon-6.png" className="loginicon" />
-                <p>地址</p>
+                <p>居住地址</p>
                 <input
                   type="text"
                   value={city}

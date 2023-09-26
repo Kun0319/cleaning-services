@@ -79,7 +79,7 @@ const ChangePwd = () => {
         <div className="loginflex">
           <ul>
             <li className="loginli">
-              <p>新密碼</p>
+              <p>新的密碼</p>
               <input
                 type="password"
                 placeholder="請輸入新密碼"
@@ -87,9 +87,9 @@ const ChangePwd = () => {
                 name="password"
                 required onInput={formDataChange}
                 onChange={(e) => setPassword(validPassWord.test(e.target.value))}
-              />
-              {RexgeValid(uppassword, "至少6個英數字包含 1 個大寫英文與小寫英文")}
+                />
             </li>
+                {RexgeValid(uppassword, "至少6個英數字包含 1 個大寫英文與小寫英文")}
             <li className="loginli">
               <p>確認密碼</p>
               <input

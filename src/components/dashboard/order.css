@@ -241,9 +241,28 @@ img[alt="star-g"] {
   z-index: 2;
 }
 
+.clearImgDiv {
+  margin-top: 2px;
+  margin-left: 2px;
+  border: 1px solid black;
+  border-right: 0px;
+  display: block;
+  padding: 5px;
+  width: 100px;
+}
+.clearImgDiv2 {
+  margin-top: 2px;
+  margin-right: 2px;
+  border: 1px solid black;
+  border-left: 0px;
+  display: block;
+  padding: 5px;
+  width: 100px;
+}
+
 @keyframes myAnimation_order {
   0% {
-    transform: scale(1);
+    transform: skew() scale(1);
   }
   50% {
     transform: scale(1.2);
@@ -253,8 +272,20 @@ img[alt="star-g"] {
   }
 }
 
-.animated-image {
+/* .animated-image {
   animation: myAnimation_order 2s linear infinite;
+}
+@keyframes myAnimation_Accordion {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+} */
+
+.animated-accordion {
+  animation: myAnimation_Accordion 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 @keyframes myAnimation_car {
