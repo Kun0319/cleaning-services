@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.5f2fd6c0.css",
+    "main.js": "/static/js/main.88127865.js",
+    "static/media/bgdone.png": "/static/media/bgdone.ab5fac26f038dac5d3a9.png",
+    "static/media/case-bg.png": "/static/media/case-bg.bc5820ed732719a4c25e.png",
+    "static/media/question-001.png": "/static/media/question-001.bc5820ed732719a4c25e.png",
+    "static/media/loginin-bg.png": "/static/media/loginin-bg.2ab5ddff43408eae0d4b.png",
+    "static/media/dashboard-background.png": "/static/media/dashboard-background.90594f6278668ee552e7.png",
+    "static/media/bookbg.png": "/static/media/bookbg.3da1a243840d7688d144.png",
+    "index.html": "/index.html",
+    "main.5f2fd6c0.css.map": "/static/css/main.5f2fd6c0.css.map",
+    "main.88127865.js.map": "/static/js/main.88127865.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5f2fd6c0.css",
+    "static/js/main.88127865.js"
+  ]
+}
