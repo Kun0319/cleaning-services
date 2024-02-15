@@ -63,27 +63,27 @@ const Order = () => {
     <h3 className="m-0 h3_RWD">處理中訂單</h3>
       <div className="orderInfo">
         <span className="orderCard">
-          <img src="/images/order.png" alt=""  className="animated-image"/>
+          <img src="./images/order.png" alt=""  className="animated-image"/>
           <p className="orderText ">預約快速</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderGoing.png" alt="" className="animated-car"/>
+          <img src="./images/orderGoing.png" alt="" className="animated-car"/>
           <p className="orderText ">使命必達</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderCleaning.png" alt=""className="animated-clear" />
+          <img src="./images/orderCleaning.png" alt=""className="animated-clear" />
           <p className="orderText ">專業清掃</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderCleaned.png" alt="" className="animated-price" />
+          <img src="./images/orderCleaned.png" alt="" className="animated-price" />
           <p className="orderText ">價格實惠</p>
         </span>
         <p className="line"></p>
         <span className="orderCard">
-          <img src="/images/orderDone.png" alt="" className="animated-check"/>
+          <img src="./images/orderDone.png" alt="" className="animated-check"/>
           <p className="orderText ">嚴格把關</p>
         </span>
       </div>

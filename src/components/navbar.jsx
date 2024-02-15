@@ -152,13 +152,13 @@ class navbar extends Component {
                 <div className='container  d-md-none d-none d-lg-block '>
                     <Navbar style={this.styles} className='d-flex' sticky='top'>
                         {/* logo */}
-                        <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "8em", height: "5em" }} alt="" className='img-fluid' /></Navbar.Brand>
+                        <Navbar.Brand href="https://kun0319.github.io/cleaning-services/#/"><img src='./images/logo.png' style={{ width: "8em", height: "5em" }} alt="" className='img-fluid' /></Navbar.Brand>
                         <div className='ms-auto d-flex align-items-center' >
                             <Link href="/about" style={this.atagstyle} className=' mx-3  text-decoration-none '>關於我們</Link>
                             <Link to="/service" style={this.atagstyle} className=' mx-3 text-decoration-none'>服務項目</Link>
                             <Link to="/case" style={this.atagstyle} className='mx-3   text-decoration-none'>案例分享</Link>
                             <Link to="/question" style={this.atagstyle} className='mx-3   text-decoration-none'>常見問題</Link>
-                            <Link to="/"> <img src="images/info.png" alt=""
+                            <Link to="/member"> <img src="./images/info.png" alt=""
                                 className='m-3'
                                 style={{ width: "2rem" }} onClick={this.checkadmin} /></Link>
 
@@ -213,16 +213,16 @@ class navbar extends Component {
                 <div className=' container d-md-block  d-lg-none   '>
 
                     <Navbar expand="lg" sticky='top'>
-                        <Navbar.Brand href="/"><img src='/images/logo.png' style={{ width: "8em", height: "5em" }} alt="" className='img-fluid' /></Navbar.Brand>
+                        <Navbar.Brand href="/"><img src='images/logo.png' style={{ width: "8em", height: "5em" }} alt="" className='img-fluid' /></Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarCollapse" />
                         <Navbar.Collapse id="navbarCollapse">
 
                             <Nav className="ml-auto">
-                                <Nav.Link href="/about" style={this.atagstyle}>關於我們</Nav.Link>
-                                <Nav.Link href="/service" style={this.atagstyle}>服務項目</Nav.Link>
-                                <Nav.Link href="/case" style={this.atagstyle}>案例分享</Nav.Link>
-                                <Nav.Link href="/question" style={this.atagstyle}>常見問題</Nav.Link>
-                                <Link to="/" onClick={this.checkadmin} style={this.atagstyle} className='text-decoration-none my-2'> 會員專區/查看訂單 </Link>
+                                <Link href="/about" style={this.atagstyle}>關於我們</Link>
+                                <Link href="/service" style={this.atagstyle}>服務項目</Link>
+                                <Link href="/case" style={this.atagstyle}>案例分享</Link>
+                                <Link href="/question" style={this.atagstyle}>常見問題</Link>
+                                <Link to="/member" onClick={this.checkadmin} style={this.atagstyle} className='text-decoration-none my-2'> 會員專區/查看訂單 </Link>
 
 
                                 {this.state.isLoggedIn ? (

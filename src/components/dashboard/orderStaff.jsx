@@ -22,7 +22,7 @@ console.log(evaluateAPI)
               <span>清潔能力：</span>
               {evaluateAPI?.clean ?
                 <div style={{position:"relative"}}>
-                  <img src="/images/staffInfo-star.png" alt="star-y" style={{ clipPath: `inset(0 ${100 - evaluateAPI.clean * 20}% 0 0)` }} />
+                  <img src="./images/staffInfo-star.png" alt="star-y" style={{ clipPath: `inset(0 ${100 - evaluateAPI.clean * 20}% 0 0)` }} />
                 <img src="/images/staffInfo-star2.png" alt="star-g" style={{position: "absolute"}}/>
                 </div>: ""}
             </div>

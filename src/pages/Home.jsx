@@ -27,7 +27,7 @@ const Home = () => {
       {showGIF ? (
         <div className="loading-container">
           <img
-            src="/images/loading.gif"
+            src="images/loading.gif"
             alt="Loading..."
             className="loading-gif"
           />

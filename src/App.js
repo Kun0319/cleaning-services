@@ -1,4 +1,5 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+// import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Book from "./pages/Book";
 import Book1 from "./pages/book/Book1";
@@ -41,7 +42,8 @@ import EmployeePwd from "./components/login/EmployeePwd";
 import RenewPwd from "./components/book/RenewPwd";
 function App() {
   return (
-    <BrowserRouter>
+    // <BrowserRouter>
+     <Router>
       <Routes>
         <Route index element={<Home />} />
         <Route path="/about" element={<Aboutus />} />
@@ -50,11 +52,11 @@ function App() {
         <Route path="/question" element={<Question />} />
         <Route path="/loginpage" element={<LoginPage />} />
         <Route path="/book" element={<Book />}>
-          <Route index="/book/" element={<Book1 />} />
-          <Route path="/book/book2" element={<Book2 />} />
-          <Route path="/book/book3" element={<Book3 />} />
-          <Route path="/book/book4" element={<Book4 />} />
-          <Route path="/book/book5" element={<Book5 />} />
+          <Route index element={<Book1 />} />
+          <Route path="book2" element={<Book2 />} />
+          <Route path="book3" element={<Book3 />} />
+          <Route path="book4" element={<Book4 />} />
+          <Route path="book5" element={<Book5 />} />
         </Route>
         <Route
           path="/dashboard"
@@ -122,7 +124,8 @@ function App() {
         </Route>
         <Route path="/renewpwd" element={<RenewPwd />}></Route>
       </Routes>
-    </BrowserRouter>
+    {/* </BrowserRouter> */}
+    </Router>
   );
 }
 

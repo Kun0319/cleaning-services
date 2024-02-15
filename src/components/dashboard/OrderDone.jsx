@@ -97,7 +97,7 @@ const OrderDone = () => {
           <div className="updataScore">
             <div className="updataScoreTOP">
               感謝您的評價!! <br />
-              <img src="/images/sraccoon-salute.gif" alt="" />
+              <img src="./images/sraccoon-salute.gif" alt="" />
             </div>
           </div>
         )}
@@ -112,12 +112,12 @@ const OrderDone = () => {
         )}
         <div className="orderInfo">
           <span className="orderCard">
-            <img src="/images/order.png" alt="" className="animated-image" />
+            <img src="./images/order.png" alt="" className="animated-image" />
             <p className="orderText ">預約快速</p>
           </span>
           <p className="line"></p>
           <span className="orderCard">
-            <img src="/images/orderGoing.png" alt="" className="animated-car" />
+            <img src="./images/orderGoing.png" alt="" className="animated-car" />
             <p className="orderText ">使命必達</p>
           </span>
           <p className="line"></p>

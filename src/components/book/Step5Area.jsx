@@ -17,7 +17,7 @@ const Step5Area = () => {
         我們會將訂單詳細內容寄至您的電子信箱，您也可以在會員專區中查詢您的訂單。
       </p>
       <div id="book5-bottom">
-        <img src="/images/raccoon.gif" alt="raccoon" />
+        <img src="./images/raccoon.gif" alt="raccoon" />
       </div>
     </div>
   );

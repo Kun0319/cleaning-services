@@ -109,7 +109,7 @@ const Step3Area = () => {
               <label htmlFor="same">同會員基本資料</label>
             </div>
             <div>
-              <img src="/images/staffInfo-raccoon.png" alt="icon" />
+              <img src="./images/staffInfo-raccoon.png" alt="icon" />
               <label htmlFor="userName">
                 姓　　名 <span className="text-danger">*</span>
               </label>
@@ -124,7 +124,7 @@ const Step3Area = () => {
               <span>&nbsp;</span>
             </div>
             <div>
-              <img src="/images/phone.png" alt="icon" />
+              <img src="./images/phone.png" alt="icon" />
               <label htmlFor="userPhone">
                 手機號碼 <span className="text-danger">*</span>
               </label>
@@ -139,7 +139,7 @@ const Step3Area = () => {
               <span>&nbsp;</span>
             </div>
             <div>
-              <img src="/images/mail.png" alt="icon" />
+              <img src="./images/mail.png" alt="icon" />
               <label htmlFor="userMail">
                 電子信箱 <span className="text-danger">*</span>
               </label>
@@ -151,7 +151,7 @@ const Step3Area = () => {
               />
             </div>
             <div className="d-flex align-items-center flex-wrap book3-address ">
-              <img src="/images/address.png" alt="icon" />
+              <img src="./images/address.png" alt="icon" />
               <label htmlFor="userAddress">
                 清掃地址 <span className="text-danger">*</span>
               </label>
@@ -177,7 +177,7 @@ const Step3Area = () => {
               </div>
             </div>
             <div>
-              <img src="/images/info.png" alt="icon" />
+              <img src="./images/info.png" alt="icon" />
               <label htmlFor="notes">
                 訂單備註 <span className="text-white">*</span>
               </label>
