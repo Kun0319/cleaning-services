@@ -174,14 +174,18 @@ const EmployeeOrder = () => {
           </table>
         </div>
         {/*上傳圖片 */}
-        {state !== 2 ? <div className="contact-table">
-          <UploadClearImg empClearData={empClearData}/>
-        </div>:"" }
-        {attdata?.length !== 0 && <div className="contact-table">
+        {state !== 2 ? (
+          <div className="contact-table">
+            <UploadClearImg empClearData={empClearData} />
+          </div>
+        ) : ""}
+        {attdata?.length !== 0 && (
+          <div className="contact-table">
             <div className="ControllAccordion col-12" style={{ overflow: "auto" }}>
-                <ControllAccordion items={attdata} Accordion={MemberDone}  />
-            </div> 
-          </div>}
+              <ControllAccordion items={attdata} Accordion={MemberDone} />
+            </div>
+          </div>
+        )}
       </div >
     </>);
 };

@@ -147,12 +147,10 @@ const Order = () => {
               }) => {
                 return (
                   <tr key={ornumber} onClick={() => { navigate(`/member/${ornumber}`) }}>
-                    <tr>
-                      <td>訂單編號:{ornumber}</td>
-                      <td>訂單日期:{new Date(ordertime).toLocaleDateString('en-CA')}</td>
-                      <td>訂單狀態:{handleOrderStatus(state)}</td>
-                    </tr>
-                </tr>
+                    <td>訂單編號:{ornumber}</td>
+                    <td>訂單日期:{new Date(ordertime).toLocaleDateString('en-CA')}</td>
+                    <td>訂單狀態:{handleOrderStatus(state)}</td>
+                  </tr>
                 );
               })}
         </tbody>
